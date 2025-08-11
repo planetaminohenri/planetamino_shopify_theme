@@ -15,15 +15,21 @@ Nutrition Accordion
 %}
 
 {% if host_product %}
-  <section class="nutrition-accordion" id="section-{{ section.id }}" data-section-id="{{ section.id }}" data-has-embedded-selector="{{ section.settings.show_variant_selector }}">
+  {% liquid
+    assign is_inline = false
+    if section.id contains 'inline'
+      assign is_inline = true
+    endif
+  %}
+  <section class="nutrition-accordion{% if is_inline %} nutrition-accordion--inline{% endif %}" id="section-{{ section.id }}" data-section-id="{{ section.id }}" data-has-embedded-selector="{{ section.settings.show_variant_selector }}"{% if is_inline %} style="margin: 16px 0;"{% endif %}>
     <div class="nutrition-accordion__header" role="button" aria-expanded="false" tabindex="0">
-      <h3>{{ 'Nutritional Information' | t }}</h3>
+      <h3>{{ 'nutrition.title' | t }}</h3>
       <span class="nutrition-accordion__chevron" aria-hidden="true"></span>
     </div>
 
     <div class="nutrition-accordion__content" hidden>
       {% if section.settings.show_variant_selector %}
-        <label class="nutrition-accordion__label" for="nutrition-variant-{{ section.id }}">{{ 'Select flavor' | t }}</label>
+        <label class="nutrition-accordion__label" for="nutrition-variant-{{ section.id }}">{{ 'nutrition.select_flavor' | t }}</label>
         <select id="nutrition-variant-{{ section.id }}" class="nutrition-variant-select">
           {% for v in host_product.variants %}
             <option value="{{ v.id }}">{{ v.title }}</option>
@@ -41,34 +47,50 @@ Nutrition Accordion
             {% if nf %}
               {% assign portion_size = nf.portion_size %}
               {% assign factor = portion_size | times: 1.0 | divided_by: 100.0 %}
+              
+              {%- comment -%}
+              Daily Value reference amounts (per 100g)
+              {%- endcomment -%}
+              {% assign magnesium_dv = 375.0 %}
+              {% assign zinc_dv = 10.0 %}
+              {% assign iron_dv = 14.0 %}
 
               {% if nf.ingredients %}
                 <div class="nutrition-ingredients">
-                  <strong>{{ 'Ingredients:' | t }}</strong>
+                  <strong>{{ 'nutrition.ingredients' | t }}</strong>
                   <span>{{ nf.ingredients }}</span>
                 </div>
               {% endif %}
 
               <div class="nutrition-tables">
                 <div class="nutrition-table">
-                  <div class="nutrition-table__title">{{ 'Per 100 g' | t }}</div>
+                  <div class="nutrition-table__title">{{ 'nutrition.per_100g' | t }}</div>
                   <table>
                     <tbody>
                       {% if nf.energy_kj_100g or nf.energy_kcal_100g %}
-                        <tr><th>{{ 'Energy' | t }}</th><td>{{ nf.energy_kj_100g }} KJ / {{ nf.energy_kcal_100g }} kcal</td></tr>
+                        <tr><th>{{ 'nutrition.energy' | t }}</th><td>{{ nf.energy_kj_100g }} KJ / {{ nf.energy_kcal_100g }} kcal</td></tr>
                       {% endif %}
-                      {% if nf.fat_g_100g %}<tr><th>{{ 'Fat' | t }}</th><td>{{ nf.fat_g_100g }} g</td></tr>{% endif %}
-                      {% if nf.sat_fat_g_100g %}<tr><th>{{ '- of which saturates' | t }}</th><td>{{ nf.sat_fat_g_100g }} g</td></tr>{% endif %}
-                      {% if nf.carbs_g_100g %}<tr><th>{{ 'Carbohydrates' | t }}</th><td>{{ nf.carbs_g_100g }} g</td></tr>{% endif %}
-                      {% if nf.sugars_g_100g %}<tr><th>{{ '- of which sugars' | t }}</th><td>{{ nf.sugars_g_100g }} g</td></tr>{% endif %}
-                      {% if nf.fiber_g_100g %}<tr><th>{{ 'Fiber' | t }}</th><td>{{ nf.fiber_g_100g }} g</td></tr>{% endif %}
-                      {% if nf.protein_g_100g %}<tr><th>{{ 'Protein' | t }}</th><td>{{ nf.protein_g_100g }} g</td></tr>{% endif %}
-                      {% if nf.salt_g_100g %}<tr><th>{{ 'Salt' | t }}</th><td>{{ nf.salt_g_100g }} g</td></tr>{% endif %}
+                      {% if nf.fat_g_100g %}<tr><th>{{ 'nutrition.fat' | t }}</th><td>{{ nf.fat_g_100g }} g</td></tr>{% endif %}
+                      {% if nf.sat_fat_g_100g %}<tr><th>{{ 'nutrition.saturated_fat' | t }}</th><td>{{ nf.sat_fat_g_100g }} g</td></tr>{% endif %}
+                      {% if nf.carbs_g_100g %}<tr><th>{{ 'nutrition.carbohydrates' | t }}</th><td>{{ nf.carbs_g_100g }} g</td></tr>{% endif %}
+                      {% if nf.sugars_g_100g %}<tr><th>{{ 'nutrition.sugars' | t }}</th><td>{{ nf.sugars_g_100g }} g</td></tr>{% endif %}
+                      {% if nf.fiber_g_100g %}<tr><th>{{ 'nutrition.fiber' | t }}</th><td>{{ nf.fiber_g_100g }} g</td></tr>{% endif %}
+                      {% if nf.protein_g_100g %}<tr><th>{{ 'nutrition.protein' | t }}</th><td>{{ nf.protein_g_100g }} g</td></tr>{% endif %}
+                      {% if nf.salt_g_100g %}<tr><th>{{ 'nutrition.salt' | t }}</th><td>{{ nf.salt_g_100g }} g</td></tr>{% endif %}
                       {% if nf.magnesium_mg_100g or nf.zinc_mg_100g or nf.iron_mg_100g %}
-                        <tr><th>{{ 'Minerals' | t }}</th><td></td></tr>
-                        {% if nf.magnesium_mg_100g %}<tr><th>{{ 'Magnesium' | t }}</th><td>{{ nf.magnesium_mg_100g }} mg</td></tr>{% endif %}
-                        {% if nf.zinc_mg_100g %}<tr><th>{{ 'Zinc' | t }}</th><td>{{ nf.zinc_mg_100g }} mg</td></tr>{% endif %}
-                        {% if nf.iron_mg_100g %}<tr><th>{{ 'Iron' | t }}</th><td>{{ nf.iron_mg_100g }} mg</td></tr>{% endif %}
+                        <tr><th>{{ 'nutrition.minerals' | t }}</th><td></td></tr>
+                        {% if nf.magnesium_mg_100g %}
+                          {% assign magnesium_percent = nf.magnesium_mg_100g | times: 100.0 | divided_by: magnesium_dv | round: 0 %}
+                          <tr><th>{{ 'nutrition.magnesium' | t }}</th><td>{{ nf.magnesium_mg_100g }} mg ({{ magnesium_percent }}% {{ 'nutrition.daily_value' | t }})</td></tr>
+                        {% endif %}
+                        {% if nf.zinc_mg_100g %}
+                          {% assign zinc_percent = nf.zinc_mg_100g | times: 100.0 | divided_by: zinc_dv | round: 0 %}
+                          <tr><th>{{ 'nutrition.zinc' | t }}</th><td>{{ nf.zinc_mg_100g }} mg ({{ zinc_percent }}% {{ 'nutrition.daily_value' | t }})</td></tr>
+                        {% endif %}
+                        {% if nf.iron_mg_100g %}
+                          {% assign iron_percent = nf.iron_mg_100g | times: 100.0 | divided_by: iron_dv | round: 0 %}
+                          <tr><th>{{ 'nutrition.iron' | t }}</th><td>{{ nf.iron_mg_100g }} mg ({{ iron_percent }}% {{ 'nutrition.daily_value' | t }})</td></tr>
+                        {% endif %}
                       {% endif %}
                     </tbody>
                   </table>
@@ -78,16 +100,16 @@ Nutrition Accordion
                   <div class="nutrition-table">
                     <div class="nutrition-table__title">
                       {% if nf.portion_label != blank %}
-                        {{ 'Per portion' | t }} — {{ nf.portion_label }}
+                        {{ 'nutrition.per_portion' | t }} — {{ nf.portion_label }}
                       {% else %}
-                        {{ 'Per portion' | t }} — {{ portion_size }} {{ nf.portion_unit }}
+                        {{ 'nutrition.per_portion' | t }} — {{ portion_size }} {{ nf.portion_unit }}
                       {% endif %}
                     </div>
                     <table>
                       <tbody>
                         {% if nf.energy_kj_100g or nf.energy_kcal_100g %}
                           <tr>
-                            <th>{{ 'Energy' | t }}</th>
+                            <th>{{ 'nutrition.energy' | t }}</th>
                             <td>
                               {% assign energy_kj_portion = nf.energy_kj_100g | times: portion_size | divided_by: 100 | round: 0 %}
                               {% assign energy_kcal_portion = nf.energy_kcal_100g | times: portion_size | divided_by: 100 | round: 0 %}
@@ -95,20 +117,44 @@ Nutrition Accordion
                             </td>
                           </tr>
                         {% endif %}
-                        {% if nf.fat_g_100g %}<tr><th>{{ 'Fat' | t }}</th><td>{{ nf.fat_g_100g | times: portion_size | divided_by: 100.0 | round: 1 }} g</td></tr>{% endif %}
-                        {% if nf.sat_fat_g_100g %}<tr><th>{{ '- of which saturates' | t }}</th><td>{{ nf.sat_fat_g_100g | times: portion_size | divided_by: 100.0 | round: 1 }} g</td></tr>{% endif %}
-                        {% if nf.carbs_g_100g %}<tr><th>{{ 'Carbohydrates' | t }}</th><td>{{ nf.carbs_g_100g | times: portion_size | divided_by: 100.0 | round: 1 }} g</td></tr>{% endif %}
-                        {% if nf.sugars_g_100g %}<tr><th>{{ '- of which sugars' | t }}</th><td>{{ nf.sugars_g_100g | times: portion_size | divided_by: 100.0 | round: 1 }} g</td></tr>{% endif %}
-                        {% if nf.fiber_g_100g %}<tr><th>{{ 'Fiber' | t }}</th><td>{{ nf.fiber_g_100g | times: portion_size | divided_by: 100.0 | round: 1 }} g</td></tr>{% endif %}
-                        {% if nf.protein_g_100g %}<tr><th>{{ 'Protein' | t }}</th><td>{{ nf.protein_g_100g | times: portion_size | divided_by: 100.0 | round: 1 }} g</td></tr>{% endif %}
-                        {% if nf.salt_g_100g %}<tr><th>{{ 'Salt' | t }}</th><td>{{ nf.salt_g_100g | times: portion_size | divided_by: 100.0 | round: 2 }} g</td></tr>{% endif %}
+                        {% if nf.fat_g_100g %}<tr><th>{{ 'nutrition.fat' | t }}</th><td>{{ nf.fat_g_100g | times: portion_size | divided_by: 100.0 | round: 1 }} g</td></tr>{% endif %}
+                        {% if nf.sat_fat_g_100g %}<tr><th>{{ 'nutrition.saturated_fat' | t }}</th><td>{{ nf.sat_fat_g_100g | times: portion_size | divided_by: 100.0 | round: 1 }} g</td></tr>{% endif %}
+                        {% if nf.carbs_g_100g %}<tr><th>{{ 'nutrition.carbohydrates' | t }}</th><td>{{ nf.carbs_g_100g | times: portion_size | divided_by: 100.0 | round: 1 }} g</td></tr>{% endif %}
+                        {% if nf.sugars_g_100g %}<tr><th>{{ 'nutrition.sugars' | t }}</th><td>{{ nf.sugars_g_100g | times: portion_size | divided_by: 100.0 | round: 1 }} g</td></tr>{% endif %}
+                        {% if nf.fiber_g_100g %}<tr><th>{{ 'nutrition.fiber' | t }}</th><td>{{ nf.fiber_g_100g | times: portion_size | divided_by: 100.0 | round: 1 }} g</td></tr>{% endif %}
+                        {% if nf.protein_g_100g %}<tr><th>{{ 'nutrition.protein' | t }}</th><td>{{ nf.protein_g_100g | times: portion_size | divided_by: 100.0 | round: 1 }} g</td></tr>{% endif %}
+                        {% if nf.salt_g_100g %}<tr><th>{{ 'nutrition.salt' | t }}</th><td>{{ nf.salt_g_100g | times: portion_size | divided_by: 100.0 | round: 2 }} g</td></tr>{% endif %}
+                        {% if nf.magnesium_mg_100g or nf.zinc_mg_100g or nf.iron_mg_100g %}
+                          <tr><th>{{ 'nutrition.minerals' | t }}</th><td></td></tr>
+                          {% if nf.magnesium_mg_100g %}
+                            {% assign magnesium_portion = nf.magnesium_mg_100g | times: portion_size | divided_by: 100.0 | round: 1 %}
+                            {% assign magnesium_percent_portion = magnesium_portion | times: 100.0 | divided_by: magnesium_dv | round: 0 %}
+                            <tr><th>{{ 'nutrition.magnesium' | t }}</th><td>{{ magnesium_portion }} mg ({{ magnesium_percent_portion }}% {{ 'nutrition.daily_value' | t }})</td></tr>
+                          {% endif %}
+                          {% if nf.zinc_mg_100g %}
+                            {% assign zinc_portion = nf.zinc_mg_100g | times: portion_size | divided_by: 100.0 | round: 1 %}
+                            {% assign zinc_percent_portion = zinc_portion | times: 100.0 | divided_by: zinc_dv | round: 0 %}
+                            <tr><th>{{ 'nutrition.zinc' | t }}</th><td>{{ zinc_portion }} mg ({{ zinc_percent_portion }}% {{ 'nutrition.daily_value' | t }})</td></tr>
+                          {% endif %}
+                          {% if nf.iron_mg_100g %}
+                            {% assign iron_portion = nf.iron_mg_100g | times: portion_size | divided_by: 100.0 | round: 1 %}
+                            {% assign iron_percent_portion = iron_portion | times: 100.0 | divided_by: iron_dv | round: 0 %}
+                            <tr><th>{{ 'nutrition.iron' | t }}</th><td>{{ iron_portion }} mg ({{ iron_percent_portion }}% {{ 'nutrition.daily_value' | t }})</td></tr>
+                          {% endif %}
+                        {% endif %}
                       </tbody>
                     </table>
                   </div>
                 {% endif %}
               </div>
+
+              {% if nf.magnesium_mg_100g or nf.zinc_mg_100g or nf.iron_mg_100g %}
+                <div class="nutrition-disclaimer">
+                  <small>{{ 'nutrition.daily_value_note' | t }}</small>
+                </div>
+              {% endif %}
             {% else %}
-              <div class="nutrition-empty">{{ 'No nutritional information available for this variant.' | t }}</div>
+              <div class="nutrition-empty">{{ 'nutrition.no_info_available' | t }}</div>
             {% endif %}
           </div>
         {% endfor %}
@@ -134,6 +180,7 @@ Nutrition Accordion
       #section-{{ section.id }} th, #section-{{ section.id }} td { padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(0,0,0,.06); }
       #section-{{ section.id }} tr:last-child th, #section-{{ section.id }} tr:last-child td { border-bottom: 0; }
       #section-{{ section.id }} .nutrition-variant-select { width: 100%; margin-bottom: 12px; }
+      #section-{{ section.id }} .nutrition-disclaimer { margin-top: 12px; color: #666; font-style: italic; }
     </style>
 
     <script>
@@ -195,11 +242,11 @@ Nutrition Accordion
 {% else %}
   <section id="section-{{ section.id }}" class="nutrition-accordion">
     <div class="nutrition-accordion__header" role="button" aria-expanded="false" tabindex="0">
-      <h3>{{ 'Nutritional Information' | t }}</h3>
+      <h3>{{ 'nutrition.title' | t }}</h3>
       <span class="nutrition-accordion__chevron" aria-hidden="true"></span>
     </div>
     <div class="nutrition-accordion__content" hidden>
-      <div class="nutrition-empty">{{ 'Select a product in the section settings.' | t }}</div>
+      <div class="nutrition-empty">{{ 'nutrition.select_product' | t }}</div>
     </div>
   </section>
 {% endif %}

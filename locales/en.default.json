@@ -534,5 +534,29 @@
       "send_on": "YYYY-MM-DD",
       "send_on_label": "Send on (optional)"
     }
+  },
+  "nutrition": {
+    "title": "Nutritional Information",
+    "nutritional_information": "Nutritional Information",
+    "select_flavor": "Select flavor",
+    "ingredients": "Ingredients:",
+    "per_100g": "Per 100 g",
+    "per_portion": "Per portion",
+    "energy": "Energy",
+    "fat": "Fat",
+    "saturated_fat": "- of which saturated",
+    "carbohydrates": "Carbohydrates",
+    "sugars": "- of which sugars",
+    "fiber": "Fiber",
+    "protein": "Protein",
+    "salt": "Salt",
+    "minerals": "Minerals",
+    "magnesium": "Magnesium",
+    "zinc": "Zinc",
+    "iron": "Iron",
+    "daily_value": "DV",
+    "daily_value_note": "* Percent Daily Values are based on a reference intake",
+    "no_info_available": "No nutritional information available for this variant.",
+    "select_product": "Select a product in the section settings."
   }
 }

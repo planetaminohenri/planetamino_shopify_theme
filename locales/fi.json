@@ -533,5 +533,29 @@
       "expanded": "Lahjakortin saajalomake laajennettuna",
       "collapsed": "Lahjakortin saajalomake pienennettynä"
     }
+  },
+  "nutrition": {
+    "title": "Ravintosisältö ja ainesosat",
+    "nutritional_information": "Ravintosisältö",
+    "select_flavor": "Valitse maku",
+    "ingredients": "Ainesosat:",
+    "per_100g": "100 g",
+    "per_portion": "Annoksessa",
+    "energy": "Energia",
+    "fat": "Rasva",
+    "saturated_fat": "- josta tyydyttynyttä",
+    "carbohydrates": "Hiilihydraatit",
+    "sugars": "- josta sokeria",
+    "fiber": "Kuitu",
+    "protein": "Proteiini",
+    "salt": "Suola",
+    "minerals": "Kivennäisaineet",
+    "magnesium": "Magnesium",
+    "zinc": "Sinkki",
+    "iron": "Rauta",
+    "daily_value": "RDI",
+    "daily_value_note": "* Prosenttiosuudet perustuvat päivittäiseen saantisuositukseen",
+    "no_info_available": "Tälle tuoteversiolle ei ole saatavilla ravintotietoja.",
+    "select_product": "Valitse tuote osion asetuksista."
   }
 }
