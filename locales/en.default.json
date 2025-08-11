@@ -557,6 +557,11 @@
     "daily_value": "DV",
     "daily_value_note": "* Percent Daily Values are based on a reference intake",
     "no_info_available": "No nutritional information available for this variant.",
-    "select_product": "Select a product in the section settings."
+    "select_product": "Select a product in the section settings.",
+    "allergens": {
+      "oat": "oat",
+      "peanut": "peanut", 
+      "nut": "nut"
+    }
   }
 }

@@ -556,6 +556,11 @@
     "daily_value": "RDI",
     "daily_value_note": "* Prosenttiosuudet perustuvat päivittäiseen saantisuositukseen",
     "no_info_available": "Tälle tuoteversiolle ei ole saatavilla ravintotietoja.",
-    "select_product": "Valitse tuote osion asetuksista."
+    "select_product": "Valitse tuote osion asetuksista.",
+    "allergens": {
+      "oat": "kaura",
+      "peanut": "maapähkinä",
+      "nut": "pähkinä"
+    }
   }
 }

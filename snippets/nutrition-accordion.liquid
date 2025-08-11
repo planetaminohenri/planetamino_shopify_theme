@@ -50,7 +50,7 @@ Parameters:
               {% if nf.ingredients %}
                 <div class="nutrition-ingredients"{% if use_inline_style %} style="margin-bottom: 16px; color: var(--color-primary);"{% endif %}>
                   <strong>{{ 'nutrition.ingredients' | t }}</strong>
-                  <span>{{ nf.ingredients }}</span>
+                  <span class="nutrition-ingredients-text" data-ingredients="{{ nf.ingredients | escape }}">{{ nf.ingredients }}</span>
                 </div>
               {% endif %}
 
@@ -324,12 +324,41 @@ Parameters:
         header.addEventListener('click', toggle);
       }
 
+      // Allergen highlighting function
+      function highlightAllergens() {
+        var allergens = [
+          '{{ 'nutrition.allergens.oat' | t }}',
+          '{{ 'nutrition.allergens.peanut' | t }}',
+          '{{ 'nutrition.allergens.nut' | t }}'
+        ];
+        
+        var ingredientElements = root.querySelectorAll('.nutrition-ingredients-text');
+        ingredientElements.forEach(function(element) {
+          var text = element.textContent;
+          var highlightedText = text;
+          
+          allergens.forEach(function(allergen) {
+            if (allergen && allergen.trim() !== '') {
+              // Remove word boundaries to allow matching within composite words (e.g., kaurakuitu)
+              var regex = new RegExp(allergen.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+              highlightedText = highlightedText.replace(regex, '<strong style="text-decoration: underline; font-weight: bold;">$&</strong>');
+            }
+          });
+          
+          if (highlightedText !== text) {
+            element.innerHTML = highlightedText;
+          }
+        });
+      }
+
       function showVariant(variantId) {
         var blocks = root.querySelectorAll('.nutrition-variant');
         blocks.forEach(function(el){ el.hidden = (el.getAttribute('data-variant-id') !== String(variantId)); });
         if (variantSelect) {
           variantSelect.value = variantId;
         }
+        // Re-apply allergen highlighting when variant changes
+        setTimeout(highlightAllergens, 10);
       }
 
       if (variantSelect) {
@@ -358,6 +387,9 @@ Parameters:
         obs.observe(idInput, { attributes: true, attributeFilter: ['value'] });
         idInput.addEventListener('change', function(){ showVariant(this.value); });
       }
+
+      // Apply allergen highlighting
+      highlightAllergens();
     })();
   </script>
 {% else %}
