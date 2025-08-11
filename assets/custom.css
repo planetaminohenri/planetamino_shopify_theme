@@ -2087,6 +2087,7 @@ html .jdgm-prev-badge {
   box-shadow: none;
   width: fit-content;
   transition: all 0.3s ease-in-out;
+  margin-top: 0 !important;
 }
 
 
@@ -2098,7 +2099,7 @@ html .jdgm-prev-badge {
 
 .jdgm-prev-badge__text {
   font-weight: 500;
-  color: #000000;
+  color: var(--color-primary);
   font-size: 18px;
   line-height: 1;
 }
