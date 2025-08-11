@@ -29,7 +29,7 @@
         "sub_heading_WGwhnk": {
           "type": "sub-heading",
           "settings": {
-            "sub-heading": "High in protein plant based All essential amino acids"
+            "sub-heading": "High in protein <> plant based All essential amino acids"
           }
         }
       },
@@ -100,7 +100,7 @@
           "type": "bundle",
           "settings": {
             "image": "shopify://shop_images/all-bundle.png",
-            "title": "I want to test - bundle",
+            "title": "I want to taste everything - bundle",
             "description": "<ul>\n<li>\n<span>🍪</span> 18x protein cookies (two of each flavor)</li>\n<li>\n<span>🥤</span> 1x vanilla-flavored protein powder</li>\n<li>\n<span>🥤</span> 1x chocolate flavored protein powder</li>\n<li>\n<span>🥤</span> 1x strawberry flavored protein powder </li>\n</ul>",
             "price": "86.88€",
             "button_label": "Add To Cart",
@@ -115,7 +115,7 @@
       ],
       "name": "Power Bundles",
       "settings": {
-        "section_heading": "POWER BISCUITS AND PROTSKUA BUNDLES",
+        "section_heading": "POWER COOKIE AND POWDER BUNDLES",
         "font_size": "font-size-md"
       }
     },
@@ -125,8 +125,8 @@
       "settings": {
         "heading": "Build Your Cookie Box",
         "pro-tit": "ORDER MORE AND SAVE! PACK A BOX OF COOKIES WITH YOUR FAVORITE FLAVORS",
-        "description": "Save up to 10%",
-        "description-btm": "<h4>Fully customize your order, the more you order, the more  you save per piece:</h4>\n<ul>\n<li>🍪 20-39 pcs: 2.79e/pc (85g cookies)</li>\n<li>🍪 40+ pcs: 2.49e/pc (85g cookies)</li>\n</ul>",
+        "description": "Save up to 20%",
+        "description-btm": "<h4>Fully customize your order, the more you order, the more  you save per piece:</h4>\n<ul>\n<li>🍪 5-19 pcs: 2.79€/pc (85g cookies)</li>\n<li>🍪 20-39 pcs: 2.49€/pc (85g cookies)</li>\n<li>🍪 40+ pcs: 2.29€/pc (85g cookies)</li>\n</ul>",
         "product_handle": "power-cookie",
         "product_url": "shopify://products/power-cookie",
         "font_size": "font-size-md"
@@ -139,7 +139,7 @@
         "heading": "POWDERS",
         "pro-tit": "THE WORLD'S PERHAPS BEST PROTEIN POWDER",
         "description": "",
-        "description-btm": "<h4>Chocolate, vanilla and strawberry\nflavors</h4>\n<p>Perhaps the best protein powder in the world!</p>\n<p>Look no further, now we have an excellent protsku powder for you!</p>\n<ul>\n<li>💪 Protein content of at least 70g per 100g</li>\n<li>🎯 Contains all essential amino acids  </li>\n<li>😋 Good taste and texture</li>\n<li>😎 Does not precipitate</li> \n</ul>",
+        "description-btm": "<h4>Chocolate, vanilla and strawberry\nflavors</h4>\n<p>Perhaps the best protein powder in the world!</p>\n<p>Look no further, now we have an excellent protein powder for you!</p>\n<ul>\n<li>💪 Protein content of at least 70g per 100g</li>\n<li>🎯 Contains all essential amino acids  </li>\n<li>😋 Good taste and texture</li>\n<li>😎 Does not precipitate</li> \n</ul>",
         "product_handle": "perhaps-the-best-protein-powder-in-the-world",
         "product_url": "shopify://products/perhaps-the-best-protein-powder-in-the-world",
         "font_size": "font-size-md"
@@ -346,7 +346,7 @@
     },
     "best_nutrition_section_gWM4f7": {
       "type": "best-nutrition-section",
-      "name": "Best Testing Plant Section",
+      "name": "Best Tasting Plant Section",
       "settings": {}
     }
   },

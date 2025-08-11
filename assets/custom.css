@@ -1214,7 +1214,7 @@ product-info .page-width {
 
 .product__title {
     margin-top: 30px;
-    margin-bottom: 16px;
+    margin-bottom: 0px;
 }
 
 .product__description {
@@ -2084,11 +2084,7 @@ html .jdgm-prev-badge {
   display: flex !important;
   align-items: center;
   gap: 10px;
-  background: #fff7f4;
-  border: 1px solid #330073;
-  border-radius: 12px;
-  padding: 10px 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: none;
   width: fit-content;
   transition: all 0.3s ease-in-out;
 }
