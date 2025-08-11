@@ -1,0 +1,169 @@
+{% schema %}
+{
+  "name": "Product Tabs",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title"
+        },
+        {
+          "type": "richtext",
+          "id": "tab_content",
+          "label": "Tab Content"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Product Tabs",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}
+
+<div class="tabs-wrapper">
+  <div class="page-width">
+    <div class="tabs-nav">
+      {% for block in section.blocks %}
+        {% assign tab_title = block.settings.tab_title | strip %}
+        {% if tab_title != blank %}
+          <button class="tab-button{% if forloop.first %} active{% endif %}" data-tab-index="{{ forloop.index0 }}">
+            {{ tab_title }}
+          </button>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="tabs-content">
+      {% for block in section.blocks %}
+        {% assign tab_content = block.settings.tab_content %}
+        {% if tab_content != blank %}
+          <div class="tab-panel{% if forloop.first %} active{% endif %}" data-tab-index="{{ forloop.index0 }}">
+            {{ tab_content }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.tabs-wrapper {
+  margin-bottom: 100px;
+}
+
+.tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #C8D8D8;
+  border-radius: 50px;
+  overflow: hidden;
+  padding: 15px;
+  gap: 32px;
+}
+
+.tab-button {
+  background: transparent;
+  padding: 16px 32px 13px;
+  font-weight: 700;
+  font-size: 30px;
+  color: #330073;
+  border: 1px solid #C8D8D8;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: fit-content;
+  border-radius: 30px;
+  line-height: 0.7;
+}
+
+.tab-button:last-child {
+  border-right: none;
+}
+
+.tab-button.active {
+  background-color: #28005A;
+  color: #F3C002;
+  border-radius: 9999px;
+}
+
+.tabs-content {
+  margin-top: 20px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.tab-panel {
+  display: none;
+  color: #32006E;
+  font-weight: 500;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.tabs-wrapper * {
+    font-family: Acumin Pro Condensed;
+    letter-spacing: 0;
+}
+
+.tab-panel p {
+    font-size: 24px;
+    margin: 0;
+}
+
+@media only screen and (max-width: 1280px) {
+
+.tab-button {
+    font-size: 24px;
+}
+
+.tab-panel p {
+    font-size: 20px;
+}
+}
+@media only screen and (max-width: 767px) {
+
+.tabs-nav {
+  gap:20px;
+}
+  
+.tab-button {
+    width: 100%;
+}
+.tabs-wrapper {
+    margin-bottom: 50px;
+}
+}
+
+  
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', function () {
+        const index = this.getAttribute('data-tab-index');
+
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabPanels.forEach(panel => panel.classList.remove('active'));
+
+        this.classList.add('active');
+        document.querySelector('.tab-panel[data-tab-index="' + index + '"]').classList.add('active');
+      });
+    });
+  });
+</script>

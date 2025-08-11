@@ -1,0 +1,182 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "multicolumn_emEEXL": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_7W8zn9": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/IMG-20210805-WA0033-e1630303949552-768x655.jpg",
+            "title": "",
+            "text": "<p>Planet Amino protein cookies were created by two active individuals looking to replace animal protein with plant-based alternatives.</p><p> </p><p>Our mission is to make sustainable eating accessible by offering affordable, tasty, and nutritious plant-based protein products.</p><p> </p><p>The world needs better, more sustainable food—and that’s what we make at Planet Amino.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_7W8zn9"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "class": "about-multicol",
+        "title": "why Planet Amino?",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 1,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 48,
+        "padding_bottom": 100
+      }
+    },
+    "faq_PQE8fh": {
+      "type": "faq",
+      "blocks": {
+        "faq_item_eUAATE": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Sustainable Choices",
+            "answer": "<p>We source raw materials as close to consumers as possible to reduce emissions and improve supply chain oversight. Our production minimizes waste while maximizing efficiency.</p>"
+          }
+        },
+        "faq_item_67VMwQ": {
+          "type": "faq_item",
+          "settings": {
+            "question": "High Quality Ingredients",
+            "answer": "<p>We ensure quality at every step—from sourcing to production—to create durable, high-quality snacks.</p>"
+          }
+        },
+        "faq_item_qFe4qc": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Superior Nutrition",
+            "answer": "<p>Excellent nutrition starts with carefully chosen ingredients. Our protein cookies use a variety of protein sources, primarily hemp, fava bean, potato, and pea protein. Different protein isolates enhance the amino acid profile.</p><p><br/>Other ingredients are also selected to support the product’s nutritional benefits. For fiber and carbohydrates, we use Finnish gluten-free oats, hemp, and fava beans.</p><p><br/>All fats in our products are entirely plant-based.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_eUAATE",
+        "faq_item_67VMwQ",
+        "faq_item_qFe4qc"
+      ],
+      "name": "FAQ Accordion",
+      "settings": {
+        "faq_heading": "Frequently Asked Questions"
+      }
+    },
+    "store_request_banner_Lcd4RE": {
+      "type": "store-request-banner",
+      "blocks": {
+        "store_button_he7rdD": {
+          "type": "store_button",
+          "settings": {
+            "label": "K–STORES",
+            "link": "https://www.k-ruoka.fi/artikkelit/k-kaupassa/ehdotuksestasi-k-kaupan-hyllylle"
+          }
+        },
+        "store_button_qDkeHC": {
+          "type": "store_button",
+          "settings": {
+            "label": "S–GROUP",
+            "link": "https://www.sinuntoive.fi/"
+          }
+        },
+        "store_button_JXereW": {
+          "type": "store_button",
+          "settings": {
+            "label": "LIDL",
+            "link": "https://asiakaspalvelu.lidl.fi/SelfServiceFI/s/contactsupport"
+          }
+        }
+      },
+      "block_order": [
+        "store_button_he7rdD",
+        "store_button_qDkeHC",
+        "store_button_JXereW"
+      ],
+      "name": "Store Request Banner",
+      "settings": {
+        "heading": "Not Yet In Your Local Store (Finland)?",
+        "subheading": "Ask them to order power cookies."
+      }
+    },
+    "multicolumn_97dAeg": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_Tm9iCp": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/mindset-manager.webp",
+            "title": "Simo Putkuri",
+            "text": "<h5>Mindset Manager</h5><p>I have always loved creative, simple ways to solve problems. New, and better innovations for old problems or out-dated solutions, excite me. I am not an engineer, but I still think that most issues are just simply ‘’engineering problems’’…<br/><br/></p>",
+            "link_label": "Read More",
+            "link": "#"
+          }
+        },
+        "column_b8GRQi": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/factory-manager.jpg",
+            "title": "Henri Dumon",
+            "text": "<h5>Factory Manager</h5><p>” I’m the sales and marketing guy, and henri is the data guy” said Simo to a packed room</p><p>“So how did you know where to start and who does the baking?” asked…</p>",
+            "link_label": "Read More",
+            "link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "column_Tm9iCp",
+        "column_b8GRQi"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "class": "",
+        "title": "Who are we?",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 2,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main",
+    "multicolumn_emEEXL",
+    "faq_PQE8fh",
+    "store_request_banner_Lcd4RE",
+    "multicolumn_97dAeg"
+  ]
+}

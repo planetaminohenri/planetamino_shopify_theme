@@ -1,0 +1,70 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "brand_information_x8tLkf": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": true
+          }
+        },
+        "link_list_iAExNQ": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Company",
+            "menu": "footer"
+          }
+        },
+        "text_DqWTBF": {
+          "type": "text",
+          "settings": {
+            "heading": "Customer Service",
+            "subtext": "<p>info@planetamino.com </p><p><strong>Oiva Report:</strong> Excellent health and safety rating. <a href=\"https://your-oiva-report-link.com\" target=\"_blank\">View Report</a></p>"
+          }
+        },
+        "text_yiAAwK": {
+          "type": "text",
+          "settings": {
+            "heading": "Store",
+            "subtext": "<p>Siikaniemenkatu 4 70620 Kuopio Finland</p><p>013313413, 083741243</p>"
+          }
+        }
+      },
+      "block_order": [
+        "brand_information_x8tLkf",
+        "link_list_iAExNQ",
+        "text_DqWTBF",
+        "text_yiAAwK"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2d1f5c88-24d2-421c-b730-afe4f382ef3c",
+        "newsletter_enable": false,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": true,
+        "show_social": false,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": false,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

@@ -1,0 +1,173 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 60,
+        "padding_bottom": 100
+      }
+    },
+    "product_tabs_zKr9zM": {
+      "type": "product-tabs",
+      "blocks": {
+        "tab_mkfF3w": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Nutritional Content & Ingredients",
+            "tab_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>"
+          }
+        },
+        "tab_ffQJTQ": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "More Information",
+            "tab_content": "<p><strong>The biscuits are baked to the following specifications:</strong><br/><strong>💪 Plenty of protein and fiber:</strong> 20g of protein per cookie to keep you going.<br/><strong>⚡ Satisfying serving size:</strong> Our cookies weigh 85 g and contain enough energy (about 350 kcal).<br/><strong> ✅ All essential amino acids:</strong> Thanks to the protein blend (hemp, broad bean, pea and potato protein) and oat flour.<br/><strong>🌱 Plant-based and gluten-free:</strong> Suitable for almost everyone. <br/><strong>📦 Packaging</strong>: Chocolate, nut, mint chocolate and coconut chocolate cookies have their own fancy packaging, the others have simpler packaging (product information labeled).</p>"
+          }
+        }
+      },
+      "block_order": [
+        "tab_mkfF3w",
+        "tab_ffQJTQ"
+      ],
+      "name": "Product Tabs",
+      "settings": {}
+    },
+    "marquee_UMnEXJ": {
+      "type": "marquee",
+      "name": "Scrolling Marquee Banner",
+      "settings": {
+        "message": "OVER 90% OF OUR CUSTOMERS RECOMMEND POWER BISCUITS!"
+      }
+    },
+    "apps_yVpgtr": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_featured_carousel_xEBEN8": {
+          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "maxwidth": 1720
+          }
+        },
+        "judge_me_reviews_review_widget_RLyig6": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_featured_carousel_xEBEN8",
+        "judge_me_reviews_review_widget_RLyig6"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "faq_global_CGbJtT": {
+      "type": "faq-global",
+      "name": "faq-global",
+      "settings": {
+        "title": "FAQ"
+      }
+    },
+    "best_nutrition_section_rrF8QF": {
+      "type": "best-nutrition-section",
+      "name": "Best Testing Plant Section",
+      "settings": {}
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_tabs_zKr9zM",
+    "marquee_UMnEXJ",
+    "apps_yVpgtr",
+    "faq_global_CGbJtT",
+    "best_nutrition_section_rrF8QF",
+    "related-products"
+  ]
+}

@@ -1,0 +1,364 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "text_K7C8AF": {
+          "type": "text",
+          "settings": {
+            "text": "4.2 ★ 2000+ Happy Customers",
+            "text_style": "body"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Best Tasting  Protein Products and they are Plant-Based!",
+            "heading_size": "h0"
+          }
+        },
+        "sub_heading_WGwhnk": {
+          "type": "sub-heading",
+          "settings": {
+            "sub-heading": "High in protein plant based All essential amino acids"
+          }
+        }
+      },
+      "block_order": [
+        "text_K7C8AF",
+        "heading",
+        "sub_heading_WGwhnk"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/banner-img.jpg",
+        "image_overlay_opacity": 40,
+        "image_height": "small",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "scheme-b9bf9c61-fa02-47a1-88c7-87a3a5589991",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "power_bundles_tPDyd4": {
+      "type": "power-bundles",
+      "blocks": {
+        "bundle_Md6K8N": {
+          "type": "bundle",
+          "settings": {
+            "image": "shopify://shop_images/image_8.png",
+            "title": "I want to test - bundle",
+            "description": "<ul>\n<li>\n<span>🍪</span> 9x protein cookies (one of each flavor)</li>\n<li>\n<span>🥤</span> 1x protein powder (chocolate, vanilla or strawberry flavor)</li>\n</ul>",
+            "price": "39.56€",
+            "button_label": "Add To Cart",
+            "button_link": "shopify://products/i-want-to-test-bundle",
+            "font_size": "font-size-md"
+          }
+        },
+        "bundle_kmqrfL": {
+          "type": "bundle",
+          "settings": {
+            "image": "shopify://shop_images/all-bundle.png",
+            "title": "I want to test - bundle",
+            "description": "<ul>\n<li>\n<span>🍪</span> 18x protein cookies (two of each flavor)</li>\n<li>\n<span>🥤</span> 1x vanilla-flavored protein powder</li>\n<li>\n<span>🥤</span> 1x chocolate flavored protein powder</li>\n<li>\n<span>🥤</span> 1x strawberry flavored protein powder </li>\n</ul>",
+            "price": "86.88€",
+            "button_label": "Add To Cart",
+            "button_link": "shopify://products/i-want-to-taste-them-all-bundle",
+            "font_size": "font-size-md"
+          }
+        }
+      },
+      "block_order": [
+        "bundle_Md6K8N",
+        "bundle_kmqrfL"
+      ],
+      "name": "Power Bundles",
+      "settings": {
+        "section_heading": "POWER BISCUITS AND PROTSKUA BUNDLES",
+        "font_size": "font-size-md"
+      }
+    },
+    "build_cookie_box_78yGiG": {
+      "type": "build-cookie-box",
+      "name": "Build Cookie Box",
+      "settings": {
+        "heading": "Build Your Cookie Box",
+        "pro-tit": "ORDER MORE AND SAVE! PACK A BOX OF COOKIES WITH YOUR FAVORITE FLAVORS",
+        "description": "Save up to 10%",
+        "description-btm": "<h4>Fully customize your order, the more you order, the more  you save per piece:</h4>\n<ul>\n<li>🍪 20-39 pcs: 2.79e/pc (85g cookies)</li>\n<li>🍪 40+ pcs: 2.49e/pc (85g cookies)</li>\n</ul>",
+        "product_handle": "power-cookie",
+        "product_url": "shopify://products/power-cookie",
+        "font_size": "font-size-md"
+      }
+    },
+    "powder_product_slider_Rnir48": {
+      "type": "powder-product-slider",
+      "name": "Powders Slider",
+      "settings": {
+        "heading": "POWDERS",
+        "pro-tit": "THE WORLD'S PERHAPS BEST PROTEIN POWDER",
+        "description": "",
+        "description-btm": "<h4>Chocolate, vanilla and strawberry\nflavors</h4>\n<p>Perhaps the best protein powder in the world!</p>\n<p>Look no further, now we have an excellent protsku powder for you!</p>\n<ul>\n<li>💪 Protein content of at least 70g per 100g</li>\n<li>🎯 Contains all essential amino acids  </li>\n<li>😋 Good taste and texture</li>\n<li>😎 Does not precipitate</li> \n</ul>",
+        "product_handle": "perhaps-the-best-protein-powder-in-the-world",
+        "product_url": "shopify://products/perhaps-the-best-protein-powder-in-the-world",
+        "font_size": "font-size-md"
+      }
+    },
+    "testimonials_slider_UAYPnP": {
+      "type": "testimonials-slider",
+      "blocks": {
+        "testimonial_aXfUCG": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/testi1.png",
+            "name": "Jonna N.",
+            "quote": "The products have been proven effective on various trips and hikes. I recommend them!",
+            "rating": 5,
+            "font_size": "font-size-sm"
+          }
+        },
+        "testimonial_rNHF44": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/testi2.png",
+            "name": "A. Mused",
+            "quote": "Good taste, mixes well and has a smooth texture. As a development idea/wish, it would be possible to change the sweetener to steviol glycosides.",
+            "rating": 5,
+            "font_size": "font-size-sm"
+          }
+        },
+        "testimonial_UCWtkq": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/testi3.png",
+            "name": "Joseph A.",
+            "quote": "Filling and high in protein, these should be eaten not only in everyday life, but also work on longer bike rides",
+            "rating": 5,
+            "font_size": "font-size-sm"
+          }
+        },
+        "testimonial_HhYGF4": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/testi4.png",
+            "name": "Mary M.",
+            "quote": "I had cookies with me when I went hiking in Lapland in the summer, and the power cookies worked really well as a snack there. The pineapple cookie was my favorite.",
+            "rating": 5,
+            "font_size": "font-size-sm"
+          }
+        },
+        "testimonial_fY8CRU": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/testi1.png",
+            "name": "Jonna N.",
+            "quote": "The products have been proven effective on various trips and hikes. I recommend them!",
+            "rating": 5,
+            "font_size": "font-size-sm"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_aXfUCG",
+        "testimonial_rNHF44",
+        "testimonial_UCWtkq",
+        "testimonial_HhYGF4",
+        "testimonial_fY8CRU"
+      ],
+      "name": "Testimonials",
+      "settings": {
+        "class": "home-testimonials",
+        "heading": "90% of customers recommend powder cookies",
+        "font_size": "font-size-md"
+      }
+    },
+    "multicolumn_F9eqwW": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_6qKwKM": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/icn1.svg",
+            "title": "High in protein",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_3KE4jc": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/icn2.svg",
+            "title": "Soy-free",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_QkNaPd": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/icn3.svg",
+            "title": "Dairy-free",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_qAEEtB": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/icn4.svg",
+            "title": "All essential amino acids",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_RXUNxf": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/icn5.svg",
+            "title": "Gluten-free",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_9dTqML": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/icn6.svg",
+            "title": "Magnesium, Zinc and Iron",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_L3HyYT": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/icn7.svg",
+            "title": "Made in Finland",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_AyEPnU": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/icn8.svg",
+            "title": "High in Fiber",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_7EMmGx": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/icn9.svg",
+            "title": "Vegan",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_6qKwKM",
+        "column_3KE4jc",
+        "column_QkNaPd",
+        "column_qAEEtB",
+        "column_RXUNxf",
+        "column_9dTqML",
+        "column_L3HyYT",
+        "column_AyEPnU",
+        "column_7EMmGx"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "class": "",
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 9,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-471b8816-0758-4539-8841-195c3b07167f",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "faq_global_Gdrmrj": {
+      "type": "faq-global",
+      "name": "faq-global",
+      "settings": {
+        "title": "FAQ"
+      }
+    },
+    "best_nutrition_section_gWM4f7": {
+      "type": "best-nutrition-section",
+      "name": "Best Testing Plant Section",
+      "settings": {}
+    }
+  },
+  "order": [
+    "image_banner",
+    "featured_collection",
+    "power_bundles_tPDyd4",
+    "build_cookie_box_78yGiG",
+    "powder_product_slider_Rnir48",
+    "testimonials_slider_UAYPnP",
+    "multicolumn_F9eqwW",
+    "faq_global_Gdrmrj",
+    "best_nutrition_section_gWM4f7"
+  ]
+}

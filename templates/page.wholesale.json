@@ -1,0 +1,109 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "split_section_VFmPeH": {
+      "type": "split-section",
+      "name": "Split Embed Section",
+      "settings": {
+        "title": "WHOLESALE",
+        "description": "Are you a company in the EU interested in selling Power Cookies?Place an order with our wholesale partners to get your first 100€ order for free! (For new members on these platforms)We are present on Ankorstore:",
+        "custom_embed": "<div class=\"wholesale\">\n<iframe id=\"ankorstore-widget\" title=\"ankorstore-widget\" width=\"100%\" style=\"border: none; height: 750px;\" scrolling=\"no\" src=\"https://www.ankorstore.com/brand/29849/widget\">\n</iframe>\n</div>"
+      }
+    },
+    "rich_text_GtzFkq": {
+      "type": "rich-text",
+      "blocks": {
+        "text_cbTDek": {
+          "type": "text",
+          "settings": {
+            "text": "<h2><strong>And Faire:</strong></h2>"
+          }
+        }
+      },
+      "block_order": [
+        "text_cbTDek"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "class": "store-finder-head",
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_xN87L7": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div class=\"wholesale-faire\">\n<iframe src=\"https://www.faire.com/embed/bw_gm26w72jf9\" width=\"500\" height=\"700\" scrolling=\"no\" style=\"margin:0 auto;border:none;display:block;max-width:100%;width:500px;height:700px;\"></iframe>\n</div>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_AD7xeH": {
+      "type": "rich-text",
+      "blocks": {
+        "text_GNpTk6": {
+          "type": "text",
+          "settings": {
+            "text": "<h3><strong>Or if you would like to receive some free samples, or have any questions, feel free to get in touch: </strong></h3>"
+          }
+        }
+      },
+      "block_order": [
+        "text_GNpTk6"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "class": "store-finder-head",
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "contact_form_YJXRib": {
+      "type": "contact-form",
+      "name": "t:sections.contact-form.presets.name",
+      "settings": {
+        "heading": "<strong>Contact form </strong>",
+        "heading_size": "h1",
+        "color_scheme": "scheme-e8e2f9a2-75c1-48fa-9026-f68ad32af470",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main",
+    "split_section_VFmPeH",
+    "rich_text_GtzFkq",
+    "custom_liquid_xN87L7",
+    "rich_text_AD7xeH",
+    "contact_form_YJXRib"
+  ]
+}

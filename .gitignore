@@ -1,0 +1,22 @@
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Shopify CLI / secrets
+.shopify/
+.env
+.env.*
+shopify.theme.toml
+
+# Build tools
+node_modules/
+dist/
+build/
+.cache/
+.parcel-cache/
+.sass-cache/
+coverage/
+*.map

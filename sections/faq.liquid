@@ -1,0 +1,187 @@
+{% schema %}
+{
+  "name": "FAQ Accordion",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "FAQ Heading",
+      "default": "Frequently Asked Questions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "FAQ Accordion",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}
+
+
+<div class="faq-outer">
+<div class="page-width">
+<div class="faq-section">
+  <h2 class="faq-heading">{{ section.settings.faq_heading }}</h2>
+  <div class="faq-list">
+    {% for block in section.blocks %}
+      <div class="faq-item" data-faq>
+        <button class="faq-question" aria-expanded="false">
+          <span>{{ block.settings.question }}</span>
+          <span class="faq-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 8L12 16L20 8" stroke="#330073" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</span>
+        </button>
+        <div class="faq-answer">
+          {{ block.settings.answer }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+</div>
+
+  
+<style>
+
+.faq-outer {
+    padding: 100px 0;
+    background: #FEF9E5;
+}
+  
+.faq-section {
+  background-color: #F3C002; /* yellow background */
+  padding: 60px;
+  border-radius: 32px;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.faq-heading {
+  text-align: center;
+  color: #330073;
+  font-size: 64px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 40px;
+}
+
+.faq-item {
+  border-bottom: 1px solid #32006E;
+  margin-bottom: 10px;
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 36px;
+  font-weight: 600;
+  color: #330073;
+  padding: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faq-icon {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  display: none;
+  padding-bottom: 16px;
+  color: #32006E;
+  font-weight: 500;
+}
+
+.faq-item.open .faq-answer {
+  display: block;
+}
+
+.faq-outer * {
+    font-family: Acumin Pro Condensed;
+    letter-spacing: 0;
+}
+
+.faq-answer p {
+    margin: 0;
+    font-size: 30px;
+}
+  
+
+@media only screen and (max-width: 767px) {
+
+.faq-heading {
+    font-size: 24px;
+}
+
+.faq-question {
+    font-size: 20px;
+}
+
+.faq-answer p {
+    font-size: 18px;
+}
+.faq-outer {
+  padding:50px 0;
+}
+.faq-section {
+    padding: 50px 20px;
+    border-radius:15px;
+}
+button.faq-question svg {
+    width: 16px;
+    height: 16px;
+}
+.faq-heading {
+    margin-bottom: 20px;
+}
+}
+  
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-faq]').forEach(faq => {
+      const button = faq.querySelector('.faq-question');
+      button.addEventListener('click', () => {
+        const isOpen = faq.classList.contains('open');
+        document.querySelectorAll('[data-faq]').forEach(el => el.classList.remove('open'));
+        document.querySelectorAll('.faq-question').forEach(q => q.setAttribute('aria-expanded', 'false'));
+
+        if (!isOpen) {
+          faq.classList.add('open');
+          button.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  });
+</script>

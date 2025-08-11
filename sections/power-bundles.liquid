@@ -1,0 +1,70 @@
+<section class="power-bundles {{ section.settings.font_size }}">
+  <div class="page-width">
+    <h2 class="{{ section.settings.font_size }}">{{ section.settings.section_heading }}</h2>
+
+    <div class="bundles-grid">
+      {% for block in section.blocks %}
+        <div class="bundle {{ block.settings.font_size }}">
+          <div class="image-blk">
+            {% if block.settings.image %}
+              <img src="{{ block.settings.image | image_url }}" alt="{{ block.settings.title | escape }}">
+            {% endif %}
+          </div>
+          <div class="cont-blk">
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.description }}</p>
+            <div class="btm-cnt">
+            <p class="price">{{ block.settings.price }}</p>
+            {% if block.settings.button_link and block.settings.button_label %}
+              <a href="{{ block.settings.button_link }}" class="btn">{% render 'cart-icon' %} {{ block.settings.button_label }}</a>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Power Bundles",
+  "class":"power-bundles",
+  "settings": [
+    { "type": "text", "id": "section_heading", "label": "Section Heading", "default": "POWER BISCUITS AND PROTSKUA BUNDLES" },
+    { "type": "select", "id": "font_size", "label": "Font Size", "options": [
+        { "value": "font-size-sm", "label": "Small" },
+        { "value": "font-size-md", "label": "Medium" },
+        { "value": "font-size-lg", "label": "Large" }
+    ], "default": "font-size-md" }
+  ],
+  "blocks": [
+    {
+      "type": "bundle",
+      "name": "Bundle Box",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "price", "label": "Price" },
+        { "type": "text", "id": "button_label", "label": "Button Label" },
+        { "type": "url", "id": "button_link", "label": "Button Link" },
+        { "type": "select", "id": "font_size", "label": "Font Size", "options": [
+          { "value": "font-size-sm", "label": "Small" },
+          { "value": "font-size-md", "label": "Medium" },
+          { "value": "font-size-lg", "label": "Large" }
+        ], "default": "font-size-md" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Power Bundles",
+      "category": "Homepage",
+      "blocks": [
+        { "type": "bundle" },
+        { "type": "bundle" }
+      ]
+    }
+  ]
+}
+{% endschema %}

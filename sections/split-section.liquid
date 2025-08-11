@@ -1,0 +1,41 @@
+<div class="page-width">
+<div class="custom-split-embed">
+  <div class="split-left">
+    <h2>{{ section.settings.title }}</h2>
+    <div class="description">{{ section.settings.description }}</div>
+  </div>
+  <div class="split-right">
+    {{ section.settings.custom_embed }}
+  </div>
+</div>
+</div>
+{% schema %}
+{
+  "name": "Split Content with Embed",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Your Title Here"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Add your custom description here."
+    },
+    {
+      "type": "html",
+      "id": "custom_embed",
+      "label": "Custom Embed Code (iframe or script)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split Embed Section"
+    }
+  ]
+}
+{% endschema %}
+

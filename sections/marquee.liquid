@@ -1,0 +1,94 @@
+{% schema %}
+{
+  "name": "Slick Marquee Banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "message",
+      "label": "Banner Message",
+      "default": "OVER 90% OF OUR CUSTOMERS RECOMMEND POWER BISCUITS!"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slick Marquee Banner"
+    }
+  ]
+}
+{% endschema %}
+
+<!-- Slick CDN -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<div class="slick-banner-wrapper">
+  <div class="slick-marquee">
+    {% for i in (1..12) %}
+      <div class="{% if i == 6 %}filled-text{% else %}outline-text{% endif %}">
+        {{ section.settings.message }}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.slick-banner-wrapper {
+  background-color: #6033FF;
+  padding: 12px 0;
+  overflow: hidden;
+}
+
+.slick-marquee {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.slick-marquee div {
+  padding: 0 5px;
+  font-size: 48px;
+  font-weight: 700;
+  color:#fff;
+  text-transform: uppercase;
+  font-family: Acumin Pro Condensed;
+    letter-spacing: 0;
+}
+.slick-slide:nth-child(2n+2) .outline-text {
+    fill: none;
+    -webkit-text-stroke: 1px #fff;
+    color: transparent;
+}
+
+.slick-marquee .slick-slide {
+  display: inline-block;
+  float: none;
+}
+
+@media only screen and (max-width: 1280px) {
+
+.slick-marquee div {
+    padding: 0;
+    font-size: 24px;
+}
+}
+  
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    $('.slick-marquee').slick({
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      speed: 15000,
+      autoplay: true,
+      autoplaySpeed: 0,
+      cssEase: 'linear',
+      arrows: false,
+      dots: false,
+      pauseOnHover: false,
+      variableWidth: true
+    });
+  });
+</script>

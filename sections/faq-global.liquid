@@ -1,0 +1,24 @@
+<section class="faq-main">
+<div class="page-width">
+  <h2>{{ section.settings.title }}</h2> 
+{% render 'faq-section' %}
+</div>
+</section>
+{% schema %}
+  {
+    "name": "Faq Global",
+    "settings": [
+      {
+        "type":"text",
+        "id":"title",
+        "label":"Title Text",
+        "default":"FAQ"
+      }
+    ],
+   "presets": [
+    {
+      "name": "faq-global",
+    }
+   ]
+  }
+{% endschema %}

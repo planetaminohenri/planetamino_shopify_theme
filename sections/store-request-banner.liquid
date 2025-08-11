@@ -1,0 +1,128 @@
+<section class="store-request-banner">
+  <div class="banner-wrapper page-width">
+    <h2 class="banner-heading">{{ section.settings.heading }}</h2>
+    <p class="banner-subheading">{{ section.settings.subheading }}</p>
+
+    <div class="banner-buttons">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link }}" class="store-button" target="_blank">
+          {{ block.settings.label }}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<style>
+  .store-request-banner {
+    background-color: #ebe6ff;
+    text-align: center;
+    padding: 50px 20px;
+  }
+
+  .store-request-banner .banner-heading {
+    font-size: 28px;
+    font-weight: 800;
+    color: #2e006e;
+    margin: 0;
+  }
+
+  .store-request-banner .banner-subheading {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2e006e;
+    margin: 10px 0 30px;
+  }
+
+  .store-request-banner .banner-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .store-request-banner .store-button {
+    background-color: #2e006e;
+    color: yellow;
+    font-family: monospace;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 999px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 0.3s;
+  }
+
+  .store-request-banner .store-button:hover {
+    background-color: #450097;
+  }
+</style>
+{% schema %}
+{
+  "name": "Store Request Banner",
+  "tag": "section",
+  "class": "store-request",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "NOT YET IN YOUR LOCAL STORE (FINLAND)?"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "ASK THEM TO ORDER POWER COOKIES"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "store_button",
+      "name": "Store Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Button Label",
+          "default": "K–STORES"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Store Request Banner",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "store_button",
+          "settings": {
+            "label": "K–STORES",
+            "link": "#"
+          }
+        },
+        {
+          "type": "store_button",
+          "settings": {
+            "label": "S–GROUP",
+            "link": "#"
+          }
+        },
+        {
+          "type": "store_button",
+          "settings": {
+            "label": "LIDL",
+            "link": "#"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

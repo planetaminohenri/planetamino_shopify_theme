@@ -1,0 +1,16 @@
+<section class="faq-wrapper">
+  {% assign max_faqs = 10 %}
+  {% for i in (1..max_faqs) %}
+    {% capture question_key %}faq_{{ i }}_question{% endcapture %}
+    {% capture answer_key %}faq_{{ i }}_answer{% endcapture %}
+    {% assign question = settings[question_key] %}
+    {% assign answer = settings[answer_key] %}
+
+    {% if question != blank and answer != blank %}
+      <details class="faq-accordion">
+        <summary>{{ question }} {{- 'icon-caret.svg' | inline_asset_content -}}</summary>
+        <p>{{ answer }}</p>
+      </details>
+    {% endif %}
+  {% endfor %}
+</section>

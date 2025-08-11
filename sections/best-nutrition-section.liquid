@@ -1,0 +1,75 @@
+{% comment %}<section class="best-nutrition-section {{ section.settings.font_size }}">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="section-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="nutrition-content">
+      <div class="text-columns">
+        <div class="text-left">
+          {{ section.settings.left_text }}
+        </div>
+        {% if section.settings.image %}
+        <div class="nutrition-image">
+          <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="Nutrition Image">
+        </div>
+      {% endif %}
+        <div class="text-right">
+          {{ section.settings.right_text }}
+        </div>
+      </div>
+
+      
+
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <div class="nutrition-button">
+          <a href="{{ section.settings.button_link }}" class="btn">{{ section.settings.button_label }}</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>{% endcomment %}
+<section class="best-nutrition-section {{ settings.font_size }}">
+  <div class="page-width">
+    {% if settings.heading != blank %}
+      <h2 class="section-heading">{{ settings.heading }}</h2>
+    {% endif %}
+
+    <div class="nutrition-content">
+      <div class="text-columns">
+        <div class="text-left">
+          {{ settings.left_text }}
+        </div>
+        {% if settings.image %}
+        <div class="nutrition-image">
+          <img src="{{ settings.image | image_url: width: 1200 }}" alt="Nutrition Image">
+        </div>
+        {% endif %}
+        <div class="text-right">
+          {{ settings.right_text }}
+        </div>
+      </div>
+
+      {% if settings.btn_label != blank and settings.button_link != blank %}
+        <div class="nutrition-button">
+          <a href="{{ settings.button_link }}" class="btn">{{ settings.btn_label }}</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Best Nutrition Section",
+  "settings": [
+    
+  ],
+  "presets": [
+    {
+      "name": "Best Testing Plant Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
