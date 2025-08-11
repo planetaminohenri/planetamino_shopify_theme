@@ -2088,6 +2088,7 @@ html .jdgm-prev-badge {
   width: fit-content;
   transition: all 0.3s ease-in-out;
   margin-top: 0 !important;
+  padding-bottom: 30px;
 }
 
 
