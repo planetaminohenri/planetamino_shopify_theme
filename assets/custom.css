@@ -756,6 +756,23 @@ section.faq-main {
     color: var(--color-primary);
     border-radius: 50%;
     margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+}
+
+.footer-block__brand-info a.link.list-social__link .svg-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-block__brand-info a.link.list-social__link svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--color-primary);
 }
 
 .footer-block__brand-info .list-social {
