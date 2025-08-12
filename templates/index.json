@@ -38,9 +38,10 @@
         "heading",
         "sub_heading_WGwhnk"
       ],
+      "custom_css": [],
       "settings": {
-        "image": "shopify://shop_images/banner-img.jpg",
-        "image_overlay_opacity": 40,
+        "image": "shopify://shop_images/Website_Banner_2.png",
+        "image_overlay_opacity": 0,
         "image_height": "small",
         "image_behavior": "none",
         "desktop_content_position": "middle-left",
@@ -88,7 +89,7 @@
           "type": "bundle",
           "settings": {
             "image": "shopify://shop_images/image_8.png",
-            "title": "I want to test - bundle",
+            "title": "I want to test",
             "description": "<ul>\n<li>\n<span>🍪</span> 9x protein cookies (one of each flavor)</li>\n<li>\n<span>🥤</span> 1x protein powder (chocolate, vanilla or strawberry flavor)</li>\n</ul>",
             "price": "39.56€",
             "button_label": "Add To Cart",
@@ -100,7 +101,7 @@
           "type": "bundle",
           "settings": {
             "image": "shopify://shop_images/all-bundle.png",
-            "title": "I want to taste everything - bundle",
+            "title": "I want to taste everything",
             "description": "<ul>\n<li>\n<span>🍪</span> 18x protein cookies (two of each flavor)</li>\n<li>\n<span>🥤</span> 1x vanilla-flavored protein powder</li>\n<li>\n<span>🥤</span> 1x chocolate flavored protein powder</li>\n<li>\n<span>🥤</span> 1x strawberry flavored protein powder </li>\n</ul>",
             "price": "86.88€",
             "button_label": "Add To Cart",
@@ -115,7 +116,7 @@
       ],
       "name": "Power Bundles",
       "settings": {
-        "section_heading": "POWER COOKIE AND POWDER BUNDLES",
+        "section_heading": "BUNDLES",
         "font_size": "font-size-md"
       }
     },

@@ -31,14 +31,14 @@
           "type": "text",
           "settings": {
             "heading": "Customer Service",
-            "subtext": "<p>info@planetamino.com </p><p><strong>Oiva Report:</strong> Excellent health and safety rating. <a href=\"https://your-oiva-report-link.com\" target=\"_blank\">View Report</a></p>"
+            "subtext": "<p>info@planetamino.com</p>"
           }
         },
         "text_yiAAwK": {
           "type": "text",
           "settings": {
             "heading": "Store",
-            "subtext": "<p>Siikaniemenkatu 4 70620 Kuopio Finland</p><p>013313413, 083741243</p>"
+            "subtext": "<p>Siikaniemenkatu 4 70620 Kuopio Finland</p>"
           }
         }
       },
@@ -52,12 +52,12 @@
         "color_scheme": "scheme-2d1f5c88-24d2-421c-b730-afe4f382ef3c",
         "newsletter_enable": false,
         "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
+        "enable_follow_on_shop": false,
         "show_social": false,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
         "payment_enable": false,
-        "show_policy": true,
+        "show_policy": false,
         "margin_top": 0,
         "padding_top": 36,
         "padding_bottom": 36

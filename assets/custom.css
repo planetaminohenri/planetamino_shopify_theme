@@ -755,12 +755,14 @@ section.faq-main {
     font-family: 'VCR OSD Mono';
     font-size: 18px;
     line-height: 25px;
+    color: #fff !important;
 }
 
 .footer-block p {
     font-family: 'VCR OSD Mono';
     font-size: 18px;
     line-height: 25px;
+    color: #fff !important;
 }
 
 .footer-block p a {
@@ -778,6 +780,20 @@ section.faq-main {
 .footer .footer__content-bottom .footer__content-bottom-wrapper .footer__copyright.caption small {
     font-size: 16px;
     font-family: 'VCR OSD Mono';
+    color: #fff !important;
+}
+
+/* Ensure all footer text is white */
+.footer p, 
+.footer a, 
+.footer li, 
+.footer span, 
+.footer div,
+.footer .footer-block__details-content,
+.footer .footer-block__details-content *,
+.footer .copyright__content,
+.footer .copyright__content a {
+    color: #fff !important;
 }
 /* about  page css */
 .page-about .multicolumn .title.inline-richtext {
