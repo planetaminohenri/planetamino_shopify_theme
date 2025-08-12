@@ -354,7 +354,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
   .cookie-wrap h2 {
     font-size: var(--font-size-title-lg);
     font-family: 'Acumin Pro ExtraCondensed';
-    color: var(--color-primary-dark);
+    color: var(--color-primary);
     text-transform: uppercase;
     border-bottom:1px solid;
     border-color:var(--color-primary);
@@ -414,7 +414,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 .lst-row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 50px;
     padding-top: 20px;
     align-items: center;
@@ -511,6 +511,11 @@ section.powder-product {
     line-height: var(--bundle-card-list-lg);
     margin: 0 0 10px;
     font-family: 'Acumin Pro Condensed';
+}
+
+/* Powder section specific styling to restore left/right alignment */
+.powder-product .lst-row {
+    justify-content: space-between;
 }
 span.sls-savings-badge {
     background: #7ed957;

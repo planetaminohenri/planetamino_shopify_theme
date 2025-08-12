@@ -27,9 +27,6 @@
        <h3>{{ section.settings.pro-tit }}</h3>
        <div class="btm-cnt">{{ section.settings.description-btm }}</div>
       <div class="lst-row">
-     {% if product.price %}
-            <p class="price">{{ product.price | money }}</p>
-          {% endif %}
         {% comment %}
           <form method="post" action="/cart/add">
             <input type="hidden" name="id" value="{{ product.variants.first.id }}">
