@@ -1,15 +1,15 @@
 :root {
-  --banner-text-sm:20px;
+  --banner-text-sm:25px;
   --banner-text-md:26px;
   --banner-text-lg:48px; 
 
-  --banner-title-sm:35px;
-  --banner-title-md:50px;
-  --banner-title-lg:72px;
+  --banner-title-sm: 30px;
+  --banner-title-md: 50px;
+  --banner-title-lg: 90px;
 
   --banner-sub-title-sm:30px;
   --banner-sub-title-md:45px;
-  --banner-sub-title-lg:64px;
+  --banner-sub-title-lg:60px;
   
   --font-size-title-sm: 30px;
   --font-size-title-md: 45px;
@@ -98,7 +98,7 @@ h3.font-size-lg {
 /* Override theme font variables properly */
 :root {
   --font-body-family: 'Acumin Pro Condensed', var(--font-fallback);
-  --font-heading-family: 'Acumin Pro Condensed', var(--font-fallback);
+  --font-heading-family: 'Acumin Pro ExtraCondensed', sans-serif;
   --font-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Helvetica, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
@@ -126,9 +126,39 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
     height: 20px;
 }
 .announcement-bar p.announcement-bar__message.h5 {
-    font-size: var(--font-size-body-lg);
+    font-size: var(--font-size-body-sm);
     font-family: 'VCR OSD Mono';
     text-transform: uppercase;
+}
+
+/* Left-to-right rolling banner animation */
+.announcement-bar--rolling {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+.announcement-bar--rolling .announcement-bar__message {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
+    width: max-content;
+}
+
+.announcement-bar--rolling .marquee-content {
+    display: inline-block;
+    white-space: nowrap;
+    padding-right: 2rem; /* Minimal space between loops */
+    flex-shrink: 0;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-50%, 0, 0);
+    }
 }
 
 /************************* Section First***************/
@@ -258,15 +288,16 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 
 
 .banner__text.body p {
-    font-family: 'Acumin Pro Condensed';
+    font-family: var(--font-heading-family);
     font-size: var(--banner-text-lg);
     color: var(--color-primary);
-  text-transform: uppercase;
+    text-transform: uppercase;
 }
 .banner__box h2.banner__heading {
     font-size: var(--banner-title-lg);
-    font-family: 'Acumin Pro Condensed';
-    line-height: var(--banner-title-lg);
+    font-family: var(--font-heading-family);
+    line-height: 0.9em;
+    letter-spacing: 0.3px;
     color: var(--color-primary);
     text-transform: uppercase;
     font-weight: bold;
@@ -274,7 +305,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 
 .banner__box h3.banner-sub__heading {
     font-size: var(--banner-sub-title-lg);
-    font-family: 'Acumin Pro Condensed';
+    font-family: var(--font-heading-family);
     text-transform: uppercase;
     font-weight: bold;
     line-height: var(--banner-sub-title-lg);
@@ -1031,7 +1062,7 @@ form#custom-cookie-form {
      --font-size-title-lg: var(--font-size-title-sm);
     --font-size-body-lg: var(--font-size-body-sm);
     --banner-text-lg:var(--banner-text-sm); 
-    --banner-title-lg:var(--banner-title-sm);
+    --banner-title-lg: var(--banner-title-md);
     --banner-sub-title-lg:var(--banner-sub-title-sm);
     --bundle-card-title-lg:var(--bundle-card-title-sm);
     --bundle-card-list-lg:var(--bundle-card-list-sm);
@@ -1079,7 +1110,7 @@ section.faq-main{padding:30px;}
     --font-size-title-lg: var(--font-size-title-sm);
     --font-size-body-lg: var(--font-size-body-sm);
     --banner-text-lg:var(--banner-text-sm); 
-    --banner-title-lg:var(--banner-title-sm);
+    --banner-title-lg: var(--banner-title-md);
     --banner-sub-title-lg:var(--banner-sub-title-sm);
     --bundle-card-title-lg:var(--bundle-card-title-sm);
     --bundle-card-list-lg:var(--bundle-card-list-sm);
@@ -1091,6 +1122,11 @@ section.faq-main{padding:30px;}
     --cookie-desc-price-lg:var(--cookie-desc-price-sm);
     --faq-question-title-lg:var(--faq-question-title-sm);
   }
+  
+  .banner__text.body p {
+    font-size: var(--banner-text-sm);
+  }
+  
   .template-index .multicolumn .multicolumn-list{flex-wrap:wrap;}
   .content-info{max-width:100%;}
   .text-left, .text-right, .nutrition-image{width:100%;}
@@ -1196,6 +1232,16 @@ product-info .page-width {
     width: 32px !important;
     height: 32px !important;
     color: #000 !important;
+}
+
+/* Announcement bar slider arrows - white */
+.announcement-bar .slider-button .icon,
+.announcement-bar .slider-button[disabled] .icon {
+    color: #fff !important;
+}
+
+.announcement-bar .slider-button svg path {
+    color: #fff !important;
 }
 
 .thumbnail[aria-current] {

@@ -129,7 +129,7 @@
           {%- when 'sub-heading' -%}
             <h3
               class="banner-sub__heading" >
-              {{ block.settings.sub-heading }}
+              {{ block.settings.sub-heading | newline_to_br }}
             </h3>
           
           {%- when 'text' -%}

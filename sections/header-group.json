@@ -36,16 +36,24 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "FREE EU SHIPPING ON ORDERS ABOVE 50€ 🚀 Subscribe and Save 10%",
+            "text": "FREE EU SHIPPING ON ORDERS ABOVE 50€ 🚀",
+            "link": ""
+          }
+        },
+        "announcement-bar-1": {
+          "type": "announcement",
+          "settings": {
+            "text": "Subscribe and Save 10%",
             "link": ""
           }
         }
       },
       "block_order": [
-        "announcement-bar-0"
+        "announcement-bar-0",
+        "announcement-bar-1"
       ],
       "settings": {
-        "auto_rotate": false,
+        "auto_rotate": true,
         "change_slides_speed": 5,
         "color_scheme": "scheme-471b8816-0758-4539-8841-195c3b07167f",
         "show_line_separator": true,
