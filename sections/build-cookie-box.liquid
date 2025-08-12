@@ -33,10 +33,10 @@
         {% comment %}
           <form method="post" action="/cart/add">
             <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-            <button type="submit" class="btn">{% render 'cart-icon' %} Add to Cart</button>
+            <button type="submit" class="btn">{% render 'cart-icon' %} Shop</button>
           </form>
        {% endcomment %}
-       <a href="{{ section.settings.product_url }}" class="btn">{% render 'cart-icon' %} Add to Cart</a>
+       <a href="{{ section.settings.product_url }}" class="btn">{% render 'cart-icon' %} Shop</a>
    </div>
    </div>
    

@@ -169,7 +169,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 }
 
 .power-bundles h2 {
-    color: var(--color-primary-dark);
+    color: var(--color-primary);
     font-size: var(--font-size-title-lg);
     text-align: left;
     font-family: 'Acumin Pro Condensed';
@@ -206,7 +206,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 
 .power-bundles .bundle .cont-blk h3 {
     font-size: var(--bundle-card-title-lg);
-    color: var(--color-primary-dark);
+    color: var(--color-primary);
     font-family: 'Acumin Pro ExtraCondensed';
     font-weight: bold;
     text-transform: uppercase;

@@ -92,7 +92,7 @@
             "title": "I want to test",
             "description": "<ul>\n<li>\n<span>🍪</span> 9x protein cookies (one of each flavor)</li>\n<li>\n<span>🥤</span> 1x protein powder (chocolate, vanilla or strawberry flavor)</li>\n</ul>",
             "price": "39.56€",
-            "button_label": "Add To Cart",
+            "button_label": "Shop",
             "button_link": "shopify://products/i-want-to-test-bundle",
             "font_size": "font-size-md"
           }
@@ -104,7 +104,7 @@
             "title": "I want to taste everything",
             "description": "<ul>\n<li>\n<span>🍪</span> 18x protein cookies (two of each flavor)</li>\n<li>\n<span>🥤</span> 1x vanilla-flavored protein powder</li>\n<li>\n<span>🥤</span> 1x chocolate flavored protein powder</li>\n<li>\n<span>🥤</span> 1x strawberry flavored protein powder </li>\n</ul>",
             "price": "86.88€",
-            "button_label": "Add To Cart",
+            "button_label": "Shop",
             "button_link": "shopify://products/i-want-to-taste-them-all-bundle",
             "font_size": "font-size-md"
           }
