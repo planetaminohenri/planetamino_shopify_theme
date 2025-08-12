@@ -1,7 +1,7 @@
 :root {
   --banner-text-sm:25px;
   --banner-text-md:26px;
-  --banner-text-lg:48px; 
+  --banner-text-lg:40px; 
 
   --banner-title-sm: 30px;
   --banner-title-md: 50px;
@@ -292,6 +292,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
     font-size: var(--banner-text-lg);
     color: var(--color-primary);
     text-transform: uppercase;
+    line-height: 1em;
 }
 .banner__box h2.banner__heading {
     font-size: var(--banner-title-lg);

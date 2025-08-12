@@ -406,7 +406,7 @@
 }
 
 .banner__box > * + * {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .banner__box > *:first-child {
@@ -438,7 +438,7 @@
 }
 
 .banner__box .banner__heading + * {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .banner__buttons {
