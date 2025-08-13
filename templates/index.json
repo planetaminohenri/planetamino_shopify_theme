@@ -9,8 +9,8 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "planet_amino_banner": {
+      "type": "planet-amino-banner",
       "blocks": {
         "text_K7C8AF": {
           "type": "text",
@@ -22,7 +22,7 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Best Tasting  Protein Products and they are Plant-Based!",
+            "heading": "Best Tasting Protein Products",
             "heading_size": "h0"
           }
         },
@@ -38,19 +38,9 @@
         "heading",
         "sub_heading_WGwhnk"
       ],
-      "custom_css": [],
       "settings": {
-        "image": "shopify://shop_images/Website_Banner_2.png",
-        "image_overlay_opacity": 0,
-        "image_height": "small",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-left",
-        "desktop_content_alignment": "left",
-        "show_text_box": false,
-        "color_scheme": "scheme-b9bf9c61-fa02-47a1-88c7-87a3a5589991",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
+        "image": "shopify://shop_images/Website_banner_image_1200_x_1200.webp",
+        "background_color": "#F4C508"
       }
     },
     "featured_collection": {
@@ -352,7 +342,7 @@
     }
   },
   "order": [
-    "image_banner",
+    "planet_amino_banner",
     "featured_collection",
     "power_bundles_tPDyd4",
     "build_cookie_box_78yGiG",

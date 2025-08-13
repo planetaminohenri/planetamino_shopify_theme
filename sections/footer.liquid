@@ -90,15 +90,48 @@
                     {%- if block.settings.menu != blank -%}
                       <ul class="footer-block__details-content list-unstyled">
                         {%- for link in block.settings.menu.links -%}
-                          <li>
-                            <a
-                              href="{{ link.url }}"
-                              class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
-                            >
-                              {{ link.title | escape }}
-                            </a>
-                          </li>
+                          {%- unless link.handle == 'blog' or link.handle == 'about-us' -%}
+                            {%- comment -%} Add wholesale link before privacy policy if this is the Company footer menu {%- endcomment -%}
+                            {%- if block.settings.heading contains 'Company' and link.title contains 'Privacy' -%}
+                              <li>
+                                <a
+                                  href="{{ pages.wholesale.url | default: '/pages/wholesale' }}"
+                                  class="link link--text list-menu__item list-menu__item--link"
+                                >
+                                  Wholesale
+                                </a>
+                              </li>
+                            {%- endif -%}
+                            <li>
+                              <a
+                                href="{{ link.url }}"
+                                class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
+                              >
+                                {{ link.title | escape }}
+                              </a>
+                            </li>
+                          {%- endunless -%}
                         {%- endfor -%}
+                        {%- comment -%} Add wholesale link at the end if this is the Company footer menu and no privacy policy was found {%- endcomment -%}
+                        {%- if block.settings.heading contains 'Company' -%}
+                          {%- assign has_privacy = false -%}
+                          {%- for link in block.settings.menu.links -%}
+                            {%- if link.title contains 'Privacy' -%}
+                              {%- assign has_privacy = true -%}
+                              {%- break -%}
+                            {%- endif -%}
+                          {%- endfor -%}
+                          {%- unless has_privacy -%}
+                            <li>
+                              <a
+                                href="{{ pages.wholesale.url | default: '/pages/wholesale' }}"
+                                class="link link--text list-menu__item list-menu__item--link"
+                              >
+                                Wholesale
+                              </a>
+                            </li>
+                          {%- endunless -%}
+                        {%- endif -%}
                       </ul>
                     {%- endif -%}
                   {%- when 'brand_information' -%}

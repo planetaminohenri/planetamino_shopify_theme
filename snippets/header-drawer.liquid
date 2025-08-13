@@ -22,6 +22,7 @@
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
               {%- for link in section.settings.menu.links -%}
+                {%- unless link.handle == 'wholesale' or link.handle == 'store-finder' -%}
                 <li>
                   {%- if link.links != blank -%}
                     <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
@@ -132,6 +133,7 @@
                     </a>
                   {%- endif -%}
                 </li>
+                {%- endunless -%}
               {%- endfor -%}
             </ul>
           </nav>

@@ -1,0 +1,281 @@
+{{ 'section-planet-amino-banner.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+-%}
+
+<div
+  id="PlanetAminoBanner-{{ section.id }}"
+  class="planet-amino-banner{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="planet-amino-banner__container page-width">
+    <div class="planet-amino-banner__content">
+      <div class="planet-amino-banner__text-content">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'heading' -%}
+              <h2
+                class="planet-amino-banner__heading inline-richtext {{ block.settings.heading_size }}"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.heading }}
+              </h2>
+            {%- when 'sub-heading' -%}
+              <h3
+                class="planet-amino-banner__sub-heading" 
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.sub-heading | newline_to_br }}
+              </h3>
+            {%- when 'text' -%}
+              <div class="planet-amino-banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+                <p>{{ block.settings.text }}</p>
+              </div>
+            {%- when 'buttons' -%}
+              <div
+                class="planet-amino-banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} planet-amino-banner__buttons--multiple{% endif %}"
+                {{ block.shopify_attributes }}
+              >
+                {%- if block.settings.button_label_1 != blank -%}
+                  <a
+                    {% if block.settings.button_link_1 == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.button_link_1 }}"
+                    {% endif %}
+                    class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
+                  >
+                    {{- block.settings.button_label_1 | escape -}}
+                  </a>
+                {%- endif -%}
+                {%- if block.settings.button_label_2 != blank -%}
+                  <a
+                    {% if block.settings.button_link_2 == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.button_link_2 }}"
+                    {% endif %}
+                    class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                  >
+                    {{- block.settings.button_label_2 | escape -}}
+                  </a>
+                {%- endif -%}
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+      
+      <div class="planet-amino-banner__image-content">
+        {%- if section.settings.image != blank -%}
+          <div class="planet-amino-banner__media{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+            <img
+              src="{{ section.settings.image | image_url: width: 1200 }}"
+              srcset="
+                {{ section.settings.image | image_url: width: 400 }} 400w,
+                {{ section.settings.image | image_url: width: 700 }} 700w,
+                {{ section.settings.image | image_url: width: 900 }} 900w,
+                {{ section.settings.image | image_url: width: 1200 }} 1200w,
+                {{ section.settings.image | image_url: width: 1600 }} 1600w,
+                {{ section.settings.image | image_url: width: 2000 }} 2000w
+              "
+              sizes="(min-width: 990px) 50vw, 100vw"
+              alt="{{ section.settings.image.alt | escape }}"
+              class="planet-amino-banner__image"
+              width="{{ section.settings.image.width }}"
+              height="{{ section.settings.image.height }}"
+              fetchpriority="{{ fetch_priority }}"
+              loading="lazy"
+            >
+          </div>
+        {%- else -%}
+          <div class="planet-amino-banner__media placeholder{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+            {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Planet Amino Banner",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F4C508"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Best Tasting Protein Products",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "Small"
+            },
+            {
+              "value": "h1",
+              "label": "Medium"
+            },
+            {
+              "value": "h0",
+              "label": "Large"
+            },
+            {
+              "value": "hxl",
+              "label": "Extra large"
+            },
+            {
+              "value": "hxxl",
+              "label": "XX-Large"
+            }
+          ],
+          "default": "h0",
+          "label": "Heading size"
+        }
+      ]
+    },
+    {
+      "type": "sub-heading",
+      "name": "Sub-heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "sub-heading",
+          "label": "Sub Heading"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "default": "4.2 ★ 2000+ Happy Customers",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "Body"
+            },
+            {
+              "value": "subtitle",
+              "label": "Subtitle"
+            },
+            {
+              "value": "caption-with-letter-spacing",
+              "label": "Caption with letter spacing"
+            }
+          ],
+          "default": "body",
+          "label": "Text style"
+        }
+      ]
+    },
+    {
+      "type": "buttons",
+      "name": "Buttons",
+      "limit": 1,
+      "settings": [
+        {
+        "type": "header",
+        "content": "First button"
+        },
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "default": "Button label",
+          "label": "First button label",
+          "info": "Leave the label blank to hide the button."
+        },
+        {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "First button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_1",
+          "default": false,
+          "label": "Use outline button style"
+        },
+        {
+        "type": "header",
+        "content": "Second button"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "default": "Button label",
+          "label": "Second button label",
+          "info": "Leave the label blank to hide the button."
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Second button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_2",
+          "default": false,
+          "label": "Use outline button style"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Planet Amino Banner",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "heading"
+        },
+        {
+          "type": "sub-heading"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -8,6 +8,7 @@
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
+      {%- unless link.handle == 'wholesale' or link.handle == 'store-finder' -%}
       <li>
         {%- if link.links != blank -%}
           <header-menu>
@@ -98,6 +99,7 @@
           </a>
         {%- endif -%}
       </li>
+      {%- endunless -%}
     {%- endfor -%}
   </ul>
 </nav>
