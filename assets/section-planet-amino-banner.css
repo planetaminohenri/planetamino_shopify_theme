@@ -135,6 +135,13 @@
   .planet-amino-banner__sub-heading {
     font-size: var(--banner-sub-title-sm);
     margin-bottom: 0;
+    padding-bottom: 1.5rem; /* ensure consistent space below sub-heading on mobile */
+  }
+
+  /* Full-bleed image on mobile */
+  .planet-amino-banner__image-content {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
   }
 }
 
