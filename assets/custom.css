@@ -18,12 +18,12 @@
   --font-size-body-xxs: 12px;
   --font-size-body-xs: 14px;
   --font-size-body-sm: 16px;
-  --font-size-body-md: 20px;
-  --font-size-body-lg: 24px;
+  --font-size-body-md: 18px;
+  --font-size-body-lg: 20px;
 
-  --bundle-card-title-sm: 30px;
-  --bundle-card-title-md: 35px;
-  --bundle-card-title-lg: 42px;
+  --bundle-card-title-sm: 25px;
+  --bundle-card-title-md: 30px;
+  --bundle-card-title-lg: 35px;
 
   --bundle-card-list-sm:18px;
   --bundle-card-list-md:22px;
@@ -38,12 +38,12 @@
   --bundle-card-price-lg:32px;
 
   --cookie-desc-sm:20px;
-  --cookie-desc-md:30px;
-  --cookie-desc-lg:48px;
+  --cookie-desc-md:25px;
+  --cookie-desc-lg:30px;
   
-  --cookie-desc-title-sm:30px;
-  --cookie-desc-title-md:40px;
-  --cookie-desc-title-lg:50px;
+  --cookie-desc-title-sm:25px;
+  --cookie-desc-title-md:30px;
+  --cookie-desc-title-lg:35px;
   
   --cookie-desc-sub-title-sm:20px;
   --cookie-desc-sub-title-md:25px;
