@@ -172,7 +172,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
     color: var(--color-primary);
     font-size: var(--font-size-title-lg);
     text-align: left;
-    font-family: var(--font-body-family);
+    font-family: var(--font-heading-family);
     border-bottom: 1px solid #28005A;
     margin: 0 0 3rem;
     font-weight:bold;
@@ -353,7 +353,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 }
   .cookie-wrap h2 {
     font-size: var(--font-size-title-lg);
-    font-family: 'Acumin Pro ExtraCondensed';
+    font-family: var(--font-heading-family);
     color: var(--color-primary);
     text-transform: uppercase;
     border-bottom:1px solid;
@@ -380,7 +380,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
     margin: 0;
     color: var(--color-primary);
     font-weight: bold;
-    font-family: var(--font-body-family);
+    font-family: var(--font-heading-family);
 }
 
 .cookie-gallery .btm-cnt h4 {
@@ -529,8 +529,10 @@ span.sls-savings-badge {
     font-size: var(--font-size-title-lg);
     color: var(--color-primary);
     text-transform: uppercase;
-    font-family: var(--font-body-family);
-    margin: 20px 0 0;
+    font-family: var(--font-heading-family);
+    line-height: 1;
+    margin: 0;
+    padding: 3rem 0 1rem;
   font-weight:bold;
 }
 
@@ -745,7 +747,7 @@ span.sls-savings-badge {
     font-size: var(--font-size-title-lg);
     font-weight: bold;
     color: var(--color-primary);
-    font-family: var(--font-body-family);
+    font-family: var(--font-heading-family);
     margin-bottom: 30px;
     margin-top: 20px;
 }
