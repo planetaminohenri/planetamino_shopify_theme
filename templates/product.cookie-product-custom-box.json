@@ -213,65 +213,59 @@
         "faq_heading": "Frequently Asked Questions"
       }
     },
-    "marquee_cWjKw8": {
-      "type": "marquee",
-      "name": "Scrolling Marquee Banner",
-      "settings": {
-        "message": "OVER 90% OF OUR CUSTOMERS RECOMMEND POWER BISCUITS!"
-      }
-    },
+
     "testimonials_slider_TPXBmE": {
       "type": "testimonials-slider",
       "blocks": {
-        "testimonial_yNdybp": {
+        "testimonial_aXfUCG": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/testi1.png",
-            "name": "Customer 1",
+            "image": "shopify://shop_images/power-cookie-bike.webp",
+            "name": "Jonna N.",
             "quote": "Good, fast delivery. Really nice that you can choose the flavors in the cookie box. I got my favorite flavors and also ordered a few new flavors to try.",
             "quote_fi": "Hyvä, nopea toimitus. Tosi kiva, kun keksipaketin sisällön sai valita ja näin sai suosikkikeksit ja muutama uusikin maku tuli tilattua kokeiluun.",
             "rating": 5,
             "font_size": "font-size-sm"
           }
         },
-        "testimonial_iFkCia": {
+        "testimonial_rNHF44": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/testi2.png",
-            "name": "Customer 2",
+            "image": "shopify://shop_images/vegan-protein-powder-vanilla.webp",
+            "name": "Petteri H.",
             "quote": "Mixes well with water, nice silky texture, no typical/strong protein powder taste. My favorite is strawberry!",
             "quote_fi": "Sekoittuu hyvin veteen, hyvä silkkinen rakenne, ei tyypillistä/voimakasta proteiinijauheen makua. Suosikkini on mansikka!",
             "rating": 5,
             "font_size": "font-size-sm"
           }
         },
-        "testimonial_UcGEg3": {
+        "testimonial_UCWtkq": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/testi3.png",
-            "name": "Customer 3",
+            "image": "shopify://shop_images/planet-amino-proteiinikeksi-minttusuklaa-luonto.webp",
+            "name": "Markus K.",
             "quote": "What a great snack. Keeps hunger away and provides the extra protein you need if you don't otherwise get enough through out the day. And it's tasty :)",
             "quote_fi": "Hemmetin hyvää kamaa välipalaksi. Pitää nälän ja tuo tarvittavaa lisäproteiinia, jos ei muuten saa päivän protskuja täyteen. Ja hyvää :)",
             "rating": 5,
             "font_size": "font-size-sm"
           }
         },
-        "testimonial_Ej6zqK": {
+        "testimonial_HhYGF4": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/testi4.png",
-            "name": "Customer 4",
+            "image": "shopify://shop_images/vegan-protein-powder-chocolate.webp",
+            "name": "Sanna K.",
             "quote": "Your protein powder is one of the best I've tasted! It's really hard to find vegan protein powders that taste good (and are reasonably priced), but I've finally found one :) Tastes good on its own, and also great in porridge—no protein aftertaste at all, and the porridge becomes a delicious chocolate porridge. Thank you for this product :)",
             "quote_fi": "Teidän proteiinijauhe on yksi parhaimmista, mitä olen maistanut! Vegaanisia hyvän makuisia (ja kohtuuhintaisia) proteiinijauheita on todella vaikea löytää, mutta nyt vihdoin sellaisen löysin :) Toimii sellaisenaan ja puurossa jauhe toimii myös tosi hyvin, eikä mitään proteiinin sivumakuja tule silloin esiin, vaan puurosta tulee ihana suklaapuuro. Kiitos teille tästä tuotteesta :)",
             "rating": 5,
             "font_size": "font-size-sm"
           }
         },
-        "testimonial_iT4LFA": {
+        "testimonial_fY8CRU": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/testi1.png",
-            "name": "Customer 5",
+            "image": "shopify://shop_images/Planet-Amino-Power-Cookie-Suklaa-Minttusuklaa-Kookossuklaa.webp",
+            "name": "Teemu H.",
             "quote": "I order these for my son who is a competitive swimmer. He won't eat any other protein bars anymore.",
             "quote_fi": "Tilaan näitä pojalleni joka on kilpauimari. Hänelle ei muut proteiinipatukat ole kelvannut enää.",
             "rating": 5,
@@ -280,17 +274,16 @@
         }
       },
       "block_order": [
-        "testimonial_yNdybp",
-        "testimonial_iFkCia",
-        "testimonial_UcGEg3",
-        "testimonial_Ej6zqK",
-        "testimonial_iT4LFA"
+        "testimonial_aXfUCG",
+        "testimonial_rNHF44",
+        "testimonial_UCWtkq",
+        "testimonial_HhYGF4",
+        "testimonial_fY8CRU"
       ],
-      "disabled": true,
       "name": "Testimonials",
       "settings": {
         "class": "product-testimonials",
-        "heading": "",
+        "heading": "90% of customers recommend our products",
         "font_size": "font-size-md"
       }
     },
@@ -313,29 +306,7 @@
         "padding_bottom": 0
       }
     },
-    "1752556781dfe2b648": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_featured_carousel_piW9GR": {
-          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "maxwidth": 1720
-          }
-        },
-        "judge_me_reviews_review_widget_4eDATN": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "disabled": true,
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_featured_carousel_piW9GR",
-        "judge_me_reviews_review_widget_4eDATN"
-      ],
-      "settings": {
-        "include_margins": true
-      }
-    },
+
     "faq_global_Nz6Jdb": {
       "type": "faq-global",
       "name": "faq-global",
@@ -353,10 +324,8 @@
     "main",
     "product_more_info",
     "faq_QXnf3x",
-    "marquee_cWjKw8",
     "testimonials_slider_TPXBmE",
     "related-products",
-    "1752556781dfe2b648",
     "faq_global_Nz6Jdb",
     "best_nutrition_section_gWM4f7"
   ]
