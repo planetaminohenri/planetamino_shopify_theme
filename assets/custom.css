@@ -521,7 +521,7 @@ span.sls-savings-badge {
 }
 /************************ Testimonilas********/
 .testimonial-slider-section {
-  padding: 0;
+  padding: 0 0 3rem;
   background-color: #f9f9f9;
   text-align: center;
 }
@@ -538,7 +538,7 @@ span.sls-savings-badge {
 
 .testimonial-slider .testimonial-item {
      max-width: 600px;
-    margin: 10px;
+    margin: 0px;
     padding: 0;
     background: #E0E2FD;
     border-radius: 15px;
@@ -766,9 +766,7 @@ section.faq-wrapper {
     max-width: 1194px;
     margin: 0 auto;
 }
-section.faq-main {
-    padding: 60px 0;
-}
+
 /***************/
 .footer  .footer__content-top {
     padding-bottom: 0;
@@ -2422,13 +2420,12 @@ span.productPlanItemList br {
 
 .faq-main {
   background-color: #fffaf7;
-  padding: 60px 20px;
+  padding: 2rem 0 3rem;
   border-radius: 20px;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
   font-family: var(--font-body-family);
   max-width: 900px;
-  margin: 0 auto;
-  margin-top: 2rem;
+  margin: 3rem auto;
   margin-bottom: 3rem;
 }
 
