@@ -164,7 +164,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 /************************* Section First***************/
 /* Section Layout */
 .power-bundles {
-  padding: 1rem 0 4rem;
+  padding: 1rem 0 2rem;
   background: #ffffff;
 }
 
@@ -318,7 +318,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 /************************* Section First End ***************/
 
 .build-cookie-box {
-  padding: 80px  0 40px;
+  padding: 3rem  0 3rem;
       background: var(--color-secondary-dark);
 
 .thumbnail-grid {
@@ -459,7 +459,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 /**********************************/
 section.powder-product {
     background: var(--color-secondary-dark);
-  padding:0 0 80px;
+  padding:0 0 4rem;
 }
 .powder-product .powder-gallery .main-image-container {
     width: 100%;
@@ -521,7 +521,7 @@ span.sls-savings-badge {
 }
 /************************ Testimonilas********/
 .testimonial-slider-section {
-  padding: 4rem 0;
+  padding: 0;
   background-color: #f9f9f9;
   text-align: center;
 }
@@ -652,7 +652,7 @@ span.sls-savings-badge {
     line-height: 35px;
 }
 .best-nutrition-section {
-  padding: 80px 0;
+  padding: 3rem 0;
     background-color: var(--color-secondary-light);
     text-align: center;
 }
@@ -1054,7 +1054,6 @@ form#custom-cookie-form {
   .page-width{max-width:1400px;}
   .template-index .banner .banner__content .banner__box{max-width:70rem;}
   .powder-product .main-image-container{max-width:585px;}
-  .best-nutrition-section{padding: 80px 0 40px;}
   .power-bundles .bundle{padding: 25px; gap: 20px; align-items: center;}
 }
 @media only screen and ( max-width: 1300px ){
