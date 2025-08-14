@@ -68,7 +68,7 @@
   font-family: var(--font-heading-family, 'Times New Roman', serif);
   text-transform: uppercase;
   font-weight: bold;
-  line-height: var(--banner-sub-title-lg);
+  line-height: 1;
   color: #ffffff;
   margin: 0;
 }

@@ -8,8 +8,8 @@
   --banner-title-lg: 80px;
 
   --banner-sub-title-sm:30px;
-  --banner-sub-title-md:45px;
-  --banner-sub-title-lg:40px;
+  --banner-sub-title-md:35px;
+  --banner-sub-title-lg:50px;
   
   --font-size-title-sm: 30px;
   --font-size-title-md: 45px;
@@ -309,7 +309,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
     font-family: var(--font-heading-family);
     text-transform: uppercase;
     font-weight: bold;
-    line-height: var(--banner-sub-title-lg);
+    line-height: 1;
 }
 
 .template-index .banner .banner__content .banner__box {
@@ -1697,7 +1697,7 @@ div#tier-message {
 .template-product #MainProduct-template--25597175398737__main .bndlr-mnm-selected-products .bndlr-product .bndlr-product-qn-container + .sealsubs-target-element.sealsubs-full,
 .template-product #MainProduct-template--25682807882065__main .bndlr-mnm-selected-products .bndlr-product .bndlr-product-qn-container + .sealsubs-target-element.sealsubs-full,
 .template-product #MainProduct-template--25597175398737__main .bndlr-mnm-selected-products .bndlr-product .bndlr-product-qn-container + .sealsubs-target-element.sealsubs-full,
-.template-product #MainProduct-template--25674737484113__main .bndlr-mnm-selected-products .bndlr-product .bndlr-product-qn-container + .sealsubs-target-element.sealsubs-full,
+.template-product #MainProduct-template--25674737484113__main .bndlr-mnm-selected-products .bndlr-product .bndlr-product-qn-container + .sealsubs-target-element.sealsubs-full
 {
     display: none !important;
 } 
@@ -1901,7 +1901,7 @@ form#custom-cookie-form #cookie-builder span.name{font-size: 16px; line-height: 
 .jdgm-carousel-wrapper .jdgm-carousel-item .jdgm-carousel-item__reviewer-name-wrapper .jdgm-carousel-item__reviewer-name{font-size:20px; line-height:25px;} 
 .jdgm-carousel-wrapper .jdgm-carousel__item-wrapper {height: auto;} 
 .jdgm-carousel-wrapper .jdgm-widget.jdgm-carousel{width:93% !important;}
-.jdgm-carousel-wrapper .jdgm-carousel-item .jdgm-carousel-item__review .jdgm-carousel-item__review-body p{line-heigt:22px;}  
+.jdgm-carousel-wrapper .jdgm-carousel-item .jdgm-carousel-item__review .jdgm-carousel-item__review-body p{line-height:22px;}  
 .subscription-options .frequency, .subscription-options .benefits{width:100%;}
 #MainProduct-template--25675193024849__main #cookie-builder .flavor .lt-pnl {width: 100%;} 
 #ProductInfo-template--25682807882065__main #cookie-builder .flavor .lt-pnl, #ProductInfo-template--25673731408209__main #cookie-builder .flavor .lt-pnl{width:70%;} 
