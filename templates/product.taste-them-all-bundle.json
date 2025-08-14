@@ -193,8 +193,9 @@
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/testi1.png",
-            "name": "Jonna N.",
-            "quote": "The products have been proven effective on various trips and hikes. I recommend them!",
+            "name": "Customer 1",
+            "quote": "Good, fast delivery. Really nice that you can choose the flavors in the cookie box. I got my favorite flavors and also ordered a few new flavors to try.",
+            "quote_fi": "Hyvä, nopea toimitus. Tosi kiva, kun keksipaketin sisällön sai valita ja näin sai suosikkikeksit ja muutama uusikin maku tuli tilattua kokeiluun.",
             "rating": 5,
             "font_size": "font-size-sm"
           }
@@ -203,8 +204,9 @@
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/testi2.png",
-            "name": "A. Mused",
-            "quote": "Good taste, mixes well and has a smooth texture. As a development idea/wish, it would be possible to change the sweetener to steviol glycosides.",
+            "name": "Customer 2",
+            "quote": "Mixes well with water, nice silky texture, no typical/strong protein powder taste. My favorite is strawberry!",
+            "quote_fi": "Sekoittuu hyvin veteen, hyvä silkkinen rakenne, ei tyypillistä/voimakasta proteiinijauheen makua. Suosikkini on mansikka!",
             "rating": 5,
             "font_size": "font-size-sm"
           }
@@ -213,8 +215,9 @@
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/testi3.png",
-            "name": "Joseph A.",
-            "quote": "Filling and high in protein, these should be eaten not only in everyday life, but also work on longer bike rides",
+            "name": "Customer 3",
+            "quote": "What a great snack. Keeps hunger away and provides the extra protein you need if you don't otherwise get enough through out the day. And it's tasty :)",
+            "quote_fi": "Hemmetin hyvää kamaa välipalaksi. Pitää nälän ja tuo tarvittavaa lisäproteiinia, jos ei muuten saa päivän protskuja täyteen. Ja hyvää :)",
             "rating": 5,
             "font_size": "font-size-sm"
           }
@@ -223,8 +226,9 @@
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/testi4.png",
-            "name": "Mary M.",
-            "quote": "I had cookies with me when I went hiking in Lapland in the summer, and the power cookies worked really well as a snack there. The pineapple cookie was my favorite.",
+            "name": "Customer 4",
+            "quote": "Your protein powder is one of the best I've tasted! It's really hard to find vegan protein powders that taste good (and are reasonably priced), but I've finally found one :) Tastes good on its own, and also great in porridge—no protein aftertaste at all, and the porridge becomes a delicious chocolate porridge. Thank you for this product :)",
+            "quote_fi": "Teidän proteiinijauhe on yksi parhaimmista, mitä olen maistanut! Vegaanisia hyvän makuisia (ja kohtuuhintaisia) proteiinijauheita on todella vaikea löytää, mutta nyt vihdoin sellaisen löysin :) Toimii sellaisenaan ja puurossa jauhe toimii myös tosi hyvin, eikä mitään proteiinin sivumakuja tule silloin esiin, vaan puurosta tulee ihana suklaapuuro. Kiitos teille tästä tuotteesta :)",
             "rating": 5,
             "font_size": "font-size-sm"
           }
@@ -233,8 +237,9 @@
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/testi1.png",
-            "name": "Jonna N.",
-            "quote": "The products have been proven effective on various trips and hikes. I recommend them!",
+            "name": "Customer 5",
+            "quote": "I order these for my son who is a competitive swimmer. He won't eat any other protein bars anymore.",
+            "quote_fi": "Tilaan näitä pojalleni joka on kilpauimari. Hänelle ei muut proteiinipatukat ole kelvannut enää.",
             "rating": 5,
             "font_size": "font-size-sm"
           }

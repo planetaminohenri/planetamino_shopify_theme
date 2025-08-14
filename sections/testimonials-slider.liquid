@@ -21,7 +21,12 @@
                 {% endif %}
               {% endfor %}
             </div>
-            <p class="testimonial-quote">“{{ block.settings.quote }}”</p>
+            {% assign current_language = localization.language.iso_code %}
+            {% if current_language == 'fi' and block.settings.quote_fi != blank and block.settings.quote_fi != 'Tämä tuote muutti elämäni! Hämmästyttävä laatu ja maku.' %}
+              <p class="testimonial-quote">"{{ block.settings.quote_fi }}"</p>
+            {% else %}
+              <p class="testimonial-quote">"{{ block.settings.quote }}"</p>
+            {% endif %}
             
           </div>
         </div>
@@ -106,8 +111,14 @@
         {
           "type": "textarea",
           "id": "quote",
-          "label": "Testimonial",
+          "label": "Testimonial (English)",
           "default": "This product changed my life! Amazing quality and taste."
+        },
+        {
+          "type": "textarea",
+          "id": "quote_fi",
+          "label": "Testimonial (Finnish)",
+          "default": "Tämä tuote muutti elämäni! Hämmästyttävä laatu ja maku."
         },
         {
         "type": "range",
