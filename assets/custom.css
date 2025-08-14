@@ -308,6 +308,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
     font-size: var(--banner-sub-title-lg);
     font-family: var(--font-heading-family);
     text-transform: uppercase;
+    line-height: 1.05;
     font-weight: bold;
 }
 
