@@ -40,7 +40,7 @@
       ],
       "settings": {
         "image": "shopify://shop_images/Website_banner_image_1200_x_1200.webp",
-        "background_color": "#F4C508"
+        "background_color": "#f4c508"
       }
     },
     "featured_collection": {
@@ -78,7 +78,7 @@
         "bundle_Md6K8N": {
           "type": "bundle",
           "settings": {
-            "image": "shopify://shop_images/image_8.png",
+            "image": "shopify://shop_images/vegan-protein-powder-vanilla-homepage.png",
             "title": "I want to test",
             "description": "<ul>\n<li>\n<span>🍪</span> 9x protein cookies (one of each flavor)</li>\n<li>\n<span>🥤</span> 1x protein powder (chocolate, vanilla or strawberry flavor)</li>\n</ul>",
             "price": "39.56€",
@@ -90,7 +90,7 @@
         "bundle_kmqrfL": {
           "type": "bundle",
           "settings": {
-            "image": "shopify://shop_images/all-bundle.png",
+            "image": "shopify://shop_images/vegan-protein-powder-strawberry-homepage.png",
             "title": "I want to taste everything",
             "description": "<ul>\n<li>\n<span>🍪</span> 18x protein cookies (two of each flavor)</li>\n<li>\n<span>🥤</span> 1x vanilla-flavored protein powder</li>\n<li>\n<span>🥤</span> 1x chocolate flavored protein powder</li>\n<li>\n<span>🥤</span> 1x strawberry flavored protein powder </li>\n</ul>",
             "price": "86.88€",
@@ -142,7 +142,7 @@
         "testimonial_aXfUCG": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/testi1.png",
+            "image": "shopify://shop_images/power-cookie-bike.webp",
             "name": "Jonna N.",
             "quote": "Good, fast delivery. Really nice that you can choose the flavors in the cookie box. I got my favorite flavors and also ordered a few new flavors to try.",
             "quote_fi": "Hyvä, nopea toimitus. Tosi kiva, kun keksipaketin sisällön sai valita ja näin sai suosikkikeksit ja muutama uusikin maku tuli tilattua kokeiluun.",
@@ -153,7 +153,7 @@
         "testimonial_rNHF44": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/testi2.png",
+            "image": "shopify://shop_images/vegan-protein-powder-vanilla.webp",
             "name": "Petteri H.",
             "quote": "Mixes well with water, nice silky texture, no typical/strong protein powder taste. My favorite is strawberry!",
             "quote_fi": "Sekoittuu hyvin veteen, hyvä silkkinen rakenne, ei tyypillistä/voimakasta proteiinijauheen makua. Suosikkini on mansikka!",
@@ -164,7 +164,7 @@
         "testimonial_UCWtkq": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/testi3.png",
+            "image": "shopify://shop_images/planet-amino-proteiinikeksi-minttusuklaa-luonto.webp",
             "name": "Markus K.",
             "quote": "What a great snack. Keeps hunger away and provides the extra protein you need if you don't otherwise get enough through out the day. And it's tasty :)",
             "quote_fi": "Hemmetin hyvää kamaa välipalaksi. Pitää nälän ja tuo tarvittavaa lisäproteiinia, jos ei muuten saa päivän protskuja täyteen. Ja hyvää :)",
@@ -175,7 +175,7 @@
         "testimonial_HhYGF4": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/testi4.png",
+            "image": "shopify://shop_images/vegan-protein-powder-chocolate.webp",
             "name": "Sanna K.",
             "quote": "Your protein powder is one of the best I've tasted! It's really hard to find vegan protein powders that taste good (and are reasonably priced), but I've finally found one :) Tastes good on its own, and also great in porridge—no protein aftertaste at all, and the porridge becomes a delicious chocolate porridge. Thank you for this product :)",
             "quote_fi": "Teidän proteiinijauhe on yksi parhaimmista, mitä olen maistanut! Vegaanisia hyvän makuisia (ja kohtuuhintaisia) proteiinijauheita on todella vaikea löytää, mutta nyt vihdoin sellaisen löysin :) Toimii sellaisenaan ja puurossa jauhe toimii myös tosi hyvin, eikä mitään proteiinin sivumakuja tule silloin esiin, vaan puurosta tulee ihana suklaapuuro. Kiitos teille tästä tuotteesta :)",
@@ -186,7 +186,7 @@
         "testimonial_fY8CRU": {
           "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/testi1.png",
+            "image": "shopify://shop_images/Planet-Amino-Power-Cookie-Suklaa-Minttusuklaa-Kookossuklaa.webp",
             "name": "Teemu H.",
             "quote": "I order these for my son who is a competitive swimmer. He won't eat any other protein bars anymore.",
             "quote_fi": "Tilaan näitä pojalleni joka on kilpauimari. Hänelle ei muut proteiinipatukat ole kelvannut enää.",

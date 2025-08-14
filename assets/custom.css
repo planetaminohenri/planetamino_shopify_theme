@@ -1018,7 +1018,7 @@ form#custom-cookie-form {
 @media only screen and ( max-width: 1750px ){
   .page-width{max-width:1550px;} 
 }
-@media only screen and ( max-width: 1570px ){
+@media only screen and ( max-width: 1199px ){
   :root {
     --font-size-title-lg: var(--font-size-title-md);
     --font-size-body-lg: var(--font-size-body-md);
@@ -1061,7 +1061,7 @@ form#custom-cookie-form {
   .page-width{max-width:100%;}
   .template-index .banner .banner__content .banner__box{max-width:68rem;}
 }
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1199px) {
   :root {
      --font-size-title-lg: var(--font-size-title-sm);
     --font-size-body-lg: var(--font-size-body-sm);
