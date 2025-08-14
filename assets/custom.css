@@ -678,8 +678,7 @@ span.sls-savings-badge {
 }
 
 .text-left, .text-right {
- font-size: 30px;
-    line-height: 35px;
+ font-size: var(--font-size-body-lg);
     width: 33%;
     font-family: 'Acumin Pro Condensed';
     color: var(--color-primary);
@@ -1046,7 +1045,6 @@ form#custom-cookie-form {
   .testimonial-content p.testimonial-name{font-size:22px;}
   .testimonial-content p.testimonial-quote{line-height:25px;}
   .template-index .multicolumn .multicolumn-card .multicolumn-card__info h3{font-size:22px; line-height:28px;}
-  .text-left, .text-right{font-size:20px; line-height:28px;}
   .powder-product .main-image-container .thumbnail-grid{margin-top:5px;}
   img#main-cookie-image {height: 528px;}
 }
