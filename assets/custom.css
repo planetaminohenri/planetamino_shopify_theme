@@ -726,10 +726,10 @@ span.sls-savings-badge {
     cursor: pointer;
     list-style: none;
     font-weight: 600;
-    font-size: var(--faq-question-title-lg);
+    font-size: var(--font-size-body-lg);
     color: var(--color-primary);
-    font-family: 'Acumin Pro Condensed';
-    line-height: var(--faq-question-title-lg);
+    font-family: var(--font-body-family);
+    line-height: var(--font-size-body-lg);
 }
 .faq-accordion summary::-webkit-details-marker {
   display: none;
@@ -747,7 +747,7 @@ span.sls-savings-badge {
     font-size: var(--font-size-title-lg);
     font-weight: bold;
     color: var(--color-primary);
-    font-family: 'Acumin Pro Condensed';
+    font-family: var(--font-body-family);
     margin-bottom: 30px;
     margin-top: 20px;
 }
@@ -760,6 +760,7 @@ span.sls-savings-badge {
   margin: 10px 0 0;
     color: var(--color-primary);
     font-size: var(--font-size-body-lg);
+    font-family: var(--font-body-family);
 }
 section.faq-wrapper {
     max-width: 1194px;
@@ -2426,7 +2427,7 @@ span.productPlanItemList br {
   padding: 60px 20px;
   border-radius: 20px;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-body-family);
   max-width: 900px;
   margin: 0 auto;
   margin-top: 50px;
@@ -2468,7 +2469,7 @@ span.productPlanItemList br {
 }
 
 .faq-accordion summary {
-    font-size: 20px;
+    font-size: var(--font-size-body-lg);
 }
 
 .faq-main h2 {
