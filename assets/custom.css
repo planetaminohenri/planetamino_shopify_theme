@@ -309,7 +309,6 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
     font-family: var(--font-heading-family);
     text-transform: uppercase;
     font-weight: bold;
-    line-height: 1;
 }
 
 .template-index .banner .banner__content .banner__box {
