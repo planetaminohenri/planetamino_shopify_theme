@@ -142,15 +142,12 @@
         "padding_bottom": 48
       }
     },
-    "product_more_info": {
-      "type": "rich-text",
+    "product_description_section": {
+      "type": "product-description",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "left",
-        "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 40
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "faq_QXnf3x": {
@@ -322,7 +319,7 @@
   },
   "order": [
     "main",
-    "product_more_info",
+    "product_description_section",
     "faq_QXnf3x",
     "testimonials_slider_TPXBmE",
     "related-products",

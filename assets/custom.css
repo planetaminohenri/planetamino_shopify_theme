@@ -1391,7 +1391,7 @@ product-info .page-width {
 
 section.product-testimonials.testimonial-slider-section {
     background: transparent;
-    padding: 80px 0;
+    padding: 3rem 0;
 }
 .product__info-container .product-form {
     border-top: 1px solid #330073;
@@ -2642,3 +2642,5 @@ span.productPlanItemList br {
   .custom-split-embed h2{margin-top:0px; font-size:35px;}
   .shopify-policy__container {max-width: 100%;}
 }
+
+
