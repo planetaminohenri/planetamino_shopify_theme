@@ -209,130 +209,6 @@
         "font_size": "font-size-md"
       }
     },
-    "multicolumn_F9eqwW": {
-      "type": "multicolumn",
-      "blocks": {
-        "column_6qKwKM": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/icn1.svg",
-            "title": "High in protein",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_3KE4jc": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/icn2.svg",
-            "title": "Soy-free",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_QkNaPd": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/icn3.svg",
-            "title": "Dairy-free",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_qAEEtB": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/icn4.svg",
-            "title": "All essential amino acids",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_RXUNxf": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/icn5.svg",
-            "title": "Gluten-free",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_9dTqML": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/icn6.svg",
-            "title": "Magnesium, Zinc and Iron",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_L3HyYT": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/icn7.svg",
-            "title": "Made in Finland",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_AyEPnU": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/icn8.svg",
-            "title": "High in Fiber",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_7EMmGx": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/icn9.svg",
-            "title": "Vegan",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_6qKwKM",
-        "column_3KE4jc",
-        "column_QkNaPd",
-        "column_qAEEtB",
-        "column_RXUNxf",
-        "column_9dTqML",
-        "column_L3HyYT",
-        "column_AyEPnU",
-        "column_7EMmGx"
-      ],
-      "name": "t:sections.multicolumn.presets.name",
-      "settings": {
-        "class": "",
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 9,
-        "column_alignment": "left",
-        "background_style": "primary",
-        "color_scheme": "scheme-471b8816-0758-4539-8841-195c3b07167f",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "faq_global_Gdrmrj": {
       "type": "faq-global",
       "name": "faq-global",
@@ -353,7 +229,6 @@
     "build_cookie_box_78yGiG",
     "powder_product_slider_Rnir48",
     "testimonials_slider_UAYPnP",
-    "multicolumn_F9eqwW",
     "faq_global_Gdrmrj",
     "best_nutrition_section_gWM4f7"
   ]
