@@ -45,7 +45,7 @@
 {% endcase %}
 
 {% if final_review_text != blank %}
-<div class="custom-review-widget" style="background-color: {{ background_color }}; color: {{ text_color }};">
+<div class="custom-review-widget">
   <div class="custom-review-content">
     <div class="custom-review-text">
       <span class="quote-mark quote-open">"</span>
@@ -67,9 +67,12 @@
     max-width: 1100px;
     margin: 0 auto;
     padding: 32px 24px;
-    border-radius: 8px;
+    border-radius: 15px;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
     font-family: var(--font-body-family, 'Acumin Pro Condensed', sans-serif);
-    line-height: 1.5;
+    background-color: var(--color-product-card);
+    line-height: 1.2;
   }
 
   .custom-review-content {
@@ -77,7 +80,7 @@
   }
 
   .custom-review-text {
-    font-size: 18px;
+    font-size: var(--font-size-body-md);
     font-weight: 400;
     margin-bottom: 16px;
     position: relative;
@@ -86,9 +89,9 @@
   }
 
   .quote-mark {
-    font-size: 24px;
+    font-size: var(--font-size-body-md)
     font-weight: 700;
-    color: #f3c002;
+    color: var(--color-primary);
     margin: 0 2px;
   }
 
@@ -109,6 +112,7 @@
   @media screen and (max-width: 768px) {
     .custom-review-widget {
       padding: 24px 16px;
+      border: none;
     }
     
     .custom-review-text {
@@ -131,11 +135,4 @@
     margin-bottom: 24px;
   }
 
-  /* Dark mode support */
-  @media (prefers-color-scheme: dark) {
-    .custom-review-widget {
-      background-color: var(--color-background, #2a2a2a);
-      color: var(--color-foreground, #ffffff);
-    }
-  }
 </style>
