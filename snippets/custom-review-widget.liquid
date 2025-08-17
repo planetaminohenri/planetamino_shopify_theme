@@ -1,11 +1,13 @@
 {% comment %}
   Custom Review Widget
   
-  A reusable widget that displays a single customer review with quote brackets and customer name below
+  A reusable widget that displays a single customer review with quotation marks and customer name below
   Designed to replace Judge.me testimonial carousels with a cleaner, simpler design
   
   Parameters:
-  - review_text: The review text content
+  - review_text: The review text content (English/default)
+  - review_text_fi: Finnish translation of the review (optional)
+  - review_text_de: German translation of the review (optional)
   - customer_name: The name of the reviewer
   - background_color: Optional background color (defaults to #f2eee2)
   - text_color: Optional text color (defaults to #000000)
@@ -13,21 +15,42 @@
   Usage: 
   {% render 'custom-review-widget', 
      review_text: "Your review text here", 
+     review_text_fi: "Arviointi suomeksi",
+     review_text_de: "Bewertung auf Deutsch",
      customer_name: "Customer Name" %}
 {% endcomment %}
 
 {% assign review_text = review_text | default: '' %}
+{% assign review_text_fi = review_text_fi | default: '' %}
+{% assign review_text_de = review_text_de | default: '' %}
 {% assign customer_name = customer_name | default: '' %}
 {% assign background_color = background_color | default: '#f2eee2' %}
 {% assign text_color = text_color | default: '#000000' %}
 
-{% if review_text != blank %}
+{% comment %} Determine which review text to show based on current language {% endcomment %}
+{% assign current_language = localization.language.iso_code %}
+{% assign final_review_text = review_text %}
+
+{% case current_language %}
+  {% when 'fi' %}
+    {% if review_text_fi != blank %}
+      {% assign final_review_text = review_text_fi %}
+    {% endif %}
+  {% when 'de' %}
+    {% if review_text_de != blank %}
+      {% assign final_review_text = review_text_de %}
+    {% endif %}
+  {% else %}
+    {% assign final_review_text = review_text %}
+{% endcase %}
+
+{% if final_review_text != blank %}
 <div class="custom-review-widget" style="background-color: {{ background_color }}; color: {{ text_color }};">
   <div class="custom-review-content">
     <div class="custom-review-text">
-      <span class="quote-bracket quote-open">[</span>
-      <span class="review-content">{{ review_text }}</span>
-      <span class="quote-bracket quote-close">]</span>
+      <span class="quote-mark quote-open">"</span>
+      <span class="review-content">{{ final_review_text }}</span>
+      <span class="quote-mark quote-close">"</span>
     </div>
     {% if customer_name != blank %}
     <div class="custom-review-author">
@@ -58,14 +81,15 @@
     font-weight: 400;
     margin-bottom: 16px;
     position: relative;
-    display: inline-block;
+    display: block;
+    width: 100%;
   }
 
-  .quote-bracket {
+  .quote-mark {
     font-size: 24px;
     font-weight: 700;
     color: #f3c002;
-    margin: 0 4px;
+    margin: 0 2px;
   }
 
   .review-content {
@@ -77,6 +101,8 @@
     font-weight: 600;
     opacity: 0.8;
     margin-top: 12px;
+    display: block;
+    width: 100%;
   }
 
   /* Mobile responsiveness */
@@ -89,9 +115,9 @@
       font-size: 16px;
     }
     
-    .quote-bracket {
+    .quote-mark {
       font-size: 20px;
-      margin: 0 2px;
+      margin: 0 1px;
     }
     
     .custom-review-author {

@@ -32,7 +32,7 @@
         "custom_review_widget": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{% render 'custom-review-widget', review_text: 'What a great snack. Keeps hunger away and provides the extra protein you need if you don't otherwise get enough through out the day. And it's tasty :)', customer_name: 'Markus K.' %}"
+            "custom_liquid": "{% render 'custom-review-widget', review_text: \"What a great snack. Keeps hunger away and provides the extra protein you need if you don't otherwise get enough through out the day. And it's tasty :)\", review_text_fi: \"Hemmetin hyvää kamaa välipalaksi. Pitää nälän ja tuo tarvittavaa lisäproteiinia, jos ei muuten saa päivän protskuja täyteen. Ja hyvää :)\", customer_name: \"Markus K.\" %}"
           }
         },
         "custom_liquid_gH4hJR": {
