@@ -1,0 +1,115 @@
+{% comment %}
+  Custom Review Widget
+  
+  A reusable widget that displays a single customer review with quote brackets and customer name below
+  Designed to replace Judge.me testimonial carousels with a cleaner, simpler design
+  
+  Parameters:
+  - review_text: The review text content
+  - customer_name: The name of the reviewer
+  - background_color: Optional background color (defaults to #f2eee2)
+  - text_color: Optional text color (defaults to #000000)
+  
+  Usage: 
+  {% render 'custom-review-widget', 
+     review_text: "Your review text here", 
+     customer_name: "Customer Name" %}
+{% endcomment %}
+
+{% assign review_text = review_text | default: '' %}
+{% assign customer_name = customer_name | default: '' %}
+{% assign background_color = background_color | default: '#f2eee2' %}
+{% assign text_color = text_color | default: '#000000' %}
+
+{% if review_text != blank %}
+<div class="custom-review-widget" style="background-color: {{ background_color }}; color: {{ text_color }};">
+  <div class="custom-review-content">
+    <div class="custom-review-text">
+      <span class="quote-bracket quote-open">[</span>
+      <span class="review-content">{{ review_text }}</span>
+      <span class="quote-bracket quote-close">]</span>
+    </div>
+    {% if customer_name != blank %}
+    <div class="custom-review-author">
+      {{ customer_name }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+<style>
+  .custom-review-widget {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    border-radius: 8px;
+    font-family: var(--font-body-family, 'Acumin Pro Condensed', sans-serif);
+    line-height: 1.5;
+  }
+
+  .custom-review-content {
+    text-align: center;
+  }
+
+  .custom-review-text {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .quote-bracket {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f3c002;
+    margin: 0 4px;
+  }
+
+  .review-content {
+    font-style: italic;
+  }
+
+  .custom-review-author {
+    font-size: 16px;
+    font-weight: 600;
+    opacity: 0.8;
+    margin-top: 12px;
+  }
+
+  /* Mobile responsiveness */
+  @media screen and (max-width: 768px) {
+    .custom-review-widget {
+      padding: 24px 16px;
+    }
+    
+    .custom-review-text {
+      font-size: 16px;
+    }
+    
+    .quote-bracket {
+      font-size: 20px;
+      margin: 0 2px;
+    }
+    
+    .custom-review-author {
+      font-size: 14px;
+    }
+  }
+
+  /* Ensure proper spacing in product page context */
+  .main-product .custom-review-widget {
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .custom-review-widget {
+      background-color: var(--color-background, #2a2a2a);
+      color: var(--color-foreground, #ffffff);
+    }
+  }
+</style>
