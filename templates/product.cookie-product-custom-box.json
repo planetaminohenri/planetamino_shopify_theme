@@ -145,6 +145,7 @@
     "product_description_section": {
       "type": "product-description",
       "settings": {
+        "title": "Product description",
         "full_width": true,
         "padding_top": 0,
         "padding_bottom": 0

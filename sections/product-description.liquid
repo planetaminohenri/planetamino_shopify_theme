@@ -12,10 +12,34 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .product-description__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .product-description h2.product-description-heading {
+    font-size: var(--font-size-title-lg);
+    color: var(--color-primary);
+    text-transform: uppercase;
+    font-family: var(--font-heading-family);
+    line-height: 1;
+    margin: 0;
+    padding: 3rem 0 1rem;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    width: 100%;
+    clear: both;
+  }
 {%- endstyle -%}
 
 <div class="product-description section-{{ section.id }}-padding{% unless section.settings.full_width %} page-width{% endunless %}">
   <div class="product-description__wrapper{% if section.settings.full_width %} page-width{% endif %}">
+    <h2 class="product-description-heading">{{ section.settings.title }}</h2>
     <div class="product-description__content">
       {{ product.description }}
     </div>
@@ -28,6 +52,12 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Product description",
+      "label": "Title"
+    },
     {
       "type": "checkbox",
       "id": "full_width",
