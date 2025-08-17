@@ -114,6 +114,9 @@
     "collection_title": "Your collection's name"
   },
   "products": {
+    "happy_customers": {
+      "message": "⭐⭐⭐⭐⭐ 2000+ happy customers"
+    },
     "product": {
       "add_to_cart": "Add to cart",
       "choose_options": "Choose options",

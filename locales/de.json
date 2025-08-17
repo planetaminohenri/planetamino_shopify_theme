@@ -114,6 +114,9 @@
     "collection_title": "Name deiner Kollektion"
   },
   "products": {
+    "happy_customers": {
+      "message": "⭐⭐⭐⭐⭐ 2000+ zufriedene Kunden"
+    },
     "product": {
       "add_to_cart": "In den Warenkorb legen",
       "description": "Beschreibung",

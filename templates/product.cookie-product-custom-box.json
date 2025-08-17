@@ -23,9 +23,11 @@
           "type": "title",
           "settings": {}
         },
-        "judge_me_reviews_preview_badge_NLzXEe": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
+        "happy_customers_widget": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'happy-customers-widget' %}"
+          }
         },
         "judge_me_reviews_testimonials_carousel_product_fynMpG": {
           "type": "shopify://apps/judge-me-reviews/blocks/testimonials_carousel_product/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
@@ -115,7 +117,7 @@
       "block_order": [
         "custom_liquid_DmwCG4",
         "title",
-        "judge_me_reviews_preview_badge_NLzXEe",
+        "happy_customers_widget",
         "judge_me_reviews_testimonials_carousel_product_fynMpG",
         "custom_liquid_gH4hJR",
         "description",

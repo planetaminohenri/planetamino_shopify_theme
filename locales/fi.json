@@ -114,6 +114,9 @@
     "collection_title": "Kokoelmasi nimi"
   },
   "products": {
+    "happy_customers": {
+      "message": "⭐⭐⭐⭐⭐ 2000+ tyytyväistä asiakasta"
+    },
     "product": {
       "add_to_cart": "Lisää ostoskoriin",
       "description": "Kuvaus",

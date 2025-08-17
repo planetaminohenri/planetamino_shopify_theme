@@ -1,0 +1,56 @@
+{% comment %}
+  Happy Customers Widget
+  
+  A multilingual widget that displays "2000+ happy customers"
+  Can be used across all product pages
+  
+  Usage: {% render 'happy-customers-widget' %}
+{% endcomment %}
+
+<div class="happy-customers-widget">
+  <div class="happy-customers-content">
+    <span class="happy-customers-text">
+      {{ 'products.happy_customers.message' | t }}
+    </span>
+  </div>
+</div>
+
+<style>
+  .happy-customers-widget {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    font: var(--font-body-text);
+    font-weight: 500;
+    color: var(--color-font-text);
+  }
+
+  .happy-customers-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .happy-customers-text {
+    text-transform: uppercase;
+  }
+
+  /* Responsive adjustments */
+  @media screen and (max-width: 749px) {
+    .happy-customers-widget {
+      font-size: 0.8rem;
+      padding: 0.5rem 0.75rem;
+    }
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .happy-customers-widget {
+      background-color: var(--color-background, #1a1a1a);
+      border-color: var(--color-border, #333);
+      color: var(--color-foreground, #ffffff);
+    }
+  }
+</style>
