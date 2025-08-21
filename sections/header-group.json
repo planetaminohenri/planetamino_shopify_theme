@@ -36,14 +36,14 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "FREE EU SHIPPING ON ORDERS ABOVE 50€ 🚀",
+            "text": "announcement.free_shipping",
             "link": ""
           }
         },
         "announcement-bar-1": {
           "type": "announcement",
           "settings": {
-            "text": "Subscribe and Save 10%",
+            "text": "announcement.subscribe_save",
             "link": ""
           }
         }

@@ -276,6 +276,10 @@
       "subtext": "404"
     }
   },
+  "announcement": {
+    "free_shipping": "ILMAINEN TOIMITUS YLI 50€ TILAUKSIIN 🚀",
+    "subscribe_save": "KESTOTILAA JA SÄÄSTÄ 10%"
+  },
   "sections": {
     "header": {
       "announcement": "Ilmoitus",

@@ -76,7 +76,13 @@
                         >
                       {%- endif -%}
                       <p class="announcement-bar__message h5">
-                        <span>{{ block.settings.text | escape }}</span>
+                        <span>
+                          {%- if block.settings.text contains 'announcement.' -%}
+                            {{ block.settings.text | t }}
+                          {%- else -%}
+                            {{ block.settings.text | escape }}
+                          {%- endif -%}
+                        </span>
                         {%- if block.settings.link != blank -%}
                           {{- 'icon-arrow.svg' | inline_asset_content -}}
                         {%- endif -%}
@@ -126,7 +132,13 @@
               >
             {%- endif -%}
             <p class="announcement-bar__message h5">
-              <span>{{ section.blocks.first.settings.text | escape }}</span>
+              <span>
+                {%- if section.blocks.first.settings.text contains 'announcement.' -%}
+                  {{ section.blocks.first.settings.text | t }}
+                {%- else -%}
+                  {{ section.blocks.first.settings.text | escape }}
+                {%- endif -%}
+              </span>
               {%- if section.blocks.first.settings.link != blank -%}
                 {{- 'icon-arrow.svg' | inline_asset_content -}}
               {%- endif -%}

@@ -276,6 +276,10 @@
       "subtext": "404"
     }
   },
+  "announcement": {
+    "free_shipping": "FREE EU SHIPPING ON ORDERS ABOVE 50€ 🚀",
+    "subscribe_save": "Subscribe and Save 10%"
+  },
   "sections": {
     "announcements": {
       "previous_announcement": "Previous announcement",
