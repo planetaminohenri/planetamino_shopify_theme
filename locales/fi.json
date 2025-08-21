@@ -280,6 +280,11 @@
     "free_shipping": "ILMAINEN TOIMITUS YLI 50€ TILAUKSIIN 🚀",
     "subscribe_save": "KESTOTILAA JA SÄÄSTÄ 10%"
   },
+  "banner": {
+    "happy_customers": "2000+ tyytyväistä asiakasta",
+    "main_heading": "Parhaat proteiinituotteet",
+    "sub_heading": "Runsaasti proteiinia\nKasvipohjaisia\nKaikki välttämättömät aminohapot"
+  },
   "sections": {
     "header": {
       "announcement": "Ilmoitus",

@@ -15,21 +15,21 @@
         "text_K7C8AF": {
           "type": "text",
           "settings": {
-            "text": "4.2 ★ 2000+ Happy Customers",
+            "text": "banner.happy_customers",
             "text_style": "body"
           }
         },
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Best Tasting Protein Products",
+            "heading": "banner.main_heading",
             "heading_size": "h0"
           }
         },
         "sub_heading_WGwhnk": {
           "type": "sub-heading",
           "settings": {
-            "sub-heading": "High in protein\nPlant based\nAll essential amino acids"
+            "sub-heading": "banner.sub_heading"
           }
         }
       },
