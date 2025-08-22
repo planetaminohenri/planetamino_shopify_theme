@@ -15,21 +15,21 @@
         "text_K7C8AF": {
           "type": "text",
           "settings": {
-            "text": "banner.happy_customers",
+            "text": "2000+ Happy Customers",
             "text_style": "body"
           }
         },
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "banner.main_heading",
+            "heading": "Best Tasting Protein Products",
             "heading_size": "h0"
           }
         },
         "sub_heading_WGwhnk": {
           "type": "sub-heading",
           "settings": {
-            "sub-heading": "banner.sub_heading"
+            "sub-heading": "High in protein\nPlant based\nAll essential amino acids"
           }
         }
       },
@@ -209,7 +209,6 @@
         "font_size": "font-size-md"
       }
     },
-
     "faq_global_Gdrmrj": {
       "type": "faq-global",
       "name": "faq-global",
