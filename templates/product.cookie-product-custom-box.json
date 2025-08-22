@@ -12,13 +12,6 @@
     "main": {
       "type": "main-product-custom-box",
       "blocks": {
-        "custom_liquid_DmwCG4": {
-          "type": "custom_liquid",
-          "disabled": true,
-          "settings": {
-            "custom_liquid": "<div class=\"bundle-text\">I want to taste them all – Bundle</div>"
-          }
-        },
         "title": {
           "type": "title",
           "settings": {}
@@ -35,25 +28,15 @@
             "custom_liquid": "{% render 'custom-review-widget', review_text: \"What a great snack. Keeps hunger away and provides the extra protein you need if you don't otherwise get enough through out the day. And it's tasty :)\", review_text_fi: \"Hemmetin hyvää kamaa välipalaksi. Pitää nälän ja tuo tarvittavaa lisäproteiinia, jos ei muuten saa päivän protskuja täyteen. Ja hyvää :)\", customer_name: \"Markus K.\" %}"
           }
         },
-        "custom_liquid_gH4hJR": {
-          "type": "custom_liquid",
-          "name": "Bundle Includes",
-          "disabled": true,
-          "settings": {
-            "custom_liquid": "<div class=\"bundle-includes-wrapper\">\n<div class=\"bundle-section\">\n  <div class=\"bundle-title\">THIS BUNDLE INCLUDES</div>\n  <div class=\"divider\"></div>\n\n  <div class=\"bundle-item\">\n    <h3>Protein powder of your choice</h3>\n    <p>(500g bag – Chocolate, Strawberry, and Vanilla)</p>\n  </div>\n\n  <div class=\"bundle-item\">\n    <h3>8 protein cookies</h3>\n    <p>Chocolate, Nut, Coconut Chocolate, Mint Chocolate, Cinnamon, White Cocoa, Strawberry, Raisin and Pineapple</p>\n  </div>\n</div>\n</div>"
-          }
-        },
         "description": {
           "type": "description",
           "disabled": true,
           "settings": {}
         },
-        "variant_picker_N7hDFT": {
-          "type": "variant_picker",
-          "disabled": true,
+        "nutrition_accordion_inline": {
+          "type": "custom_liquid",
           "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
+            "custom_liquid": "{% render 'nutrition-accordion', product: product, variant_selector: true %}"
           }
         },
         "bundler_custom_bundle_xtAkNn": {
@@ -75,12 +58,6 @@
           "disabled": true,
           "settings": {}
         },
-        "nutrition_accordion_inline": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "{% render 'nutrition-accordion', product: product, variant_selector: true %}"
-          }
-        },
         "buy_buttons": {
           "type": "buy_buttons",
           "disabled": true,
@@ -91,14 +68,11 @@
         }
       },
       "block_order": [
-        "custom_liquid_DmwCG4",
         "title",
         "happy_customers_widget",
         "custom_review_widget",
-        "custom_liquid_gH4hJR",
         "description",
         "nutrition_accordion_inline",
-        "variant_picker_N7hDFT",
         "bundler_custom_bundle_xtAkNn",
         "custom_liquid_fkXgtX",
         "quantity_selector",
@@ -129,67 +103,6 @@
         "padding_bottom": 0
       }
     },
-    "faq_QXnf3x": {
-      "type": "faq",
-      "blocks": {
-        "faq_item_yykDhk": {
-          "type": "faq_item",
-          "settings": {
-            "question": "When should you eat a protein cookie?",
-            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>"
-          }
-        },
-        "faq_item_AdyFUh": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Isn't that 85g power cookie pretty big?",
-            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>"
-          }
-        },
-        "faq_item_nbbyF3": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Why are our cookies high in protein?",
-            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>"
-          }
-        },
-        "faq_item_PMq9ik": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Are our cookies vegan?",
-            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>"
-          }
-        },
-        "faq_item_jMkUGG": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Are the cookies gluten-free?",
-            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>"
-          }
-        },
-        "faq_item_gbgc4B": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Who actually bakes these cookies?",
-            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>"
-          }
-        }
-      },
-      "block_order": [
-        "faq_item_yykDhk",
-        "faq_item_AdyFUh",
-        "faq_item_nbbyF3",
-        "faq_item_PMq9ik",
-        "faq_item_jMkUGG",
-        "faq_item_gbgc4B"
-      ],
-      "disabled": true,
-      "name": "FAQ Accordion",
-      "settings": {
-        "faq_heading": "Frequently Asked Questions"
-      }
-    },
-
     "testimonials_slider_TPXBmE": {
       "type": "testimonials-slider",
       "blocks": {
@@ -282,7 +195,6 @@
         "padding_bottom": 0
       }
     },
-
     "faq_global_Nz6Jdb": {
       "type": "faq-global",
       "name": "faq-global",
@@ -299,7 +211,6 @@
   "order": [
     "main",
     "product_description_section",
-    "faq_QXnf3x",
     "testimonials_slider_TPXBmE",
     "related-products",
     "faq_global_Nz6Jdb",
