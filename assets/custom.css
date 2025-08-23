@@ -2517,13 +2517,13 @@ span.productPlanItemList br {
 .page-store-finder .rich-text__text.rte p {
     font-size: 20px;
 }
-.page-news .blog-articles {
+.template-blog .blog-articles {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
 }
 
-.page-news .blog-articles .blog-articles__article {
+.template-blog .blog-articles .blog-articles__article {
     width: calc(33.33% - 30px);
     padding: 0px;
     background: #ebe6ff;
@@ -2532,29 +2532,29 @@ span.productPlanItemList br {
   overflow:hidden;
 }
 
-.page-news .blog-articles .blog-articles__article .card__content {
+.template-blog .blog-articles .blog-articles__article .card__content {
     padding: 20px;
 }
 
-.page-news .blog-articles .blog-articles__article .card__content .card__information {
+.template-blog .blog-articles .blog-articles__article .card__content .card__information {
     padding-left: 0;
     padding-right: 0;
   padding-top: 0;
     padding-bottom: 0;
 }
 
-.page-news .blog-articles .blog-articles__article .card__content .card__information h3.card__heading.h2 {
+.template-blog .blog-articles .blog-articles__article .card__content .card__information h3.card__heading.h2 {
     font-size: 35px;
     font-weight: 700; line-height:40px;
 }
-.page-news .blog-articles .blog-articles__article .underline-links-hover:hover a {
+.template-blog .blog-articles .blog-articles__article .underline-links-hover:hover a {
     text-decoration: none;
 }
-.page-news .blog-articles .blog-articles__article .card__content .card__information p {
+.template-blog .blog-articles .blog-articles__article .card__content .card__information p {
     font-size: 20px;
     line-height: 28px;
 }
-.page-news h2.rich-text__heading {
+.template-blog h2.rich-text__heading {
     font-size: 40px;
     color: #2e006e;
 }
@@ -2637,9 +2637,9 @@ span.productPlanItemList br {
 @media only screen and (max-width: 767px) {
   section.faq-main {margin-bottom: 50px;}
   .tabs-wrapper .tab-button {font-size: 16px; line-height:16px;}
-  .page-news .blog-articles {gap:15px;}
-  .page-news .blog-articles .blog-articles__article{width:100%;}
-  .page-news .blog-articles .blog-articles__article .card__content .card__information h3.card__heading.h2{font-size:30px; line-height:35px;}
+  .template-blog .blog-articles {gap:15px;}
+  .template-blog .blog-articles .blog-articles__article{width:100%;}
+  .template-blog .blog-articles .blog-articles__article .card__content .card__information h3.card__heading.h2{font-size:30px; line-height:35px;}
    .custom-split-embed {flex-direction: column;}
   .custom-split-embed .split-left,
   .custom-split-embed .split-right {width:100%; padding:0px;}
