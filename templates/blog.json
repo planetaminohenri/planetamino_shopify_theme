@@ -9,31 +9,6 @@
  */
 {
   "sections": {
-    "rich_text_eTNmJa": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_R4erKw": {
-          "type": "heading",
-          "settings": {
-            "heading": "<strong>Our Blogs</strong>",
-            "heading_size": "h1"
-          }
-        }
-      },
-      "block_order": [
-        "heading_R4erKw"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "class": "",
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 0
-      }
-    },
     "main": {
       "type": "main-blog",
       "settings": {
@@ -48,7 +23,6 @@
     }
   },
   "order": [
-    "rich_text_eTNmJa",
     "main"
   ]
 }
