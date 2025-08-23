@@ -860,6 +860,12 @@ section.faq-wrapper {
 .footer .copyright__content a {
     color: #fff;
 }
+
+/* Exception: Social icon wrappers should inherit color from parent for proper theming */
+.footer-block__brand-info a.link.list-social__link .svg-wrapper,
+.footer .footer__list-social a.link.list-social__link .svg-wrapper {
+    color: inherit;
+}
 /* about  page css */
 .page-about .multicolumn .title.inline-richtext {
     width: 100%;

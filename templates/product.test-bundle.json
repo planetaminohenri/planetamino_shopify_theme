@@ -79,6 +79,7 @@
         },
         "collection_block_Ne4Rkp": {
           "type": "collection_block",
+          "disabled": true,
           "settings": {
             "bundle_type": "protein",
             "label": "Optional Items",
@@ -87,6 +88,7 @@
         },
         "collection_block_ktfyWV": {
           "type": "collection_block",
+          "disabled": true,
           "settings": {
             "bundle_type": "protein",
             "label": "Optional Items",
@@ -351,7 +353,10 @@
         "judge_me_reviews_review_widget_4eDATN": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "disabled": true,
-          "settings": {}
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200
+          }
         }
       },
       "block_order": [
