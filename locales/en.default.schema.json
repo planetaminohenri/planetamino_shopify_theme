@@ -290,6 +290,36 @@
         "social_vimeo_link": {
           "label": "Vimeo",
           "info": "https://vimeo.com/shopify"
+        },
+        "header_finnish": {
+          "content": "Finnish Social Media Accounts"
+        },
+        "social_facebook_link_fi": {
+          "label": "Facebook (Finnish)"
+        },
+        "social_instagram_link_fi": {
+          "label": "Instagram (Finnish)"
+        },
+        "social_youtube_link_fi": {
+          "label": "YouTube (Finnish)"
+        },
+        "social_tiktok_link_fi": {
+          "label": "TikTok (Finnish)"
+        },
+        "social_twitter_link_fi": {
+          "label": "X / Twitter (Finnish)"
+        },
+        "social_snapchat_link_fi": {
+          "label": "Snapchat (Finnish)"
+        },
+        "social_pinterest_link_fi": {
+          "label": "Pinterest (Finnish)"
+        },
+        "social_tumblr_link_fi": {
+          "label": "Tumblr (Finnish)"
+        },
+        "social_vimeo_link_fi": {
+          "label": "Vimeo (Finnish)"
         }
       }
     },

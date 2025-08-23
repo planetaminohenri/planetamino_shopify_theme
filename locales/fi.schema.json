@@ -100,6 +100,36 @@
         },
         "header": {
           "content": "Sosiaalisen median tilit"
+        },
+        "header_finnish": {
+          "content": "Suomenkieliset sosiaalisen median tilit"
+        },
+        "social_facebook_link_fi": {
+          "label": "Facebook (suomi)"
+        },
+        "social_instagram_link_fi": {
+          "label": "Instagram (suomi)"
+        },
+        "social_youtube_link_fi": {
+          "label": "YouTube (suomi)"
+        },
+        "social_tiktok_link_fi": {
+          "label": "TikTok (suomi)"
+        },
+        "social_twitter_link_fi": {
+          "label": "X / Twitter (suomi)"
+        },
+        "social_snapchat_link_fi": {
+          "label": "Snapchat (suomi)"
+        },
+        "social_pinterest_link_fi": {
+          "label": "Pinterest (suomi)"
+        },
+        "social_tumblr_link_fi": {
+          "label": "Tumblr (suomi)"
+        },
+        "social_vimeo_link_fi": {
+          "label": "Vimeo (suomi)"
         }
       }
     },
