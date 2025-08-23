@@ -867,7 +867,7 @@ section.faq-wrapper {
     color: inherit;
 }
 /* about  page css */
-.page-about .multicolumn .title.inline-richtext {
+.about-multicol .title.inline-richtext {
     width: 100%;
     text-align: center;
     font-weight: bold;
@@ -1975,29 +1975,28 @@ line-height:15px;  display: inline-block;}
     background: #ebe6ff;
 }
 
-.about-multicol {
-
-.multicolumn-card__info p {
+.about-multicol .multicolumn-card__info p {
     color: var(--color-primary);
     font-family: var(--font-body-family);
     font-size: 20px;
 }
 
-.multicolumn.background-none .multicolumn-card {
+.about-multicol .multicolumn.background-none .multicolumn-card {
     background: transparent;
 }
 
-.multicolumn-card__image-wrapper {
+.about-multicol .multicolumn-card__image-wrapper {
     margin: 0 !important;
 }
 
-.multicolumn-card {
+.about-multicol .multicolumn-card {
     border-radius: 20px !important;
     overflow: hidden;
 }
-}
 
 /* ABOUT PAGE END */
+
+/* (removed) ABOUT TEAM styles replaced by .about-multicol */
 
 
 
@@ -2482,33 +2481,33 @@ span.productPlanItemList br {
     margin-top: 0;
 }
 
-.page-about .multicolumn-card {
+.about-multicol .multicolumn-card {
     padding: 40px;
     border-radius: 20px;
 }
-.page-about .multicolumn-card .multicolumn-card__image-wrapper {
+.about-multicol .multicolumn-card .multicolumn-card__image-wrapper {
     margin: 0;
     padding: 0;
 }
 
-.page-about .multicolumn-card .multicolumn-card__info {
+.about-multicol .multicolumn-card .multicolumn-card__info {
     padding: 0;
     margin-top: 20px;
     text-align: center;
 }
 
-.page-about .multicolumn-card .multicolumn-card__info h3.inline-richtext {
+.about-multicol .multicolumn-card .multicolumn-card__info h3.inline-richtext {
     font-size: 35px;
     font-weight: 700;
     color: #330073;
 }
-.page-about .multicolumn-card .multicolumn-card__info h5 {
+.about-multicol .multicolumn-card .multicolumn-card__info h5 {
     font-size: 20px;
     margin: 0 0 20px;
     color: #330073;
 }
 
-.page-about .multicolumn-card .multicolumn-card__info  p {
+.about-multicol .multicolumn-card .multicolumn-card__info  p {
     font-size: 20px;
     line-height: 30px;
 }

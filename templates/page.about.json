@@ -154,7 +154,7 @@
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
-        "class": "",
+        "class": "about-multicol",
         "title": "Who are we?",
         "heading_size": "h1",
         "image_width": "full",
