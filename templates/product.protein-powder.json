@@ -104,7 +104,7 @@
     "product_description_section": {
       "type": "product-description",
       "settings": {
-        "title": "Product description",
+        "title": "",
         "full_width": true,
         "padding_top": 0,
         "padding_bottom": 0
@@ -189,7 +189,7 @@
       "type": "faq-global",
       "name": "faq-global",
       "settings": {
-        "title": "FAQ"
+        "title": ""
       }
     },
     "best_nutrition_section_gWM4f7": {

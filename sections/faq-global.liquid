@@ -1,23 +1,29 @@
 <section class="faq-main">
 <div class="page-width">
-  <h2>{{ section.settings.title }}</h2> 
+  <h2>
+    {%- if section.settings.title != blank -%}
+      {{ section.settings.title }}
+    {%- else -%}
+      {{ 'sections.faq_global.name' | t }}
+    {%- endif -%}
+  </h2> 
 {% render 'faq-section' %}
 </div>
 </section>
 {% schema %}
   {
-    "name": "Faq Global",
+    "name": "t:sections.faq_global.name",
     "settings": [
       {
         "type":"text",
         "id":"title",
-        "label":"Title Text",
-        "default":"FAQ"
+        "label":"t:sections.faq_global.settings.title.label",
+        "default":"t:sections.faq_global.settings.title.default"
       }
     ],
    "presets": [
     {
-      "name": "faq-global",
+      "name": "faq-global"
     }
    ]
   }

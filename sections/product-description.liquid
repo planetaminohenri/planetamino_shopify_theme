@@ -39,7 +39,13 @@
 
 <div class="product-description section-{{ section.id }}-padding{% unless section.settings.full_width %} page-width{% endunless %}">
   <div class="product-description__wrapper{% if section.settings.full_width %} page-width{% endif %}">
-    <h2 class="product-description-heading">{{ section.settings.title }}</h2>
+    <h2 class="product-description-heading">
+      {%- if section.settings.title != blank -%}
+        {{ section.settings.title }}
+      {%- else -%}
+        {{ 'sections.product_description.settings.title.default' | t }}
+      {%- endif -%}
+    </h2>
     <div class="product-description__content">
       {{ product.description }}
     </div>
@@ -48,15 +54,15 @@
 
 {% schema %}
 {
-  "name": "Product Description",
+  "name": "t:sections.product_description.name",
   "tag": "section",
   "class": "section",
   "settings": [
     {
       "type": "text",
       "id": "title",
-      "default": "Product description",
-      "label": "Title"
+      "default": "t:sections.product_description.settings.title.default",
+      "label": "t:sections.product_description.settings.title.label"
     },
     {
       "type": "checkbox",

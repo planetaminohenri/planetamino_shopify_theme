@@ -383,6 +383,24 @@
       "min_error": "Tämän tuotteen vähimmäisarvo on {{ min }}",
       "max_error": "Tämän tuotteen enimmäisarvo on {{ max }}",
       "step_error": "Voit lisätä tätä tuotetta vain {{ step }}:n lisäyksinä"
+    },
+    "faq_global": {
+      "name": "USEIN KYSYTYT KYSYMYKSET",
+      "settings": {
+        "title": {
+          "label": "FAQ-otsikko",
+          "default": "USEIN KYSYTYT KYSYMYKSET"
+        }
+      }
+    },
+    "product_description": {
+      "name": "TUOTEKUVAUS",
+      "settings": {
+        "title": {
+          "label": "Tuotekuvauksen otsikko",
+          "default": "TUOTEKUVAUS"
+        }
+      }
     }
   },
   "localization": {

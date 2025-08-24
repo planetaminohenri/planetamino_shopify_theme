@@ -3435,6 +3435,24 @@
       "presets": {
         "name": "Collapsible content"
       }
+    },
+    "faq_global": {
+      "name": "FAQ",
+      "settings": {
+        "title": {
+          "label": "FAQ Title",
+          "default": "FAQ"
+        }
+      }
+    },
+    "product_description": {
+      "name": "Product Description",
+      "settings": {
+        "title": {
+          "label": "Product Description Title",
+          "default": "Product description"
+        }
+      }
     }
   }
 }
