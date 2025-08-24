@@ -34,8 +34,3 @@
   margin-top: 0;
 }
 
-@media screen and (max-width: 749px) {
-  .product-description__content {
-    font-size: var(--font-size-body-sm);
-  }
-}
