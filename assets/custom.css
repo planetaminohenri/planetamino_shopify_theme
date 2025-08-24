@@ -1398,7 +1398,7 @@ product-info .page-width {
 
 section.product-testimonials.testimonial-slider-section {
     background: #ffffff;
-    padding: 3rem 0;
+    padding: 0;
 }
 .product__info-container .product-form {
     border-top: 1px solid #330073;
@@ -1901,7 +1901,7 @@ product-info {
 }
 
 @media only screen and (max-width: 767px) {
-section.product-testimonials.testimonial-slider-section {padding: 50px 20px;}
+section.product-testimonials.testimonial-slider-section {padding: 0 20px;}
 section.product-testimonials .testimonial-slider button.slick-next.slick-arrow {right: -25px;}
 section.product-testimonials .testimonial-slider button.slick-prev.slick-arrow {left: -25px;}
 section.product-testimonials .testimonial-slider .slick-slide {padding: 0 10px;}
