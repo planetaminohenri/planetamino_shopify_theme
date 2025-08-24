@@ -565,5 +565,25 @@
       "peanut": "maapähkinä",
       "nut": "pähkinä"
     }
+  },
+  "bundles": {
+    "purchase_options": {
+      "one_time": "Kertaostos",
+      "subscribe_save": "Kestotilaa ja säästä",
+      "subscribe_save_with_discount": "Kestotilaa ja säästä",
+      "every_4_weeks": "Joka 4. viikko",
+      "every_6_weeks": "Joka 6. viikko", 
+      "every_8_weeks": "Joka 8. viikko",
+      "total": "Yhteensä",
+      "add_to_cart": "Lisää ostoskoriin",
+      "choose_delivery_interval": "Valitse tilaussykli:",
+      "how_subscriptions_work": "Miten kestotilaus toimii",
+      "best_price_option": "Paras hintavaihtoehto",
+      "discount_all_orders": "10% alennus tilauksista",
+      "easily_modify": "Muokkaa tilaus helposti omasta tilistä",
+      "easily_cancel": "Peruuta milloin tahansa",
+      "save_percentage": "SÄÄSTÄ 10%",
+      "save_on_delivery": "Säästä 10% jokaisesta toimituksesta"
+    }
   }
 }

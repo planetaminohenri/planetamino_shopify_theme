@@ -566,5 +566,25 @@
       "peanut": "peanut", 
       "nut": "nut"
     }
+  },
+  "bundles": {
+    "purchase_options": {
+      "one_time": "One-time purchase",
+      "subscribe_save": "Subscribe & Save",
+      "subscribe_save_with_discount": "Subscribe & Save 10%",
+      "every_4_weeks": "Every 4 weeks",
+      "every_6_weeks": "Every 6 weeks", 
+      "every_8_weeks": "Every 8 weeks",
+      "total": "Total",
+      "add_to_cart": "Add to cart",
+      "choose_delivery_interval": "Choose Delivery Interval:",
+      "how_subscriptions_work": "How Subscriptions Work",
+      "best_price_option": "Best price option",
+      "discount_all_orders": "10% off all recurring orders",
+      "easily_modify": "Easily modify order",
+      "easily_cancel": "Easily cancel anytime",
+      "save_percentage": "SAVE 10%",
+      "save_on_delivery": "Save 10% on every delivery"
+    }
   }
 }

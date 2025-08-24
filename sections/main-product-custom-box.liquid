@@ -508,7 +508,7 @@
                   <label>
                     <input type="radio" name="purchase_option" value="onetime" checked>
                     <div class="option-content">
-                      <strong>One-Time</strong>
+                      <strong>{{ 'bundles.purchase_options.one_time' | t }}</strong>
                       <span id="total-price-one-time"></span>
                       <div class="description">12 bars</div>
                     </div>
@@ -516,29 +516,29 @@
                 </div>
                 
                   <div class="option subscribe">
-                    <div class="banner">Save 10% on every delivery</div>
+                    <div class="banner">{{ 'bundles.purchase_options.save_on_delivery' | t }}</div>
                       <span id="price-discounted"> </span>
-                      <h2>Subscribe & Save</h2>
+                      <h2>{{ 'bundles.purchase_options.subscribe_save' | t }}</h2>
                     <label>
                       <input type="hidden" name="purchase_option" value="subscription" data-plan-id="691291521361">
                       
                       <div class="option-content">
                         <div class="frequency">
-                          Delivers every:
+                          {{ 'bundles.purchase_options.choose_delivery_interval' | t }}
                           <div name="delivery_frequency">
-                             <label><input type="radio" name="purchase_option" value="subscription" data-plan-id="691291521361" > Every 4 weeks <span id="total-price-one-time"></span></label>
-                             <label><input type="radio" name="purchase_option" value="subscription" data-plan-id="691293258065"> Every 6 weeks <span id="total-price-one-time"></span></label>
-                             <label><input type="radio" name="purchase_option" value="subscription" data-plan-id="691293290833"> Every 8 weeks <span id="total-price-one-time"></span></label>
+                             <label><input type="radio" name="purchase_option" value="subscription" data-plan-id="691291521361" > {{ 'bundles.purchase_options.every_4_weeks' | t }} <span id="total-price-one-time"></span></label>
+                             <label><input type="radio" name="purchase_option" value="subscription" data-plan-id="691293258065"> {{ 'bundles.purchase_options.every_6_weeks' | t }} <span id="total-price-one-time"></span></label>
+                             <label><input type="radio" name="purchase_option" value="subscription" data-plan-id="691293290833"> {{ 'bundles.purchase_options.every_8_weeks' | t }} <span id="total-price-one-time"></span></label>
                             
                           </div>
                         </div>
                         <div class="benefits">
-                          <strong><h3>How Subscriptions Work</h3></strong>
+                          <strong><h3>{{ 'bundles.purchase_options.how_subscriptions_work' | t }}</h3></strong>
                           <ul>
-                            <li>🍪Best price option</li>
-                            <li>🍪10% off all recurring orders</li>
-                            <li>🍪Easily modify order</li>
-                            <li>🍪Easily cancel anytime</li>
+                            <li>🍪{{ 'bundles.purchase_options.best_price_option' | t }}</li>
+                            <li>🍪{{ 'bundles.purchase_options.discount_all_orders' | t }}</li>
+                            <li>🍪{{ 'bundles.purchase_options.easily_modify' | t }}</li>
+                            <li>🍪{{ 'bundles.purchase_options.easily_cancel' | t }}</li>
                           </ul>
                         </div>
                         
