@@ -655,8 +655,8 @@ span.sls-savings-badge {
     line-height: 35px;
 }
 .best-nutrition-section {
-  padding: 3rem 0;
-    background-color: var(--color-secondary-light);
+  padding: 0;
+    background-color: #ffffff;
     text-align: center;
 }
 
@@ -1102,7 +1102,7 @@ form#custom-cookie-form {
   .testimonial-slider-section h2.testimonial-heading{margin:0;}
 .testimonial-slider-section{padding-bottom:0px;}
 section.faq-main{padding:30px;}
-.best-nutrition-section{padding:40px 0;}
+.best-nutrition-section{padding:0;}
 .template-index .multicolumn .multicolumn-list li .multicolumn-card .media{ height: 80px; width: 80px;}
 .template-index .multicolumn .multicolumn-card .multicolumn-card__image{width:80px; margin:0 auto 0 -40px;}
 .template-index .multicolumn .multicolumn-list{padding-left:20px; padding-right:20px;flex-wrap:wrap; flex:inherit;}
@@ -1175,7 +1175,7 @@ section.faq-main{padding:30px;}
  .template-index .multicolumn .multicolumn-list li .multicolumn-card .multicolumn-card__image-wrapper{padding-top:0;} 
  .template-index .multicolumn.gradient {background: url(https://cdn.shopify.com/s/files/1/0943/2753/8001/files/icn-bg-mb.png); background-size:cover;}
  .faq-accordion svg.icon.icon-caret {height: 9px;top: 10px;right: 0;}
-  section.faq-main, .best-nutrition-section{padding:40px 0;}
+  section.faq-main, .best-nutrition-section{padding:0;}
   .faq-main h2{margin-bottom:10px; margin-top:0px;}
   .footer-block ul.footer-block__details-content li a, .footer-block p{font-size: 15px; line-height: 22px; padding:0;}
   .footer .footer-block.grid__item{margin:0px;}
