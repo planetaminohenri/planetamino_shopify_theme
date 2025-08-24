@@ -27,14 +27,12 @@
         },
         "bundler_custom_bundle_AiTNKJ": {
           "type": "shopify://apps/bundler/blocks/custom-bundle/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
-          "disabled": true,
           "settings": {
             "shortcode": "e5s2"
           }
         },
         "custom_liquid_DmwCG4": {
           "type": "custom_liquid",
-          "disabled": true,
           "settings": {
             "custom_liquid": "<div id=\"custom-bundle-subscription-box\" style=\"margin-top: 20px;\">\n  <!-- Total Price Display -->\n  <div id=\"bundle-total\" style=\"font-size: 20px; font-weight: bold; margin-bottom: 10px;\">\n    Total: <span id=\"bundleTotalAmount\">$0.00</span>\n  </div>\n\n  <!-- Subscription Options -->\n  <div id=\"subscription-options\" style=\"margin-bottom: 15px;\">\n    <label style=\"display: block; font-weight: bold; margin-bottom: 5px;\">Purchase Options:</label>\n\n    <input type=\"radio\" name=\"purchaseOption\" value=\"onetime\" id=\"onetime\" checked />\n    <label for=\"onetime\">One-time purchase</label><br>\n\n    <input type=\"radio\" name=\"purchaseOption\" value=\"subscribe\" id=\"subscribe\" />\n    <label for=\"subscribe\">Subscribe & Save 10%</label>\n  </div>\n\n  <!-- Hidden inputs to pass to cart -->\n  <input type=\"hidden\" name=\"properties[Subscription Option]\" id=\"subscriptionProperty\" value=\"One-time purchase\">\n  <input type=\"hidden\" name=\"properties[Final Bundle Price]\" id=\"finalBundlePrice\" value=\"$0.00\">\n</div>\n\n<script>\n  document.addEventListener('DOMContentLoaded', function () {\n    const totalDisplay = document.getElementById('bundleTotalAmount');\n    const subscriptionProperty = document.getElementById('subscriptionProperty');\n    const finalBundlePrice = document.getElementById('finalBundlePrice');\n    const radioButtons = document.querySelectorAll('input[name=\"purchaseOption\"]');\n\n    // Helper to parse price string and return number\n    const parsePrice = (text) => parseFloat(text.replace(/[^0-9.]/g, ''));\n\n    // Function to fetch and update bundle total from Bundler app's total\n    function updateTotalPrice() {\n      const bundlerPriceEl = document.querySelector('[data-bundler-total-price]'); // or update selector if needed\n\n      if (bundlerPriceEl) {\n        let originalPrice = parsePrice(bundlerPriceEl.textContent || bundlerPriceEl.innerText || \"0\");\n        const isSubscribe = document.getElementById('subscribe').checked;\n        const discountedPrice = isSubscribe ? (originalPrice * 0.9).toFixed(2) : originalPrice.toFixed(2);\n\n        totalDisplay.textContent = `$${discountedPrice}`;\n        subscriptionProperty.value = isSubscribe ? \"Subscribe & Save 10%\" : \"One-time purchase\";\n        finalBundlePrice.value = `$${discountedPrice}`;\n      }\n    }\n\n    // Update total when subscription changes\n    radioButtons.forEach(radio => {\n      radio.addEventListener('change', updateTotalPrice);\n    });\n\n    // Observe changes in the Bundler total price DOM\n    const observer = new MutationObserver(updateTotalPrice);\n    const bundlerPriceEl = document.querySelector('[data-bundler-total-price]'); // selector from Bundler app\n\n    if (bundlerPriceEl) {\n      observer.observe(bundlerPriceEl, { childList: true, subtree: true });\n      updateTotalPrice(); // Initial run\n    } else {\n      console.warn(\"Bundler total price element not found. Make sure your selector is correct.\");\n    }\n  });\n</script>"
           }
@@ -87,7 +85,8 @@
         "happy_customers_widget",
         "custom_review_widget",
         "nutrition_accordion_inline",
-        "bundler_custom_bundle_AiTNKJ"
+        "bundler_custom_bundle_AiTNKJ",
+        "custom_liquid_DmwCG4"
       ],
       "settings": {
         "enable_sticky_info": true,
