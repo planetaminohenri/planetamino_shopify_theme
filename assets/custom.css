@@ -1397,7 +1397,7 @@ product-info .page-width {
 }
 
 section.product-testimonials.testimonial-slider-section {
-    background: #ffffff;
+    background: #ffffff !important;
     padding: 0;
 }
 .product__info-container .product-form {
