@@ -1,7 +1,12 @@
 <section class="{{ section.settings.class }} testimonial-slider-section {{ section.settings.font_size }}">
   <div class="page-width">
-    {% if section.settings.heading %}
-      <h2 class="testimonial-heading">{{ section.settings.heading }}</h2>
+    {% if section.settings.heading or section.settings.heading_fi %}
+      {% assign current_language = localization.language.iso_code %}
+      {% if current_language == 'fi' and section.settings.heading_fi %}
+        <h2 class="testimonial-heading">{{ section.settings.heading_fi }}</h2>
+      {% else %}
+        <h2 class="testimonial-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
     {% endif %}
 
     <div class="testimonial-slider">
@@ -79,6 +84,12 @@
       "id": "heading",
       "label": "Heading",
       "default": "OVER 90% OF CUSTOMERS RECOMMEND OUR PRODUCTS"
+    },
+    {
+      "type": "text",
+      "id": "heading_fi",
+      "label": "Heading (Finnish)",
+      "default": "YLI 90% ASIAKKAISTA SUOSITTELEE TUOTTEITAMME"
     },
     {
       "type": "select",
