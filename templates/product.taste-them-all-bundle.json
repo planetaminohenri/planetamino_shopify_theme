@@ -25,12 +25,7 @@
             "custom_liquid": "{% render 'nutrition-accordion', product: product, variant_selector: true %}"
           }
         },
-        "bundler_custom_bundle_AiTNKJ": {
-          "type": "shopify://apps/bundler/blocks/custom-bundle/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
-          "settings": {
-            "shortcode": "e5s2"
-          }
-        },
+
         "custom_liquid_DmwCG4": {
           "type": "custom_liquid",
           "disabled": true,
@@ -85,8 +80,7 @@
         "title",
         "happy_customers_widget",
         "custom_review_widget",
-        "nutrition_accordion_inline",
-        "bundler_custom_bundle_AiTNKJ"
+        "nutrition_accordion_inline"
       ],
       "settings": {
         "enable_sticky_info": true,
