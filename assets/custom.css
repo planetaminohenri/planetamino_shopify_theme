@@ -188,7 +188,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 
 /* Individual Bundle Card */
 .power-bundles .bundle {
-    background: var(--color-secondary-dark);
+    background: var(--color-secondary-light);
     padding: 40px;
     border-radius: 30px;
     display: flex;
@@ -320,7 +320,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 
 .build-cookie-box {
   padding: 3rem  0 3rem;
-      background: var(--color-secondary-dark);
+      background: var(--color-secondary-light);
 
 .thumbnail-grid {
   flex: 1 1 40%;
@@ -459,7 +459,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 }
 /**********************************/
 section.powder-product {
-    background: var(--color-secondary-dark);
+    background: var(--color-secondary-light);
   padding:0 0 4rem;
 }
 .powder-product .powder-gallery .main-image-container {
@@ -523,7 +523,7 @@ span.sls-savings-badge {
 /************************ Testimonilas********/
 .testimonial-slider-section {
   padding: 0 0 3rem;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   text-align: center;
 }
 .testimonial-slider-section h2.testimonial-heading {
