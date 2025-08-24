@@ -1,6 +1,6 @@
   <product-info
   id="MainProduct-{{ section.id }}"
-  class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
+  class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }} subscription-mode-{{ section.settings.subscription_mode }}"
   data-section="{{ section.id }}"
   data-product-id="{{ product.id }}"
   data-update-url="true"
@@ -2514,6 +2514,31 @@ document.addEventListener('DOMContentLoaded', function () {
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Subscription Settings"
+    },
+    {
+      "type": "select",
+      "id": "subscription_mode",
+      "label": "Subscription Widget Mode",
+      "options": [
+        {
+          "value": "seal",
+          "label": "Seal Subscription Only"
+        },
+        {
+          "value": "custom",
+          "label": "Custom Bundle Subscription Only"
+        },
+        {
+          "value": "none",
+          "label": "No Subscriptions"
+        }
+      ],
+      "default": "custom",
+      "info": "Controls which subscription widgets are shown. Custom bundle mode hides Seal widgets and shows custom subscription options."
     }
   ]
 }

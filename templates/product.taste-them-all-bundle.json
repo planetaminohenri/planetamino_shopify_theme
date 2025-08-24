@@ -95,7 +95,8 @@
         "hide_variants": true,
         "enable_video_looping": false,
         "padding_top": 60,
-        "padding_bottom": 100
+        "padding_bottom": 100,
+        "subscription_mode": "custom"
       }
     },
     "product_description_section": {

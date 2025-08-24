@@ -1697,30 +1697,22 @@ div#tier-message {
 .jdgm-testimonials-carousel .jdgm-card .jdgm-card-content .jdgm-reviewer-info {text-align: left;}
 .jdgm-testimonials-carousel .jdgm-card .jdgm-card-content .jdgm-rating-section {align-items: flex-start;}
 .orichi, .orichi-Rule {display: none;}
-.shopify-app-block .sealsubs-target-element.sealsubs-full {
+/* === LEGACY CSS - COMMENTED OUT FOR DEBUGGING === */
+/*
+.sealsubs-target-element.sealsubs-full {
     display: none !important;
 }
-.template-product #MainProduct-template--25597175398737__main .bndlr-mnm-selected-products .bndlr-product .bndlr-product-qn-container + .sealsubs-target-element.sealsubs-full,
-.template-product #MainProduct-template--25682807882065__main .bndlr-mnm-selected-products .bndlr-product .bndlr-product-qn-container + .sealsubs-target-element.sealsubs-full,
-.template-product #MainProduct-template--25597175398737__main .bndlr-mnm-selected-products .bndlr-product .bndlr-product-qn-container + .sealsubs-target-element.sealsubs-full,
-.template-product #MainProduct-template--25674737484113__main .bndlr-mnm-selected-products .bndlr-product .bndlr-product-qn-container + .sealsubs-target-element.sealsubs-full,
-#MainProduct-template--26020578525521__main .sealsubs-target-element.sealsubs-full,
-#MainProduct-template--25883692237137__main .sealsubs-target-element.sealsubs-full
-{
-    display: none !important;
-} 
- #MainProduct-template--25621089747281__main .sealsubs-target-element.sealsubs-full, #ProductInfo-template--25674737484113__main  .sealsubs-target-element.sealsubs-full,
-#MainProduct-template--25621089747281__main .sealsubs-target-element.sealsubs-full, #ProductInfo-template--25675193024849__main .sealsubs-target-element.sealsubs-full,
-#MainProduct-template--25682807882065__main .sealsubs-target-element.sealsubs-full, #ProductInfo-template--25673546858833__main .sealsubs-target-element.sealsubs-full,
-#MainProduct-template--25597175398737__main .sealsubs-target-element.sealsubs-full,
-#MainProduct-template--26020578754897__main .sealsubs-target-element.sealsubs-full,
-#MainProduct-template--26020577902929__main .sealsubs-target-element.sealsubs-full{
+
+.subscription-mode-seal .sealsubs-target-element.sealsubs-full {
     display: block !important;
-    WIDTH: 100%;
-    MARGIN-TOP: 10PX;
-} 
- #ProductInfo-template--25675193024849__main .bndlr-product-qn-container + .sealsubs-target-element.sealsubs-full,
-#MainProduct-template--25682807882065__main .bndlr-product-qn-container + .sealsubs-target-element.sealsubs-full{display:none !important;}  
+    width: 100%;
+    margin-top: 10px;
+}
+
+.subscription-mode-custom .bndlr-mnm-selected-products .bndlr-product .bndlr-product-qn-container + .sealsubs-target-element.sealsubs-full,
+.subscription-mode-custom .bndlr-product-qn-container + .sealsubs-target-element.sealsubs-full {
+    display: none !important;
+}  
 
 .template-product .prd-defult .sealsubs-target-element {
     display: none;
@@ -1728,6 +1720,21 @@ div#tier-message {
 
 .template-product .prd-defult .bundler-target-element {
     display: none;
+}
+*/
+
+/* === NEW SIMPLE APPROACH === */
+/* Hide Seal widgets only in custom mode */
+.subscription-mode-custom .sealsubs-target-element.sealsubs-full,
+.subscription-mode-custom .sealsubs-container {
+    display: none !important;
+}
+
+/* Ensure Seal widgets are visible in seal mode (default behavior) */
+.subscription-mode-seal .sealsubs-target-element.sealsubs-full {
+    display: block !important;
+    width: 100%;
+    margin-top: 10px;
 }
 .bndlr-mnm-total-price {
     font-size: 30px;
@@ -1739,10 +1746,17 @@ div#tier-message {
     margin: 0;
     display: block;
 }
+/* Custom Subscription Options Control */
 .subscription-options {
-  overflow: hidden;
+    display: none; /* Hidden by default */
+    overflow: hidden;
     font-family: sans-serif;
+}
 
+/* Show custom subscription options when in custom mode */
+.subscription-mode-custom .subscription-options {
+    display: block;
+}
 
 .option {
   padding: 16px;
