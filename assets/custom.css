@@ -875,9 +875,129 @@ section.faq-wrapper {
     color: #330073;
     font-family: var(--font-body-family);
 }
+.bundle-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 15px;
+}
 
+.bundle-list .bundle-card {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    background: #fff;
+    padding: 20px;
+    align-items: center;
+    border: 1px solid #330073;
+    border-radius: 15px;
+}
+
+#custom-cookie-form button#complete-bundle {
+    background: #330073;
+    padding: 15px 40px;
+    font-size: 18px;
+    color: #fff;
+    width: 100%;
+    border-radius: 15px;
+    border: none;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.bundle-list .bundle-card label.bundle-choose {
+    width: 30px;
+    position: absolute;
+}
+
+.bundle-list .bundle-card img {
+    width: 75px;
+    margin-left: 0px;
+    border-radius:10px;
+}
+.bundle-list .bundle-card > label.bundle-choose + img {
+    margin-left: 30px;
+}
+.bundle-list .bundle-card span.bundle-title {
+    width: 60%;
+    font-size: 24px;
+    font-weight: 700;
+    color: #28005a !important;
+    line-height: 24px;
+    text-decoration: none;
+    text-align: left;
+}
+
+.bundle-list .bundle-card span.bundle-price {
+    font-size: 24px;
+    font-weight: 700;
+    color: #28005a !important;
+    line-height: 24px;
+    text-decoration: none;
+}
+#bundle-builder .purchase-options {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 15px;
+    margin-top: 20px;
+    background: #fffaf7;
+    border-radius: 16px;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+    margin-top: 20px;
+    margin-bottom:15px;
+}
+
+#bundle-builder .purchase-options label {
+    width: 100%;
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+}
+#bundle-builder .purchase-options div#subscribe-options {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+    padding: 10px 25px;
+    /* border: 1px solid #ddd;
+    border-radius: 15px; */
+}
+
+#bundle-builder .purchase-options div#subscribe-options label {
+    width: 100%;
+    background: transparent;
+    border: NONE;
+    padding:0px;
+}
+
+#bundle-builder .purchase-options div#subscribe-options select#selling_plan {
+    width: 100%;
+}
+#subscribe-options .sls-selling-plan-description-content {
+    display: block;
+    width: 100%;
+}
+.bundle-list.cookie-list {
+    margin-top: 15px;
+}
+.tot-price {
+    font-size: 30px;
+    color: #28005a;
+}
 .footer .footer__content-top{padding-bottom:30px;}
-
+form#custom-cookie-form {
+    background: #fff7f4;
+    /* padding: 14px 18px !important;
+    border-radius: 16px; */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    /* border: 1px solid #330073 !important; */
+    margin-top:25px;
+}
 .page-i-want-to-test-bundle form#custom-cookie-form .sealsubs-target-element.sealsubs-full,
 .page-i-want-to-taste-them-all-bundle form#custom-cookie-form .sealsubs-target-element.sealsubs-full {
     display: none !important;

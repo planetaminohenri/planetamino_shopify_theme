@@ -462,6 +462,200 @@
                 </modal-opener>
               {%- endcase -%}
               {%- endfor -%}
+           <div id="bundle-builder">
+
+  <!-- ✅ Protein (fixed qty 1) -->
+  {% assign protein_collection = collections['protein-powder'] %}
+  {% if protein_collection %}
+    <section>
+      <div class="bundle-list protein-list">
+        {% for product in protein_collection.products %}
+          {% for variant in product.variants %}
+            <div class="bundle-card protein-card" 
+                 data-variant-id="{{ variant.id }}" 
+                 data-price="{{ variant.price | money_without_currency | replace: ',', '' }}" 
+                 data-qty="1">
+              {% if variant.featured_image %}
+                <img src="{{ variant.featured_image | img_url: '80x' }}" alt="{{ product.title }} - {{ variant.title }}">
+              {% else %}
+                <img src="{{ product.featured_image | img_url: '80x' }}" alt="{{ product.title }} - {{ variant.title }}">
+              {% endif %}
+              <span class="bundle-title">
+                {{ product.title }}{% unless variant.title == 'Default Title' %} - {{ variant.title }}{% endunless %}
+              </span>
+              <span class="bundle-price"><span class="line-thr">{{ variant.price | money }}</span> <span class="discount-prc"> </span></span>
+            </div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  <!-- ✅ Cookies (fixed qty 2) -->
+  {% assign cookie_collection = collections['power-cookie'] %}
+  {% if cookie_collection and cookie_collection.products.size > 0 %}
+    <section>
+      <div class="bundle-list cookie-list">
+        {% for product in cookie_collection.products %}
+          {% for variant in product.variants %}
+            <div class="bundle-card cookie-card" 
+                 data-variant-id="{{ variant.id }}" 
+                 data-price="{{ variant.price | money_without_currency | replace: ',', '' }}" 
+                 data-qty="2">
+              {% if variant.featured_image %}
+                <img src="{{ variant.featured_image | img_url: '80x' }}" alt="{{ product.title }} - {{ variant.title }}">
+              {% else %}
+                <img src="{{ product.featured_image | img_url: '80x' }}" alt="{{ product.title }} - {{ variant.title }}">
+              {% endif %}
+              <span class="bundle-title">
+                2 x {{ product.title }}{% unless variant.title == 'Default Title' %} - {{ variant.title }}{% endunless %}
+              </span>
+              <span class="bundle-price"><span class="line-thr">{{ variant.price | money }}</span> <span class="discount-prc"> </span></span>
+            </div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  
+
+  <!-- 🔁 Purchase Options -->
+  <div class="purchase-options" style="margin-bottom: 1rem;">
+    <label>
+      <input type="radio" name="purchase_type" value="onetime" checked> One-time purchase
+    </label>
+    <label>
+      <input type="radio" name="purchase_type" value="subscribe"> Subscribe & Save <span class="sls-savings-badge" style="display: inline-block;">SAVE 10%</span>
+      <div id="subscribe-options" style="display:none">
+      <label for="selling_plan">Choose Delivery Interval:</label>
+      <select id="selling_plan" class="sls-select seal-tight needsclick">
+        <option value="691291521361">Every 4 weeks</option>
+        <option value="691293258065">Every 6 weeks</option>
+        <option value="691293290833">Every 8 weeks</option>
+      </select>
+      <div class="sls-selling-plan-description-content">
+        <span class="productPlanItemList">
+          <h3>How Subscriptions Work</h3>
+          <span class="productPlanItemListItem">🍪Best price option</span><br>
+          <span class="productPlanItemListItem">🍪10% off all recurring orders</span><br>
+          <span class="productPlanItemListItem">🍪Easily modify order</span><br>
+          <span class="productPlanItemListItem">🍪Easily cancel anytime</span>
+        </span>
+      </div>
+    </div>
+    </label>
+    
+  </div>
+
+  <!-- 💵 Total -->
+  <div style="margin: 16px 0;" class="tot-price">
+    <strong>Total:</strong> <span id="bundle-total">€0.00</span>
+  </div>
+
+  <!-- ✅ Add to Cart -->
+  <form id="custom-cookie-form" method="post" action="/cart/add">
+    <div id="all-line-items"></div>
+    <button id="complete-bundle" type="submit" class="bundle-btn">Add to cart</button>
+  </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('custom-cookie-form');
+  const container = document.getElementById('all-line-items');
+  const sellingPlanSelect = document.getElementById('selling_plan');
+  const subscribeOptions = document.getElementById('subscribe-options');
+  const radios = document.querySelectorAll('input[name="purchase_type"]');
+  const totalDisplay = document.getElementById('bundle-total');
+  const discountedPrice = document.querySelectorAll('discount-prc'); 
+  let sellingPlanId = null;
+
+  // Toggle subscribe options
+  radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (radio.value === 'subscribe' && radio.checked) {
+        subscribeOptions.style.display = 'flex';
+        sellingPlanId = sellingPlanSelect.value;
+      } else {
+        subscribeOptions.style.display = 'none';
+        sellingPlanId = null;
+      }
+      updateTotal();
+    });
+  });
+
+  sellingPlanSelect.addEventListener('change', () => {
+    sellingPlanId = sellingPlanSelect.value;
+  });
+
+  function updateTotal() {
+    let total = 0;
+    const isSubscribe = document.querySelector('input[name="purchase_type"]:checked')?.value === 'subscribe';
+
+    // Fixed protein (qty 1) with 5% discount
+    document.querySelectorAll('.protein-card').forEach(card => {
+      const price = parseFloat(card.dataset.price) / 100; 
+      const qty = parseInt(card.dataset.qty) || 1;
+      const discountedPrice = price * 0.95; // 5% off
+      const discountEl = card.querySelector('.discount-prc');
+      if (discountEl) discountEl.textContent = '€' + discountedPrice.toFixed(2);
+      total += discountedPrice * qty;
+    });
+
+    // Fixed cookies (qty 2) with 10% discount
+    document.querySelectorAll('.cookie-card').forEach(card => {
+      const price = parseFloat(card.dataset.price) / 100; 
+      const qty = parseInt(card.dataset.qty) || 2;
+      const discountedPrice = price * 0.90; // 10% off
+      const discountEl = card.querySelector('.discount-prc');
+      if (discountEl) discountEl.textContent = '€' + discountedPrice.toFixed(2);
+      total += discountedPrice * qty;
+    });
+
+    // Additional discount if subscribed
+    if (isSubscribe) total *= 0.9;
+
+    totalDisplay.textContent = '€' + total.toFixed(2);
+  }
+
+  updateTotal(); // On load
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    container.innerHTML = '';
+    let index = 0;
+
+    // Add protein
+    document.querySelectorAll('.protein-card').forEach(card => {
+      const id = card.dataset.variantId;
+      const qty = card.dataset.qty || 1;
+      container.insertAdjacentHTML('beforeend', `
+        <input type="hidden" name="items[${index}][id]" value="${id}">
+        <input type="hidden" name="items[${index}][quantity]" value="${qty}">
+        ${sellingPlanId ? `<input type="hidden" name="items[${index}][selling_plan]" value="${sellingPlanId}">` : ''}
+        <input type="hidden" name="items[${index}][properties][_bundle]" value="protein">
+      `);
+      index++;
+    });
+
+    // Add cookies
+    document.querySelectorAll('.cookie-card').forEach(card => {
+      const id = card.dataset.variantId;
+      const qty = card.dataset.qty || 2;
+      container.insertAdjacentHTML('beforeend', `
+        <input type="hidden" name="items[${index}][id]" value="${id}">
+        <input type="hidden" name="items[${index}][quantity]" value="${qty}">
+        ${sellingPlanId ? `<input type="hidden" name="items[${index}][selling_plan]" value="${sellingPlanId}">` : ''}
+        <input type="hidden" name="items[${index}][properties][_bundle]" value="cookie">
+      `);
+      index++;
+    });
+
+    form.submit();
+  });
+});
+</script>
               {%- for block in section.blocks -%}
             {%- case block.type -%}
               {%- when 'share' -%}
