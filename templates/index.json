@@ -15,7 +15,7 @@
         "text_K7C8AF": {
           "type": "text",
           "settings": {
-            "text": "2000+ Happy Customers",
+            "text": "Over 2000 Happy Customers",
             "text_style": "body"
           }
         },
@@ -206,6 +206,7 @@
       "settings": {
         "class": "home-testimonials",
         "heading": "90% of customers recommend our products",
+        "heading_fi": "YLI 90% ASIAKKAISTA SUOSITTELEE TUOTTEITAMME",
         "font_size": "font-size-md"
       }
     },

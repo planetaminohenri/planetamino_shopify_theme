@@ -623,19 +623,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    container.innerHTML = '';
+    
+    const formData = new FormData();
     let index = 0;
 
     // Add protein
     document.querySelectorAll('.protein-card').forEach(card => {
       const id = card.dataset.variantId;
       const qty = card.dataset.qty || 1;
-      container.insertAdjacentHTML('beforeend', `
-        <input type="hidden" name="items[${index}][id]" value="${id}">
-        <input type="hidden" name="items[${index}][quantity]" value="${qty}">
-        ${sellingPlanId ? `<input type="hidden" name="items[${index}][selling_plan]" value="${sellingPlanId}">` : ''}
-        <input type="hidden" name="items[${index}][properties][_bundle]" value="protein">
-      `);
+      formData.append(`items[${index}][id]`, id);
+      formData.append(`items[${index}][quantity]`, qty);
+      if (sellingPlanId) {
+        formData.append(`items[${index}][selling_plan]`, sellingPlanId);
+      }
+      formData.append(`items[${index}][properties][_bundle]`, 'protein');
       index++;
     });
 
@@ -643,16 +644,31 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.cookie-card').forEach(card => {
       const id = card.dataset.variantId;
       const qty = card.dataset.qty || 2;
-      container.insertAdjacentHTML('beforeend', `
-        <input type="hidden" name="items[${index}][id]" value="${id}">
-        <input type="hidden" name="items[${index}][quantity]" value="${qty}">
-        ${sellingPlanId ? `<input type="hidden" name="items[${index}][selling_plan]" value="${sellingPlanId}">` : ''}
-        <input type="hidden" name="items[${index}][properties][_bundle]" value="cookie">
-      `);
+      formData.append(`items[${index}][id]`, id);
+      formData.append(`items[${index}][quantity]`, qty);
+      if (sellingPlanId) {
+        formData.append(`items[${index}][selling_plan]`, sellingPlanId);
+      }
+      formData.append(`items[${index}][properties][_bundle]`, 'cookie');
       index++;
     });
 
-    form.submit();
+    // Submit to the correct localized cart URL
+    fetch('{{ routes.cart_add_url }}', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+      if (response.ok) {
+        // Redirect to the localized cart page
+        window.location.href = '{{ routes.cart_url }}';
+      } else {
+        console.error('Failed to add items to cart');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
   });
 });
 </script>
