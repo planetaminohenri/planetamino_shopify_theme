@@ -71,9 +71,12 @@
 }
   
 .faq-section {
-  background-color: #F3C002; /* yellow background */
-  padding: 60px;
+  background-color: var(--color-secondary-light);
+  padding: 4rem 2rem;
   border-radius: 32px;
+  width: 80%;
+  max-width: 900px;
+  box-sizing: border-box;
 }
 
 .faq-heading {
@@ -152,8 +155,9 @@
   padding:50px 0;
 }
 .faq-section {
-    padding: 50px 20px;
-    border-radius:15px;
+    width: calc(100% - 4rem);
+    padding: 2rem 1.5rem;
+    border-radius: 15px;
 }
 button.faq-question svg {
     width: 16px;

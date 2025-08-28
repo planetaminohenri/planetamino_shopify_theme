@@ -1101,7 +1101,11 @@ form#custom-cookie-form {
   section.powder-product{padding-bottom:40px;}
   .testimonial-slider-section h2.testimonial-heading{margin:0;}
 .testimonial-slider-section{padding-bottom:0px;}
-section.faq-main{padding:30px;}
+section.faq-main{
+  width: calc(100% - 4rem);
+  padding: 2rem 1.5rem;
+  margin: 0 2rem 3rem;
+}
 .best-nutrition-section{padding:0;}
 .template-index .multicolumn .multicolumn-list li .multicolumn-card .media{ height: 80px; width: 80px;}
 .template-index .multicolumn .multicolumn-card .multicolumn-card__image{width:80px; margin:0 auto 0 -40px;}
@@ -1175,7 +1179,13 @@ section.faq-main{padding:30px;}
  .template-index .multicolumn .multicolumn-list li .multicolumn-card .multicolumn-card__image-wrapper{padding-top:0;} 
  .template-index .multicolumn.gradient {background: url(https://cdn.shopify.com/s/files/1/0943/2753/8001/files/icn-bg-mb.png); background-size:cover;}
  .faq-accordion svg.icon.icon-caret {height: 9px;top: 10px;right: 0;}
-  section.faq-main, .best-nutrition-section{padding:0;}
+  section.faq-main{
+    width: calc(100% - 2rem);
+    padding: 2rem 1rem;
+    margin: 2rem 1rem 0;
+    border-radius: 15px;
+  }
+  .best-nutrition-section{padding:0;}
   .faq-main h2{margin-bottom:10px; margin-top:0px;}
   .footer-block ul.footer-block__details-content li a, .footer-block p{font-size: 15px; line-height: 22px; padding:0;}
   .footer .footer-block.grid__item{margin:0px;}
@@ -2443,14 +2453,13 @@ span.productPlanItemList br {
 
 
 .faq-main {
-  background-color: #fffaf7;
-  padding: 2rem 0 3rem;
-  border-radius: 20px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
-  font-family: var(--font-body-family);
+  background-color: var(--color-secondary-light);
+  padding: 4rem 2rem;
+  margin: 4rem auto 3rem;
+  border-radius: 32px;
+  width: 80%;
   max-width: 900px;
-  margin: 3rem auto;
-  margin-bottom: 3rem;
+  box-sizing: border-box;
 }
 
 
@@ -2653,7 +2662,12 @@ span.productPlanItemList br {
 /* Responsive: Stack on mobile */
 
 @media only screen and (max-width: 767px) {
-  section.faq-main {margin-bottom: 50px;}
+  section.faq-main {
+    width: calc(100% - 4rem);
+    padding: 2rem 1.5rem;
+    margin: 2rem 2rem 3rem;
+    border-radius: 15px;
+  }
   .tabs-wrapper .tab-button {font-size: 16px; line-height:16px;}
   .template-blog .blog-articles {gap:15px;}
   .template-blog .blog-articles .blog-articles__article{width:100%;}
