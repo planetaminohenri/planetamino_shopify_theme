@@ -18,7 +18,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: calc(100% - 100px);
+    background-color: var(--color-secondary-light);
+    border-radius: {{ section.settings.border_radius | default: 32 }}px;
+    padding: 50px;
+    margin: 50px;
+    box-sizing: border-box;
+  }
+
+  @media screen and (max-width: 767px) {
+    .product-description__wrapper {
+      width: calc(100% - 2rem);
+      border-radius: {{ section.settings.border_radius_mobile | default: 15 }}px;
+      padding: 2rem 1.5rem;
+      margin: 1rem;
+    }
   }
 
   .product-description h2.product-description-heading {
@@ -28,7 +42,7 @@
     font-family: var(--font-heading-family);
     line-height: 1;
     margin: 0;
-    padding: 3rem 0 1rem;
+    padding: 0 0 1rem;
     font-weight: bold;
     text-align: center;
     display: block;
@@ -69,6 +83,30 @@
       "id": "full_width",
       "default": true,
       "label": "Make section full width"
+    },
+    {
+      "type": "header",
+      "content": "Section styling"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Border radius (desktop)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "border_radius_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Border radius (mobile)",
+      "default": 15
     },
     {
       "type": "header",
