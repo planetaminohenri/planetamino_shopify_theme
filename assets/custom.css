@@ -751,6 +751,7 @@ span.sls-savings-badge {
     font-family: var(--font-heading-family);
     margin-bottom: 30px;
     margin-top: 20px;
+    text-transform: uppercase;
 }
 .faq-accordion {
   border-bottom: 1px solid #E0D9E9;
