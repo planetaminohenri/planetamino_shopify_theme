@@ -33,7 +33,14 @@
             <button type="submit" class="btn">{% render 'cart-icon' %} Shop</button>
           </form>
        {% endcomment %}
-       <a href="{{ section.settings.product_url }}" class="btn">{% render 'cart-icon' %} Shop</a>
+       {% comment %} Language-based URL logic for localized products {% endcomment %}
+       {% assign current_language = localization.language.iso_code %}
+       {% if current_language == 'fi' %}
+         {% assign cookie_url = '/fi/products/voimakeksi-fi' %}
+       {% else %}
+         {% assign cookie_url = '/products/power-cookie' %}
+       {% endif %}
+       <a href="{{ cookie_url }}" class="btn">{% render 'cart-icon' %} Shop</a>
    </div>
    </div>
    
