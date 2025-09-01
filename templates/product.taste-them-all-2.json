@@ -1,0 +1,173 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product-custom-box",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "happy_customers_widget": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'happy-customers-widget' %}"
+          }
+        },
+        "custom_review_widget": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'custom-review-widget', review_text: \"Best cookie! Tastes really good and fits perfectly as a sports snack.\", review_text_fi: \"Paras keksi! Maistuu tosi hyvältä ja sopii täydellisesti urheiluvälipalaksi.\", customer_name: \"Eero M.\" %}"
+          }
+        },
+        "nutrition_accordion_inline": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'nutrition-accordion', product: product, variant_selector: true %}"
+          }
+        },
+        "bundler_custom_bundle_xtAkNn": {
+          "type": "shopify://apps/bundler/blocks/custom-bundle/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
+          "settings": {
+            "shortcode": "e5s2"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "happy_customers_widget",
+        "custom_review_widget",
+        "nutrition_accordion_inline",
+        "bundler_custom_bundle_xtAkNn"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 48,
+        "padding_bottom": 0,
+        "subscription_mode": "seal"
+      }
+    },
+    "product_description_section": {
+      "type": "product-description",
+      "settings": {
+        "title": "",
+        "full_width": true,
+        "border_radius": 32,
+        "border_radius_mobile": 15,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "testimonials_slider_TPXBmE": {
+      "type": "testimonials-slider",
+      "blocks": {
+        "testimonial_aXfUCG": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/pw-cki1.webp",
+            "name": "Jonna N.",
+            "quote": "Good, fast delivery. Really nice that you can choose the flavors in the cookie box. I got my favorite flavors and also ordered a few new flavors to try.",
+            "quote_fi": "Hyvä, nopea toimitus. Tosi kiva, kun keksipaketin sisällön sai valita ja näin sai suosikkikeksit ja muutama uusikin maku tuli tilattua kokeiluun.",
+            "rating": 5,
+            "font_size": "font-size-sm"
+          }
+        },
+        "testimonial_rNHF44": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/vegan-protein-powder-vanilla.webp",
+            "name": "Petteri H.",
+            "quote": "Mixes well with water, nice silky texture, no typical/strong protein powder taste. My favorite is strawberry!",
+            "quote_fi": "Sekoittuu hyvin veteen, hyvä silkkinen rakenne, ei tyypillistä/voimakasta proteiinijauheen makua. Suosikkini on mansikka!",
+            "rating": 5,
+            "font_size": "font-size-sm"
+          }
+        },
+        "testimonial_UCWtkq": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/planet-amino-proteiinikeksi-minttusuklaa-luonto.webp",
+            "name": "Markus K.",
+            "quote": "What a great snack. Keeps hunger away and provides the extra protein you need if you don't otherwise get enough through out the day. And it's tasty :)",
+            "quote_fi": "Hemmetin hyvää kamaa välipalaksi. Pitää nälän ja tuo tarvittavaa lisäproteiinia, jos ei muuten saa päivän protskuja täyteen. Ja hyvää :)",
+            "rating": 5,
+            "font_size": "font-size-sm"
+          }
+        },
+        "testimonial_HhYGF4": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/vegan-protein-powder-chocolate.webp",
+            "name": "Sanna K.",
+            "quote": "Your protein powder is one of the best I've tasted! It's really hard to find vegan protein powders that taste good (and are reasonably priced), but I've finally found one :) Tastes good on its own, and also great in porridge—no protein aftertaste at all, and the porridge becomes a delicious chocolate porridge. Thank you for this product :)",
+            "quote_fi": "Teidän proteiinijauhe on yksi parhaimmista, mitä olen maistanut! Vegaanisia hyvän makuisia (ja kohtuuhintaisia) proteiinijauheita on todella vaikea löytää, mutta nyt vihdoin sellaisen löysin :) Toimii sellaisenaan ja puurossa jauhe toimii myös tosi hyvin, eikä mitään proteiinin sivumakuja tule silloin esiin, vaan puurosta tulee ihana suklaapuuro. Kiitos teille tästä tuotteesta :)",
+            "rating": 5,
+            "font_size": "font-size-sm"
+          }
+        },
+        "testimonial_fY8CRU": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Planet-Amino-Power-Cookie-Suklaa-Minttusuklaa-Kookossuklaa.webp",
+            "name": "Teemu H.",
+            "quote": "I order these for my son who is a competitive swimmer. He won't eat any other protein bars anymore.",
+            "quote_fi": "Tilaan näitä pojalleni joka on kilpauimari. Hänelle ei muut proteiinipatukat ole kelvannut enää.",
+            "rating": 5,
+            "font_size": "font-size-sm"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_aXfUCG",
+        "testimonial_rNHF44",
+        "testimonial_UCWtkq",
+        "testimonial_HhYGF4",
+        "testimonial_fY8CRU"
+      ],
+      "name": "Testimonials",
+      "settings": {
+        "class": "product-testimonials",
+        "heading": "90% of customers recommend our products",
+        "heading_fi": "YLI 90% ASIAKKAISTA SUOSITTELEE TUOTTEITAMME",
+        "font_size": "font-size-md"
+      }
+    },
+    "faq_global_Nz6Jdb": {
+      "type": "faq-global",
+      "name": "faq-global",
+      "settings": {
+        "title": ""
+      }
+    },
+    "best_nutrition_section_gWM4f7": {
+      "type": "best-nutrition-section",
+      "name": "Best Testing Plant Section",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "product_description_section",
+    "testimonials_slider_TPXBmE",
+    "faq_global_Nz6Jdb",
+    "best_nutrition_section_gWM4f7"
+  ]
+}
