@@ -7,6 +7,11 @@ Parameters:
 - variant_selector: Show variant dropdown (default: false)
 - css_class: Additional CSS classes (optional)
 - inline_style: Whether to use inline styling (default: true)
+- products_tag: Product tag to fetch products for bundle pages (optional)
+
+New Bundle Support:
+- If products_tag is provided, will display nutrition for all products with that tag
+- Falls back to current behavior (product.variants) if no tag is provided
 {% endcomment %}
 
 {% liquid
@@ -19,6 +24,12 @@ Parameters:
   assign extra_classes = css_class | default: ''
   assign use_inline_style = inline_style | default: true
   assign unique_id = 'nutrition-' | append: host_product.id | append: '-' | append: 'now' | date: '%s'
+  
+  # New: Support for bundle products via tags
+  assign use_bundle_mode = false
+  if products_tag != blank
+    assign use_bundle_mode = true
+  endif
 %}
 
 {% if host_product %}
@@ -29,270 +40,77 @@ Parameters:
     </div>
 
     <div class="nutrition-accordion__content" hidden{% if use_inline_style %} style="padding: 16px; background: #fff; border: 1px solid var(--color-primary); border-top: none; border-radius: 0 0 12px 12px;"{% endif %}>
+      {% comment %} Debug information - remove after testing {% endcomment %}
+      {% if use_bundle_mode %}
+        <div style="background: #f0f0f0; padding: 10px; margin-bottom: 10px; font-size: 12px;">
+          <strong>Debug Info:</strong><br>
+          Bundle Mode: {{ use_bundle_mode }}<br>
+          Products Tag: "{{ products_tag }}"<br>
+          {% assign found_count = 0 %}
+          {% for prod in collections.all.products %}
+            {% if prod.tags contains products_tag %}
+              {% assign found_count = found_count | plus: 1 %}
+            {% endif %}
+          {% endfor %}
+          Found {{ found_count }} products<br>
+          <br>
+          <strong>All products check:</strong><br>
+          {% assign debug_count = 0 %}
+          {% for product in collections.all.products limit: 5 %}
+            {% assign debug_count = debug_count | plus: 1 %}
+            {% assign product_tags_string = product.tags | join: ',' %}
+            {% assign tag_match = false %}
+            {% if product.tags contains products_tag %}
+              {% assign tag_match = true %}
+            {% endif %}
+            {{ product.title }}: "{{ product_tags_string }}" (contains "{{ products_tag }}"? {{ tag_match }})<br>
+          {% endfor %}
+          (Showing first {{ debug_count }} products)
+        </div>
+      {% endif %}
+      
       {% if show_selector %}
         <select class="nutrition-variant-select"{% if use_inline_style %} style="width: 100%; margin-bottom: 16px; padding: 8px 12px; border: 1px solid var(--color-primary); border-radius: 8px; color: var(--color-primary);"{% endif %}>
+          {% if use_bundle_mode %}
+            {% comment %} Bundle mode: Show all variants from products that contain the tag {% endcomment %}
+            {% for bundle_product in collections.all.products %}
+              {% if bundle_product.tags contains products_tag %}
+                {% for v in bundle_product.variants %}
+                  <option value="{{ v.id }}">{{ bundle_product.title }}{% unless v.title == 'Default Title' %} - {{ v.title }}{% endunless %}</option>
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            {% comment %} Regular mode: Show variants from current product {% endcomment %}
           {% for v in host_product.variants %}
             <option value="{{ v.id }}">{{ host_product.title }} {{ v.title }}</option>
           {% endfor %}
+          {% endif %}
         </select>
       {% endif %}
 
       <div class="nutrition-accordion__variants">
+        {% assign variant_counter = 0 %}
+        {% if use_bundle_mode %}
+          {% for bundle_product in collections.all.products %}
+            {% if bundle_product.tags contains products_tag %}
+              {% for v in bundle_product.variants %}
+                {% assign nf = v.metafields.custom.nutrition.value %}
+                <div class="nutrition-variant" data-variant-id="{{ v.id }}" {% if variant_counter > 0 %}hidden{% endif %}>
+                  {% assign variant_counter = variant_counter | plus: 1 %}
+                  {% render 'nutrition-content', nf: nf, use_inline_style: use_inline_style %}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        {% else %}
         {% for v in host_product.variants %}
           {% assign nf = v.metafields.custom.nutrition.value %}
           <div class="nutrition-variant" data-variant-id="{{ v.id }}" {% if forloop.first == false %}hidden{% endif %}>
-            {% if nf %}
-              {% assign portion_size = nf.portion_size %}
-              {% assign magnesium_dv = 375.0 %}
-              {% assign zinc_dv = 10.0 %}
-              {% assign iron_dv = 14.0 %}
-
-              {% if nf.ingredients %}
-                <div class="nutrition-ingredients"{% if use_inline_style %} style="margin-bottom: 16px; color: var(--color-primary);"{% endif %}>
-                  <strong>{{ 'nutrition.ingredients' | t }}</strong>
-                  <span class="nutrition-ingredients-text" data-ingredients="{{ nf.ingredients | escape }}">{{ nf.ingredients }}</span>
-                </div>
-              {% endif %}
-
-              <div class="nutrition-table"{% if use_inline_style %} style="border: 1px solid var(--color-primary); border-radius: 12px; overflow: hidden; background: #fff;"{% endif %}>
-                <table{% if use_inline_style %} style="width: 100%; border-collapse: collapse;"{% endif %}>
-                  <thead>
-                    <tr{% if use_inline_style %} style="background: var(--color-primary-light);"{% endif %}>
-                      <th{% if use_inline_style %} style="padding: 12px; text-align: left; border-bottom: 1px solid var(--color-primary); color: var(--color-primary); font-weight: 600;"{% endif %}>{{ 'nutrition.nutritional_information' | t }}</th>
-                      <th{% if use_inline_style %} style="padding: 12px; text-align: center; border-bottom: 1px solid var(--color-primary); color: var(--color-primary); font-weight: 600;"{% endif %}>
-                        {% if nf.portion_label != blank %}{{ nf.portion_label }}{% else %}{{ portion_size }} {{ nf.portion_unit }}{% endif %}
-                      </th>
-                      <th{% if use_inline_style %} style="padding: 12px; text-align: center; border-bottom: 1px solid var(--color-primary); color: var(--color-primary); font-weight: 600;"{% endif %}>{{ 'nutrition.per_100g' | t }}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% if nf.energy_kj_100g or nf.energy_kcal_100g %}
-                      {% assign energy_kj_portion = nf.energy_kj_100g | times: portion_size | divided_by: 100 | round: 0 %}
-                      {% assign energy_kcal_portion = nf.energy_kcal_100g | times: portion_size | divided_by: 100 | round: 0 %}
-                      {% assign energy_kj_100g = nf.energy_kj_100g | round: 0 %}
-                      {% assign energy_kcal_100g = nf.energy_kcal_100g | round: 0 %}
-                      <tr>
-                        <th{% if use_inline_style %} style="padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ 'nutrition.energy' | t }}</th>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ energy_kj_portion }} KJ / {{ energy_kcal_portion }} kcal</td>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ energy_kj_100g }} KJ / {{ energy_kcal_100g }} kcal</td>
-                      </tr>
-                    {% endif %}
-
-                    {% if nf.fat_g_100g %}
-                      {% assign fat_portion_raw = nf.fat_g_100g | times: portion_size | divided_by: 100.0 %}
-                      {% if fat_portion_raw >= 10 %}
-                        {% assign fat_portion = fat_portion_raw | round: 0 %}
-                      {% else %}
-                        {% assign fat_portion = fat_portion_raw | round: 1 %}
-                      {% endif %}
-                      {% if nf.fat_g_100g >= 10 %}
-                        {% assign fat_100g = nf.fat_g_100g | round: 0 %}
-                      {% else %}
-                        {% assign fat_100g = nf.fat_g_100g | round: 1 %}
-                      {% endif %}
-                      <tr>
-                        <th{% if use_inline_style %} style="padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ 'nutrition.fat' | t }}</th>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ fat_portion }} g</td>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ fat_100g }} g</td>
-                      </tr>
-                    {% endif %}
-
-                    {% if nf.sat_fat_g_100g %}
-                      {% assign sat_fat_portion_raw = nf.sat_fat_g_100g | times: portion_size | divided_by: 100.0 %}
-                      {% if sat_fat_portion_raw >= 10 %}
-                        {% assign sat_fat_portion = sat_fat_portion_raw | round: 0 %}
-                      {% else %}
-                        {% assign sat_fat_portion = sat_fat_portion_raw | round: 1 %}
-                      {% endif %}
-                      {% if nf.sat_fat_g_100g >= 10 %}
-                        {% assign sat_fat_100g = nf.sat_fat_g_100g | round: 0 %}
-                      {% else %}
-                        {% assign sat_fat_100g = nf.sat_fat_g_100g | round: 1 %}
-                      {% endif %}
-                      <tr>
-                        <th{% if use_inline_style %} style="padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ 'nutrition.saturated_fat' | t }}</th>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ sat_fat_portion }} g</td>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ sat_fat_100g }} g</td>
-                      </tr>
-                    {% endif %}
-
-                    {% if nf.carbs_g_100g %}
-                      {% assign carbs_portion_raw = nf.carbs_g_100g | times: portion_size | divided_by: 100.0 %}
-                      {% if carbs_portion_raw >= 10 %}
-                        {% assign carbs_portion = carbs_portion_raw | round: 0 %}
-                      {% else %}
-                        {% assign carbs_portion = carbs_portion_raw | round: 1 %}
-                      {% endif %}
-                      {% if nf.carbs_g_100g >= 10 %}
-                        {% assign carbs_100g = nf.carbs_g_100g | round: 0 %}
-                      {% else %}
-                        {% assign carbs_100g = nf.carbs_g_100g | round: 1 %}
-                      {% endif %}
-                      <tr>
-                        <th{% if use_inline_style %} style="padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ 'nutrition.carbohydrates' | t }}</th>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ carbs_portion }} g</td>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ carbs_100g }} g</td>
-                      </tr>
-                    {% endif %}
-
-                    {% if nf.sugars_g_100g %}
-                      {% assign sugars_portion_raw = nf.sugars_g_100g | times: portion_size | divided_by: 100.0 %}
-                      {% if sugars_portion_raw >= 10 %}
-                        {% assign sugars_portion = sugars_portion_raw | round: 0 %}
-                      {% else %}
-                        {% assign sugars_portion = sugars_portion_raw | round: 1 %}
-                      {% endif %}
-                      {% if nf.sugars_g_100g >= 10 %}
-                        {% assign sugars_100g = nf.sugars_g_100g | round: 0 %}
-                      {% else %}
-                        {% assign sugars_100g = nf.sugars_g_100g | round: 1 %}
-                      {% endif %}
-                      <tr>
-                        <th{% if use_inline_style %} style="padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ 'nutrition.sugars' | t }}</th>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ sugars_portion }} g</td>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ sugars_100g }} g</td>
-                      </tr>
-                    {% endif %}
-
-                    {% if nf.fiber_g_100g %}
-                      {% assign fiber_portion_raw = nf.fiber_g_100g | times: portion_size | divided_by: 100.0 %}
-                      {% if fiber_portion_raw >= 10 %}
-                        {% assign fiber_portion = fiber_portion_raw | round: 0 %}
-                      {% else %}
-                        {% assign fiber_portion = fiber_portion_raw | round: 1 %}
-                      {% endif %}
-                      {% if nf.fiber_g_100g >= 10 %}
-                        {% assign fiber_100g = nf.fiber_g_100g | round: 0 %}
-                      {% else %}
-                        {% assign fiber_100g = nf.fiber_g_100g | round: 1 %}
-                      {% endif %}
-                      <tr>
-                        <th{% if use_inline_style %} style="padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ 'nutrition.fiber' | t }}</th>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ fiber_portion }} g</td>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ fiber_100g }} g</td>
-                      </tr>
-                    {% endif %}
-
-                    {% if nf.protein_g_100g %}
-                      {% assign protein_portion_raw = nf.protein_g_100g | times: portion_size | divided_by: 100.0 %}
-                      {% if protein_portion_raw >= 10 %}
-                        {% assign protein_portion = protein_portion_raw | round: 0 %}
-                      {% else %}
-                        {% assign protein_portion = protein_portion_raw | round: 1 %}
-                      {% endif %}
-                      {% if nf.protein_g_100g >= 10 %}
-                        {% assign protein_100g = nf.protein_g_100g | round: 0 %}
-                      {% else %}
-                        {% assign protein_100g = nf.protein_g_100g | round: 1 %}
-                      {% endif %}
-                      <tr>
-                        <th{% if use_inline_style %} style="padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ 'nutrition.protein' | t }}</th>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ protein_portion }} g</td>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ protein_100g }} g</td>
-                      </tr>
-                    {% endif %}
-
-                    {% if nf.salt_g_100g %}
-                      {% assign salt_portion_raw = nf.salt_g_100g | times: portion_size | divided_by: 100.0 %}
-                      {% if salt_portion_raw >= 10 %}
-                        {% assign salt_portion = salt_portion_raw | round: 0 %}
-                      {% else %}
-                        {% assign salt_portion = salt_portion_raw | round: 1 %}
-                      {% endif %}
-                      {% if nf.salt_g_100g >= 10 %}
-                        {% assign salt_100g = nf.salt_g_100g | round: 0 %}
-                      {% else %}
-                        {% assign salt_100g = nf.salt_g_100g | round: 1 %}
-                      {% endif %}
-                      <tr>
-                        <th{% if use_inline_style %} style="padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ 'nutrition.salt' | t }}</th>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ salt_portion }} g</td>
-                        <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ salt_100g }} g</td>
-                      </tr>
-                    {% endif %}
-
-                    {% if nf.magnesium_mg_100g or nf.zinc_mg_100g or nf.iron_mg_100g %}
-                      <tr>
-                        <th colspan="3"{% if use_inline_style %} style="padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary); font-weight: 600; background: var(--color-primary-light);"{% endif %}>{{ 'nutrition.minerals' | t }}</th>
-                      </tr>
-                      
-                      {% if nf.magnesium_mg_100g %}
-                        {% assign magnesium_portion_raw = nf.magnesium_mg_100g | times: portion_size | divided_by: 100.0 %}
-                        {% if magnesium_portion_raw >= 10 %}
-                          {% assign magnesium_portion = magnesium_portion_raw | round: 0 %}
-                        {% else %}
-                          {% assign magnesium_portion = magnesium_portion_raw | round: 1 %}
-                        {% endif %}
-                        {% if nf.magnesium_mg_100g >= 10 %}
-                          {% assign magnesium_100g = nf.magnesium_mg_100g | round: 0 %}
-                        {% else %}
-                          {% assign magnesium_100g = nf.magnesium_mg_100g | round: 1 %}
-                        {% endif %}
-                        {% assign magnesium_percent = magnesium_100g | times: 100.0 | divided_by: magnesium_dv | round: 0 %}
-                        {% assign magnesium_percent_portion = magnesium_portion | times: 100.0 | divided_by: magnesium_dv | round: 0 %}
-                        <tr>
-                          <th{% if use_inline_style %} style="padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ 'nutrition.magnesium' | t }}</th>
-                          <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ magnesium_portion }} mg ({{ magnesium_percent_portion }}% {{ 'nutrition.daily_value' | t }})</td>
-                          <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ magnesium_100g }} mg ({{ magnesium_percent }}% {{ 'nutrition.daily_value' | t }})</td>
-                        </tr>
-                      {% endif %}
-
-                      {% if nf.zinc_mg_100g %}
-                        {% assign zinc_portion_raw = nf.zinc_mg_100g | times: portion_size | divided_by: 100.0 %}
-                        {% if zinc_portion_raw >= 10 %}
-                          {% assign zinc_portion = zinc_portion_raw | round: 0 %}
-                        {% else %}
-                          {% assign zinc_portion = zinc_portion_raw | round: 1 %}
-                        {% endif %}
-                        {% if nf.zinc_mg_100g >= 10 %}
-                          {% assign zinc_100g = nf.zinc_mg_100g | round: 0 %}
-                        {% else %}
-                          {% assign zinc_100g = nf.zinc_mg_100g | round: 1 %}
-                        {% endif %}
-                        {% assign zinc_percent = zinc_100g | times: 100.0 | divided_by: zinc_dv | round: 0 %}
-                        {% assign zinc_percent_portion = zinc_portion | times: 100.0 | divided_by: zinc_dv | round: 0 %}
-                        <tr>
-                          <th{% if use_inline_style %} style="padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ 'nutrition.zinc' | t }}</th>
-                          <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ zinc_portion }} mg ({{ zinc_percent_portion }}% {{ 'nutrition.daily_value' | t }})</td>
-                          <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.2); color: var(--color-primary);"{% endif %}>{{ zinc_100g }} mg ({{ zinc_percent }}% {{ 'nutrition.daily_value' | t }})</td>
-                        </tr>
-                      {% endif %}
-
-                      {% if nf.iron_mg_100g %}
-                        {% assign iron_portion_raw = nf.iron_mg_100g | times: portion_size | divided_by: 100.0 %}
-                        {% if iron_portion_raw >= 10 %}
-                          {% assign iron_portion = iron_portion_raw | round: 0 %}
-                        {% else %}
-                          {% assign iron_portion = iron_portion_raw | round: 1 %}
-                        {% endif %}
-                        {% if nf.iron_mg_100g >= 10 %}
-                          {% assign iron_100g = nf.iron_mg_100g | round: 0 %}
-                        {% else %}
-                          {% assign iron_100g = nf.iron_mg_100g | round: 1 %}
-                        {% endif %}
-                        {% assign iron_percent = iron_100g | times: 100.0 | divided_by: iron_dv | round: 0 %}
-                        {% assign iron_percent_portion = iron_portion | times: 100.0 | divided_by: iron_dv | round: 0 %}
-                        <tr>
-                          <th{% if use_inline_style %} style="padding: 10px 12px; text-align: left; color: var(--color-primary);"{% endif %}>{{ 'nutrition.iron' | t }}</th>
-                          <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; color: var(--color-primary);"{% endif %}>{{ iron_portion }} mg ({{ iron_percent_portion }}% {{ 'nutrition.daily_value' | t }})</td>
-                          <td{% if use_inline_style %} style="padding: 10px 12px; text-align: center; color: var(--color-primary);"{% endif %}>{{ iron_100g }} mg ({{ iron_percent }}% {{ 'nutrition.daily_value' | t }})</td>
-                        </tr>
-                      {% endif %}
-                    {% endif %}
-                  </tbody>
-                </table>
-              </div>
-
-              {% if nf.magnesium_mg_100g or nf.zinc_mg_100g or nf.iron_mg_100g %}
-                <div{% if use_inline_style %} style="margin-top: 12px; color: var(--color-primary); font-style: italic; font-size: 12px;"{% endif %}>
-                  <small>{{ 'nutrition.daily_value_note' | t }}</small>
-                </div>
-              {% endif %}
-            {% else %}
-              <div class="nutrition-empty"{% if use_inline_style %} style="color: var(--color-primary);"{% endif %}>{{ 'nutrition.no_info_available' | t }}</div>
-            {% endif %}
+              {% render 'nutrition-content', nf: nf, use_inline_style: use_inline_style %}
           </div>
         {% endfor %}
+        {% endif %}
       </div>
     </div>
   </section>
@@ -369,31 +187,14 @@ Parameters:
       }
 
       // Listen for product variant changes
-      document.addEventListener('variant:change', function(e) {
-        if (!e || !e.detail || !e.detail.variant) return;
-        showVariant(e.detail.variant.id);
-      });
-      document.addEventListener('product:variant-change', function(e) {
-        if (!e || !e.detail || !e.detail.variant) return;
-        showVariant(e.detail.variant.id);
+      document.addEventListener('variant:change', function(event) {
+        if (event.detail && event.detail.variant && event.detail.variant.id) {
+          showVariant(event.detail.variant.id);
+        }
       });
 
-      // Fallback: watch the product form selected variant id
-      var idInput = document.querySelector('form[action*="/cart/add"] input[name="id"]');
-      if (idInput) {
-        var last = idInput.value;
-        if (last) showVariant(last);
-        var obs = new MutationObserver(function(){ if (idInput.value !== last) { last = idInput.value; showVariant(last); } });
-        obs.observe(idInput, { attributes: true, attributeFilter: ['value'] });
-        idInput.addEventListener('change', function(){ showVariant(this.value); });
-      }
-
-      // Apply allergen highlighting
-      highlightAllergens();
+      // Initial allergen highlighting
+      setTimeout(highlightAllergens, 100);
     })();
   </script>
-{% else %}
-  <div class="nutrition-accordion nutrition-accordion--empty">
-    <p>{{ 'nutrition.select_product' | t }}</p>
-  </div>
 {% endif %}

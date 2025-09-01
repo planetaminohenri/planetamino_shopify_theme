@@ -31,7 +31,7 @@
         "nutrition_accordion_inline": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{% render 'nutrition-accordion', product: product, variant_selector: true %}"
+            "custom_liquid": "{% render 'nutrition-accordion', product: product, variant_selector: true, products_tag: 'nutrition-display' %}"
           }
         },
         "bundler_custom_bundle_xtAkNn": {
