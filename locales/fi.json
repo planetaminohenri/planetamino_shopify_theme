@@ -603,6 +603,7 @@
       "save_percentage": "SÄÄSTÄ 10%",
       "save_on_delivery": "Säästä 10% jokaisesta toimituksesta"
     },
-    "select_protein_powder": "Valitse yksi proteiinijauhe"
+    "select_protein_powder": "Valitse yksi proteiinijauhe",
+    "bundle_contains": "Bundle sisältää"
   }
 }

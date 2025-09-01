@@ -31,7 +31,13 @@
         "nutrition_accordion_inline": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{% render 'nutrition-accordion', product: product, variant_selector: true, products_tag: 'nutrition-display' %}"
+            "custom_liquid": "{% render 'nutrition-accordion', product: product, variant_selector: true, products_tag: 'power-cookie-protein-powder' %}"
+          }
+        },
+        "bundle_contains_title": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<h2 class=\"protein-powder-title\">{{ 'bundles.bundle_contains' | t }}</h2>"
           }
         },
         "bundler_custom_bundle_xtAkNn": {
@@ -46,6 +52,7 @@
         "happy_customers_widget",
         "custom_review_widget",
         "nutrition_accordion_inline",
+        "bundle_contains_title",
         "bundler_custom_bundle_xtAkNn"
       ],
       "settings": {

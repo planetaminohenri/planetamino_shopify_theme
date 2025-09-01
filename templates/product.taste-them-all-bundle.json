@@ -1,7 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "main-taste-all-bundle",
+      "type": "main-product-custom-box",
       "blocks": {
         "title": {
           "type": "title",
@@ -22,7 +22,19 @@
         "nutrition_accordion_inline": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{% render 'nutrition-accordion', product: product, variant_selector: true, products_tag: 'nutrition-display' %}"
+            "custom_liquid": "{% render 'nutrition-accordion', product: product, variant_selector: true, products_tag: 'power-cookie-protein-powder' %}"
+          }
+        },
+        "bundle_contains_title": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<h2 class=\"protein-powder-title\">{{ 'bundles.bundle_contains' | t }}</h2>"
+          }
+        },
+        "bundler_custom_bundle_xtAkNn": {
+          "type": "shopify://apps/bundler/blocks/custom-bundle/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
+          "settings": {
+            "shortcode": "e5s2"
           }
         },
 
@@ -80,7 +92,9 @@
         "title",
         "happy_customers_widget",
         "custom_review_widget",
-        "nutrition_accordion_inline"
+        "nutrition_accordion_inline",
+        "bundle_contains_title",
+        "bundler_custom_bundle_xtAkNn"
       ],
       "settings": {
         "enable_sticky_info": true,
