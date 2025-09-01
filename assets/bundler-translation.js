@@ -27,6 +27,16 @@ document.addEventListener('DOMContentLoaded', function() {
       'tr': 'Paketiniz 1 ürün daha gerektirir.',
       'vi': 'Gói của bạn cần thêm 1 sản phẩm.',
       'zh-CN': '您的套餐还需要1个商品。'
+    },
+    'Your bundle:': {
+      'fi': 'Valitut tuotteet:',
+      'en': 'Your bundle:',
+      'de': 'Ihr Paket:',
+      'es': 'Su paquete:',
+      'fr': 'Votre paquet:',
+      'tr': 'Paketiniz:',
+      'vi': 'Gói của bạn:',
+      'zh-CN': '您的套餐：'
     }
   };
 
@@ -108,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
       '.bndlr-container', // From CSS analysis
       '.bndlr-add-to-bundle', // Specific "Add" button class
       '.bndlr-mnm-instructions-text', // Specific bundle instructions text class
+      '.bndlr-mnm-selected-products-title', // Specific "Your bundle:" title class
       '.bundler-app', // Common bundler class
       '.bundler-element',
       '[class*="bundler"]',
@@ -203,6 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
       '.bndlr-container',
       '.bndlr-add-to-bundle',
       '.bndlr-mnm-instructions-text',
+      '.bndlr-mnm-selected-products-title',
       '[class*="bundler"]',
       '[class*="bndlr"]',
       '.shopify-app-block'
