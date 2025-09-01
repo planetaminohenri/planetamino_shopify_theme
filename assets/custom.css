@@ -2283,6 +2283,20 @@ i.jdgm-quote-marks {
   display: block;
 }
 
+/* Bundle Contains Title - Same styling but with no bottom margin/padding */
+.product__info-container .bundle-contains-title {
+  font-size: var(--font-size-title-sm);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  font-family: var(--font-heading-family);
+  line-height: 1;
+  margin: 4rem 0 0 !important;
+  padding: 0;
+  font-weight: bold;
+  text-align: center;
+  display: block;
+}
+
 .jdgm-testimonials-container {
     min-height: auto !important;
 }

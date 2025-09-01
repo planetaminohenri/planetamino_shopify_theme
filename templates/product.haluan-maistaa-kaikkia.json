@@ -37,7 +37,7 @@
         "bundle_contains_title": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<h2 class=\"protein-powder-title\">{{ 'bundles.bundle_contains' | t }}</h2>"
+            "custom_liquid": "<h2 class=\"bundle-contains-title\">{{ 'bundles.bundle_contains' | t }}</h2>"
           }
         },
         "bundler_custom_bundle_xtAkNn": {
