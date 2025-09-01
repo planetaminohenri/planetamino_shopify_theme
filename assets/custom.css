@@ -1741,6 +1741,11 @@ div#tier-message {
     display: none !important;
 }
 
+/* Hide custom subscription options when subscription mode is none */
+.subscription-mode-none .purchase-options {
+    display: none !important;
+}
+
 /* Ensure Seal widgets are visible in seal mode (default behavior) */
 .subscription-mode-seal .sealsubs-target-element.sealsubs-full {
     display: block !important;

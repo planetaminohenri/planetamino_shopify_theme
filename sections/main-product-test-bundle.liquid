@@ -518,34 +518,6 @@
   {% endif %}
 
   
-  <!-- 🔁 Purchase Options -->
-  <div class="purchase-options" style="margin-bottom: 1rem;">
-    <label>
-      <input type="radio" name="purchase_type" value="onetime" checked> {{ 'bundles.purchase_options.one_time' | t }}
-    </label>
-    <label>
-      <input type="radio" name="purchase_type" value="subscribe"> {{ 'bundles.purchase_options.subscribe_save_with_discount' | t }} <span class="sls-savings-badge" style="display: inline-block;">{{ 'bundles.purchase_options.save_percentage' | t }}</span>
-      <div id="subscribe-options" style="display:none">
-      <label for="selling_plan">{{ 'bundles.purchase_options.choose_delivery_interval' | t }}</label>
-      <select id="selling_plan" class="sls-select seal-tight needsclick">
-        <option value="691291521361">{{ 'bundles.purchase_options.every_4_weeks' | t }}</option>
-        <option value="691293258065">{{ 'bundles.purchase_options.every_6_weeks' | t }}</option>
-        <option value="691293290833">{{ 'bundles.purchase_options.every_8_weeks' | t }}</option>
-      </select>
-      <div class="sls-selling-plan-description-content">
-        <span class="productPlanItemList">
-          <h3>{{ 'bundles.purchase_options.how_subscriptions_work' | t }}</h3>
-          <span class="productPlanItemListItem">🍪{{ 'bundles.purchase_options.best_price_option' | t }}</span><br>
-          <span class="productPlanItemListItem">🍪{{ 'bundles.purchase_options.discount_all_orders' | t }}</span><br>
-          <span class="productPlanItemListItem">🍪{{ 'bundles.purchase_options.easily_modify' | t }}</span><br>
-          <span class="productPlanItemListItem">🍪{{ 'bundles.purchase_options.easily_cancel' | t }}</span>
-        </span>
-      </div>
-    </div>
-    </label>
-    
-  </div>
-
   <!-- 💵 Total Price -->
   <div style="margin: 16px 0;" class="tot-price">
     <strong>{{ 'bundles.purchase_options.total' | t }}:</strong> <span id="bundle-total">€0.00</span>
@@ -562,60 +534,28 @@
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('custom-cookie-form');
   const container = document.getElementById('all-line-items');
-  const sellingPlanSelect = document.getElementById('selling_plan');
-  const subscribeOptions = document.getElementById('subscribe-options');
-  const radios = document.querySelectorAll('input[name="purchase_type"]');
   const totalDisplay = document.getElementById('bundle-total');
 
-  let sellingPlanId = null;
-
-  // Handle purchase option toggle
-  radios.forEach(radio => {
-    radio.addEventListener('change', () => {
-      if (radio.value === 'subscribe' && radio.checked) {
-        subscribeOptions.style.display = 'flex';
-        sellingPlanId = sellingPlanSelect.value;
-      } else {
-        subscribeOptions.style.display = 'none';
-        sellingPlanId = null;
-      }
-      updateTotal();
-    });
-  });
-
-  // Handle plan select change
-  sellingPlanSelect.addEventListener('change', () => {
-    sellingPlanId = sellingPlanSelect.value;
-  });
-
   // Update total price
- function updateTotal() {
-  let total = 0;
+  function updateTotal() {
+    let total = 0;
 
-  const isSubscribe = document.querySelector('input[name="purchase_type"]:checked')?.value === 'subscribe';
+    // Loop through all cookies
+    document.querySelectorAll('.cookie-card').forEach(card => {
+      const price = parseFloat(card.dataset.price) / 100; // cents to euros
+      const qty = parseInt(card.dataset.qty) || 1;
+      total += price * qty;
+    });
 
-  // Loop through all cookies
-  document.querySelectorAll('.cookie-card').forEach(card => {
-    const price = parseFloat(card.dataset.price) / 100; // cents to euros
-    const qty = parseInt(card.dataset.qty) || 1;
-    total += price * qty;
-  });
+    // Loop through selected protein options
+    document.querySelectorAll('.protein-checkbox:checked').forEach(cb => {
+      const card = cb.closest('.protein-card');
+      const price = parseFloat(card.dataset.price) / 100;
+      total += price;
+    });
 
-  // Loop through selected protein options
-  document.querySelectorAll('.protein-checkbox:checked').forEach(cb => {
-    const card = cb.closest('.protein-card');
-    const price = parseFloat(card.dataset.price) / 100;
-    total += price;
-  });
-
-  // Apply 10% off if subscribe is selected
-  if (isSubscribe) {
-    total *= 0.9; // 10% discount
+    totalDisplay.textContent = '€' + total.toFixed(2);
   }
-
-  totalDisplay.textContent = '€' + total.toFixed(2);
-}
-
 
   // Listen to checkbox changes
   document.querySelectorAll('.protein-checkbox').forEach(cb => {
@@ -637,7 +577,6 @@ document.addEventListener('DOMContentLoaded', function () {
       container.insertAdjacentHTML('beforeend', `
         <input type="hidden" name="items[${index}][id]" value="${id}">
         <input type="hidden" name="items[${index}][quantity]" value="${qty}">
-        ${sellingPlanId ? `<input type="hidden" name="items[${index}][selling_plan]" value="${sellingPlanId}">` : ''}
         <input type="hidden" name="items[${index}][properties][_bundle]" value="cookie">
       `);
       index++;
@@ -650,7 +589,6 @@ document.addEventListener('DOMContentLoaded', function () {
       container.insertAdjacentHTML('beforeend', `
         <input type="hidden" name="items[${index}][id]" value="${id}">
         <input type="hidden" name="items[${index}][quantity]" value="1">
-        ${sellingPlanId ? `<input type="hidden" name="items[${index}][selling_plan]" value="${sellingPlanId}">` : ''}
         <input type="hidden" name="items[${index}][properties][_bundle]" value="protein">
       `);
       index++;
