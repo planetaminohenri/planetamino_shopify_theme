@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Define product redirect mappings
   const productRedirectMap = {
     'power-cookie': {
-      'fi': '/fi/products/voimakeksi',
+      'fi': '/fi/products/voimakeksi-fi',
       'en': '/products/power-cookie'
     },
     'vegan-protein-powder': {
@@ -22,6 +22,14 @@ document.addEventListener('DOMContentLoaded', function() {
     'haluan-maistaa-kaikkia': {
       'fi': '/fi/products/haluan-maistaa-kaikkia',
       'en': '/products/i-want-to-taste-them-all-bundle'
+    },
+    'voimakeksi-fi': {
+      'fi': '/fi/products/voimakeksi-fi',
+      'en': '/products/power-cookie'
+    },
+    'proteiinijauhe': {
+      'fi': '/fi/products/proteiinijauhe',
+      'en': '/products/vegan-protein-powder'
     }
   };
 
