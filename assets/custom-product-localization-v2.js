@@ -14,6 +14,14 @@ document.addEventListener('DOMContentLoaded', function() {
     'vegan-protein-powder': {
       'fi': '/fi/products/proteiinijauhe',
       'en': '/products/vegan-protein-powder'
+    },
+    'i-want-to-taste-them-all-bundle': {
+      'fi': '/fi/products/haluan-maistaa-kaikkia',
+      'en': '/products/i-want-to-taste-them-all-bundle'
+    },
+    'haluan-maistaa-kaikkia': {
+      'fi': '/fi/products/haluan-maistaa-kaikkia',
+      'en': '/products/i-want-to-taste-them-all-bundle'
     }
   };
 

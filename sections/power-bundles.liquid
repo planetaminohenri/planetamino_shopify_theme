@@ -16,7 +16,30 @@
             <div class="btm-cnt">
             <p class="price">{{ block.settings.price }}</p>
             {% if block.settings.button_link and block.settings.button_label %}
-              <a href="{{ block.settings.button_link }}" class="btn">{% render 'cart-icon' %} {{ block.settings.button_label }}</a>
+              {% comment %} Language-based URL logic for specific products {% endcomment %}
+              {% assign current_language = localization.language.iso_code %}
+              {% assign button_url = block.settings.button_link %}
+              
+              {% comment %} Handle "I want to taste them all bundle" localization {% endcomment %}
+              {% if block.settings.button_link contains 'i-want-to-taste-them-all-bundle' or block.settings.button_link contains 'taste-them-all-fi' %}
+                {% if current_language == 'fi' %}
+                  {% assign button_url = '/fi/products/haluan-maistaa-kaikkia' %}
+                {% else %}
+                  {% assign button_url = '/products/i-want-to-taste-them-all-bundle' %}
+                {% endif %}
+              {% endif %}
+              
+              {% comment %} Debug info - remove after testing {% endcomment %}
+              {% assign contains_taste_bundle = false %}
+              {% if block.settings.button_link contains 'i-want-to-taste-them-all-bundle' or block.settings.button_link contains 'taste-them-all-fi' %}
+                {% assign contains_taste_bundle = true %}
+              {% endif %}
+              <!-- Debug: Original link: {{ block.settings.button_link }} -->
+              <!-- Debug: Current language: {{ current_language }} -->
+              <!-- Debug: Final URL: {{ button_url }} -->
+              <!-- Debug: Contains check: {{ contains_taste_bundle }} -->
+              
+              <a href="{{ button_url }}" class="btn">{% render 'cart-icon' %} {{ block.settings.button_label }}</a>
             {% endif %}
             </div>
           </div>
