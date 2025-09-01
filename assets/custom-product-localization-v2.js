@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Define product redirect mappings
   const productRedirectMap = {
     'power-cookie': {
-      'fi': '/fi/products/voimakeksi-fi',
+      'fi': '/fi/products/voimakeksi',
       'en': '/products/power-cookie'
     },
     'vegan-protein-powder': {
