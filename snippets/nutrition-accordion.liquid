@@ -40,34 +40,6 @@ New Bundle Support:
     </div>
 
     <div class="nutrition-accordion__content" hidden{% if use_inline_style %} style="padding: 16px; background: #fff; border: 1px solid var(--color-primary); border-top: none; border-radius: 0 0 12px 12px;"{% endif %}>
-      {% comment %} Debug information - remove after testing {% endcomment %}
-      {% if use_bundle_mode %}
-        <div style="background: #f0f0f0; padding: 10px; margin-bottom: 10px; font-size: 12px;">
-          <strong>Debug Info:</strong><br>
-          Bundle Mode: {{ use_bundle_mode }}<br>
-          Products Tag: "{{ products_tag }}"<br>
-          {% assign found_count = 0 %}
-          {% for prod in collections.all.products %}
-            {% if prod.tags contains products_tag %}
-              {% assign found_count = found_count | plus: 1 %}
-            {% endif %}
-          {% endfor %}
-          Found {{ found_count }} products<br>
-          <br>
-          <strong>All products check:</strong><br>
-          {% assign debug_count = 0 %}
-          {% for product in collections.all.products limit: 5 %}
-            {% assign debug_count = debug_count | plus: 1 %}
-            {% assign product_tags_string = product.tags | join: ',' %}
-            {% assign tag_match = false %}
-            {% if product.tags contains products_tag %}
-              {% assign tag_match = true %}
-            {% endif %}
-            {{ product.title }}: "{{ product_tags_string }}" (contains "{{ products_tag }}"? {{ tag_match }})<br>
-          {% endfor %}
-          (Showing first {{ debug_count }} products)
-        </div>
-      {% endif %}
       
       {% if show_selector %}
         <select class="nutrition-variant-select"{% if use_inline_style %} style="width: 100%; margin-bottom: 16px; padding: 8px 12px; border: 1px solid var(--color-primary); border-radius: 8px; color: var(--color-primary);"{% endif %}>
