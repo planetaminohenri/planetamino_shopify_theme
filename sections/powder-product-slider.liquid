@@ -37,7 +37,14 @@
             <button type="submit" class="btn">{% render 'cart-icon' %} Shop</button>
           </form>
          {% endcomment %}
-         <a href="{{ section.settings.product_url }}" class="btn">{% render 'cart-icon' %} Shop</a>
+         {% comment %} Language-based URL logic for localized products {% endcomment %}
+         {% assign current_language = localization.language.iso_code %}
+         {% if current_language == 'fi' %}
+           {% assign powder_url = '/fi/products/proteiinijauhe' %}
+         {% else %}
+           {% assign powder_url = '/products/vegan-protein-powder' %}
+         {% endif %}
+         <a href="{{ powder_url }}" class="btn">{% render 'cart-icon' %} Shop</a>
    </div>
    </div>
   </div>
