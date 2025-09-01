@@ -115,7 +115,7 @@
   },
   "products": {
     "happy_customers": {
-      "message": "⭐⭐⭐⭐⭐ Over 2000 happy customers"
+      "message": "⭐⭐⭐⭐⭐ Over 2000+ happy customers"
     },
     "product": {
       "add_to_cart": "Add to cart",
@@ -605,6 +605,8 @@
       "save_on_delivery": "Save 10% on every delivery"
     },
     "select_protein_powder": "Select one protein powder",
-    "bundle_contains": "This bundle contains"
+    "bundle_contains": "This bundle contains",
+    "choose_flavors": "Choose your favorite flavors",
+    "choose_products": "Choose your favorite flavors"
   }
 }

@@ -165,7 +165,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 /************************* Section First***************/
 /* Section Layout */
 .power-bundles {
-  padding: 1rem 0 2rem;
+  padding: 1rem 0 1rem;
   background: #ffffff;
 }
 
@@ -175,7 +175,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
     text-align: left;
     font-family: var(--font-heading-family);
     border-bottom: 1px solid #28005A;
-    margin: 0 0 3rem;
+    margin: 0 0 1rem;
     font-weight:bold;
 }
 
@@ -223,8 +223,8 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
     color: var(--color-primary);
     position: relative;
     padding: 0 0 0 43px;
-    line-height: 1;
-    margin-bottom: 20px;
+    line-height: 0.9;
+    margin-bottom: 10px;
 }
 .power-bundles .bundle .cont-blk ul li span {
     position: absolute;
@@ -319,7 +319,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 /************************* Section First End ***************/
 
 .build-cookie-box {
-  padding: 3rem  0 3rem;
+  padding: 2rem  0 2rem;
       background: var(--color-secondary-light);
 
 .thumbnail-grid {
@@ -369,7 +369,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 .cookie-gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 0;
   align-items: flex-start;
 }
 .content-info {
@@ -378,7 +378,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 .cookie-gallery h3 {
     font-size: var(--cookie-desc-title-lg);
     line-height: var(--cookie-desc-title-lg);
-    margin: 0;
+    margin: 0px;
     color: var(--color-primary);
     font-weight: bold;
     font-family: var(--font-heading-family);
@@ -389,6 +389,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
     color: var(--color-primary);
     font-weight: 500;
     font-family: var(--font-body-family);
+    line-height: 1.2;
     margin: 20px  0 20px;
 }
 
@@ -403,6 +404,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
     color: var(--color-primary);
     font-family: var(--font-body-family);
     font-weight: normal;
+    line-height: 1.4;
 }
   .cookie-gallery .cookie-desc {
     font-size: var(--cookie-desc-lg);
@@ -460,7 +462,7 @@ nav.header__inline-menu ul li a span.header__active-menu-item {
 /**********************************/
 section.powder-product {
     background: var(--color-secondary-light);
-  padding:0 0 4rem;
+  padding:0 0 2rem;
 }
 .powder-product .powder-gallery .main-image-container {
     width: 100%;
@@ -533,7 +535,7 @@ span.sls-savings-badge {
     font-family: var(--font-heading-family);
     line-height: 1;
     margin: 0;
-    padding: 3rem 0 1rem;
+    padding: 1rem 0 1rem;
   font-weight:bold;
 }
 
@@ -1044,7 +1046,7 @@ form#custom-cookie-form {
     --faq-question-title-lg:var(--faq-question-title-md);
   }
   .page-width{max-width:1500px;}
-  .power-bundles .bundle .cont-blk ul li{line-height: 26px; margin-bottom: 10px;}
+  .power-bundles .bundle .cont-blk ul li{line-height: 18px; margin-bottom: 8px;}
   .main-image-container{max-width:450px;}
   .build-cookie-box .main-image-container{max-width:600px;padding-right:80px;}
   .content-info{    max-width: calc(100% - 700px);}
@@ -1092,7 +1094,7 @@ form#custom-cookie-form {
   .power-bundles .bundle{padding:20px; gap:0;}
   .power-bundles .bundle .cont-blk{max-width:100%;}
   .bundle .btn img.cart-icon{width:17px;}
-  .power-bundles{padding:1rem 0 2rem;}
+  .power-bundles{padding:1rem 0 1rem;}
   .build-cookie-box{padding:40px 0;}
   .cookie-wrap{padding:20px; border-radius:15px;}
   .cookie-wrap h2{margin-bottom:20px;}
@@ -1114,7 +1116,7 @@ section.faq-main{
 .template-index .multicolumn .multicolumn-list li{width:19%;flex: inherit;}  
 .template-index .banner .banner__content .banner__box{max-width: 40rem; min-width: 35rem;}  
   img#main-cookie-image{height:auto;}
-.main-image-container{margin-right:0;}  
+.main-image-container{margin-right:0; margin-bottom:10px;}  
  .template-index .multicolumn.gradient{padding: 40px 0; background-size: 100% 100%;} 
 .template-index .multicolumn .multicolumn-card .multicolumn-card__info{padding-bottom:0;}  
 .template-index .multicolumn .multicolumn-list li .multicolumn-card .multicolumn-card__image-wrapper{padding-top:0;}  
@@ -1145,7 +1147,7 @@ section.faq-main{
   .template-index .multicolumn .multicolumn-list{flex-wrap:wrap;}
   .content-info{max-width:100%;}
   .text-left, .text-right, .nutrition-image{width:100%;}
-  .cookie-wrap{padding:15px; border-radius:15px;}
+  .cookie-wrap{padding:10px 15px 10px 15px; border-radius:15px;}
   .build-cookie-box .main-image-container{   max-width: 100%;padding-right: 0; flex-wrap: wrap; gap: 0px;}
   .build-cookie-box .thumbnail-grid{order: 2;flex-wrap: wrap;flex: inherit;flex-direction: inherit;gap: 0px;}
   .power-bundles .bundle{padding: 15px; gap:0px; border-radius:15px;}
@@ -1160,15 +1162,14 @@ section.faq-main{
  .header__icons.header__icons--localization.header-localization {order: 2;}
   nav.header__inline-menu {order: 4;}
  .utility-bar__grid.page-width {padding-left: 1rem;padding-right: 1rem;}
- .power-bundles h2{margin-bottom:25px;}
  .bundle img{width:100%;} 
  .power-bundles .bundle .cont-blk ul li{padding:0 0 0 30px;} 
  .bundle .btn img.cart-icon{width: 17px;} 
- .power-bundles{padding: 1rem 0 2rem;} 
- .build-cookie-box{padding-top:40px;} 
- .cookie-wrap h2{margin-bottom:25px;}
+ .power-bundles{padding: 1rem 0 1rem;} 
+ .build-cookie-box{padding-top:2rem;} 
+ .cookie-wrap h2{margin-bottom:10px;}
  .cookie-gallery .btm-cnt h4, .cookie-gallery .btm-cnt ul{margin:10px 0 0 ;} 
- .lst-row{margin-top: 20px; padding-top: 15px;}
+ .lst-row{margin-top: 10px; padding-top: 15px;}
  .build-cookie-box .thumb{padding:0px;}
  .powder-product .main-image-container{margin-right:0;} 
  .testimonial-slider .slick-slide>div, .testimonial-slider .testimonial-item{margin:0px;} 
@@ -1767,6 +1768,8 @@ div#tier-message {
     text-align: left;
     margin: 0;
     display: block;
+    border-radius: 15px !important;
+    box-shadow:none !important;
 }
 /* Custom Subscription Options Control */
 .subscription-options {
@@ -2297,35 +2300,13 @@ i.jdgm-quote-marks {
   display: block;
 }
 
-/* Bundler container spacing adjustments */
+/* Bundler container spacing adjustments - Global override for all bundler instances */
 .bundler-target-element[data-bndlr-ccid] .bndlr-container {
-  margin-top: 0;
-  padding-top: 0;
-}
-
-/* Specific styling for haluan-maistaa-kaikkia and taste-them-all-bundle product pages */
-.template-product .product-haluan-maistaa-kaikkia .bundler-target-element[data-bndlr-ccid] .bndlr-container,
-body[class*="haluan-maistaa-kaikkia"] .bundler-target-element[data-bndlr-ccid] .bndlr-container,
-.template-product .product-taste-them-all-bundle .bundler-target-element[data-bndlr-ccid] .bndlr-container,
-body[class*="i-want-to-taste-them-all-bundle"] .bundler-target-element[data-bndlr-ccid] .bndlr-container,
-body[class*="taste-them-all"] .bundler-target-element[data-bndlr-ccid] .bndlr-container {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
-/* More aggressive override for all bundle pages */
-.template-product[class*="taste"] .bundler-target-element[data-bndlr-ccid] .bndlr-container,
-.template-product[class*="bundle"] .bundler-target-element[data-bndlr-ccid] .bndlr-container {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-/* Nuclear option - override all bundler container spacing */
-.bundler-target-element[data-bndlr-ccid] .bndlr-container[style*="margin-top"],
-.bundler-target-element[data-bndlr-ccid] .bndlr-container[style*="padding-top"] {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
+/* Removed redundant specific product rules - now handled by the global rule above */
 
 .jdgm-testimonials-container {
     min-height: auto !important;

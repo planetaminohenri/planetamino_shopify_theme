@@ -115,7 +115,7 @@
   },
   "products": {
     "happy_customers": {
-      "message": "⭐⭐⭐⭐⭐ Yli 2000 tyytyväistä asiakasta"
+      "message": "⭐⭐⭐⭐⭐ Yli 2000+ tyytyväistä asiakasta"
     },
     "product": {
       "add_to_cart": "Lisää ostoskoriin",
@@ -604,6 +604,8 @@
       "save_on_delivery": "Säästä 10% jokaisesta toimituksesta"
     },
     "select_protein_powder": "Valitse yksi proteiinijauhe",
-    "bundle_contains": "Bundle sisältää"
+    "bundle_contains": "Bundle sisältää",
+    "choose_flavors": "Kasaa laatikko suosikkimauistasi",
+    "choose_products": "Valitse tuotteet"
   }
 }

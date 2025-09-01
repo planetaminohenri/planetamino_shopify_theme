@@ -34,6 +34,12 @@
             "custom_liquid": "{% render 'nutrition-accordion', product: product, variant_selector: true %}"
           }
         },
+        "choose_flavors_title": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<h2 class=\"bundle-contains-title\">{{ 'bundles.choose_flavors' | t }}</h2>"
+          }
+        },
         "bundler_custom_bundle_xtAkNn": {
           "type": "shopify://apps/bundler/blocks/custom-bundle/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
           "settings": {
@@ -46,6 +52,7 @@
         "happy_customers_widget",
         "custom_review_widget",
         "nutrition_accordion_inline",
+        "choose_flavors_title",
         "bundler_custom_bundle_xtAkNn"
       ],
       "settings": {
