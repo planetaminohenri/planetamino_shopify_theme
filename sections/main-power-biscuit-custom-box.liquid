@@ -467,7 +467,7 @@
              {% assign flavor_blocks = section.blocks | where: "type", "flavor" %}
               {% if flavor_blocks.size > 0 %}
                 <div class="qty-head"><h3>Select Quantity</h3></div>
-                <form method="post" action="/cart/add" id="custom-cookie-form">
+                <form method="post" action="{{ routes.cart_add_url }}" id="custom-cookie-form">
                   <input type="hidden" name="items_json" id="custom-box-input">
                   
                   {% for variant in product.variants %}
@@ -939,7 +939,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       // Redirect, or open your cart drawer here
-      window.location.href = '/cart';
+      window.location.href = '{{ routes.cart_url }}';
     } catch (err) {
       console.error(err);
       alert(err.message || 'Something went wrong adding the bundle to cart.');

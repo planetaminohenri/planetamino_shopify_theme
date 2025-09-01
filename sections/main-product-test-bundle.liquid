@@ -524,7 +524,7 @@
   </div>
 
   <!-- ✅ Add to Cart Form -->
-  <form id="custom-cookie-form" method="post" action="/cart/add">
+  <form id="custom-cookie-form" method="post" action="{{ routes.cart_add_url }}">
     <div id="all-line-items"></div>
     <button id="complete-bundle" type="submit" class="bundle-btn">{{ 'bundles.purchase_options.add_to_cart' | t }}</button>
   </form>

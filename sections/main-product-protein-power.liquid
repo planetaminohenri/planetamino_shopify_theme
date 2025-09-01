@@ -467,7 +467,7 @@
               {% assign flavor_blocks = section.blocks | where: "type", "flavor" %}
               {% if flavor_blocks.size > 0 %}
                <div class="qty-head"><h3>Select Quantity</h3></div>
-                <form method="post" action="/cart/add" id="custom-cookie-form">
+                <form method="post" action="{{ routes.cart_add_url }}" id="custom-cookie-form">
                <input type="hidden" name="id" id="dynamic-variant-id">
                 <input type="hidden" name="quantity" id="dynamic-quantity" value="1">
                 <input type="hidden" name="properties[Flavors]" id="custom-box-input">
