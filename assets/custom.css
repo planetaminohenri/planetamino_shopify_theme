@@ -2297,6 +2297,21 @@ i.jdgm-quote-marks {
   display: block;
 }
 
+/* Bundler container spacing adjustments */
+.bundler-target-element[data-bndlr-ccid] .bndlr-container {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Specific styling for haluan-maistaa-kaikkia and taste-them-all-bundle product pages */
+.template-product .product-haluan-maistaa-kaikkia .bundler-target-element[data-bndlr-ccid] .bndlr-container,
+body[class*="haluan-maistaa-kaikkia"] .bundler-target-element[data-bndlr-ccid] .bndlr-container,
+.template-product .product-taste-them-all-bundle .bundler-target-element[data-bndlr-ccid] .bndlr-container,
+body[class*="i-want-to-taste-them-all-bundle"] .bundler-target-element[data-bndlr-ccid] .bndlr-container {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
 .jdgm-testimonials-container {
     min-height: auto !important;
 }
