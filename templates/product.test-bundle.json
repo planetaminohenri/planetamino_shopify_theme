@@ -37,6 +37,12 @@
           "disabled": true,
           "settings": {}
         },
+        "protein_powder_title_h2": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<h2 class=\"protein-powder-title\">{{ 'bundles.select_protein_powder' | t }}</h2>"
+          }
+        },
         "bundler_custom_bundle_6LRHX4": {
           "type": "shopify://apps/bundler/blocks/custom-bundle/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
           "disabled": true,
@@ -99,6 +105,7 @@
         "custom_review_widget",
         "nutrition_accordion_inline",
         "description",
+        "protein_powder_title_h2",
         "bundler_custom_bundle_6LRHX4",
         "collection_block_Ne4Rkp",
         "collection_block_ktfyWV",
