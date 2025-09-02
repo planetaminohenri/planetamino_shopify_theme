@@ -11,7 +11,7 @@
   --banner-sub-title-md:35px;
   --banner-sub-title-lg:50px;
   
-  --font-size-title-sm: 40px;
+  --font-size-title-sm: 32px;
   --font-size-title-md: 40px;
   --font-size-title-lg: 50px;
 
@@ -1190,7 +1190,7 @@ section.faq-main{
   section.faq-main{
     width: calc(100% - 2rem);
     padding: 2rem 1rem;
-    margin: 2rem 1rem 0;
+    margin: 3rem 1rem 0;
     border-radius: 15px;
   }
   .best-nutrition-section{padding:0;}
@@ -2288,7 +2288,7 @@ i.jdgm-quote-marks {
   margin: 4rem 0 0 !important;
   padding: 0 0 1rem;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   display: block;
 }
 
@@ -2302,7 +2302,7 @@ i.jdgm-quote-marks {
   margin: 4rem 0 0 !important;
   padding: 0;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   display: block;
 }
 

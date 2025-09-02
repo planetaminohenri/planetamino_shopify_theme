@@ -15,6 +15,7 @@
   max-width: 78rem;
   font-family: var(--font-body-family);
   font-size: var(--font-size-body-md);
+  line-height: 1.2;
   text-align: left;
 }
 
@@ -22,7 +23,7 @@
   margin-bottom: 1.5rem;
   font-family: inherit;
   font-size: inherit;
-  line-height: inherit;
+  line-height: 1.2;
   color: inherit;
 }
 
