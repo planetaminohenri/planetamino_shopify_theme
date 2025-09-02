@@ -34,7 +34,7 @@
           "settings": {
             "product_handle": "i-want-to-taste-them-all-bundle",
             "title": "I want to taste everything - bundle",
-            "subtitle": "",
+            "subtitle": "SAVE 10%",
             "description_btm": "<ul>\n<li><span>🍪</span> 18x protein cookies (two of each flavor)</li>\n<li><span>🥤</span> 1x vanilla-flavored protein powder</li>\n<li><span>🥤</span> 1x chocolate flavored protein powder</li>\n<li><span>🥤</span> 1x strawberry flavored protein powder</li>\n</ul>",
             "cta_override_en": "",
             "cta_override_fi": ""
@@ -62,7 +62,7 @@
             "title": "Build Your Cookie Box",
             "subtitle": "Save up to 20%",
             "description_btm": "<h4>Fully customize your order, the more you order, the more you save per piece:</h4>\n<ul>\n<li>🍪 5-19 pcs: 2.79€/pc (85g cookies)</li>\n<li>🍪 20-39 pcs: 2.49€/pc (85g cookies)</li>\n<li>🍪 40+ pcs: 2.29€/pc (85g cookies)</li>\n</ul>",
-            "cta_override_en": "",
+            "cta_override_en": "Build you box",
             "cta_override_fi": "Kasaa keksilaatikko"
           }
         },
@@ -70,9 +70,9 @@
           "type": "card",
           "settings": {
             "product_handle": "vegan-protein-powder",
-            "title": "THE WORLD'S PERHAPS BEST PROTEIN POWDER",
-            "subtitle": "Chocolate, vanilla and strawberry flavors",
-            "description_btm": "<ul>\n<li>💪 At least 70g protein per 100g</li>\n<li>🎯 Contains all essential amino acids</li>\n<li>😋 Good taste and texture</li>\n<li>😎 Does not precipitate</li>\n</ul>",
+            "title": "PROTEIN POWDER",
+            "subtitle": "SAVE UP TO 10%",
+            "description_btm": "<h4>Chocolate, vanilla, strawberry flavors and unflavored</h4><ul><li>💪 At least 70g protein per 100g</li>\n<li>🎯 Contains all essential amino acids</li>\n<li>😋 Good taste and texture</li>\n<li>😎 Does not precipitate</li>\n</ul>",
             "cta_override_en": "",
             "cta_override_fi": ""
           }
