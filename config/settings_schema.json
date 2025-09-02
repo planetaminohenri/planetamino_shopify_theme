@@ -1619,6 +1619,305 @@
 }    
   ]
   },
+  {
+    "name": "Global Testimonials Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Global Testimonials Content"
+      },
+      {
+        "type": "image_picker",
+        "id": "testimonial_1_image",
+        "label": "Testimonial 1 - Customer Image"
+      },
+      {
+        "type": "text",
+        "id": "testimonial_1_name",
+        "label": "Testimonial 1 - Customer Name"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_1_quote",
+        "label": "Testimonial 1 - Quote (English)"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_1_quote_fi",
+        "label": "Testimonial 1 - Quote (Finnish)"
+      },
+      {
+        "type": "range",
+        "id": "testimonial_1_rating",
+        "label": "Testimonial 1 - Star Rating",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 5
+      },
+      {
+        "type": "image_picker",
+        "id": "testimonial_2_image",
+        "label": "Testimonial 2 - Customer Image"
+      },
+      {
+        "type": "text",
+        "id": "testimonial_2_name",
+        "label": "Testimonial 2 - Customer Name"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_2_quote",
+        "label": "Testimonial 2 - Quote (English)"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_2_quote_fi",
+        "label": "Testimonial 2 - Quote (Finnish)"
+      },
+      {
+        "type": "range",
+        "id": "testimonial_2_rating",
+        "label": "Testimonial 2 - Star Rating",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 5
+      },
+      {
+        "type": "image_picker",
+        "id": "testimonial_3_image",
+        "label": "Testimonial 3 - Customer Image"
+      },
+      {
+        "type": "text",
+        "id": "testimonial_3_name",
+        "label": "Testimonial 3 - Customer Name"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_3_quote",
+        "label": "Testimonial 3 - Quote (English)"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_3_quote_fi",
+        "label": "Testimonial 3 - Quote (Finnish)"
+      },
+      {
+        "type": "range",
+        "id": "testimonial_3_rating",
+        "label": "Testimonial 3 - Star Rating",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 5
+      },
+      {
+        "type": "image_picker",
+        "id": "testimonial_4_image",
+        "label": "Testimonial 4 - Customer Image"
+      },
+      {
+        "type": "text",
+        "id": "testimonial_4_name",
+        "label": "Testimonial 4 - Customer Name"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_4_quote",
+        "label": "Testimonial 4 - Quote (English)"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_4_quote_fi",
+        "label": "Testimonial 4 - Quote (Finnish)"
+      },
+      {
+        "type": "range",
+        "id": "testimonial_4_rating",
+        "label": "Testimonial 4 - Star Rating",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 5
+      },
+      {
+        "type": "image_picker",
+        "id": "testimonial_5_image",
+        "label": "Testimonial 5 - Customer Image"
+      },
+      {
+        "type": "text",
+        "id": "testimonial_5_name",
+        "label": "Testimonial 5 - Customer Name"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_5_quote",
+        "label": "Testimonial 5 - Quote (English)"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_5_quote_fi",
+        "label": "Testimonial 5 - Quote (Finnish)"
+      },
+      {
+        "type": "range",
+        "id": "testimonial_5_rating",
+        "label": "Testimonial 5 - Star Rating",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 5
+      },
+      {
+        "type": "image_picker",
+        "id": "testimonial_6_image",
+        "label": "Testimonial 6 - Customer Image"
+      },
+      {
+        "type": "text",
+        "id": "testimonial_6_name",
+        "label": "Testimonial 6 - Customer Name"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_6_quote",
+        "label": "Testimonial 6 - Quote (English)"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_6_quote_fi",
+        "label": "Testimonial 6 - Quote (Finnish)"
+      },
+      {
+        "type": "range",
+        "id": "testimonial_6_rating",
+        "label": "Testimonial 6 - Star Rating",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 5
+      },
+      {
+        "type": "image_picker",
+        "id": "testimonial_7_image",
+        "label": "Testimonial 7 - Customer Image"
+      },
+      {
+        "type": "text",
+        "id": "testimonial_7_name",
+        "label": "Testimonial 7 - Customer Name"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_7_quote",
+        "label": "Testimonial 7 - Quote (English)"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_7_quote_fi",
+        "label": "Testimonial 7 - Quote (Finnish)"
+      },
+      {
+        "type": "range",
+        "id": "testimonial_7_rating",
+        "label": "Testimonial 7 - Star Rating",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 5
+      },
+      {
+        "type": "image_picker",
+        "id": "testimonial_8_image",
+        "label": "Testimonial 8 - Customer Image"
+      },
+      {
+        "type": "text",
+        "id": "testimonial_8_name",
+        "label": "Testimonial 8 - Customer Name"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_8_quote",
+        "label": "Testimonial 8 - Quote (English)"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_8_quote_fi",
+        "label": "Testimonial 8 - Quote (Finnish)"
+      },
+      {
+        "type": "range",
+        "id": "testimonial_8_rating",
+        "label": "Testimonial 8 - Star Rating",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 5
+      },
+      {
+        "type": "image_picker",
+        "id": "testimonial_9_image",
+        "label": "Testimonial 9 - Customer Image"
+      },
+      {
+        "type": "text",
+        "id": "testimonial_9_name",
+        "label": "Testimonial 9 - Customer Name"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_9_quote",
+        "label": "Testimonial 9 - Quote (English)"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_9_quote_fi",
+        "label": "Testimonial 9 - Quote (Finnish)"
+      },
+      {
+        "type": "range",
+        "id": "testimonial_9_rating",
+        "label": "Testimonial 9 - Star Rating",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 5
+      },
+      {
+        "type": "image_picker",
+        "id": "testimonial_10_image",
+        "label": "Testimonial 10 - Customer Image"
+      },
+      {
+        "type": "text",
+        "id": "testimonial_10_name",
+        "label": "Testimonial 10 - Customer Name"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_10_quote",
+        "label": "Testimonial 10 - Quote (English)"
+      },
+      {
+        "type": "textarea",
+        "id": "testimonial_10_quote_fi",
+        "label": "Testimonial 10 - Quote (Finnish)"
+      },
+      {
+        "type": "range",
+        "id": "testimonial_10_rating",
+        "label": "Testimonial 10 - Star Rating",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 5
+      }
+    ]
+  },
  {
   "name": "Best Nutrition Section",
   "settings": [

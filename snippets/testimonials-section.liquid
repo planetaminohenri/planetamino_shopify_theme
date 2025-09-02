@@ -1,0 +1,65 @@
+{% comment %}
+  Global Testimonials Section Snippet
+  
+  This snippet renders testimonials from the global settings (settings_data.json)
+  similar to how the FAQ system works. It accepts an array of testimonial IDs
+  to display specific testimonials.
+  
+  Parameters:
+  - testimonial_ids: Array of testimonial numbers to display (e.g., [1, 3, 5])
+  - font_size: Optional font size class (default: font-size-md)
+  
+  Usage: 
+  {% render 'testimonials-section', testimonial_ids: testimonial_ids, font_size: font_size %}
+{% endcomment %}
+
+{% assign testimonial_ids = testimonial_ids | default: empty %}
+{% assign font_size = font_size | default: 'font-size-md' %}
+
+
+
+{% if testimonial_ids.size > 0 %}
+  <div class="testimonial-slider">
+    {% for testimonial_id in testimonial_ids %}
+      {% capture image_key %}testimonial_{{ testimonial_id }}_image{% endcapture %}
+      {% capture name_key %}testimonial_{{ testimonial_id }}_name{% endcapture %}
+      {% capture quote_key %}testimonial_{{ testimonial_id }}_quote{% endcapture %}
+      {% capture quote_fi_key %}testimonial_{{ testimonial_id }}_quote_fi{% endcapture %}
+      {% capture rating_key %}testimonial_{{ testimonial_id }}_rating{% endcapture %}
+      
+      {% assign testimonial_image = settings[image_key] %}
+      {% assign testimonial_name = settings[name_key] %}
+      {% assign testimonial_quote = settings[quote_key] %}
+      {% assign testimonial_quote_fi = settings[quote_fi_key] %}
+      {% assign testimonial_rating = settings[rating_key] %}
+
+
+
+      {% if testimonial_name != blank and testimonial_quote != blank %}
+        <div class="testimonial-item {{ font_size }}">
+          {% if testimonial_image %}
+            <img src="{{ testimonial_image | img_url: 'master' }}" alt="{{ testimonial_name }}" class="testimonial-image">
+          {% endif %}
+          <div class="testimonial-content">
+            <p class="testimonial-name">{{ testimonial_name }}</p>
+            <div class="testimonial-stars">
+              {% for i in (1..5) %}
+                {% if i <= testimonial_rating %}
+                  <span class="star filled">&#9733;</span>
+                {% else %}
+                  <span class="star">&#9733;</span>
+                {% endif %}
+              {% endfor %}
+            </div>
+            {% assign current_language = localization.language.iso_code %}
+            {% if current_language == 'fi' and testimonial_quote_fi != blank %}
+              <p class="testimonial-quote">"{{ testimonial_quote_fi }}"</p>
+            {% else %}
+              <p class="testimonial-quote">"{{ testimonial_quote }}"</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}

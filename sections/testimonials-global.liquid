@@ -1,0 +1,57 @@
+{% comment %}
+  Global Testimonials Section
+  
+  This section provides a simple way to display testimonials from the global settings
+  by specifying testimonial IDs. It's similar to the faq-global section.
+{% endcomment %}
+
+<section class="testimonials-global-section">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <h2 class="testimonials-heading">{{ section.settings.title }}</h2>
+    {% endif %}
+    
+    {% if section.settings.testimonial_ids != blank %}
+      {% assign testimonial_ids_string = section.settings.testimonial_ids | replace: ' ', '' %}
+      {% assign testimonial_ids = testimonial_ids_string | split: ',' %}
+      {% render 'testimonials-section', testimonial_ids: testimonial_ids, font_size: section.settings.font_size %}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Global Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_ids",
+      "label": "Testimonial IDs",
+      "info": "Enter comma-separated testimonial IDs (e.g., 1,3,5,7)",
+      "placeholder": "1,2,3,4,5"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "Font Size",
+      "options": [
+        { "value": "font-size-sm", "label": "Small" },
+        { "value": "font-size-md", "label": "Medium" },
+        { "value": "font-size-lg", "label": "Large" }
+      ],
+      "default": "font-size-md"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Global Testimonials"
+    }
+  ]
+}
+{% endschema %}
