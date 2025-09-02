@@ -78,8 +78,8 @@
         "bundle_Md6K8N": {
           "type": "bundle",
           "settings": {
-            "image": "shopify://shop_images/vegan-protein-powder-vanilla-homepage.png",
-            "title": "I want to test",
+            "image": "shopify://shop_images/Vegan_Protein_Powder_Strawberry.webp",
+            "title": "I want to test - Bundle",
             "description": "<ul>\n<li>\n<span>🍪</span> 9x protein cookies (one of each flavor)</li>\n<li>\n<span>🥤</span> 1x protein powder (chocolate, vanilla or strawberry flavor)</li>\n</ul>",
             "price": "39.56€",
             "button_label": "Shop",
@@ -90,8 +90,8 @@
         "bundle_kmqrfL": {
           "type": "bundle",
           "settings": {
-            "image": "shopify://shop_images/vegan-protein-powder-strawberry-homepage.png",
-            "title": "I want to taste everything",
+            "image": "shopify://shop_images/Power_Cookie_Custom_Box_1.webp",
+            "title": "I want to taste everything - bundle",
             "description": "<ul>\n<li>\n<span>🍪</span> 18x protein cookies (two of each flavor)</li>\n<li>\n<span>🥤</span> 1x vanilla-flavored protein powder</li>\n<li>\n<span>🥤</span> 1x chocolate flavored protein powder</li>\n<li>\n<span>🥤</span> 1x strawberry flavored protein powder </li>\n</ul>",
             "price": "84.63€",
             "button_label": "Shop",
