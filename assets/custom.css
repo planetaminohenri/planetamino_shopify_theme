@@ -533,10 +533,16 @@ span.sls-savings-badge {
     color: var(--color-primary);
     text-transform: uppercase;
     font-family: var(--font-heading-family);
-    line-height: 1;
+    line-height: 0.9;
     margin: 0;
-    padding: 1rem 0 1rem;
+    padding: 1rem 0 0;
   font-weight:bold;
+}
+
+@media screen and (max-width: 749px) {
+  .testimonial-slider-section h2.testimonial-heading {
+    padding-bottom: 1rem;
+  }
 }
 
 .testimonial-slider .testimonial-item {
@@ -576,11 +582,11 @@ span.sls-savings-badge {
     font-family: var(--font-body-family);
     font-weight: bold;
     margin: 0;
-    line-height: 35px;
+    line-height: 0.9;
 }
 
 .testimonial-content {
-    padding: 20px 15px;
+    padding: 0px 15px;
 }
 
 .testimonial-content .testimonial-stars span {
@@ -594,9 +600,8 @@ span.sls-savings-badge {
     color: var(--color-accent-dark);
     font-family: var(--font-body-family);
     font-style: normal;
-    line-height: 30px;
+    line-height: 1.2;
     font-weight: normal;
-    min-height: 150px;
 }
 /************************ Testimonials End****************/
 .template-index .multicolumn .multicolumn-list {
@@ -664,9 +669,9 @@ span.sls-savings-badge {
 
 .best-nutrition-section .section-heading {
   font-size: var(--font-size-title-lg);
-  line-height: var(--font-size-title-lg);
+  line-height: 0.9;
     font-weight: 700;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     margin-top: 0;
     color: var(--color-primary);
 }
@@ -686,6 +691,7 @@ span.sls-savings-badge {
     width: 33%;
     font-family: var(--font-body-family);
     color: var(--color-primary);
+    line-height: 1.2;
 }
 .nutrition-image{width:33%; padding:0 20px;}
 .nutrition-image img {
@@ -725,14 +731,14 @@ span.sls-savings-badge {
 /*********************Faq*******************/
 .faq-accordion summary {
   position: relative;
-    padding-right: 30px;
+    padding-right: 20px;
     cursor: pointer;
     list-style: none;
     font-weight: 600;
     font-size: var(--font-size-body-lg);
     color: var(--color-primary);
     font-family: var(--font-body-family);
-    line-height: var(--font-size-body-lg);
+    line-height: 1.2;
 }
 .faq-accordion summary::-webkit-details-marker {
   display: none;
@@ -751,6 +757,7 @@ span.sls-savings-badge {
     font-weight: bold;
     color: var(--color-primary);
     font-family: var(--font-heading-family);
+    line-height: 0.9;
     margin-bottom: 30px;
     margin-top: 20px;
     text-transform: uppercase;
@@ -765,6 +772,7 @@ span.sls-savings-badge {
     color: var(--color-primary);
     font-size: var(--font-size-body-lg);
     font-family: var(--font-body-family);
+    line-height: 1.2;
 }
 section.faq-wrapper {
     max-width: 1194px;
@@ -1051,8 +1059,6 @@ form#custom-cookie-form {
   .build-cookie-box .main-image-container{max-width:600px;padding-right:80px;}
   .content-info{    max-width: calc(100% - 700px);}
   .powder-product .main-image-container{max-width:650px;}
-  .testimonial-content p.testimonial-name{font-size:22px;}
-  .testimonial-content p.testimonial-quote{line-height:25px;}
   .template-index .multicolumn .multicolumn-card .multicolumn-card__info h3{font-size:22px; line-height:28px;}
   .powder-product .main-image-container .thumbnail-grid{margin-top:5px;}
   img#main-cookie-image {height: 528px;}
@@ -2527,7 +2533,7 @@ span.productPlanItemList br {
   overflow: hidden;
   transition: all 0.3s ease;
   border: 1px solid #f3eae7;
-  padding: 20px;
+  padding: 10px 15px 10px 15px;
 }
 
 .faq-accordion[open] {
