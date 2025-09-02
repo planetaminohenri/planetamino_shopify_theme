@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "unified_grid_bundles": {
@@ -23,6 +14,8 @@
           "settings": {
             "product_handle": "i-want-to-test-bundle",
             "title": "I want to test - Bundle",
+            "title_bg_color": "var(--color-secondary-dark)",
+            "title_color": "#ffffff",
             "subtitle": "",
             "description_btm": "<h4>This bundle contains:</h4><ul>\n<li><span>🍪</span> 9x protein cookies (one of each flavor)</li>\n<li><span>🥤</span> 1x protein powder (chocolate, vanilla or strawberry flavor)</li>\n</ul>",
             "cta_override_en": "",
@@ -34,6 +27,8 @@
           "settings": {
             "product_handle": "i-want-to-taste-them-all-bundle",
             "title": "I want to taste everything - bundle",
+            "title_bg_color": "var(--color-primary)",
+            "title_color": "#ffffff",
             "subtitle": "SAVE 10%",
             "description_btm": "<h4>This bundle contains:</h4><ul>\n<li><span>🍪</span> 18x protein cookies (two of each flavor)</li>\n<li><span>🥤</span> 1x vanilla-flavored protein powder</li>\n<li><span>🥤</span> 1x chocolate flavored protein powder</li>\n<li><span>🥤</span> 1x strawberry flavored protein powder</li>\n</ul>",
             "cta_override_en": "",
@@ -50,7 +45,7 @@
       "type": "unified-card-grid",
       "name": "Unified Products Two-Up",
       "settings": {
-        "section_heading": "",
+        "section_heading": "POWER COOKIES AND PROTEIN POWDER",
         "columns_desktop": "2",
         "font_size": "font-size-md"
       },
@@ -60,6 +55,8 @@
           "settings": {
             "product_handle": "power-cookie",
             "title": "Build Your Cookie Box",
+            "title_bg_color": "var(--color-accent-dark)",
+            "title_color": "#ffffff",
             "subtitle": "Save up to 30%",
             "description_btm": "<h4>Fully customize your order, the more you order, the more you save per piece:</h4>\n<ul>\n<li>🍪 5-19 pcs: 2.79€/pc (85g cookies)</li>\n<li>🍪 20-39 pcs: 2.49€/pc (85g cookies)</li>\n<li>🍪 40+ pcs: 2.29€/pc (85g cookies)</li>\n</ul>",
             "cta_override_en": "Build you box",

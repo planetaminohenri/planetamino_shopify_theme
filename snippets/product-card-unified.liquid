@@ -27,7 +27,9 @@
 
 <article id="unified-card-{{ block_id }}" class="unified-card {{ font_size }}">
   {% comment %} Primary title (top) {% endcomment %}
-  <h3>{{ title | default: product.title | default: 'Primary title' }}</h3>
+  {% assign h3_bg = title_bg_color | default: '' %}
+  {% assign h3_color = title_color | default: '' %}
+  <h3{% if h3_bg or h3_color %} style="{% if h3_bg %}background: {{ h3_bg }};{% endif %}{% if h3_color %}color: {{ h3_color }};{% endif %}"{% endif %}>{{ title | default: product.title | default: 'Primary title' }}</h3>
 
   {% if product and product.images.size > 0 %}
     <div class="main-image-container">
