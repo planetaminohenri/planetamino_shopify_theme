@@ -16,6 +16,13 @@
       assign cta_label = 'Shop'
     endif
   endif
+
+  assign show_price = true
+  unless display_price == false
+    assign show_price = true
+  else
+    assign show_price = false
+  endunless
 %}
 
 <article id="unified-card-{{ block_id }}" class="unified-card {{ font_size }}">
@@ -49,8 +56,8 @@
 
   <div class="unified-divider"></div>
 
-  <div class="lst-row">
-    {% if product %}
+  <div class="lst-row{% unless show_price %} no-price{% endunless %}">
+    {% if product and show_price %}
       {% assign variant = product.selected_or_first_available_variant %}
       {% if variant and variant.compare_at_price and variant.compare_at_price > variant.price %}
         <div class="price-stack">

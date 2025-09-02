@@ -15,7 +15,8 @@
           cta_override_en: block.settings.cta_override_en,
           cta_override_fi: block.settings.cta_override_fi,
           font_size: section.settings.font_size,
-          block_id: block.id
+          block_id: block.id,
+          display_price: block.settings.display_price
         %}
       {% endfor %}
     </div>
@@ -60,7 +61,8 @@
         { "type": "text", "id": "subtitle", "label": "Subtitle" },
         { "type": "richtext", "id": "description_btm", "label": "Bullets/description (supports HTML)" },
         { "type": "text", "id": "cta_override_en", "label": "CTA override (EN)" },
-        { "type": "text", "id": "cta_override_fi", "label": "CTA override (FI)" }
+        { "type": "text", "id": "cta_override_fi", "label": "CTA override (FI)" },
+        { "type": "checkbox", "id": "display_price", "label": "Display price", "default": true }
       ]
     }
   ],
