@@ -2758,9 +2758,18 @@ span.productPlanItemList br {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
+/* Desktop: Make cards smaller with controlled max-width */
+@media only screen and (min-width: 1200px) {
+  .unified-card-grid {
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 300px));
+    justify-content: center;
+  }
+}
+
 .unified-card {
   background: var(--color-secondary-light);
-  padding: 15px;
+  padding: 15px 20px 15px 20px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -2790,7 +2799,7 @@ span.productPlanItemList br {
   color: var(--color-accent-dark);
   font-weight: normal;
   text-transform: uppercase;
-  margin: 10px 0 10px 0;
+  margin: 10px 0 8px 0;
 }
 
 .unified-card .btm-cnt h4 { 
@@ -2807,10 +2816,10 @@ span.productPlanItemList br {
 .unified-card .btm-cnt ul li { display:block; font-size: var(--font-size-body-lg); color: var(--color-primary); font-family: var(--font-body-family); font-weight: normal; line-height: 1; margin-bottom: 8px; }
 .unified-card .btm-cnt p { font-size: var(--font-size-body-lg); color: var(--color-primary); line-height: var(--font-size-body-lg); margin: 0 0 10px; font-family: var(--font-body-family); }
 
-.unified-card .lst-row { display:flex; flex-wrap: nowrap; justify-content: space-between; align-items:center; border-top:0; padding-top:0; margin-top:0; gap: 10px; }
-.unified-card p.price { font-weight:700; color:#4C29CC; margin:0; font-size: var(--bundle-card-price-lg); }
-.unified-card .price-stack { display:flex; flex-direction: column; }
-.unified-card .price-stack .price-compare { color:#888; margin:0 0 6px 0; font-size: var(--bundle-card-price-lg); }
+.unified-card .lst-row { display:flex; flex-wrap: nowrap; justify-content: space-between; align-items:center; border-top:1px solid var(--color-primary); padding-top:15px; margin-top:15px; gap: 10px; }
+.unified-card p.price { font-weight:700; color:#4C29CC; margin:0; font-size: var(--cookie-desc-price-lg); }
+.unified-card .price-stack { display:flex; flex-direction: row; align-items: baseline; gap: 8px; }
+.unified-card .price-stack .price-compare { font-weight:700; color:#888; margin:0; font-size: var(--cookie-desc-price-lg); }
 .unified-card .price-stack .price-compare s { text-decoration: line-through; }
 
 .unified-card .btn {

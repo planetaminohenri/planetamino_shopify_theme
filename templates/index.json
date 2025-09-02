@@ -24,7 +24,7 @@
             "product_handle": "i-want-to-test-bundle",
             "title": "I want to test - Bundle",
             "subtitle": "",
-            "description_btm": "<ul>\n<li><span>🍪</span> 9x protein cookies (one of each flavor)</li>\n<li><span>🥤</span> 1x protein powder (chocolate, vanilla or strawberry flavor)</li>\n</ul>",
+            "description_btm": "<h4>This bundle contains:</h4><ul>\n<li><span>🍪</span> 9x protein cookies (one of each flavor)</li>\n<li><span>🥤</span> 1x protein powder (chocolate, vanilla or strawberry flavor)</li>\n</ul>",
             "cta_override_en": "",
             "cta_override_fi": ""
           }
@@ -35,7 +35,7 @@
             "product_handle": "i-want-to-taste-them-all-bundle",
             "title": "I want to taste everything - bundle",
             "subtitle": "SAVE 10%",
-            "description_btm": "<ul>\n<li><span>🍪</span> 18x protein cookies (two of each flavor)</li>\n<li><span>🥤</span> 1x vanilla-flavored protein powder</li>\n<li><span>🥤</span> 1x chocolate flavored protein powder</li>\n<li><span>🥤</span> 1x strawberry flavored protein powder</li>\n</ul>",
+            "description_btm": "<h4>This bundle contains:</h4><ul>\n<li><span>🍪</span> 18x protein cookies (two of each flavor)</li>\n<li><span>🥤</span> 1x vanilla-flavored protein powder</li>\n<li><span>🥤</span> 1x chocolate flavored protein powder</li>\n<li><span>🥤</span> 1x strawberry flavored protein powder</li>\n</ul>",
             "cta_override_en": "",
             "cta_override_fi": ""
           }

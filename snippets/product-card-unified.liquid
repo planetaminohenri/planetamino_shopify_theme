@@ -39,10 +39,12 @@
     </div>
   {% endif %}
 
-  {% if secondary_title %}
+  {% if secondary_title and secondary_title != '' %}
     <p class="cookie-desc">{{ secondary_title }}</p>
+  {% elsif subtitle and subtitle != '' %}
+    <p class="cookie-desc">{{ subtitle }}</p>
   {% else %}
-    <p class="cookie-desc">{{ subtitle | default: 'Secondary title' }}</p>
+    <div class="subtitle-spacer" style="height: 10px;"></div>
   {% endif %}
   
   <div class="btm-cnt">{{ description_btm | default: '<ul><li>Bullet 1</li><li>Bullet 2</li><li>Bullet 3</li></ul>' }}</div>
