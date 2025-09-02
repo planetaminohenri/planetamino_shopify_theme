@@ -1,0 +1,80 @@
+<section class="unified-card-section {{ section.settings.font_size }}">
+  <div class="page-width">
+    {% if section.settings.section_heading %}
+      <h2 class="{{ section.settings.font_size }}">{{ section.settings.section_heading }}</h2>
+    {% endif %}
+
+    <div class="unified-card-grid columns-{{ section.settings.columns_desktop }}">
+      {% for block in section.blocks %}
+        {% assign product_handle = block.settings.product_handle %}
+        {% render 'product-card-unified',
+          product_handle: product_handle,
+          title: block.settings.title,
+          subtitle: block.settings.subtitle,
+          description_btm: block.settings.description_btm,
+          cta_override_en: block.settings.cta_override_en,
+          cta_override_fi: block.settings.cta_override_fi,
+          font_size: section.settings.font_size,
+          block_id: block.id
+        %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Unified Product Grid",
+  "class": "unified-card-grid-section",
+  "settings": [
+    { "type": "text", "id": "section_heading", "label": "Heading" },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Desktop columns",
+      "options": [
+        { "value": "2", "label": "2 columns" },
+        { "value": "3", "label": "3 columns" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "Font Size",
+      "options": [
+        { "value": "font-size-sm", "label": "Small" },
+        { "value": "font-size-md", "label": "Medium" },
+        { "value": "font-size-lg", "label": "Large" }
+      ],
+      "default": "font-size-md"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Unified Card",
+      "settings": [
+        { "type": "product", "id": "product_handle", "label": "Product" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle" },
+        { "type": "richtext", "id": "description_btm", "label": "Bullets/description (supports HTML)" },
+        { "type": "text", "id": "cta_override_en", "label": "CTA override (EN)" },
+        { "type": "text", "id": "cta_override_fi", "label": "CTA override (FI)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Unified Bundles Grid",
+      "category": "Homepage"
+    },
+    {
+      "name": "Unified Two-Up Grid",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}
+
+

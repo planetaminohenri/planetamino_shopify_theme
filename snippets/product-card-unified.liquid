@@ -1,0 +1,88 @@
+{% liquid
+  assign product = all_products[product_handle]
+  assign current_language = localization.language.iso_code
+
+  assign cta_label = ''
+  if current_language == 'fi'
+    if cta_override_fi and cta_override_fi != ''
+      assign cta_label = cta_override_fi
+    else
+      assign cta_label = 'Lue lisää'
+    endif
+  else
+    if cta_override_en and cta_override_en != ''
+      assign cta_label = cta_override_en
+    else
+      assign cta_label = 'Shop'
+    endif
+  endif
+%}
+
+<article id="unified-card-{{ block_id }}" class="unified-card {{ font_size }}">
+  {% comment %} Primary title (top) {% endcomment %}
+  <h3>{{ title | default: product.title | default: 'Primary title' }}</h3>
+
+  {% if product and product.images.size > 0 %}
+    <div class="main-image-container">
+      <img
+        class="unified-main-image"
+        src="{{ product.featured_image | image_url: width: 800 }}"
+        alt="{{ product.title }}"
+      >
+      <div class="thumbnail-grid">
+        {% for image in product.images %}
+          <div class="thumb" data-img="{{ image | image_url: width: 1200 }}">
+            <img src="{{ image | image_url: width: 180 }}" alt="Thumbnail {{ forloop.index }}">
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if secondary_title %}
+    <p class="cookie-desc">{{ secondary_title }}</p>
+  {% else %}
+    <p class="cookie-desc">{{ subtitle | default: 'Secondary title' }}</p>
+  {% endif %}
+  
+  <div class="btm-cnt">{{ description_btm | default: '<ul><li>Bullet 1</li><li>Bullet 2</li><li>Bullet 3</li></ul>' }}</div>
+
+  <div class="unified-divider"></div>
+
+  <div class="lst-row">
+    {% if product %}
+      {% assign variant = product.selected_or_first_available_variant %}
+      {% if variant and variant.compare_at_price and variant.compare_at_price > variant.price %}
+        <div class="price-stack">
+          <p class="price-compare"><s>{{ variant.compare_at_price | money }}</s></p>
+          <p class="price">{{ variant.price | money }}</p>
+        </div>
+      {% else %}
+        <p class="price">{{ product.price | money }}</p>
+      {% endif %}
+    {% endif %}
+
+    {% if product %}
+      <a href="{{ product.url }}" class="btn">{% render 'cart-icon' %} {{ cta_label }}</a>
+    {% endif %}
+  </div>
+
+  <script>
+    (function() {
+      var container = document.getElementById('unified-card-{{ block_id }}');
+      if (!container) return;
+      var main = container.querySelector('.unified-main-image');
+      if (!main) return;
+      container.querySelectorAll('.thumb').forEach(function(el){
+        el.addEventListener('click', function(){
+          var url = el.getAttribute('data-img');
+          if (url) main.src = url;
+          container.querySelectorAll('.thumb').forEach(function(t){ t.classList.remove('active'); });
+          el.classList.add('active');
+        });
+      });
+    })();
+  </script>
+</article>
+
+
