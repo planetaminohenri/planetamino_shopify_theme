@@ -149,6 +149,7 @@
     },
     "power_bundles_tPDyd4": {
       "type": "power-bundles",
+      "disabled": true,
       "blocks": {
         "bundle_Md6K8N": {
           "type": "bundle",
@@ -187,6 +188,7 @@
     },
     "build_cookie_box_78yGiG": {
       "type": "build-cookie-box",
+      "disabled": true,
       "name": "Build Cookie Box",
       "settings": {
         "heading": "Build Your Cookie Box",
@@ -200,6 +202,7 @@
     },
     "powder_product_slider_Rnir48": {
       "type": "powder-product-slider",
+      "disabled": true,
       "name": "Powders Slider",
       "settings": {
         "heading": "POWDERS",
@@ -241,12 +244,12 @@
     "planet_amino_banner",
     "unified_grid_bundles",
     "unified_grid_products",
+    "testimonials_slider_UAYPnP",
+    "faq_global_Gdrmrj",
+    "best_nutrition_section_gWM4f7",
     "featured_collection",
     "power_bundles_tPDyd4",
     "build_cookie_box_78yGiG",
-    "powder_product_slider_Rnir48",
-    "testimonials_slider_UAYPnP",
-    "faq_global_Gdrmrj",
-    "best_nutrition_section_gWM4f7"
+    "powder_product_slider_Rnir48"
   ]
 }

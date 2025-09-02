@@ -2816,7 +2816,7 @@ span.productPlanItemList br {
 .unified-card .btm-cnt ul li { display:block; font-size: var(--font-size-body-lg); color: var(--color-primary); font-family: var(--font-body-family); font-weight: normal; line-height: 1; margin-bottom: 8px; }
 .unified-card .btm-cnt p { font-size: var(--font-size-body-lg); color: var(--color-primary); line-height: var(--font-size-body-lg); margin: 0 0 10px; font-family: var(--font-body-family); }
 
-.unified-card .lst-row { display:flex; flex-wrap: nowrap; justify-content: space-between; align-items:center; border-top:1px solid var(--color-primary); padding-top:15px; margin-top:15px; gap: 10px; }
+.unified-card .lst-row { display:flex; flex-wrap: nowrap; justify-content: space-between; align-items:center; border-top:1px solid var(--color-primary); padding-top:12px; margin-top:2px; gap: 10px; }
 .unified-card .lst-row.no-price { justify-content: center; }
 .unified-card p.price { font-weight:700; color:#4C29CC; margin:0; font-size: var(--cookie-desc-price-lg); }
 .unified-card .price-stack { display:flex; flex-direction: row; align-items: baseline; gap: 8px; }
