@@ -72,7 +72,37 @@
     {% endif %}
 
     {% if product %}
-      <a href="{{ product.url }}" class="btn">{% render 'cart-icon' %} {{ cta_label }}</a>
+      {% comment %} Language-based URL logic for localized products {% endcomment %}
+      {% assign product_url = product.url %}
+      
+      {% comment %} Handle power-cookie redirection {% endcomment %}
+      {% if product.handle == 'power-cookie-fi' %}
+        {% if current_language == 'fi' %}
+          {% assign product_url = '/fi/products/voimakeksi-fi' %}
+        {% else %}
+          {% assign product_url = '/products/power-cookie' %}
+        {% endif %}
+      {% endif %}
+      
+      {% comment %} Handle vegan-protein-powder redirection {% endcomment %}
+      {% if product.handle == 'vegan-protein-powder' or product.handle == 'protein-powder-fi' %}
+        {% if current_language == 'fi' %}
+          {% assign product_url = '/fi/products/proteiinijauhe' %}
+        {% else %}
+          {% assign product_url = '/products/vegan-protein-powder' %}
+        {% endif %}
+      {% endif %}
+      
+      {% comment %} Handle i-want-to-taste-them-all-bundle redirection {% endcomment %}
+      {% if product.handle == 'i-want-to-taste-them-all-bundle' or product.handle == 'taste-them-all-fi' %}
+        {% if current_language == 'fi' %}
+          {% assign product_url = '/fi/products/haluan-maistaa-kaikkia' %}
+        {% else %}
+          {% assign product_url = '/products/i-want-to-taste-them-all-bundle' %}
+        {% endif %}
+      {% endif %}
+      
+      <a href="{{ product_url }}" class="btn">{% render 'cart-icon' %} {{ cta_label }}</a>
     {% endif %}
   </div>
 

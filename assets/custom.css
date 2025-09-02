@@ -2797,6 +2797,22 @@ span.productPlanItemList br {
   }
 }
 
+/* Enforce our layout even if a later theme stylesheet defines generic .columns-2/.columns-3 grid rules */
+@media only screen and (min-width: 768px) {
+  .unified-card-section .unified-card-grid.columns-2 {
+    grid-template-columns: repeat(2, minmax(280px, 320px)) !important;
+    gap: clamp(20px, 6vw, 120px) !important;
+    justify-content: center !important;
+    justify-items: center !important;
+  }
+  .unified-card-section .unified-card-grid.columns-3 {
+    grid-template-columns: repeat(3, minmax(260px, 300px)) !important;
+    gap: clamp(16px, 4.5vw, 80px) !important;
+    justify-content: center !important;
+    justify-items: center !important;
+  }
+}
+
 .unified-card {
   background: #ffffff;
   padding: 0px;
