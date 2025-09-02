@@ -524,7 +524,7 @@ span.sls-savings-badge {
 }
 /************************ Testimonilas********/
 .testimonial-slider-section {
-  padding: 0 0 3rem;
+  padding: 0;
   background-color: #ffffff;
   text-align: center;
 }
