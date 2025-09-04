@@ -17,6 +17,12 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .cart-header-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 {%- endstyle -%}
 
 {%- unless settings.cart_type == 'drawer' -%}
@@ -29,9 +35,14 @@
   <div class="page-width">
     <div class="title-wrapper-with-link">
       <h1 class="title title--primary">{{ 'sections.cart.title' | t }}</h1>
-      <a href="{{ routes.root_url }}" class="underlined-link">
-        {{- 'general.continue_shopping' | t -}}
-      </a>
+      <div class="cart-header-links">
+        <a href="{{ routes.root_url }}" class="underlined-link">
+          {{- 'general.continue_shopping' | t -}}
+        </a>
+        <a href="#" class="underlined-link" onclick="clearCart(); return false;">
+          {{- 'general.cart.clear_cart' | t -}}
+        </a>
+      </div>
     </div>
 
     <div class="cart__warnings">
@@ -452,6 +463,27 @@
     </form>
   </div>
 </cart-items>
+
+<script>
+  function clearCart() {
+    // Clear cart immediately without confirmation
+    fetch('/cart/clear.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Refresh the page to show the empty cart
+      location.reload();
+    })
+    .catch(error => {
+      console.error('Error clearing cart:', error);
+      alert('Error clearing cart. Please try again.');
+    });
+  }
+</script>
 
 {% schema %}
 {

@@ -173,7 +173,7 @@
           "settings": {
             "image": "shopify://shop_images/Power_Cookie_Custom_Box_1.webp",
             "title": "I want to taste everything - bundle",
-            "description": "<ul>\n<li>\n<span>🍪</span> 18x protein cookies (two of each flavor)</li>\n<li>\n<span>🥤</span> 1x vanilla-flavored protein powder</li>\n<li>\n<span>🥤</span> 1x chocolate flavored protein powder</li>\n<li>\n<span>🥤</span> 1x strawberry flavored protein powder </li>\n</ul>",
+            "description": "<ul>\n<li>\n<span>🍪</span> 18x protein cookies (two of each flavor)</li>\n<li>\n<span>🥤</span> 1x vanilla-flavored protein powder</li>\n<li>\n<span>🥤</span> 1x chocolate flavored protein powder</li>\n<li>\n<span>🥤</span> 1x strawberry flavored protein powder </li>\n</ul>",
             "price": "84.63€",
             "button_label": "Shop",
             "button_link": "shopify://products/i-want-to-taste-them-all-bundle",
@@ -200,7 +200,7 @@
         "heading": "Build Your Cookie Box",
         "pro-tit": "ORDER MORE AND SAVE! PACK A BOX OF COOKIES WITH YOUR FAVORITE FLAVORS",
         "description": "Save up to 20%",
-        "description-btm": "<h4>Fully customize your order, the more you order, the more  you save per piece:</h4>\n<ul>\n<li>🍪 5-19 pcs: 2.79€/pc (85g cookies)</li>\n<li>🍪 20-39 pcs: 2.49€/pc (85g cookies)</li>\n<li>🍪 40+ pcs: 2.29€/pc (85g cookies)</li>\n</ul>",
+        "description-btm": "<h4>Fully customize your order, the more you order, the more  you save per piece:</h4>\n<ul>\n<li>🍪 5-19 pcs: 2.79€/pc (85g cookies)</li>\n<li>🍪 20-39 pcs: 2.49€/pc (85g cookies)</li>\n<li>🍪 40+ pcs: 2.29€/pc (85g cookies)</li>\n</ul>",
         "product_handle": "power-cookie",
         "product_url": "shopify://products/power-cookie",
         "font_size": "font-size-md"
@@ -214,7 +214,7 @@
         "heading": "POWDERS",
         "pro-tit": "THE WORLD'S PERHAPS BEST PROTEIN POWDER",
         "description": "",
-        "description-btm": "<h4>Chocolate, vanilla and strawberry\nflavors</h4>\n<ul>\n<li>💪 At least 70g protein per 100g</li>\n<li>🎯 Contains all essential amino acids  </li>\n<li>😋 Good taste and texture</li>\n<li>😎 Does not precipitate</li> \n</ul>",
+        "description-btm": "<h4>Chocolate, vanilla and strawberry\nflavors</h4>\n<ul>\n<li>💪 At least 70g protein per 100g</li>\n<li>🎯 Contains all essential amino acids  </li>\n<li>😋 Good taste and texture</li>\n<li>😎 Does not precipitate</li> \n</ul>",
         "product_handle": "vegan-protein-powder",
         "product_url": "shopify://products/vegan-protein-powder",
         "font_size": "font-size-md"

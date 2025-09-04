@@ -85,8 +85,6 @@
     },
     "testimonials_slider_TPXBmE": {
       "type": "testimonials-slider",
-      "blocks": {},
-      "block_order": [],
       "name": "Testimonials",
       "settings": {
         "class": "product-testimonials",

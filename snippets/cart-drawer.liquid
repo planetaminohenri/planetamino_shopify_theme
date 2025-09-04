@@ -554,8 +554,38 @@
           >
             {{ 'sections.cart.checkout' | t }}
           </button>
+          {%- if cart != empty -%}
+            <a href="#" class="link button-label" onclick="clearCartDrawer(); return false;">
+              {{ 'general.cart.clear_cart' | t }}
+            </a>
+          {%- endif -%}
         </div>
       </div>
     </div>
   </div>
 </cart-drawer>
+
+<script>
+  function clearCartDrawer() {
+    // Clear cart immediately without confirmation
+    fetch('/cart/clear.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Update the cart drawer to show empty state
+      if (window.cartDrawer) {
+        window.cartDrawer.renderContents();
+      } else {
+        location.reload();
+      }
+    })
+    .catch(error => {
+      console.error('Error clearing cart:', error);
+      alert('Error clearing cart. Please try again.');
+    });
+  }
+</script>

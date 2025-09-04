@@ -51,7 +51,8 @@
     "cart": {
       "view": "Näytä ostoskori ({{ count }})",
       "item_added": "Tuote lisätty ostoskoriisi",
-      "view_empty_cart": "Katso ostoskori"
+      "view_empty_cart": "Katso ostoskori",
+      "clear_cart": "Tyhjennä ostoskori"
     },
     "share": {
       "copy_to_clipboard": "Kopioi linkki",

@@ -51,7 +51,9 @@
     "cart": {
       "view": "View cart ({{ count }})",
       "view_empty_cart": "View cart",
-      "item_added": "Item added to your cart"
+      "item_added": "Item added to your cart",
+      "clear_cart": "Clear cart",
+      "clear_cart_confirmation": "Are you sure you want to clear your cart?"
     },
     "share": {
       "close": "Close share",

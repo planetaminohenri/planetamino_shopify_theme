@@ -117,11 +117,8 @@
         "padding_bottom": 0
       }
     },
-
     "testimonials_slider_TPXBmE": {
       "type": "testimonials-slider",
-      "blocks": {},
-      "block_order": [],
       "name": "Testimonials",
       "settings": {
         "class": "product-testimonials",
@@ -131,7 +128,6 @@
         "testimonial_ids": "1,2,3,4,5"
       }
     },
-
     "faq_global_jamy9F": {
       "type": "faq-global",
       "name": "faq-global",
