@@ -30,6 +30,30 @@
         "padding_bottom": 20
       }
     },
+    "announcement_bar_p9CnRc": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_ic7WaX": {
+          "type": "announcement",
+          "settings": {
+            "text": "Subscribers please check your email 🍪🥤",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_ic7WaX"
+      ],
+      "settings": {
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "color_scheme": "scheme-e8e2f9a2-75c1-48fa-9026-f68ad32af470",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
@@ -65,6 +89,7 @@
   },
   "order": [
     "header",
+    "announcement_bar_p9CnRc",
     "announcement-bar"
   ]
 }
