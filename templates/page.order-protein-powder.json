@@ -29,7 +29,9 @@
         "sub_heading_WGwhnk": {
           "type": "sub-heading",
           "settings": {
-            "sub-heading": "Plant based\n All essential amino acids\n Mixes perfectly"
+            "sub_heading_1": "Plant Based",
+            "sub_heading_2": "All Essential Amino Acids",
+            "sub_heading_3": "Mixes Perfectly"
           }
         }
       },

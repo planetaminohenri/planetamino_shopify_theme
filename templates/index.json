@@ -110,7 +110,9 @@
         "sub_heading_WGwhnk": {
           "type": "sub-heading",
           "settings": {
-            "sub-heading": "High in protein\nPlant based\nAll essential amino acids"
+            "sub_heading_1": "High in protein",
+            "sub_heading_2": "Plant based",
+            "sub_heading_3": "All essential amino acids"
           }
         }
       },

@@ -25,12 +25,23 @@
                 {{ block.settings.heading }}
               </h2>
             {%- when 'sub-heading' -%}
-              <h3
-                class="planet-amino-banner__sub-heading" 
-                {{ block.shopify_attributes }}
-              >
-                {{ block.settings.sub-heading | newline_to_br }}
-              </h3>
+              <div class="planet-amino-banner__sub-heading-container" {{ block.shopify_attributes }}>
+                {%- if block.settings.sub_heading_1 != blank -%}
+                  <h3 class="planet-amino-banner__sub-heading planet-amino-banner__sub-heading--1">
+                    {{ block.settings.sub_heading_1 }}
+                  </h3>
+                {%- endif -%}
+                {%- if block.settings.sub_heading_2 != blank -%}
+                  <h3 class="planet-amino-banner__sub-heading planet-amino-banner__sub-heading--2">
+                    {{ block.settings.sub_heading_2 }}
+                  </h3>
+                {%- endif -%}
+                {%- if block.settings.sub_heading_3 != blank -%}
+                  <h3 class="planet-amino-banner__sub-heading planet-amino-banner__sub-heading--3">
+                    {{ block.settings.sub_heading_3 }}
+                  </h3>
+                {%- endif -%}
+              </div>
             {%- when 'text' -%}
               <div class="planet-amino-banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
                 <p>{{ block.settings.text }}</p>
@@ -171,8 +182,18 @@
       "settings": [
         {
           "type": "inline_richtext",
-          "id": "sub-heading",
-          "label": "Sub Heading"
+          "id": "sub_heading_1",
+          "label": "Sub Heading 1"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sub_heading_2",
+          "label": "Sub Heading 2"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sub_heading_3",
+          "label": "Sub Heading 3"
         }
       ]
     },

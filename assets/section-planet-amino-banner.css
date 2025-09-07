@@ -135,7 +135,12 @@
   .planet-amino-banner__sub-heading {
     font-size: var(--banner-sub-title-sm);
     margin-bottom: 0;
-    padding-bottom: 2rem; /* ensure consistent space below sub-heading on mobile */
+    padding-bottom: 0; /* default: no padding on mobile */
+  }
+
+  /* Only the third sub-heading has padding-bottom on mobile */
+  .planet-amino-banner__sub-heading--3 {
+    padding-bottom: 2rem;
   }
 
   /* Full-bleed image on mobile */
