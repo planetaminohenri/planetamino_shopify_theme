@@ -69,8 +69,8 @@
   text-transform: uppercase;
   font-weight: bold;
   color: #ffffff;
-  line-height: 1.05;
-  margin: 0;
+  line-height: 0.9;
+  margin: 0 0 10px 0;
 }
 
 /* Spacing between elements - copied from image banner */
@@ -134,7 +134,7 @@
 
   .planet-amino-banner__sub-heading {
     font-size: var(--banner-sub-title-sm);
-    margin-bottom: 0;
+    margin-bottom: 8px;
     padding-bottom: 0; /* default: no padding on mobile */
   }
 
