@@ -151,45 +151,6 @@
     "faq_6_answer": "Power Cookies are baked by our small but mighty team. Producing the cookies allows us to continuously make adjustments to improve our cookies based on feedback. Our small bakery is located in Kuopio Finland",
     "faq_7_question": "💳 What payment methods do you accept?",
     "faq_7_answer": "We accept all major credit cards, Finnish online banking, Shopify Pay, and Google Pay.",
-    "heading": "THE BEST TASTING PLANT-BASED NUTRITION",
-    "left_text": "We are Simo & Henri, Power Cookie Bakers.\nWe train a lot and weren't satisfied with available plant-based protein products, so decided to bake our own!",
-    "right_text": "We are on a mission to create plant-based products that taste great, have good nutritional values and are fairly priced.\n\nSustainability is also very important and that's why we've chosen ingredients (oats, peas, faba beans, potato and hemp) that can grow almost anywhere.",
-    "image": "shopify://shop_images/image_26.png",
-    "btn_label": "Shop Now",
-    "button_link": "",
-    "cart_icon": "shopify://shop_images/cart.svg",
-    "sections": {
-      "main-password-header": {
-        "type": "main-password-header",
-        "settings": {
-          "color_scheme": "scheme-1"
-        }
-      },
-      "main-password-footer": {
-        "type": "main-password-footer",
-        "settings": {
-          "color_scheme": "scheme-1"
-        }
-      }
-    },
-    "content_for_index": [],
-    "blocks": {
-      "14060646107696862457": {
-        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
-        "settings": {}
-      },
-      "341186785192672687": {
-        "type": "shopify://apps/seal-subscriptions/blocks/subscription-script-append/13b25004-a140-4ab7-b5fe-29918f759699",
-        "disabled": false,
-        "settings": {}
-      },
-      "5918445685253060206": {
-        "type": "shopify://apps/bundler/blocks/bundler-script-append/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
-        "disabled": false,
-        "settings": {}
-      }
-    },
     "testimonial_1_image": "shopify://shop_images/vegan-protein-powder-vanilla.webp",
     "testimonial_1_name": "Susanna",
     "testimonial_1_quote": "By far the best vegan protein powder I've tasted. Rich and sweet flavor.",
@@ -230,6 +191,50 @@
     "testimonial_8_quote": "Best vegan protein powder. Mixes well and fits perfectly for example in overnight oats.",
     "testimonial_8_quote_fi": "Paras vege proteiinijauhe. Sekoittuu hyvin ja sopii hyvin esim. tuorepuuroihin.",
     "testimonial_8_rating": 5,
+    "heading": "THE BEST TASTING PLANT-BASED NUTRITION",
+    "left_text": "We are Simo & Henri, Power Cookie Bakers.\nWe train a lot and weren't satisfied with available plant-based protein products, so decided to bake our own!",
+    "right_text": "We are on a mission to create plant-based products that taste great, have good nutritional values and are fairly priced.\n\nSustainability is also very important and that's why we've chosen ingredients (oats, peas, faba beans, potato and hemp) that can grow almost anywhere.",
+    "image": "shopify://shop_images/image_26.png",
+    "btn_label": "Shop Now",
+    "button_link": "",
+    "cart_icon": "shopify://shop_images/cart.svg",
+    "sections": {
+      "main-password-header": {
+        "type": "main-password-header",
+        "settings": {
+          "color_scheme": "scheme-1"
+        }
+      },
+      "main-password-footer": {
+        "type": "main-password-footer",
+        "settings": {
+          "color_scheme": "scheme-1"
+        }
+      }
+    },
+    "content_for_index": [],
+    "blocks": {
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      },
+      "341186785192672687": {
+        "type": "shopify://apps/seal-subscriptions/blocks/subscription-script-append/13b25004-a140-4ab7-b5fe-29918f759699",
+        "disabled": false,
+        "settings": {}
+      },
+      "5918445685253060206": {
+        "type": "shopify://apps/bundler/blocks/bundler-script-append/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
+        "disabled": false,
+        "settings": {}
+      },
+      "17676059084223943535": {
+        "type": "shopify://apps/triplewhale/blocks/triple_pixel_snippet/483d496b-3f1a-4609-aea7-8eee3b6b7a2a",
+        "disabled": false,
+        "settings": {}
+      }
+    },
     "color_schemes": {
       "scheme-1": {
         "settings": {
