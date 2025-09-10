@@ -57,6 +57,13 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement-bar-2": {
+          "type": "announcement",
+          "settings": {
+            "text": "Free mystery cookie in all orders placed before 17.10.25 🍪",
+            "link": ""
+          }
+        },
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
@@ -73,12 +80,13 @@
         }
       },
       "block_order": [
+        "announcement-bar-2",
         "announcement-bar-0",
         "announcement-bar-1"
       ],
       "settings": {
         "auto_rotate": true,
-        "change_slides_speed": 5,
+        "change_slides_speed": 3,
         "color_scheme": "scheme-471b8816-0758-4539-8841-195c3b07167f",
         "show_line_separator": true,
         "show_social": false,
