@@ -1,0 +1,117 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product-custom-box",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "happy_customers_widget": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'happy-customers-widget' %}"
+          }
+        },
+        "custom_review_widget": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'custom-review-widget', review_text: \"Best cookie! Tastes really good and fits perfectly as a sports snack.\", review_text_fi: \"Paras keksi! Maistuu tosi hyvältä ja sopii täydellisesti urheiluvälipalaksi.\", customer_name: \"Eero M.\" %}"
+          }
+        },
+        "nutrition_accordion_inline": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'nutrition-accordion', product: product, variant_selector: true, products_tag: 'power-cookie-protein-powder' %}"
+          }
+        },
+        "bundle_contains_title": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<h2 class=\"bundle-contains-title\">{{ 'bundles.bundle_contains' | t }}</h2>"
+          }
+        },
+        "bundler_custom_bundle_xtAkNn": {
+          "type": "shopify://apps/bundler/blocks/custom-bundle/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
+          "settings": {
+            "shortcode": "eian"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "happy_customers_widget",
+        "custom_review_widget",
+        "nutrition_accordion_inline",
+        "bundle_contains_title",
+        "bundler_custom_bundle_xtAkNn"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 48,
+        "padding_bottom": 0,
+        "subscription_mode": "none"
+      }
+    },
+    "product_description_section": {
+      "type": "product-description",
+      "settings": {
+        "title": "",
+        "full_width": true,
+        "border_radius": 32,
+        "border_radius_mobile": 15,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "testimonials_slider_TPXBmE": {
+      "type": "testimonials-slider",
+      "name": "Testimonials",
+      "settings": {
+        "class": "product-testimonials",
+        "heading": "90% of customers recommend our products",
+        "heading_fi": "YLI 90% ASIAKKAISTA SUOSITTELEE TUOTTEITAMME",
+        "font_size": "font-size-md",
+        "testimonial_ids": "1,2,3,4,5"
+      }
+    },
+    "faq_global_Nz6Jdb": {
+      "type": "faq-global",
+      "name": "faq-global",
+      "settings": {
+        "title": ""
+      }
+    },
+    "best_nutrition_section_gWM4f7": {
+      "type": "best-nutrition-section",
+      "name": "Best Testing Plant Section",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "product_description_section",
+    "testimonials_slider_TPXBmE",
+    "faq_global_Nz6Jdb",
+    "best_nutrition_section_gWM4f7"
+  ]
+}

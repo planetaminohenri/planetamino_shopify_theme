@@ -9,6 +9,42 @@
  */
 {
   "sections": {
+    "planet_amino_banner": {
+      "type": "planet-amino-banner",
+      "blocks": {
+        "text_K7C8AF": {
+          "type": "text",
+          "settings": {
+            "text": "Over 2000+ Happy Customers",
+            "text_style": "body"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Best Tasting Protein Products",
+            "heading_size": "h0"
+          }
+        },
+        "sub_heading_WGwhnk": {
+          "type": "sub-heading",
+          "settings": {
+            "sub_heading_1": "High in protein",
+            "sub_heading_2": "Plant based",
+            "sub_heading_3": "All essential amino acids"
+          }
+        }
+      },
+      "block_order": [
+        "text_K7C8AF",
+        "heading",
+        "sub_heading_WGwhnk"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/Website_banner_image_1200_x_1200.webp",
+        "background_color": "#f4c508"
+      }
+    },
     "unified_grid_bundles": {
       "type": "unified-card-grid",
       "blocks": {
@@ -18,9 +54,10 @@
             "product_handle": "i-want-to-test-bundle",
             "title": "I want to test - Bundle",
             "subtitle": "",
-            "description_btm": "<h4>This bundle contains:</h4><ul>\n<li><span>🍪</span> 9x protein cookies (one of each flavor)</li>\n<li><span>🥤</span> 1x protein powder (chocolate, vanilla or strawberry flavor)</li>\n</ul>",
+            "description_btm": "<h4>This bundle contains:</h4><ul><li>🍪 10x protein cookies (one of each flavor)</li><li>🥤 1x protein powder (chocolate, vanilla or strawberry flavor)</li></ul>",
             "cta_override_en": "",
             "cta_override_fi": "",
+            "display_price": true,
             "title_bg_color": "var(--color-secondary-dark)",
             "title_color": "#ffffff"
           }
@@ -31,9 +68,10 @@
             "product_handle": "i-want-to-taste-them-all-bundle",
             "title": "I want to taste everything - bundle",
             "subtitle": "SAVE 10%",
-            "description_btm": "<h4>This bundle contains:</h4><ul>\n<li><span>🍪</span> 18x protein cookies (two of each flavor)</li>\n<li><span>🥤</span> 1x vanilla-flavored protein powder</li>\n<li><span>🥤</span> 1x chocolate flavored protein powder</li>\n<li><span>🥤</span> 1x strawberry flavored protein powder</li>\n</ul>",
+            "description_btm": "<h4>This bundle contains:</h4><ul><li>🍪 20x protein cookies (two of each flavor)</li><li>🥤 1x vanilla-flavored protein powder</li><li>🥤 1x chocolate flavored protein powder</li><li>🥤 1x strawberry flavored protein powder</li></ul>",
             "cta_override_en": "",
             "cta_override_fi": "",
+            "display_price": true,
             "title_bg_color": "var(--color-primary)",
             "title_color": "#ffffff"
           }
@@ -73,9 +111,12 @@
             "product_handle": "vegan-protein-powder",
             "title": "PROTEIN POWDER",
             "subtitle": "SAVE UP TO 10%",
-            "description_btm": "<h4>Chocolate, vanilla, strawberry flavors and unflavored</h4><ul><li>💪 At least 70g protein per 100g</li>\n<li>🎯 Contains all essential amino acids</li>\n<li>😋 Good taste and texture</li>\n<li>😎 Does not precipitate</li>\n</ul>",
+            "description_btm": "<h4>Chocolate, vanilla, strawberry flavors and unflavored</h4><ul><li>💪 At least 70g protein per 100g</li></ul><ul><li>🎯 Contains all essential amino acids</li></ul><ul><li>😋 Good taste and texture</li></ul><ul><li>😎 Does not precipitate</li></ul>",
             "cta_override_en": "",
-            "cta_override_fi": ""
+            "cta_override_fi": "",
+            "display_price": true,
+            "title_bg_color": "#28005A",
+            "title_color": "#FFFFFF"
           }
         }
       },
@@ -90,41 +131,28 @@
         "font_size": "font-size-md"
       }
     },
-    "planet_amino_banner": {
-      "type": "planet-amino-banner",
-      "blocks": {
-        "text_K7C8AF": {
-          "type": "text",
-          "settings": {
-            "text": "Over 2000+ Happy Customers",
-            "text_style": "body"
-          }
-        },
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Best Tasting Protein Products",
-            "heading_size": "h0"
-          }
-        },
-        "sub_heading_WGwhnk": {
-          "type": "sub-heading",
-          "settings": {
-            "sub_heading_1": "High in protein",
-            "sub_heading_2": "Plant based",
-            "sub_heading_3": "All essential amino acids"
-          }
-        }
-      },
-      "block_order": [
-        "text_K7C8AF",
-        "heading",
-        "sub_heading_WGwhnk"
-      ],
+    "testimonials_slider_UAYPnP": {
+      "type": "testimonials-slider",
+      "name": "Testimonials",
       "settings": {
-        "image": "shopify://shop_images/Website_banner_image_1200_x_1200.webp",
-        "background_color": "#f4c508"
+        "class": "home-testimonials",
+        "heading": "90% of customers recommend our products",
+        "heading_fi": "YLI 90% ASIAKKAISTA SUOSITTELEE TUOTTEITAMME",
+        "font_size": "font-size-md",
+        "testimonial_ids": "1,2,3,4,5"
       }
+    },
+    "faq_global_Gdrmrj": {
+      "type": "faq-global",
+      "name": "faq-global",
+      "settings": {
+        "title": ""
+      }
+    },
+    "best_nutrition_section_gWM4f7": {
+      "type": "best-nutrition-section",
+      "name": "Best Tasting Plant Section",
+      "settings": {}
     },
     "featured_collection": {
       "type": "featured-collection",
@@ -221,29 +249,6 @@
         "product_url": "shopify://products/vegan-protein-powder",
         "font_size": "font-size-md"
       }
-    },
-    "testimonials_slider_UAYPnP": {
-      "type": "testimonials-slider",
-      "name": "Testimonials",
-      "settings": {
-        "class": "home-testimonials",
-        "heading": "90% of customers recommend our products",
-        "heading_fi": "YLI 90% ASIAKKAISTA SUOSITTELEE TUOTTEITAMME",
-        "font_size": "font-size-md",
-        "testimonial_ids": "1,2,3,4,5"
-      }
-    },
-    "faq_global_Gdrmrj": {
-      "type": "faq-global",
-      "name": "faq-global",
-      "settings": {
-        "title": ""
-      }
-    },
-    "best_nutrition_section_gWM4f7": {
-      "type": "best-nutrition-section",
-      "name": "Best Tasting Plant Section",
-      "settings": {}
     }
   },
   "order": [

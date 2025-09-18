@@ -57,13 +57,6 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
-        "announcement-bar-2": {
-          "type": "announcement",
-          "settings": {
-            "text": "Free mystery cookie in all orders placed before 17.10.25 🍪",
-            "link": ""
-          }
-        },
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
@@ -80,7 +73,6 @@
         }
       },
       "block_order": [
-        "announcement-bar-2",
         "announcement-bar-0",
         "announcement-bar-1"
       ],
