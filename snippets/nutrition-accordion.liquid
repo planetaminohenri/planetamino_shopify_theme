@@ -44,11 +44,14 @@ New Bundle Support:
       {% if show_selector %}
         <select class="nutrition-variant-select"{% if use_inline_style %} style="width: 100%; margin-bottom: 16px; padding: 8px 12px; border: 1px solid var(--color-primary); border-radius: 8px; color: var(--color-primary);"{% endif %}>
           {% if use_bundle_mode %}
-            {% comment %} Bundle mode: Show all variants from products that contain the tag {% endcomment %}
+            {% comment %} Bundle mode: Show variants from products with the tag that have nutritional information {% endcomment %}
             {% for bundle_product in collections.all.products %}
               {% if bundle_product.tags contains products_tag %}
                 {% for v in bundle_product.variants %}
-                  <option value="{{ v.id }}">{{ bundle_product.title }}{% unless v.title == 'Default Title' %} - {{ v.title }}{% endunless %}</option>
+                  {% assign nf_check = v.metafields.custom.nutrition.value %}
+                  {% if nf_check %}
+                    <option value="{{ v.id }}">{{ bundle_product.title }}{% unless v.title == 'Default Title' %} - {{ v.title }}{% endunless %}</option>
+                  {% endif %}
                 {% endfor %}
               {% endif %}
             {% endfor %}
@@ -68,10 +71,12 @@ New Bundle Support:
             {% if bundle_product.tags contains products_tag %}
               {% for v in bundle_product.variants %}
                 {% assign nf = v.metafields.custom.nutrition.value %}
-                <div class="nutrition-variant" data-variant-id="{{ v.id }}" {% if variant_counter > 0 %}hidden{% endif %}>
-                  {% assign variant_counter = variant_counter | plus: 1 %}
-                  {% render 'nutrition-content', nf: nf, use_inline_style: use_inline_style %}
-                </div>
+                {% if nf %}
+                  <div class="nutrition-variant" data-variant-id="{{ v.id }}" {% if variant_counter > 0 %}hidden{% endif %}>
+                    {% assign variant_counter = variant_counter | plus: 1 %}
+                    {% render 'nutrition-content', nf: nf, use_inline_style: use_inline_style %}
+                  </div>
+                {% endif %}
               {% endfor %}
             {% endif %}
           {% endfor %}
