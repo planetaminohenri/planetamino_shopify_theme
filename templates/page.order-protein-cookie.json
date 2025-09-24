@@ -1,0 +1,266 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "planet_amino_banner": {
+      "type": "planet-amino-banner",
+      "blocks": {
+        "text_K7C8AF": {
+          "type": "text",
+          "settings": {
+            "text": "Over 2000+ Happy Customers",
+            "text_style": "body"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Best Tasting Vegan Protein Powder",
+            "heading_size": "h0"
+          }
+        },
+        "sub_heading_WGwhnk": {
+          "type": "sub-heading",
+          "settings": {
+            "sub_heading_1": "Plant Based",
+            "sub_heading_2": "All Essential Amino Acids",
+            "sub_heading_3": "Mixes Perfectly"
+          }
+        }
+      },
+      "block_order": [
+        "text_K7C8AF",
+        "heading",
+        "sub_heading_WGwhnk"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/vegan-protein-powder-chocolate.webp",
+        "background_color": "#f4c508"
+      }
+    },
+    "unified_grid_bundles": {
+      "type": "unified-card-grid",
+      "blocks": {
+        "bundle_left": {
+          "type": "card",
+          "settings": {
+            "product_handle": "i-want-to-test-bundle",
+            "title": "I want to test - Bundle",
+            "subtitle": "",
+            "description_btm": "<h4>This bundle contains:</h4><ul><li>🍪 10x protein cookies (one of each flavor)</li><li>🥤 1x protein powder (chocolate, vanilla or strawberry flavor)</li></ul>",
+            "cta_override_en": "",
+            "cta_override_fi": "",
+            "display_price": true,
+            "title_bg_color": "var(--color-secondary-dark)",
+            "title_color": "#ffffff"
+          }
+        },
+        "bundle_right": {
+          "type": "card",
+          "settings": {
+            "product_handle": "i-want-to-taste-them-all-bundle",
+            "title": "I want to taste everything - bundle",
+            "subtitle": "SAVE 10%",
+            "description_btm": "<h4>This bundle contains:</h4><ul><li>🍪 20x protein cookies (two of each flavor)</li><li>🥤 1x vanilla-flavored protein powder</li><li>🥤 1x chocolate flavored protein powder</li><li>🥤 1x strawberry flavored protein powder</li></ul>",
+            "cta_override_en": "",
+            "cta_override_fi": "",
+            "display_price": true,
+            "title_bg_color": "var(--color-primary)",
+            "title_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "bundle_left",
+        "bundle_right"
+      ],
+      "name": "Unified Bundles Grid",
+      "settings": {
+        "section_heading": "BUNDLES",
+        "columns_desktop": "2",
+        "font_size": "font-size-md"
+      }
+    },
+    "unified_grid_products": {
+      "type": "unified-card-grid",
+      "blocks": {
+        "cookies_left": {
+          "type": "card",
+          "settings": {
+            "product_handle": "power-cookie",
+            "title": "Build Your Cookie Box",
+            "subtitle": "Save up to 30%",
+            "description_btm": "<h4>Fully customize your order, the more you order, the more you save per piece:</h4>\n<ul>\n<li>🍪 5-19 pcs: 2.79€/pc (85g cookies)</li>\n<li>🍪 20-39 pcs: 2.49€/pc (85g cookies)</li>\n<li>🍪 40+ pcs: 2.29€/pc (85g cookies)</li>\n</ul>",
+            "cta_override_en": "Build you box",
+            "cta_override_fi": "Kasaa keksilaatikko",
+            "display_price": false,
+            "title_bg_color": "var(--color-accent-dark)",
+            "title_color": "#ffffff"
+          }
+        },
+        "powders_right": {
+          "type": "card",
+          "settings": {
+            "product_handle": "vegan-protein-powder",
+            "title": "PROTEIN POWDER",
+            "subtitle": "SAVE UP TO 10%",
+            "description_btm": "<h4>Chocolate, vanilla, strawberry flavors and unflavored</h4><ul><li>💪 At least 70g protein per 100g</li>\n<li>🎯 Contains all essential amino acids</li>\n<li>😋 Good taste and texture</li>\n<li>😎 Does not precipitate</li>\n</ul>",
+            "cta_override_en": "",
+            "cta_override_fi": "",
+            "display_price": true,
+            "title_bg_color": "#28005A",
+            "title_color": "#FFFFFF"
+          }
+        }
+      },
+      "block_order": [
+        "cookies_left",
+        "powders_right"
+      ],
+      "name": "Unified Products Two-Up",
+      "settings": {
+        "section_heading": "POWER COOKIES AND PROTEIN POWDER",
+        "columns_desktop": "2",
+        "font_size": "font-size-md"
+      }
+    },
+    "testimonials_slider_UAYPnP": {
+      "type": "testimonials-slider",
+      "name": "Testimonials",
+      "settings": {
+        "class": "home-testimonials",
+        "heading": "90% of customers recommend our products",
+        "heading_fi": "YLI 90% ASIAKKAISTA SUOSITTELEE TUOTTEITAMME",
+        "font_size": "font-size-md",
+        "testimonial_ids": "1,2,3,4,5"
+      }
+    },
+    "faq_global_Gdrmrj": {
+      "type": "faq-global",
+      "name": "faq-global",
+      "settings": {
+        "title": ""
+      }
+    },
+    "best_nutrition_section_gWM4f7": {
+      "type": "best-nutrition-section",
+      "name": "Best Tasting Plant Section",
+      "settings": {}
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "power_bundles_tPDyd4": {
+      "type": "power-bundles",
+      "blocks": {
+        "bundle_Md6K8N": {
+          "type": "bundle",
+          "settings": {
+            "image": "shopify://shop_images/Vegan_Protein_Powder_Strawberry.webp",
+            "title": "I want to test - Bundle",
+            "description": "<ul>\n<li>\n<span>🍪</span> 9x protein cookies (one of each flavor)</li>\n<li>\n<span>🥤</span> 1x protein powder (chocolate, vanilla or strawberry flavor)</li>\n</ul>",
+            "price": "39.56€",
+            "button_label": "Shop",
+            "button_link": "shopify://products/i-want-to-test-bundle",
+            "font_size": "font-size-md"
+          }
+        },
+        "bundle_kmqrfL": {
+          "type": "bundle",
+          "settings": {
+            "image": "shopify://shop_images/Power_Cookie_Custom_Box_1.webp",
+            "title": "I want to taste everything - bundle",
+            "description": "<ul>\n<li>\n<span>🍪</span> 18x protein cookies (two of each flavor)</li>\n<li>\n<span>🥤</span> 1x vanilla-flavored protein powder</li>\n<li>\n<span>🥤</span> 1x chocolate flavored protein powder</li>\n<li>\n<span>🥤</span> 1x strawberry flavored protein powder </li>\n</ul>",
+            "price": "84.63€",
+            "button_label": "Shop",
+            "button_link": "shopify://products/i-want-to-taste-them-all-bundle",
+            "font_size": "font-size-md"
+          }
+        }
+      },
+      "block_order": [
+        "bundle_Md6K8N",
+        "bundle_kmqrfL"
+      ],
+      "disabled": true,
+      "name": "Power Bundles",
+      "settings": {
+        "section_heading": "BUNDLES",
+        "font_size": "font-size-md"
+      }
+    },
+    "build_cookie_box_78yGiG": {
+      "type": "build-cookie-box",
+      "disabled": true,
+      "name": "Build Cookie Box",
+      "settings": {
+        "heading": "Build Your Cookie Box",
+        "pro-tit": "ORDER MORE AND SAVE! PACK A BOX OF COOKIES WITH YOUR FAVORITE FLAVORS",
+        "description": "Save up to 20%",
+        "description-btm": "<h4>Fully customize your order, the more you order, the more  you save per piece:</h4>\n<ul>\n<li>🍪 5-19 pcs: 2.79€/pc (85g cookies)</li>\n<li>🍪 20-39 pcs: 2.49€/pc (85g cookies)</li>\n<li>🍪 40+ pcs: 2.29€/pc (85g cookies)</li>\n</ul>",
+        "product_handle": "power-cookie",
+        "product_url": "shopify://products/power-cookie",
+        "font_size": "font-size-md"
+      }
+    },
+    "powder_product_slider_Rnir48": {
+      "type": "powder-product-slider",
+      "disabled": true,
+      "name": "Powders Slider",
+      "settings": {
+        "heading": "POWDERS",
+        "pro-tit": "THE WORLD'S PERHAPS BEST PROTEIN POWDER",
+        "description": "",
+        "description-btm": "<h4>Chocolate, vanilla and strawberry\nflavors</h4>\n<ul>\n<li>💪 At least 70g protein per 100g</li>\n<li>🎯 Contains all essential amino acids  </li>\n<li>😋 Good taste and texture</li>\n<li>😎 Does not precipitate</li> \n</ul>",
+        "product_handle": "vegan-protein-powder",
+        "product_url": "shopify://products/vegan-protein-powder",
+        "font_size": "font-size-md"
+      }
+    }
+  },
+  "order": [
+    "planet_amino_banner",
+    "unified_grid_bundles",
+    "unified_grid_products",
+    "testimonials_slider_UAYPnP",
+    "faq_global_Gdrmrj",
+    "best_nutrition_section_gWM4f7",
+    "featured_collection",
+    "power_bundles_tPDyd4",
+    "build_cookie_box_78yGiG",
+    "powder_product_slider_Rnir48"
+  ]
+}

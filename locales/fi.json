@@ -591,7 +591,7 @@
       "subscribe_save": "Kestotilaa ja säästä",
       "subscribe_save_with_discount": "Kestotilaa ja säästä",
       "every_4_weeks": "Joka 4. viikko",
-      "every_6_weeks": "Joka 6. viikko", 
+      "every_6_weeks": "Joka 6. viikko",
       "every_8_weeks": "Joka 8. viikko",
       "total": "Yhteensä",
       "add_to_cart": "Lisää ostoskoriin ✅",
@@ -608,5 +608,20 @@
     "bundle_contains": "Bundle sisältää",
     "choose_flavors": "Kasaa laatikko suosikkimauistasi",
     "choose_products": "Valitse tuotteet"
+  },
+  "shopify": {
+    "checkout": {
+      "review": {
+        "blocks": {
+          "shipping_method_title": "Toimitustapa"
+        }
+      },
+      "contact": {
+        "delivery_option_title": "Toimitustapa"
+      },
+      "shipping": {
+        "shipping_method_title": "Toimitustapa (valitse noutopiste alta)"
+      }
+    }
   }
 }

@@ -28,6 +28,12 @@
             "custom_liquid": "{% render 'custom-review-widget', review_text: \"These power biscuits are perfect for my workout routine. Great taste and texture!\", review_text_fi: \"Nämä voimakeksit ovat täydellisiä harjoitusrutiiniini. Loistava maku ja rakenne!\", customer_name: \"Sarah K.\" %}"
           }
         },
+        "bundler_custom_bundle_9dAj6F": {
+          "type": "shopify://apps/bundler/blocks/custom-bundle/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
+          "settings": {
+            "shortcode": "etid"
+          }
+        },
         "nutrition_accordion_inline": {
           "type": "custom_liquid",
           "settings": {
@@ -49,18 +55,6 @@
           "type": "quantity_selector",
           "settings": {}
         },
-        "bundler_volume_target_element_8pCAeb": {
-          "type": "shopify://apps/bundler/blocks/volume-target-element/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
-          "settings": {}
-        },
-        "inventory_wyXRgQ": {
-          "type": "inventory",
-          "settings": {
-            "text_style": "body",
-            "inventory_threshold": 10,
-            "show_inventory_quantity": true
-          }
-        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -68,25 +62,22 @@
             "show_gift_card_recipient": true
           }
         },
-        "separator_line": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<hr style=\"border: none; border-top: 1px solid var(--color-primary); margin: 24px 0;\">"
-          }
+        "bundler_volume_target_element_BhbFn7": {
+          "type": "shopify://apps/bundler/blocks/volume-target-element/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
+          "settings": {}
         }
       },
       "block_order": [
         "title",
         "happy_customers_widget",
         "custom_review_widget",
+        "bundler_custom_bundle_9dAj6F",
         "nutrition_accordion_inline",
         "price",
         "variant_picker",
         "quantity_selector",
-        "bundler_volume_target_element_8pCAeb",
-        "inventory_wyXRgQ",
         "buy_buttons",
-        "separator_line"
+        "bundler_volume_target_element_BhbFn7"
       ],
       "settings": {
         "enable_sticky_info": true,
@@ -101,7 +92,7 @@
         "hide_variants": true,
         "enable_video_looping": false,
         "padding_top": 60,
-        "padding_bottom": 100
+        "padding_bottom": 0
       }
     },
     "product_description_section": {

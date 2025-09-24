@@ -2224,7 +2224,12 @@ article.article-template .caption-with-letter-spacing {
 
 /* PRODUCT NEW CHANGES */
 
-
+/* Remove top margin from product form in default template */
+.product__info-container .product-form {
+    border-top: none;
+    margin: 0;
+    padding-top: 20px;
+}
 
 
 html .jdgm-prev-badge {

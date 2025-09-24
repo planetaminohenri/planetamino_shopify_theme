@@ -286,7 +286,6 @@
       "announcement": "Announcement",
       "announcement_bar": "Announcement bar"
     },
-
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",
@@ -583,7 +582,7 @@
     "select_product": "Select a product in the section settings.",
     "allergens": {
       "oat": "oat",
-      "peanut": "peanut", 
+      "peanut": "peanut",
       "nut": "nut"
     }
   },
@@ -593,7 +592,7 @@
       "subscribe_save": "Subscribe & Save",
       "subscribe_save_with_discount": "Subscribe & Save 10%",
       "every_4_weeks": "Every 4 weeks",
-      "every_6_weeks": "Every 6 weeks", 
+      "every_6_weeks": "Every 6 weeks",
       "every_8_weeks": "Every 8 weeks",
       "total": "Total",
       "add_to_cart": "Add to cart",
@@ -610,5 +609,12 @@
     "bundle_contains": "This bundle contains",
     "choose_flavors": "Choose your favorite flavors",
     "choose_products": "Choose your favorite flavors"
+  },
+  "shopify": {
+    "checkout": {
+      "shipping": {
+        "shipping_method_title": "Shipping method (choose pickup point)"
+      }
+    }
   }
 }
