@@ -25,7 +25,7 @@
         "custom_review_widget": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{% render 'custom-review-widget', review_text: \"These power biscuits are perfect for my workout routine. Great taste and texture!\", review_text_fi: \"Nämä voimakeksit ovat täydellisiä harjoitusrutiiniini. Loistava maku ja rakenne!\", customer_name: \"Sarah K.\" %}"
+            "custom_liquid": "{% render 'custom-review-widget', review_text: \"Best cookie! Tastes really good and fits perfectly as a sports snack.\", review_text_fi: \"Paras keksi! Maistuu tosi hyvältä ja sopii täydellisesti urheiluvälipalaksi.\", customer_name: \"Eero M.\" %}"
           }
         },
         "bundler_custom_bundle_9dAj6F": {
@@ -42,7 +42,9 @@
         },
         "price": {
           "type": "price",
-          "settings": {}
+          "settings": {
+            "hide_tax_text": true
+          }
         },
         "variant_picker": {
           "type": "variant_picker",
