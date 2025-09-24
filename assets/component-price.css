@@ -23,6 +23,18 @@
   }
 }
 
+/* Product page specific price styling - affects only product pages, not cart */
+product-info .price--large {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 750px) {
+  product-info .price--large {
+    font-size: 30px;
+  }
+}
+
 
 .price.price--unavailable {
   visibility: hidden;

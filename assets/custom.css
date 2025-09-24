@@ -2890,3 +2890,50 @@ span.productPlanItemList br {
   line-height: var(--font-size-body-lg);
 }
 
+/* Promotional Text Box Styling - Matching Custom Review Widget */
+.product__info-container .promotional-text-box {
+  width: 100%;
+  max-width: 1100px;
+  margin: 2rem 0 0;
+  padding: 2rem 2rem;
+  border-radius: 15px;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  font-family: var(--font-body-family, 'Acumin Pro Condensed', sans-serif);
+  background-color: var(--color-product-card);
+  line-height: 1.2;
+}
+
+.promotional-text-content {
+  text-align: center;
+}
+
+.promotional-text-content h4 {
+  font-size: var(--font-size-body-lg);
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  color: var(--color-primary);
+}
+
+.promotional-text-content p {
+  font-size: var(--font-size-body-lg);
+  font-weight: 400;
+  margin: 8px 0;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+/* Mobile responsive - Matching custom review widget */
+@media screen and (max-width: 768px) {
+  .product__info-container .promotional-text-box {
+    padding: 24px 16px;
+    border: none;
+  }
+}
+
+/* Ensure proper spacing in product page context */
+.main-product .product__info-container .promotional-text-box {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
