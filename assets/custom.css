@@ -1419,11 +1419,7 @@ section.product-testimonials.testimonial-slider-section {
     background: #ffffff !important;
     padding: 0;
 }
-.product__info-container .product-form {
-    border-top: 1px solid #330073;
-    padding-top: 40px;
-    margin: 0;
-}
+
 
 .product-form__submit {
     margin-bottom: 1rem;
@@ -1434,7 +1430,6 @@ section.product-testimonials.testimonial-slider-section {
     border-radius: 10px;
     font-size: 1.8rem;
     text-transform: uppercase;
-    padding: 10px 64px;
     line-height: 1;
 }
 
@@ -2231,7 +2226,7 @@ article.article-template .caption-with-letter-spacing {
 .product__info-container .product-form {
     border-top: none;
     margin: 0;
-    padding-top: 20px;
+    padding-top: 0px;
 }
 
 

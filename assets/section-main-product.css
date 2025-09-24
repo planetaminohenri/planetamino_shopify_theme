@@ -351,11 +351,104 @@ a.product__text {
   max-width: 100%;
 }
 
+/* Override for quantity-and-cart-wrapper specifically */
+.product--no-media .product-form__quantity.quantity-and-cart-wrapper {
+  flex-direction: row !important;
+  max-width: none !important;
+  justify-content: flex-start;
+}
+
 .product-form__quantity .form__label {
     margin-bottom: .6rem;
     font-size: 24px;
     color: #28005A;
     font-weight: 800;
+}
+
+/* Side-by-side layout for quantity selector and add to cart button */
+.quantity-and-cart-wrapper {
+  display: flex !important;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-top: 10px;
+}
+
+.quantity-selector-wrapper {
+  flex: 0 0 auto;
+  width: auto;
+  margin: 0;
+}
+
+.add-to-cart-wrapper {
+  flex: 1 1 auto;
+  margin: 0;
+}
+
+.add-to-cart-wrapper .product-form {
+  margin: 0;
+}
+
+.add-to-cart-wrapper .product-form__buttons {
+  margin: 0;
+  max-width: none;
+  display: flex;
+  align-items: center;
+}
+
+.add-to-cart-inline .product-form__submit {
+  margin-bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+}
+
+/* Ensure quantity selector stays inline */
+.quantity-selector-wrapper .quantity {
+  margin: 0;
+}
+
+.quantity-selector-wrapper .price-per-item__container {
+  margin: 0;
+}
+
+/* Override any existing styles that might force stacking */
+.product-form__quantity.quantity-and-cart-wrapper {
+  flex-direction: row !important;
+  max-width: none !important;
+}
+
+/* Additional overrides to ensure side-by-side layout */
+.product--no-media .product-form__quantity.quantity-and-cart-wrapper,
+.quantity-and-cart-wrapper {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+}
+
+/* Make sure these don't center or justify content differently */
+.product--no-media .quantity-and-cart-wrapper {
+  justify-content: flex-start !important;
+  align-items: center !important;
+  text-align: left;
+}
+
+/* Mobile - keep side by side but adjust proportions */
+@media screen and (max-width: 749px) {
+  .quantity-and-cart-wrapper {
+    gap: 0.75rem;
+  }
+  
+  .quantity-selector-wrapper {
+    flex-shrink: 0;
+  }
+  
+  .add-to-cart-wrapper {
+    flex-grow: 1;
+  }
 }
 .price-per-item__label.form__label {
   margin-bottom: 0rem;
