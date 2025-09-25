@@ -607,7 +607,12 @@
     "select_protein_powder": "Valitse yksi proteiinijauhe",
     "bundle_contains": "Bundle sisältää",
     "choose_flavors": "Kasaa laatikko suosikkimauistasi",
-    "choose_products": "Valitse tuotteet"
+    "choose_products": "Valitse tuotteet",
+    "promotional_text": {
+      "title": "TILAA ENEMMÄN JA SÄÄSTÄ:",
+      "two_boxes": "🍪 2 laatikkoa: säästä 10% ja ilmainen toimitus 🚀",
+      "four_boxes": "🍪 4 laatikkoa: säästä 20% ja ilmainen toimitus 🚀"
+    }
   },
   "shopify": {
     "checkout": {

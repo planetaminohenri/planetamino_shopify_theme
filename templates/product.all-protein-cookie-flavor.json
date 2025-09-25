@@ -58,7 +58,7 @@
         "promotional_text": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<div class=\"promotional-text-box\">\n  <div class=\"promotional-text-content\">\n    <h4>ORDER MORE AND SAVE:</h4>\n    <p>🍪2 boxes: save 10% and free shipping 🚀</p>\n    <p>🍪4 boxes: save 20% and free shipping 🚀</p>\n  </div>\n</div>"
+            "custom_liquid": "{% render 'promotional-text' %}"
           }
         },
         "bundler_volume_target_element_BhbFn7": {
