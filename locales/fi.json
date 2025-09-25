@@ -610,8 +610,8 @@
     "choose_products": "Valitse tuotteet",
     "promotional_text": {
       "title": "TILAA ENEMMÄN JA SÄÄSTÄ:",
-      "two_boxes": "🍪 2 laatikkoa: 2.51€/kpl ja ilmainen toimitus",
-      "four_boxes": "🍪 4 laatikkoa: 2.23€/kpl ja ilmainen toimitus"
+      "two_boxes": "🍪 2 laatikkoa: säästä 10% ja ilmainen toimitus",
+      "four_boxes": "🍪 4 laatikkoa: säästä 20% ja ilmainen toimitus"
     }
   },
   "shopify": {
