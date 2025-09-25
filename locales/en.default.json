@@ -611,8 +611,8 @@
     "choose_products": "Choose your favorite flavors",
     "promotional_text": {
       "title": "ORDER MORE AND SAVE:",
-      "two_boxes": "🍪 2 boxes: save 10% and free shipping 🚀",
-      "four_boxes": "🍪 4 boxes: save 20% and free shipping 🚀"
+      "two_boxes": "🍪 2 boxes: 2.51€/pc and free shipping",
+      "four_boxes": "🍪 4 boxes: 2.23€/pc and free shipping"
     }
   },
   "shopify": {
