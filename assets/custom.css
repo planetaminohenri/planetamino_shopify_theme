@@ -1329,6 +1329,7 @@ product-info .page-width {
     font-weight: 700;
     text-transform: uppercase;
     color: #330073;
+    line-height: 1;
 }
 
 .product__title {
@@ -2823,6 +2824,22 @@ span.productPlanItemList br {
   display: flex;
   flex-direction: column;
 }
+
+/* Desktop: Make cards full height with bottom elements aligned */
+@media only screen and (min-width: 768px) {
+  .unified-card {
+    height: 100%;
+  }
+  
+  .unified-card .btm-cnt {
+    flex-grow: 1;
+  }
+  
+  .unified-card .unified-divider {
+    margin-top: auto;
+    margin-bottom: 30px;
+  }
+}
 .unified-card .unified-divider {height: 1px; background: var(--color-primary); margin: 30px 0; opacity: 1; width: 100%;}
 .unified-card .main-image-container { display:flex; flex-direction: column; width: 100%; margin-bottom: 0px; }
 .unified-card .main-image-container img { width: 100%; border-radius: 0px; }
@@ -2894,7 +2911,7 @@ span.productPlanItemList br {
 .product__info-container .promotional-text-box {
   width: 100%;
   max-width: 1100px;
-  margin: 2rem 0 0;
+  margin: 25px 0 0;
   padding: 2rem 2rem;
   border-radius: 15px;
   border: 1px solid var(--color-primary);

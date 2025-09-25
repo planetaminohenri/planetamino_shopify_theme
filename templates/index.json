@@ -52,7 +52,7 @@
           "type": "card",
           "settings": {
             "product_handle": "all-protein-cookie-flavors-bundle",
-            "title": "ALL PROTEIN COOKIE FLAVORS BUNDLE",
+            "title": "ALL PROTEIN COOKIE FLAVORS - BUNDLE",
             "subtitle": "SAVE UP TO 20%",
             "description_btm": "<h4>This bundle contains:</h4><ul><li>🍪 10x protein cookies (one of each flavor)</li></ul>",
             "cta_override_en": "",
@@ -66,8 +66,8 @@
           "type": "card",
           "settings": {
             "product_handle": "i-want-to-test-bundle",
-            "title": "I want to test - Bundle",
-            "subtitle": "",
+            "title": "I want to test cookies and powders - Bundle",
+            "subtitle": " ",
             "description_btm": "<h4>This bundle contains:</h4><ul><li>🍪 10x protein cookies (one of each flavor)</li><li>🥤 1x protein powder (chocolate, vanilla or strawberry flavor)</li></ul>",
             "cta_override_en": "",
             "cta_override_fi": "",

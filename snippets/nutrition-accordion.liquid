@@ -12,6 +12,34 @@ Parameters:
 New Bundle Support:
 - If products_tag is provided, will display nutrition for all products with that tag
 - Falls back to current behavior (product.variants) if no tag is provided
+
+Spacing Customization:
+To customize spacing, add CSS custom properties to your theme:
+:root {
+  /* Desktop spacing */
+  --nutrition-accordion-margin: 20px 0;
+  --nutrition-accordion-header-padding: 12px 16px;
+  --nutrition-accordion-content-padding: 16px;
+  --nutrition-accordion-select-margin: 16px;
+  --nutrition-accordion-select-padding: 8px 12px;
+  
+  /* Mobile spacing - override in media queries */
+  --nutrition-accordion-margin-mobile: 12px 0;
+  --nutrition-accordion-header-padding-mobile: 10px 12px;
+  --nutrition-accordion-content-padding-mobile: 12px;
+  --nutrition-accordion-select-margin-mobile: 12px;
+  --nutrition-accordion-select-padding-mobile: 6px 10px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --nutrition-accordion-margin: var(--nutrition-accordion-margin-mobile);
+    --nutrition-accordion-header-padding: var(--nutrition-accordion-header-padding-mobile);
+    --nutrition-accordion-content-padding: var(--nutrition-accordion-content-padding-mobile);
+    --nutrition-accordion-select-margin: var(--nutrition-accordion-select-margin-mobile);
+    --nutrition-accordion-select-padding: var(--nutrition-accordion-select-padding-mobile);
+  }
+}
 {% endcomment %}
 
 {% liquid
@@ -33,16 +61,16 @@ New Bundle Support:
 %}
 
 {% if host_product %}
-  <section class="nutrition-accordion {{ extra_classes }}" id="{{ unique_id }}" data-product-id="{{ host_product.id }}"{% if use_inline_style %} style="margin: 16px 0; font-family: 'Acumin Pro Condensed', sans-serif;"{% endif %}>
-    <div class="nutrition-accordion__header" role="button" aria-expanded="false" tabindex="0"{% if use_inline_style %} style="padding: 12px 16px; border: 1px solid var(--color-primary); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; background: var(--color-primary); font-family: 'Acumin Pro Condensed', sans-serif;"{% endif %}>
+  <section class="nutrition-accordion {{ extra_classes }}" id="{{ unique_id }}" data-product-id="{{ host_product.id }}"{% if use_inline_style %} style="margin: var(--nutrition-accordion-margin, 16px 0); font-family: 'Acumin Pro Condensed', sans-serif;"{% endif %}>
+    <div class="nutrition-accordion__header" role="button" aria-expanded="false" tabindex="0"{% if use_inline_style %} style="padding: var(--nutrition-accordion-header-padding, 12px 16px); border: 1px solid var(--color-primary); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; background: var(--color-primary); font-family: 'Acumin Pro Condensed', sans-serif;"{% endif %}>
       <h3{% if use_inline_style %} style="margin: 0; color: #fff;"{% endif %}>{{ 'nutrition.title' | t }}</h3>
       <span class="nutrition-accordion__chevron" aria-hidden="true"{% if use_inline_style %} style="width: 10px; height: 10px; border-right: 2px solid #fff; border-bottom: 2px solid #fff; transform: rotate(45deg); transition: transform .25s;"{% endif %}></span>
     </div>
 
-    <div class="nutrition-accordion__content" hidden{% if use_inline_style %} style="padding: 16px; background: #fff; border: 1px solid var(--color-primary); border-top: none; border-radius: 0 0 12px 12px;"{% endif %}>
+    <div class="nutrition-accordion__content" hidden{% if use_inline_style %} style="padding: var(--nutrition-accordion-content-padding, 16px); background: #fff; border: 1px solid var(--color-primary); border-top: none; border-radius: 0 0 12px 12px;"{% endif %}>
       
       {% if show_selector %}
-        <select class="nutrition-variant-select"{% if use_inline_style %} style="width: 100%; margin-bottom: 16px; padding: 8px 12px; border: 1px solid var(--color-primary); border-radius: 8px; color: var(--color-primary);"{% endif %}>
+        <select class="nutrition-variant-select"{% if use_inline_style %} style="width: 100%; margin-bottom: var(--nutrition-accordion-select-margin, 16px); padding: var(--nutrition-accordion-select-padding, 8px 12px); border: 1px solid var(--color-primary); border-radius: 8px; color: var(--color-primary);"{% endif %}>
           {% if use_bundle_mode %}
             {% comment %} Bundle mode: Show variants from products with the tag that have nutritional information {% endcomment %}
             {% for bundle_product in collections.all.products %}
