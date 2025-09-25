@@ -2937,3 +2937,16 @@ span.productPlanItemList br {
   margin-bottom: 24px;
 }
 
+/* Hide Bundler App Sticky Add to Cart (keeping main widget functional) */
+.bdnlr-mnm-status-box-info-container {
+  display: none !important;
+}
+
+.bndlr-status-box-product-image {
+  display: none !important;
+}
+
+.bndlr-status-box-product-quantity {
+  display: none !important;
+}
+
