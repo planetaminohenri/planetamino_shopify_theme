@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
       'tr': 'Paketiniz:',
       'vi': 'Gói của bạn:',
       'zh-CN': '您的套餐：'
-    }
+    },
   };
 
   // Pattern for "Your bundle needs X more item(s)." with dynamic number
@@ -145,9 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Translate text in found elements
-    console.log(`Attempting to translate ${bundlerElements.length} bundler elements for language: ${currentLanguage}`);
     bundlerElements.forEach((element, index) => {
-      console.log(`Translating element ${index}:`, element.tagName, element.className);
       translateElementText(element, currentLanguage);
     });
   }
@@ -161,7 +159,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (originalText) {
           const translatedText = translateText(originalText, language);
           if (translatedText !== originalText) {
-            console.log(`Translating: "${originalText}" -> "${translatedText}"`);
             node.textContent = node.textContent.replace(originalText, translatedText);
           }
         }
@@ -202,61 +199,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Debug function to log what elements we find
-  function debugBundlerElements() {
-    console.log('=== BUNDLER DEBUG ===');
-    console.log('Current language:', getCurrentLanguage());
-    
-    const bundlerSelectors = [
-      '[data-shortcode]',
-      '.bundler-target-element',
-      '[data-bndlr-ccid]',
-      '.bndlr-container',
-      '.bndlr-add-to-bundle',
-      '.bndlr-mnm-instructions-text',
-      '.bndlr-mnm-selected-products-title',
-      '[class*="bundler"]',
-      '[class*="bndlr"]',
-      '.shopify-app-block'
-    ];
-
-    bundlerSelectors.forEach(selector => {
-      const elements = document.querySelectorAll(selector);
-      if (elements.length > 0) {
-        console.log(`Found ${elements.length} elements with selector: ${selector}`);
-        elements.forEach((el, index) => {
-          console.log(`  Element ${index}:`, el);
-          console.log(`  Text content:`, el.textContent.substring(0, 200));
-        });
-      }
-    });
-
-    // Also check for text containing our target strings
-    const textElements = Array.from(document.querySelectorAll('*')).filter(el => {
-      const text = el.textContent;
-      return text.includes('Add') || text.includes('Your bundle needs') || text.includes('more item');
-    });
-    
-    console.log('Elements containing target text:', textElements.length);
-    textElements.forEach((el, index) => {
-      if (index < 10) { // Limit to first 10 to avoid spam
-        console.log(`  Text element ${index}:`, el.tagName, el.className, el.textContent.trim());
-      }
-    });
-    
-    console.log('=== END DEBUG ===');
-  }
 
   // Initial translation attempt
   setTimeout(() => {
-    debugBundlerElements(); // Add debug first
     translateBundlerElements();
   }, 500); // Give bundler time to load
 
-  // Also debug after longer delay in case bundler loads slowly
+  // Also translate after longer delay in case bundler loads slowly
   setTimeout(() => {
-    console.log('=== SECOND DEBUG ATTEMPT ===');
-    debugBundlerElements();
     translateBundlerElements();
   }, 2000);
 
