@@ -52,7 +52,8 @@
       "view": "Näytä ostoskori ({{ count }})",
       "item_added": "Tuote lisätty ostoskoriisi",
       "view_empty_cart": "Katso ostoskori",
-      "clear_cart": "Tyhjennä ostoskori"
+      "clear_cart": "Tyhjennä ostoskori",
+      "clear_cart_confirmation": "Haluatko varmasti tyhjentää ostoskorisi?"
     },
     "share": {
       "copy_to_clipboard": "Kopioi linkki",
@@ -626,7 +627,38 @@
       },
       "shipping": {
         "shipping_method_title": "Toimitustapa (valitse noutopiste alta)"
+      },
+      "remote_merchandise_only": {
+        "single_shop_transition": "Sinut ohjataan osoitteeseen %{shop_name} ostoksen loppuun saattamiseksi"
       }
+    }
+  },
+  "customer_accounts": {
+    "subscriptions": {
+      "subscription_contracts": {
+        "title": "Käytä maksutapaa toistuville tilauksille",
+        "more_items": {
+          "one": "ja {{count}} lisää tuotetta",
+          "other": "ja {{count}} muuta tuotetta"
+        },
+        "product_count": {
+          "one": "{{count}} tuotetta",
+          "other": "{{count}} tuotetta"
+        },
+        "contracts_update_failed": "Joidenkin tilaussopimusten päivittäminen epäonnistui",
+        "subscription_contracts_updated": "Päivitetty {{succeeded}} / {{total}} tilausta",
+        "product_details": "Tuotetiedot",
+        "load_more": "Lataa lisää"
+      },
+      "updating_contracts": {
+        "one": "Päivitetään {{count}} tilaussopimusta...",
+        "other": "Päivitetään {{count}} tilaussopimusta..."
+      },
+      "contracts_updated": {
+        "one": "{{count}} tilaussopimusta päivitettiin onnistuneesti",
+        "other": "{{count}} tilaussopimusta päivitetty onnistuneesti"
+      },
+      "contracts_update_failed": "Joidenkin tilaussopimusten päivittäminen epäonnistui"
     }
   }
 }
