@@ -386,7 +386,9 @@ document.addEventListener('DOMContentLoaded', function() {
       '.cart-count-bubble',
       '[href*="cart"]',
       '.cart-drawer-toggle',
-      '.header__icon--cart'
+      '.header__icon--cart',
+      // Upcart subscription upgrade entry point (div, not button)
+      '.upcart-subscription-upgrade-button'
     ];
     
     const isCartTrigger = cartTriggers.some(selector => 
@@ -396,13 +398,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isCartTrigger) {
       console.log('🛒 Cart trigger clicked, will check for upcart content...');
       // Multiple delayed attempts since cart content loads progressively
-      [500, 1000, 2000].forEach(delay => {
+      [200, 500, 1000, 2000].forEach(delay => {
         setTimeout(() => {
-          const optgroups = document.querySelectorAll('optgroup');
-          if (optgroups.length > 0) {
-            console.log(`🔄 Found ${optgroups.length} optgroups after ${delay}ms, translating...`);
-            translateUpcartElements();
-          }
+          // We now query across roots, so simply trigger translation
+          console.log(`🔄 Running translation pass after ${delay}ms due to cart/upgrade trigger`);
+          translateUpcartElements();
         }, delay);
       });
     }
@@ -410,11 +410,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Re-translate after any button clicks that might trigger upcart updates
     if (target.matches('button') || target.closest('button')) {
       setTimeout(() => {
-        const optgroups = document.querySelectorAll('optgroup');
-        if (optgroups.length > 0) {
-          console.log('🔄 Button clicked and optgroups found, translating...');
-          translateUpcartElements();
-        }
+        console.log('🔄 Button clicked; running translation pass');
+        translateUpcartElements();
       }, 200);
     }
   });
