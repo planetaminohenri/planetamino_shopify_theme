@@ -69,56 +69,50 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
-    // Find all upcart elements, focusing on the specific subscription module
+    console.log(`🔍 Starting translation for language: ${currentLanguage}`);
+
+    // Directly target optgroup elements first
+    const optgroups = document.querySelectorAll('optgroup');
+    console.log(`🔍 Found ${optgroups.length} optgroup elements total`);
+    
+    optgroups.forEach((optgroup, index) => {
+      const label = optgroup.getAttribute('label');
+      console.log(`🔍 Optgroup ${index}: label="${label}"`);
+      
+      if (label === 'Full price' || label === 'Subscription plans') {
+        const translatedLabel = translateText(label, currentLanguage);
+        if (translatedLabel !== label) {
+          console.log(`✅ Translating optgroup label: "${label}" -> "${translatedLabel}"`);
+          optgroup.setAttribute('label', translatedLabel);
+        } else {
+          console.log(`❌ No translation found for: "${label}"`);
+        }
+      }
+    });
+
+    // Also search by specific selectors
     const upcartSelectors = [
-      '.SubscriptionUpgradesModule_dropdown', // Main container
-      '.SubscriptionUpgradesModule_dropdownWrapper', // Wrapper
-      'select.upcart-subscription-upgrade-dropdown', // The select element
-      'optgroup[label="Full price"]', // Specific optgroup for Full price
-      'optgroup[label="Subscription plans"]', // Specific optgroup for Subscription plans
-      '[class*="upcart"]', // General upcart classes
-      '[data-upcart]', // Upcart data attributes
-      '.upcart-container',
-      '.upcart-drawer',
-      '.upcart-popup',
-      '.upcart-widget',
-      '#upcart-cart-drawer', // Common upcart ID
-      '[id*="upcart"]', // Elements with upcart in ID
-      '[class*="UpCart"]' // Alternative capitalization
+      '.SubscriptionUpgradesModule_dropdown',
+      '.SubscriptionUpgradesModule_dropdownWrapper', 
+      'select.upcart-subscription-upgrade-dropdown',
+      '[class*="upcart"]'
     ];
 
     let upcartElements = [];
     upcartSelectors.forEach(selector => {
       try {
         const elements = document.querySelectorAll(selector);
+        console.log(`🔍 Selector "${selector}" found ${elements.length} elements`);
         upcartElements = upcartElements.concat(Array.from(elements));
       } catch (e) {
-        // Skip invalid selectors
         console.warn('Invalid selector:', selector);
       }
     });
 
-    // If no specific upcart elements found, check for elements containing upcart text
-    if (upcartElements.length === 0) {
-      const allElements = document.querySelectorAll('*');
-      upcartElements = Array.from(allElements).filter(el => {
-        const text = el.textContent;
-        return text.includes('Full price') || text.includes('Subscription Plans');
-      });
-    }
-
-    // Also specifically look for optgroup elements with our target labels
-    const optgroups = document.querySelectorAll('optgroup[label="Full price"], optgroup[label="Subscription plans"]');
-    optgroups.forEach(optgroup => {
-      if (!upcartElements.includes(optgroup)) {
-        upcartElements.push(optgroup);
-      }
-    });
-
     // Translate text in found elements
-    console.log(`Attempting to translate ${upcartElements.length} upcart elements for language: ${currentLanguage}`);
+    console.log(`🔍 Processing ${upcartElements.length} additional upcart elements`);
     upcartElements.forEach((element, index) => {
-      console.log(`Translating upcart element ${index}:`, element.tagName, element.className);
+      console.log(`🔍 Processing element ${index}:`, element.tagName, element.className);
       translateElementText(element, currentLanguage);
     });
   }
@@ -307,5 +301,28 @@ document.addEventListener('DOMContentLoaded', function() {
   window.forceUpcartTranslation = function() {
     console.log('🔧 Force translation triggered:');
     translateUpcartElements();
+  };
+
+  // Quick test function to check optgroups directly
+  window.testOptgroups = function() {
+    console.log('🧪 Testing optgroups directly:');
+    const optgroups = document.querySelectorAll('optgroup');
+    console.log(`Found ${optgroups.length} optgroups:`);
+    optgroups.forEach((og, i) => {
+      console.log(`${i}: label="${og.getAttribute('label')}" parent=${og.parentElement.tagName}.${og.parentElement.className}`);
+    });
+    
+    // Try direct translation
+    optgroups.forEach(og => {
+      const label = og.getAttribute('label');
+      if (label === 'Full price') {
+        og.setAttribute('label', 'Kertaostos');
+        console.log('✅ Manually set Full price -> Kertaostos');
+      }
+      if (label === 'Subscription plans') {
+        og.setAttribute('label', 'Kestotilaus');
+        console.log('✅ Manually set Subscription plans -> Kestotilaus');
+      }
+    });
   };
 });
