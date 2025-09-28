@@ -246,17 +246,26 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Initial translation attempt
+  console.log('🔍 Upcart Translation Script Loaded - Starting in 500ms...');
   setTimeout(() => {
+    console.log('🔍 First attempt (500ms delay):');
     debugUpcartElements(); // Add debug first
     translateUpcartElements();
   }, 500); // Give upcart time to load
 
   // Also debug after longer delay in case upcart loads slowly
   setTimeout(() => {
-    console.log('=== SECOND UPCART DEBUG ATTEMPT ===');
+    console.log('🔍 Second attempt (2000ms delay):');
     debugUpcartElements();
     translateUpcartElements();
   }, 2000);
+
+  // Add even longer delay for very slow loading
+  setTimeout(() => {
+    console.log('🔍 Third attempt (5000ms delay):');
+    debugUpcartElements();
+    translateUpcartElements();
+  }, 5000);
 
   // Set up observer for dynamic content
   setupMutationObserver();
@@ -287,4 +296,16 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 100);
     });
   });
+
+  // Expose debug functions globally for manual testing
+  window.debugUpcart = function() {
+    console.log('🔧 Manual debug triggered:');
+    debugUpcartElements();
+    translateUpcartElements();
+  };
+
+  window.forceUpcartTranslation = function() {
+    console.log('🔧 Force translation triggered:');
+    translateUpcartElements();
+  };
 });
