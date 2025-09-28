@@ -163,12 +163,22 @@ document.addEventListener('DOMContentLoaded', function() {
         if (mutation.type === 'childList') {
           mutation.addedNodes.forEach(function(node) {
             if (node.nodeType === Node.ELEMENT_NODE) {
+              // Check if the added node contains optgroup elements
+              const hasOptgroups = node.querySelectorAll && node.querySelectorAll('optgroup').length > 0;
+              
               // Check if the added node or its children contain upcart elements
               const containsUpcartText = node.textContent && 
                 (node.textContent.includes('Full price') ||
                  node.textContent.includes('Subscription Plans'));
               
-              if (containsUpcartText) {
+              // Check for upcart-specific classes
+              const hasUpcartClasses = node.className && (
+                node.className.includes('upcart') || 
+                node.className.includes('SubscriptionUpgradesModule')
+              );
+              
+              if (hasOptgroups || containsUpcartText || hasUpcartClasses) {
+                console.log('🔄 Detected upcart content added, translating...');
                 setTimeout(() => {
                   translateUpcartElements();
                 }, 100); // Small delay to allow content to fully render
@@ -266,11 +276,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Also translate when upcart events fire (if any)
   document.addEventListener('click', function(event) {
-    // Re-translate after clicks that might trigger upcart updates
     const target = event.target;
+    
+    // Check if clicked element might open cart/drawer
+    const cartTriggers = [
+      '[data-cart-drawer-toggle]',
+      '.cart-count-bubble',
+      '[href*="cart"]',
+      '.cart-drawer-toggle',
+      '.header__icon--cart'
+    ];
+    
+    const isCartTrigger = cartTriggers.some(selector => 
+      target.matches(selector) || target.closest(selector)
+    );
+    
+    if (isCartTrigger) {
+      console.log('🛒 Cart trigger clicked, will check for upcart content...');
+      // Multiple delayed attempts since cart content loads progressively
+      [500, 1000, 2000].forEach(delay => {
+        setTimeout(() => {
+          const optgroups = document.querySelectorAll('optgroup');
+          if (optgroups.length > 0) {
+            console.log(`🔄 Found ${optgroups.length} optgroups after ${delay}ms, translating...`);
+            translateUpcartElements();
+          }
+        }, delay);
+      });
+    }
+    
+    // Re-translate after any button clicks that might trigger upcart updates
     if (target.matches('button') || target.closest('button')) {
       setTimeout(() => {
-        translateUpcartElements();
+        const optgroups = document.querySelectorAll('optgroup');
+        if (optgroups.length > 0) {
+          console.log('🔄 Button clicked and optgroups found, translating...');
+          translateUpcartElements();
+        }
       }, 200);
     }
   });
