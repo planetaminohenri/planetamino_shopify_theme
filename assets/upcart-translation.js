@@ -30,6 +30,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   };
 
+  // Build a lowercase-keyed map for case-insensitive lookups
+  const normalizedTranslations = {};
+  Object.keys(translations).forEach(function(key) {
+    normalizedTranslations[key.toLowerCase()] = translations[key];
+  });
+
   // Get current language from URL or HTML lang attribute
   function getCurrentLanguage() {
     // First try to get from URL path
@@ -51,13 +57,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Translate text based on current language
   function translateText(text, language) {
-    // Direct translation lookup
-    if (translations[text] && translations[text][language]) {
-      return translations[text][language];
+    var original = text == null ? '' : String(text);
+    var trimmed = original.trim();
+
+    // Direct translation lookup (exact match)
+    if (translations[trimmed] && translations[trimmed][language]) {
+      return translations[trimmed][language];
+    }
+
+    // Case-insensitive fallback (e.g., 'Subscription plans' vs 'Subscription Plans')
+    var lower = trimmed.toLowerCase();
+    if (normalizedTranslations[lower] && normalizedTranslations[lower][language]) {
+      return normalizedTranslations[lower][language];
     }
 
     // Return original text if no translation found
-    return text;
+    return original;
   }
 
   // Translate all text nodes within upcart elements
@@ -71,15 +86,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log(`🔍 Starting translation for language: ${currentLanguage}`);
 
-    // Directly target optgroup elements first
-    const optgroups = document.querySelectorAll('optgroup');
-    console.log(`🔍 Found ${optgroups.length} optgroup elements total`);
+    // Gather all searchable roots (document, shadow roots, and same-origin iframes)
+    const roots = getAllRoots();
+    console.log(`🔍 Search contexts: ${roots.length} (document + shadow roots + same-origin iframes)`);
+
+    // Directly target optgroup elements first across all roots
+    const optgroups = queryAllInRoots('optgroup', roots);
+    console.log(`🔍 Found ${optgroups.length} optgroup elements total across all contexts`);
     
     optgroups.forEach((optgroup, index) => {
       const label = optgroup.getAttribute('label');
       console.log(`🔍 Optgroup ${index}: label="${label}"`);
       
-      if (label === 'Full price' || label === 'Subscription plans') {
+      if (label && ['full price', 'subscription plans'].includes(label.toLowerCase())) {
         const translatedLabel = translateText(label, currentLanguage);
         if (translatedLabel !== label) {
           console.log(`✅ Translating optgroup label: "${label}" -> "${translatedLabel}"`);
@@ -101,8 +120,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let upcartElements = [];
     upcartSelectors.forEach(selector => {
       try {
-        const elements = document.querySelectorAll(selector);
-        console.log(`🔍 Selector "${selector}" found ${elements.length} elements`);
+        const elements = queryAllInRoots(selector, roots);
+        console.log(`🔍 Selector "${selector}" found ${elements.length} elements across contexts`);
         upcartElements = upcartElements.concat(Array.from(elements));
       } catch (e) {
         console.warn('Invalid selector:', selector);
@@ -115,6 +134,12 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log(`🔍 Processing element ${index}:`, element.tagName, element.className);
       translateElementText(element, currentLanguage);
     });
+
+    // Fallback: if nothing matched, scan the whole document for our two strings
+    if (optgroups.length === 0 && upcartElements.length === 0) {
+      console.log('🛟 Fallback: scanning entire document for target texts');
+      replaceTextNodesGlobally(currentLanguage, roots);
+    }
   }
 
   // Recursively translate text nodes in an element
@@ -167,9 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
               const hasOptgroups = node.querySelectorAll && node.querySelectorAll('optgroup').length > 0;
               
               // Check if the added node or its children contain upcart elements
-              const containsUpcartText = node.textContent && 
-                (node.textContent.includes('Full price') ||
-                 node.textContent.includes('Subscription Plans'));
+              const containsUpcartText = node.textContent && /full price|subscription\s+plans/i.test(node.textContent);
               
               // Check for upcart-specific classes
               const hasUpcartClasses = node.className && (
@@ -200,13 +223,15 @@ document.addEventListener('DOMContentLoaded', function() {
   function debugUpcartElements() {
     console.log('=== UPCART DEBUG ===');
     console.log('Current language:', getCurrentLanguage());
+    const roots = getAllRoots();
+    console.log('Debug contexts (document + shadow roots + same-origin iframes):', roots.length);
     
     const upcartSelectors = [
       '.SubscriptionUpgradesModule_dropdown',
       '.SubscriptionUpgradesModule_dropdownWrapper',
       'select.upcart-subscription-upgrade-dropdown',
-      'optgroup[label="Full price"]',
-      'optgroup[label="Subscription plans"]',
+      'optgroup[label="Full price" i]',
+      'optgroup[label="Subscription Plans" i]',
       '[class*="upcart"]',
       '[data-upcart]',
       '.upcart-container',
@@ -220,12 +245,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     upcartSelectors.forEach(selector => {
       try {
-        const elements = document.querySelectorAll(selector);
+        const elements = queryAllInRoots(selector, roots);
         if (elements.length > 0) {
           console.log(`Found ${elements.length} elements with selector: ${selector}`);
           elements.forEach((el, index) => {
-            console.log(`  Element ${index}:`, el);
-            console.log(`  Text content:`, el.textContent.substring(0, 200));
+            if (index < 10) {
+              console.log(`  Element ${index}:`, el);
+              console.log('  Text content:', (el.textContent || '').substring(0, 200));
+            }
           });
         }
       } catch (e) {
@@ -234,19 +261,94 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Also check for text containing our target strings
-    const textElements = Array.from(document.querySelectorAll('*')).filter(el => {
-      const text = el.textContent;
-      return text.includes('Full price') || text.includes('Subscription Plans');
+    const textElements = [];
+    roots.forEach(function(root) {
+      const els = Array.from(root.querySelectorAll('*')).filter(function(el) {
+        const text = el.textContent || '';
+        return /(^|\b)(Full price|Subscription\s+Plans)(\b|$)/i.test(text);
+      });
+      els.forEach(function(el) { if (!textElements.includes(el)) textElements.push(el); });
     });
-    
-    console.log('Elements containing upcart target text:', textElements.length);
-    textElements.forEach((el, index) => {
-      if (index < 10) { // Limit to first 10 to avoid spam
-        console.log(`  Text element ${index}:`, el.tagName, el.className, el.textContent.trim());
-      }
+
+    console.log('Elements containing upcart target text across contexts:', textElements.length);
+    textElements.slice(0, 10).forEach(function(el, index) {
+      console.log(`  Text element ${index}:`, el.tagName, el.className, (el.textContent || '').trim().substring(0, 200));
     });
     
     console.log('=== END UPCART DEBUG ===');
+  }
+
+  // -------- Helpers for shadow roots and iframes --------
+  function getAllRoots() {
+    const roots = [document];
+
+    // Same-origin iframes
+    document.querySelectorAll('iframe').forEach(function(iframe) {
+      try {
+        const doc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
+        if (doc) {
+          roots.push(doc);
+        }
+      } catch (e) {
+        // Cross-origin iframe; cannot access
+        console.log('⚠️ Cross-origin iframe, skipping:', iframe.src || '(no src)');
+      }
+    });
+
+    // Collect open shadow roots recursively within each root
+    function collectShadowRoots(root) {
+      try {
+        const all = root.querySelectorAll('*');
+        all.forEach(function(el) {
+          if (el.shadowRoot) {
+            roots.push(el.shadowRoot);
+            collectShadowRoots(el.shadowRoot);
+          }
+        });
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    // Start collection for each current root (document + iframes)
+    roots.slice().forEach(function(r) { collectShadowRoots(r); });
+
+    return roots;
+  }
+
+  function queryAllInRoots(selector, roots) {
+    const results = [];
+    roots.forEach(function(root) {
+      try {
+        root.querySelectorAll(selector).forEach(function(el) { results.push(el); });
+      } catch (e) {
+        // ignore invalid selectors per root
+      }
+    });
+    return results;
+  }
+
+  function replaceTextNodesGlobally(language, roots) {
+    const targets = Object.keys(translations);
+    const regex = new RegExp(`\\b(${targets.map(function(t) { return t.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&'); }).join('|')})\\b`, 'gi');
+
+    roots.forEach(function(root) {
+      try {
+        const walker = root.createTreeWalker(root instanceof Document || root instanceof ShadowRoot ? root : document, NodeFilter.SHOW_TEXT);
+        let node;
+        while ((node = walker.nextNode())) {
+          const original = node.nodeValue || '';
+          if (regex.test(original)) {
+            const replaced = original.replace(regex, function(match) { return translateText(match, language); });
+            if (replaced !== original) {
+              node.nodeValue = replaced;
+            }
+          }
+        }
+      } catch (e) {
+        // some roots may not allow createTreeWalker
+      }
+    });
   }
 
   // Initial translation attempt
