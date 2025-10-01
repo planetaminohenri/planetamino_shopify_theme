@@ -204,18 +204,32 @@ document.addEventListener('DOMContentLoaded', function() {
           mutation.addedNodes.forEach(function(node) {
             if (node.nodeType === Node.ELEMENT_NODE) {
               console.log('  Added node:', node.tagName, node.className || '(no class)', (node.textContent || '').substring(0, 50));
+              console.log('  Node ID:', node.id || '(no id)');
+              console.log('  Node innerHTML length:', node.innerHTML?.length || 0);
               
               // Check if the added node contains optgroup elements
               const hasOptgroups = node.querySelectorAll && node.querySelectorAll('optgroup').length > 0;
+              if (hasOptgroups) {
+                console.log(`  🎯 Found ${node.querySelectorAll('optgroup').length} optgroups in added node!`);
+                node.querySelectorAll('optgroup').forEach((og, i) => {
+                  console.log(`     Optgroup ${i}: label="${og.getAttribute('label')}"`);
+                });
+              }
               
               // Check if the added node or its children contain upcart elements
               const containsUpcartText = node.textContent && /full price|subscription\s+plans/i.test(node.textContent);
+              if (containsUpcartText) {
+                console.log(`  🎯 Contains target text! Match: ${node.textContent.match(/full price|subscription\s+plans/i)?.[0]}`);
+              }
               
               // Check for upcart-specific classes
               const hasUpcartClasses = node.className && (
                 node.className.includes('upcart') || 
                 node.className.includes('SubscriptionUpgradesModule')
               );
+              if (hasUpcartClasses) {
+                console.log(`  🎯 Has upcart classes!`);
+              }
               
               console.log(`  Analysis: optgroups=${hasOptgroups}, upcartText=${containsUpcartText}, upcartClasses=${hasUpcartClasses}`);
               
@@ -426,8 +440,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Upcart subscription upgrade entry point (div, not button)
       '.upcart-subscription-upgrade-button',
       // Upcart popup trigger - the actual element that gets clicked
-      '#upcart',
-      '[id="upcart"]'
+      '#upCart'
     ];
     
     // Check each selector individually for debugging
