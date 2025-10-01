@@ -84,40 +84,19 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
-    console.log(`🔍 Starting translation for language: ${currentLanguage}`);
-
     // Gather all searchable roots (document, shadow roots, and same-origin iframes)
     const roots = getAllRoots();
-    console.log(`🔍 Search contexts: ${roots.length} (document + shadow roots + same-origin iframes)`);
 
     // Directly target optgroup elements first across all roots
     const optgroups = queryAllInRoots('optgroup', roots);
-    console.log(`🔍 Found ${optgroups.length} optgroup elements total across all contexts`);
     
-    // Also try to find the specific select dropdown
-    const upcartDropdowns = queryAllInRoots('select.upcart-subscription-upgrade-dropdown', roots);
-    console.log(`🔍 Found ${upcartDropdowns.length} upcart subscription dropdowns`);
-    upcartDropdowns.forEach((dropdown, index) => {
-      console.log(`   Dropdown ${index}:`, dropdown);
-      const dropdownOptgroups = dropdown.querySelectorAll('optgroup');
-      console.log(`   Contains ${dropdownOptgroups.length} optgroups`);
-      dropdownOptgroups.forEach((og, i) => {
-        console.log(`      Optgroup ${i}: label="${og.getAttribute('label')}"`);
-      });
-    });
-    
-    optgroups.forEach((optgroup, index) => {
+    optgroups.forEach((optgroup) => {
       const label = optgroup.getAttribute('label');
-      const parentSelect = optgroup.closest('select');
-      console.log(`🔍 Optgroup ${index}: label="${label}", parent select class="${parentSelect?.className || 'none'}"`);
       
       if (label && ['full price', 'subscription plans'].includes(label.toLowerCase())) {
         const translatedLabel = translateText(label, currentLanguage);
         if (translatedLabel !== label) {
-          console.log(`✅ Translating optgroup label: "${label}" -> "${translatedLabel}"`);
           optgroup.setAttribute('label', translatedLabel);
-        } else {
-          console.log(`❌ No translation found for: "${label}"`);
         }
       }
     });
@@ -134,23 +113,19 @@ document.addEventListener('DOMContentLoaded', function() {
     upcartSelectors.forEach(selector => {
       try {
         const elements = queryAllInRoots(selector, roots);
-        console.log(`🔍 Selector "${selector}" found ${elements.length} elements across contexts`);
         upcartElements = upcartElements.concat(Array.from(elements));
       } catch (e) {
-        console.warn('Invalid selector:', selector);
+        // ignore invalid selectors
       }
     });
 
     // Translate text in found elements
-    console.log(`🔍 Processing ${upcartElements.length} additional upcart elements`);
-    upcartElements.forEach((element, index) => {
-      console.log(`🔍 Processing element ${index}:`, element.tagName, element.className);
+    upcartElements.forEach((element) => {
       translateElementText(element, currentLanguage);
     });
 
     // Fallback: if nothing matched, scan the whole document for our two strings
     if (optgroups.length === 0 && upcartElements.length === 0) {
-      console.log('🛟 Fallback: scanning entire document for target texts');
       replaceTextNodesGlobally(currentLanguage, roots);
     }
   }
@@ -162,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
       const originalLabel = element.getAttribute('label');
       const translatedLabel = translateText(originalLabel, language);
       if (translatedLabel !== originalLabel) {
-        console.log(`Upcart Translation (optgroup label): "${originalLabel}" -> "${translatedLabel}"`);
         element.setAttribute('label', translatedLabel);
       }
     }
@@ -174,7 +148,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (originalText) {
           const translatedText = translateText(originalText, language);
           if (translatedText !== originalText) {
-            console.log(`Upcart Translation: "${originalText}" -> "${translatedText}"`);
             node.textContent = node.textContent.replace(originalText, translatedText);
           }
         }
@@ -184,7 +157,6 @@ document.addEventListener('DOMContentLoaded', function() {
           const originalLabel = node.getAttribute('label');
           const translatedLabel = translateText(originalLabel, language);
           if (translatedLabel !== originalLabel) {
-            console.log(`Upcart Translation (optgroup label): "${originalLabel}" -> "${translatedLabel}"`);
             node.setAttribute('label', translatedLabel);
           }
         }
@@ -327,7 +299,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       } catch (e) {
         // Cross-origin iframe; cannot access
-        console.log('⚠️ Cross-origin iframe, skipping:', iframe.src || '(no src)');
       }
     });
 
@@ -388,24 +359,15 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Initial translation attempt
-  console.log('🔍 Upcart Translation Script Loaded - Starting in 500ms...');
   setTimeout(() => {
-    console.log('🔍 First attempt (500ms delay):');
-    debugUpcartElements(); // Add debug first
     translateUpcartElements();
   }, 500); // Give upcart time to load
 
-  // Also debug after longer delay in case upcart loads slowly
   setTimeout(() => {
-    console.log('🔍 Second attempt (2000ms delay):');
-    debugUpcartElements();
     translateUpcartElements();
   }, 2000);
 
-  // Add even longer delay for very slow loading
   setTimeout(() => {
-    console.log('🔍 Third attempt (5000ms delay):');
-    debugUpcartElements();
     translateUpcartElements();
   }, 5000);
 
@@ -415,20 +377,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Also translate when upcart events fire (if any)
   document.addEventListener('click', function(event) {
     const target = event.target;
-    
-    console.log('🖱️ Click detected on:', target.tagName, target.className, target.textContent?.substring(0, 50));
-    console.log('   Element details:', {
-      id: target.id,
-      classList: Array.from(target.classList || []),
-      innerHTML: target.innerHTML?.substring(0, 100)
-    });
-    
-    // Log parent elements to help identify the structure
-    let parent = target.parentElement;
-    for (let i = 0; i < 3 && parent; i++) {
-      console.log(`   Parent ${i+1}:`, parent.tagName, parent.className, Array.from(parent.classList || []));
-      parent = parent.parentElement;
-    }
     
     // Check if clicked element might open cart/drawer
     const cartTriggers = [
@@ -443,7 +391,7 @@ document.addEventListener('DOMContentLoaded', function() {
       '#upCart'
     ];
     
-    // Check each selector individually for debugging
+    // Check each selector individually
     let matchedSelector = null;
     for (let selector of cartTriggers) {
       if (target.matches(selector) || target.closest(selector)) {
@@ -453,31 +401,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     if (matchedSelector) {
-      console.log(`✅ Cart trigger matched: ${matchedSelector}`);
-      console.log('🛒 Cart trigger clicked, will check for upcart content...');
-      console.log('Target element:', target);
-      console.log('Closest match:', target.closest(matchedSelector));
-      
       // Multiple delayed attempts since cart content loads progressively
       [200, 500, 1000, 2000, 3000, 5000].forEach(delay => {
         setTimeout(() => {
-          // We now query across roots, so simply trigger translation
-          console.log(`🔄 Running translation pass after ${delay}ms due to cart/upgrade trigger`);
-          console.log(`🔍 Checking for new DOM roots after ${delay}ms...`);
-          const roots = getAllRoots();
-          console.log(`   Found ${roots.length} roots at ${delay}ms delay`);
-          debugUpcartElements();
           translateUpcartElements();
         }, delay);
       });
-    } else {
-      console.log('❌ No cart trigger selector matched for this click');
     }
     
     // Re-translate after any button clicks that might trigger upcart updates
     if (target.matches('button') || target.closest('button')) {
       setTimeout(() => {
-        console.log('🔄 Button clicked; running translation pass');
         translateUpcartElements();
       }, 200);
     }
@@ -501,35 +435,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Expose debug functions globally for manual testing
   window.debugUpcart = function() {
-    console.log('🔧 Manual debug triggered:');
     debugUpcartElements();
     translateUpcartElements();
   };
 
   window.forceUpcartTranslation = function() {
-    console.log('🔧 Force translation triggered:');
     translateUpcartElements();
   };
 
   // Quick test function to check optgroups directly
   window.testOptgroups = function() {
-    console.log('🧪 Testing optgroups directly:');
     const optgroups = document.querySelectorAll('optgroup');
-    console.log(`Found ${optgroups.length} optgroups:`);
-    optgroups.forEach((og, i) => {
-      console.log(`${i}: label="${og.getAttribute('label')}" parent=${og.parentElement.tagName}.${og.parentElement.className}`);
-    });
     
     // Try direct translation
     optgroups.forEach(og => {
       const label = og.getAttribute('label');
       if (label === 'Full price') {
         og.setAttribute('label', 'Kertaostos');
-        console.log('✅ Manually set Full price -> Kertaostos');
       }
       if (label === 'Subscription plans') {
         og.setAttribute('label', 'Kestotilaus');
-        console.log('✅ Manually set Subscription plans -> Kestotilaus');
       }
     });
   };
