@@ -411,7 +411,10 @@ document.addEventListener('DOMContentLoaded', function() {
       '.cart-drawer-toggle',
       '.header__icon--cart',
       // Upcart subscription upgrade entry point (div, not button)
-      '.upcart-subscription-upgrade-button'
+      '.upcart-subscription-upgrade-button',
+      // Upcart popup trigger - the actual element that gets clicked
+      '#upcart',
+      '[id="upcart"]'
     ];
     
     // Check each selector individually for debugging
