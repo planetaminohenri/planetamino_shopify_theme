@@ -185,9 +185,13 @@ document.addEventListener('DOMContentLoaded', function() {
   function setupMutationObserver() {
     const observer = new MutationObserver(function(mutations) {
       mutations.forEach(function(mutation) {
-        if (mutation.type === 'childList') {
+        if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+          console.log(`👁️ MutationObserver detected ${mutation.addedNodes.length} added node(s)`);
+          
           mutation.addedNodes.forEach(function(node) {
             if (node.nodeType === Node.ELEMENT_NODE) {
+              console.log('  Added node:', node.tagName, node.className || '(no class)', (node.textContent || '').substring(0, 50));
+              
               // Check if the added node contains optgroup elements
               const hasOptgroups = node.querySelectorAll && node.querySelectorAll('optgroup').length > 0;
               
@@ -200,11 +204,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 node.className.includes('SubscriptionUpgradesModule')
               );
               
+              console.log(`  Analysis: optgroups=${hasOptgroups}, upcartText=${containsUpcartText}, upcartClasses=${hasUpcartClasses}`);
+              
               if (hasOptgroups || containsUpcartText || hasUpcartClasses) {
-                console.log('🔄 Detected upcart content added, translating...');
+                console.log('✅ MutationObserver: Detected upcart content added, translating...');
                 setTimeout(() => {
                   translateUpcartElements();
                 }, 100); // Small delay to allow content to fully render
+              } else {
+                console.log('⏭️ MutationObserver: Node not upcart-related, skipping translation');
               }
             }
           });
@@ -213,6 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Start observing
+    console.log('👁️ MutationObserver started, watching document.body for changes');
     observer.observe(document.body, {
       childList: true,
       subtree: true
@@ -380,6 +389,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('click', function(event) {
     const target = event.target;
     
+    console.log('🖱️ Click detected on:', target.tagName, target.className, target.textContent?.substring(0, 50));
+    
     // Check if clicked element might open cart/drawer
     const cartTriggers = [
       '[data-cart-drawer-toggle]',
@@ -391,20 +402,35 @@ document.addEventListener('DOMContentLoaded', function() {
       '.upcart-subscription-upgrade-button'
     ];
     
-    const isCartTrigger = cartTriggers.some(selector => 
-      target.matches(selector) || target.closest(selector)
-    );
+    // Check each selector individually for debugging
+    let matchedSelector = null;
+    for (let selector of cartTriggers) {
+      if (target.matches(selector) || target.closest(selector)) {
+        matchedSelector = selector;
+        break;
+      }
+    }
     
-    if (isCartTrigger) {
+    if (matchedSelector) {
+      console.log(`✅ Cart trigger matched: ${matchedSelector}`);
       console.log('🛒 Cart trigger clicked, will check for upcart content...');
+      console.log('Target element:', target);
+      console.log('Closest match:', target.closest(matchedSelector));
+      
       // Multiple delayed attempts since cart content loads progressively
-      [200, 500, 1000, 2000].forEach(delay => {
+      [200, 500, 1000, 2000, 3000, 5000].forEach(delay => {
         setTimeout(() => {
           // We now query across roots, so simply trigger translation
           console.log(`🔄 Running translation pass after ${delay}ms due to cart/upgrade trigger`);
+          console.log(`🔍 Checking for new DOM roots after ${delay}ms...`);
+          const roots = getAllRoots();
+          console.log(`   Found ${roots.length} roots at ${delay}ms delay`);
+          debugUpcartElements();
           translateUpcartElements();
         }, delay);
       });
+    } else {
+      console.log('❌ No cart trigger selector matched for this click');
     }
     
     // Re-translate after any button clicks that might trigger upcart updates
