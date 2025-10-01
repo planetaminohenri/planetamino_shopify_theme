@@ -94,9 +94,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const optgroups = queryAllInRoots('optgroup', roots);
     console.log(`🔍 Found ${optgroups.length} optgroup elements total across all contexts`);
     
+    // Also try to find the specific select dropdown
+    const upcartDropdowns = queryAllInRoots('select.upcart-subscription-upgrade-dropdown', roots);
+    console.log(`🔍 Found ${upcartDropdowns.length} upcart subscription dropdowns`);
+    upcartDropdowns.forEach((dropdown, index) => {
+      console.log(`   Dropdown ${index}:`, dropdown);
+      const dropdownOptgroups = dropdown.querySelectorAll('optgroup');
+      console.log(`   Contains ${dropdownOptgroups.length} optgroups`);
+      dropdownOptgroups.forEach((og, i) => {
+        console.log(`      Optgroup ${i}: label="${og.getAttribute('label')}"`);
+      });
+    });
+    
     optgroups.forEach((optgroup, index) => {
       const label = optgroup.getAttribute('label');
-      console.log(`🔍 Optgroup ${index}: label="${label}"`);
+      const parentSelect = optgroup.closest('select');
+      console.log(`🔍 Optgroup ${index}: label="${label}", parent select class="${parentSelect?.className || 'none'}"`);
       
       if (label && ['full price', 'subscription plans'].includes(label.toLowerCase())) {
         const translatedLabel = translateText(label, currentLanguage);
