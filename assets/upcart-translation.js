@@ -390,6 +390,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const target = event.target;
     
     console.log('🖱️ Click detected on:', target.tagName, target.className, target.textContent?.substring(0, 50));
+    console.log('   Element details:', {
+      id: target.id,
+      classList: Array.from(target.classList || []),
+      innerHTML: target.innerHTML?.substring(0, 100)
+    });
+    
+    // Log parent elements to help identify the structure
+    let parent = target.parentElement;
+    for (let i = 0; i < 3 && parent; i++) {
+      console.log(`   Parent ${i+1}:`, parent.tagName, parent.className, Array.from(parent.classList || []));
+      parent = parent.parentElement;
+    }
     
     // Check if clicked element might open cart/drawer
     const cartTriggers = [
