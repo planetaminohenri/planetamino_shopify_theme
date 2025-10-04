@@ -662,26 +662,36 @@ document.addEventListener('DOMContentLoaded', function () {
         console.warn('🛒 [BUNDLE] No cart drawer found, will redirect to cart page');
       }
 
-      // Build request body - only include sections if they exist
-      const requestBody = {
-        items: items
-      };
-      
-      if (sections) {
-        requestBody.sections = sections;
-        requestBody.sections_url = sectionsUrl;
-      }
-      
-      console.log('🛒 [BUNDLE] Request body:', requestBody);
+      // Build FormData body for Shopify/Upcart compatibility
+      const formData = new FormData();
+      items.forEach((item, index) => {
+        formData.append(`items[${index}][id]`, item.id);
+        formData.append(`items[${index}][quantity]`, item.quantity);
+        if (item.properties) {
+          Object.entries(item.properties).forEach(([key, value]) => {
+            formData.append(`items[${index}][properties][${key}]`, value);
+          });
+        }
+      });
 
-      // Make the AJAX request to add items to cart
-      const response = await fetch('{{ routes.cart_add_url }}.js', {
+      // Include sections so the cart drawer can re-render immediately
+      if (sections) {
+        formData.append('sections', sections);
+        formData.append('sections_url', sectionsUrl);
+        if (cart && typeof cart.setActiveElement === 'function') {
+          cart.setActiveElement(document.activeElement);
+        }
+      }
+
+      console.log('🛒 [BUNDLE] FormData prepared with items:', items.length);
+
+      // Make the AJAX request to add items to cart (no .js; body is FormData)
+      const response = await fetch('{{ routes.cart_add_url }}', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'X-Requested-With': 'XMLHttpRequest'
         },
-        body: JSON.stringify(requestBody)
+        body: formData
       });
 
       console.log('🛒 [BUNDLE] Response status:', response.status, response.statusText);
