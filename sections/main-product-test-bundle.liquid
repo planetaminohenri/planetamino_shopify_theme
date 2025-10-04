@@ -566,10 +566,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
+    console.log('🛒 [BUNDLE] Form submitted');
 
     // Get the submit button for loading states
     const submitButton = form.querySelector('button[type="submit"]');
     const originalButtonText = submitButton ? submitButton.textContent : '';
+    console.log('🛒 [BUNDLE] Submit button:', submitButton, 'Original text:', originalButtonText);
     
     // Build items array for the cart
     const items = [];
@@ -586,6 +588,7 @@ document.addEventListener('DOMContentLoaded', function () {
           '_bundle': 'cookie'
         }
       });
+      console.log('🛒 [BUNDLE] Added cookie:', { id, qty });
     });
 
     // Add protein items
@@ -599,10 +602,14 @@ document.addEventListener('DOMContentLoaded', function () {
           '_bundle': 'protein'
         }
       });
+      console.log('🛒 [BUNDLE] Added protein:', { id });
     });
+
+    console.log('🛒 [BUNDLE] Total items to add:', items.length, items);
 
     // Validation: ensure items exist
     if (items.length === 0) {
+      console.warn('🛒 [BUNDLE] No items selected!');
       alert('{{ "bundles.errors.no_items" | t | default: "Please select at least one item" }}');
       return;
     }
@@ -612,11 +619,13 @@ document.addEventListener('DOMContentLoaded', function () {
       submitButton.setAttribute('disabled', 'disabled');
       submitButton.classList.add('loading');
       submitButton.textContent = '{{ "bundles.adding_to_cart" | t | default: "Adding..." }}';
+      console.log('🛒 [BUNDLE] Button loading state enabled');
     }
 
     try {
       // Get the cart drawer element
       const cart = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
+      console.log('🛒 [BUNDLE] Cart element found:', cart);
       
       // Prepare sections to fetch (for cart drawer update)
       let sections = '';
@@ -624,7 +633,17 @@ document.addEventListener('DOMContentLoaded', function () {
       
       if (cart) {
         sections = cart.getSectionsToRender().map((section) => section.id).join(',');
+        console.log('🛒 [BUNDLE] Sections to render:', sections);
+      } else {
+        console.warn('🛒 [BUNDLE] No cart drawer found, will redirect to cart page');
       }
+
+      const requestBody = {
+        items: items,
+        sections: sections,
+        sections_url: sectionsUrl
+      };
+      console.log('🛒 [BUNDLE] Request body:', requestBody);
 
       // Make the AJAX request to add items to cart
       const response = await fetch('{{ routes.cart_add_url }}.js', {
@@ -633,39 +652,48 @@ document.addEventListener('DOMContentLoaded', function () {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({
-          items: items,
-          sections: sections,
-          sections_url: sectionsUrl
-        })
+        body: JSON.stringify(requestBody)
       });
 
+      console.log('🛒 [BUNDLE] Response status:', response.status, response.statusText);
+
       const data = await response.json();
+      console.log('🛒 [BUNDLE] Response data:', data);
 
       // Handle errors from Shopify
       if (!response.ok || data.status === 422) {
         const errorMessage = data.description || data.message || '{{ "bundles.errors.add_to_cart_failed" | t | default: "Unable to add items to cart" }}';
+        console.error('🛒 [BUNDLE] Cart API error:', errorMessage, data);
         throw new Error(errorMessage);
       }
 
+      console.log('🛒 [BUNDLE] Items successfully added to cart');
+
       // Publish cart update event for other apps/scripts to listen to
       if (typeof publish !== 'undefined' && typeof PUB_SUB_EVENTS !== 'undefined') {
+        console.log('🛒 [BUNDLE] Publishing cartUpdate event');
         publish(PUB_SUB_EVENTS.cartUpdate, {
           source: 'bundle-form',
           cartData: data
         });
+      } else {
+        console.warn('🛒 [BUNDLE] publish/PUB_SUB_EVENTS not available');
       }
 
       // Open the cart drawer with updated contents
       if (cart) {
+        console.log('🛒 [BUNDLE] Calling cart.renderContents()');
         cart.renderContents(data);
+        console.log('🛒 [BUNDLE] Cart drawer should now be open');
       } else {
         // Fallback: redirect to cart page if no drawer exists
+        console.log('🛒 [BUNDLE] Redirecting to cart page');
         window.location.href = '{{ routes.cart_url }}';
       }
 
     } catch (error) {
-      console.error('Error adding bundle to cart:', error);
+      console.error('🛒 [BUNDLE] Error adding bundle to cart:', error);
+      console.error('🛒 [BUNDLE] Error stack:', error.stack);
       alert(error.message || '{{ "bundles.errors.something_went_wrong" | t | default: "Something went wrong. Please try again." }}');
     } finally {
       // Reset button state
@@ -673,6 +701,7 @@ document.addEventListener('DOMContentLoaded', function () {
         submitButton.removeAttribute('disabled');
         submitButton.classList.remove('loading');
         submitButton.textContent = originalButtonText;
+        console.log('🛒 [BUNDLE] Button state reset');
       }
     }
   });
