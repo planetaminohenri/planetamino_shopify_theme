@@ -685,12 +685,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
       console.log('🛒 [BUNDLE] FormData prepared with items:', items.length);
 
-      // Make the AJAX request to add items to cart (no .js; body is FormData)
+      // Make the AJAX request to add items to cart (no headers; browser sets multipart)
       const response = await fetch('{{ routes.cart_add_url }}', {
         method: 'POST',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest'
-        },
         body: formData
       });
 
