@@ -531,10 +531,23 @@
 </div>
 
 <script>
+console.log('🛒 [BUNDLE] Script loaded');
+
 document.addEventListener('DOMContentLoaded', function () {
+  console.log('🛒 [BUNDLE] DOMContentLoaded fired');
+  
   const form = document.getElementById('custom-cookie-form');
   const container = document.getElementById('all-line-items');
   const totalDisplay = document.getElementById('bundle-total');
+
+  console.log('🛒 [BUNDLE] Form element:', form);
+  console.log('🛒 [BUNDLE] Container element:', container);
+  console.log('🛒 [BUNDLE] Total display element:', totalDisplay);
+
+  if (!form) {
+    console.error('🛒 [BUNDLE] ERROR: Form not found! ID: custom-cookie-form');
+    return;
+  }
 
   // Update total price
   function updateTotal() {
@@ -564,6 +577,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   updateTotal(); // Initial total
 
+  console.log('🛒 [BUNDLE] Attaching submit event listener to form');
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     console.log('🛒 [BUNDLE] Form submitted');
