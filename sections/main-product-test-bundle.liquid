@@ -578,8 +578,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add cookie items
     document.querySelectorAll('.cookie-card').forEach(card => {
-      const id = card.dataset.variantId;
+      const id = parseInt(card.dataset.variantId);
       const qty = parseInt(card.dataset.qty) || 1;
+
+      if (!id) {
+        console.error('🛒 [BUNDLE] Invalid cookie variant ID:', card.dataset.variantId);
+        return;
+      }
 
       items.push({
         id: id,
@@ -593,7 +598,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add protein items
     document.querySelectorAll('.protein-checkbox:checked').forEach(cb => {
-      const id = cb.dataset.id;
+      const id = parseInt(cb.dataset.id);
+
+      if (!id) {
+        console.error('🛒 [BUNDLE] Invalid protein variant ID:', cb.dataset.id);
+        return;
+      }
 
       items.push({
         id: id,
@@ -638,11 +648,16 @@ document.addEventListener('DOMContentLoaded', function () {
         console.warn('🛒 [BUNDLE] No cart drawer found, will redirect to cart page');
       }
 
+      // Build request body - only include sections if they exist
       const requestBody = {
-        items: items,
-        sections: sections,
-        sections_url: sectionsUrl
+        items: items
       };
+      
+      if (sections) {
+        requestBody.sections = sections;
+        requestBody.sections_url = sectionsUrl;
+      }
+      
       console.log('🛒 [BUNDLE] Request body:', requestBody);
 
       // Make the AJAX request to add items to cart
