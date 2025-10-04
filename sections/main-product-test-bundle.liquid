@@ -662,39 +662,54 @@ document.addEventListener('DOMContentLoaded', function () {
         console.warn('🛒 [BUNDLE] No cart drawer found, will redirect to cart page');
       }
 
-      // Build FormData body for Shopify/Upcart compatibility
-      const formData = new FormData();
-      items.forEach((item, index) => {
-        formData.append(`items[${index}][id]`, item.id);
-        formData.append(`items[${index}][quantity]`, item.quantity);
+      // Add items sequentially (single-item requests) so cart apps can intercept
+      // and Shopify avoids rejecting array payloads via third-party rewrites
+      let lastResponse = null;
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        const fd = new FormData();
+        fd.append('id', item.id);
+        fd.append('quantity', item.quantity);
         if (item.properties) {
           Object.entries(item.properties).forEach(([key, value]) => {
-            formData.append(`items[${index}][properties][${key}]`, value);
+            fd.append(`properties[${key}]`, value);
           });
         }
-      });
 
-      // Include sections so the cart drawer can re-render immediately
-      if (sections) {
-        formData.append('sections', sections);
-        formData.append('sections_url', sectionsUrl);
-        if (cart && typeof cart.setActiveElement === 'function') {
-          cart.setActiveElement(document.activeElement);
+        // Only request sections on last item to minimize payload and re-renders
+        if (sections && i === items.length - 1) {
+          fd.append('sections', sections);
+          fd.append('sections_url', sectionsUrl);
+          if (cart && typeof cart.setActiveElement === 'function') {
+            cart.setActiveElement(document.activeElement);
+          }
+        }
+
+        console.log('🛒 [BUNDLE] Adding item', i + 1, 'of', items.length, item);
+        const resp = await fetch('{{ routes.cart_add_url }}', {
+          method: 'POST',
+          body: fd
+        });
+
+        // If any request fails, surface the server's error content
+        if (!resp.ok) {
+          let errText = await resp.text();
+          try {
+            const errJson = JSON.parse(errText || '{}');
+            errText = errJson.description || errJson.message || errText;
+          } catch (_) {}
+          throw new Error(errText || 'Unable to add item to cart');
+        }
+
+        try {
+          lastResponse = await resp.clone().json();
+        } catch (_) {
+          lastResponse = lastResponse || {};
         }
       }
 
-      console.log('🛒 [BUNDLE] FormData prepared with items:', items.length);
-
-      // Make the AJAX request to add items to cart (no headers; browser sets multipart)
-      const response = await fetch('{{ routes.cart_add_url }}', {
-        method: 'POST',
-        body: formData
-      });
-
-      console.log('🛒 [BUNDLE] Response status:', response.status, response.statusText);
-
-      const data = await response.json();
-      console.log('🛒 [BUNDLE] Response data:', data);
+      const data = lastResponse || {};
+      console.log('🛒 [BUNDLE] All items added. Last response data:', data);
 
       // Handle errors from Shopify
       if (!response.ok || data.status === 422) {
