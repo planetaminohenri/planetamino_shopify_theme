@@ -664,9 +664,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Bulk add all items at once using AJAX API
       let bulkUrl = '{{ routes.cart_add_url }}.js';
-      if (sections) {
-        bulkUrl += '?sections=' + encodeURIComponent(sections) + '&sections_url=' + encodeURIComponent(sectionsUrl);
-      }
       if (cart && typeof cart.setActiveElement === 'function') {
         cart.setActiveElement(document.activeElement);
       }
@@ -681,19 +678,47 @@ document.addEventListener('DOMContentLoaded', function () {
           consolidatedMap.get(key).quantity += quantity;
         }
       });
-      const payload = {
-        items: Array.from(consolidatedMap.values()),
-      };
+      const consolidatedItems = Array.from(consolidatedMap.values());
 
-      console.log('🛒 [BUNDLE] Bulk adding items:', payload);
-      const bulkResp = await fetch(bulkUrl, {
+      // Build FormData with array-style fields for UpCart compatibility
+      const fd = new FormData();
+      consolidatedItems.forEach((item, idx) => {
+        fd.append(`items[${idx}][id]`, item.id);
+        fd.append(`items[${idx}][quantity]`, item.quantity);
+        if (item.properties) {
+          Object.entries(item.properties).forEach(([key, value]) => {
+            if (value !== undefined && value !== null) {
+              fd.append(`items[${idx}][properties][${key}]`, String(value));
+            }
+          });
+        }
+      });
+
+      let attemptUrl = bulkUrl;
+      if (sections) {
+        attemptUrl += `?sections=${encodeURIComponent(sections)}&sections_url=${encodeURIComponent(sectionsUrl)}`;
+      }
+
+      console.log('🛒 [BUNDLE] Bulk adding via FormData to:', attemptUrl);
+      let bulkResp = await fetch(attemptUrl, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
-        body: JSON.stringify(payload),
+        body: fd,
       });
+
+      // Fallback: some apps reject with sections param. Retry without it on 400.
+      if (bulkResp.status === 400 && sections) {
+        console.warn('🛒 [BUNDLE] Bulk add returned 400 with sections, retrying without sections');
+        bulkResp = await fetch(bulkUrl, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+          },
+          body: fd,
+        });
+      }
 
       if (!bulkResp.ok) {
         let errText = await bulkResp.text();
