@@ -524,9 +524,9 @@
   </div>
 
   <!-- ✅ Add to Cart Form -->
-  <form id="custom-cookie-form" method="post" action="{{ routes.cart_add_url }}">
+  <form id="custom-cookie-form" method="post" action="{{ routes.cart_add_url }}" data-upcart-ignore="true">
     <div id="all-line-items"></div>
-    <button id="complete-bundle" type="submit" class="bundle-btn">{{ 'bundles.purchase_options.add_to_cart' | t }}</button>
+    <button id="complete-bundle" type="button" class="bundle-btn">{{ 'bundles.purchase_options.add_to_cart' | t }}</button>
   </form>
 </div>
 
@@ -647,15 +647,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     try {
-      // Get the cart drawer element
-      const cart = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
-      console.log('🛒 [BUNDLE] Cart element found:', cart);
+      // Prefer UpCart if present, else Dawn cart drawer
+      const isUpCartActive = !!(
+        document.querySelector('#upcart-cart-drawer') ||
+        document.querySelector('.upcart-container') ||
+        document.querySelector('.upcart-drawer') ||
+        document.querySelector('[data-upcart]') ||
+        window.UpCart
+      );
+      const cart = !isUpCartActive && (document.querySelector('cart-notification') || document.querySelector('cart-drawer'));
+      console.log('🛒 [BUNDLE] UpCart active?', isUpCartActive, 'Dawn cart element:', cart);
       
       // Prepare sections to fetch (for cart drawer update)
       let sections = '';
       let sectionsUrl = window.location.pathname;
       
-      if (cart) {
+      if (!isUpCartActive && cart) {
         sections = cart.getSectionsToRender().map((section) => section.id).join(',');
         console.log('🛒 [BUNDLE] Sections to render:', sections);
       } else {
@@ -664,7 +671,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Bulk add all items at once using AJAX API
       let bulkUrl = '{{ routes.cart_add_url }}.js';
-      if (cart && typeof cart.setActiveElement === 'function') {
+      if (!isUpCartActive && cart && typeof cart.setActiveElement === 'function') {
         cart.setActiveElement(document.activeElement);
       }
 
@@ -695,7 +702,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       let attemptUrl = bulkUrl;
-      if (sections) {
+      if (!isUpCartActive && sections) {
         attemptUrl += `?sections=${encodeURIComponent(sections)}&sections_url=${encodeURIComponent(sectionsUrl)}`;
       }
 
@@ -709,7 +716,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       // Fallback: some apps reject with sections param. Retry without it on 400.
-      if (bulkResp.status === 400 && sections) {
+      if (bulkResp.status === 400 && !isUpCartActive && sections) {
         console.warn('🛒 [BUNDLE] Bulk add returned 400 with sections, retrying without sections');
         bulkResp = await fetch(bulkUrl, {
           method: 'POST',
@@ -734,7 +741,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Prefer sections returned by Shopify; only refetch if missing
       let finalParsedState = data?.sections ? data : data;
-      if (cart && !data?.sections) {
+      if (!isUpCartActive && cart && !data?.sections) {
         try {
           console.log('🛒 [BUNDLE] Response missing sections, fetching final cart sections');
           const [drawerHtml, bubbleHtml] = await Promise.all([
@@ -765,8 +772,13 @@ document.addEventListener('DOMContentLoaded', function () {
         console.warn('🛒 [BUNDLE] publish/PUB_SUB_EVENTS not available');
       }
 
-      // Open the cart drawer with updated contents
-      if (cart) {
+      // Open UpCart first if active, else Dawn cart drawer, else cart page
+      if (isUpCartActive) {
+        console.log('🛒 [BUNDLE] UpCart detected, opening side cart');
+        try {
+          document.dispatchEvent(new CustomEvent('upcart:open'));
+        } catch (_) {}
+      } else if (cart) {
         console.log('🛒 [BUNDLE] Calling cart.renderContents()');
         // Ensure drawer is not treated as empty, otherwise focus trap container will be missing
         if (cart.classList.contains('is-empty')) {
