@@ -711,13 +711,6 @@ document.addEventListener('DOMContentLoaded', function () {
       const data = lastResponse || {};
       console.log('🛒 [BUNDLE] All items added. Last response data:', data);
 
-      // Handle errors from Shopify
-      if (!response.ok || data.status === 422) {
-        const errorMessage = data.description || data.message || '{{ "bundles.errors.add_to_cart_failed" | t | default: "Unable to add items to cart" }}';
-        console.error('🛒 [BUNDLE] Cart API error:', errorMessage, data);
-        throw new Error(errorMessage);
-      }
-
       console.log('🛒 [BUNDLE] Items successfully added to cart');
 
       // Publish cart update event for other apps/scripts to listen to
