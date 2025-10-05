@@ -732,7 +732,9 @@ document.addEventListener('DOMContentLoaded', function () {
       // Open the cart drawer with updated contents
       if (cart) {
         console.log('🛒 [BUNDLE] Calling cart.renderContents()');
-        cart.renderContents(data.sections || data);
+        // Pass the FULL response object, which includes the `sections` property.
+        // CartDrawer.renderContents expects an object shaped like { sections: { ... } }
+        cart.renderContents(data);
         console.log('🛒 [BUNDLE] Cart drawer should now be open');
       } else {
         // Fallback: redirect to cart page if no drawer exists
