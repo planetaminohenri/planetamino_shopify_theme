@@ -662,59 +662,70 @@ document.addEventListener('DOMContentLoaded', function () {
         console.warn('🛒 [BUNDLE] No cart drawer found, will redirect to cart page');
       }
 
-      // Add items sequentially (single-item requests) so cart apps can intercept
-      // and Shopify avoids rejecting array payloads via third-party rewrites
-      let lastResponse = null;
-      for (let i = 0; i < items.length; i++) {
-        const item = items[i];
-        const fd = new FormData();
-        fd.append('id', item.id);
-        fd.append('quantity', item.quantity);
-        if (item.properties) {
-          Object.entries(item.properties).forEach(([key, value]) => {
-            fd.append(`properties[${key}]`, value);
-          });
-        }
-
-        // Build URL with sections as query params on last item only
-        let url = '{{ routes.cart_add_url }}';
-        if (sections && i === items.length - 1) {
-          url += '.js?sections=' + encodeURIComponent(sections) + '&sections_url=' + encodeURIComponent(sectionsUrl);
-          if (cart && typeof cart.setActiveElement === 'function') {
-            cart.setActiveElement(document.activeElement);
-          }
-        } else {
-          url += '.js';
-        }
-
-        console.log('🛒 [BUNDLE] Adding item', i + 1, 'of', items.length, item);
-        const resp = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-          },
-          body: fd
-        });
-
-        // If any request fails, surface the server's error content
-        if (!resp.ok) {
-          let errText = await resp.text();
-          try {
-            const errJson = JSON.parse(errText || '{}');
-            errText = errJson.description || errJson.message || errText;
-          } catch (_) {}
-          throw new Error(errText || 'Unable to add item to cart');
-        }
-
-        try {
-          lastResponse = await resp.clone().json();
-        } catch (_) {
-          lastResponse = lastResponse || {};
-        }
+      // Bulk add all items at once using AJAX API
+      let bulkUrl = '{{ routes.cart_add_url }}.js';
+      if (sections) {
+        bulkUrl += '?sections=' + encodeURIComponent(sections) + '&sections_url=' + encodeURIComponent(sectionsUrl);
+      }
+      if (cart && typeof cart.setActiveElement === 'function') {
+        cart.setActiveElement(document.activeElement);
       }
 
-      const data = lastResponse || {};
-      console.log('🛒 [BUNDLE] All items added. Last response data:', data);
+      // Consolidate duplicates by id+properties to avoid double lines
+      const consolidatedMap = new Map();
+      items.forEach(({ id, quantity, properties }) => {
+        const key = `${id}::${JSON.stringify(properties || {})}`;
+        if (!consolidatedMap.has(key)) {
+          consolidatedMap.set(key, { id, quantity, properties });
+        } else {
+          consolidatedMap.get(key).quantity += quantity;
+        }
+      });
+      const payload = {
+        items: Array.from(consolidatedMap.values()),
+      };
+
+      console.log('🛒 [BUNDLE] Bulk adding items:', payload);
+      const bulkResp = await fetch(bulkUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!bulkResp.ok) {
+        let errText = await bulkResp.text();
+        try {
+          const errJson = JSON.parse(errText || '{}');
+          errText = errJson.description || errJson.message || errText;
+        } catch (_) {}
+        throw new Error(errText || 'Unable to add items to cart');
+      }
+
+      const data = await bulkResp.json();
+      console.log('🛒 [BUNDLE] Bulk add response:', data);
+
+      // Prefer sections returned by Shopify; only refetch if missing
+      let finalParsedState = data?.sections ? data : data;
+      if (cart && !data?.sections) {
+        try {
+          console.log('🛒 [BUNDLE] Response missing sections, fetching final cart sections');
+          const [drawerHtml, bubbleHtml] = await Promise.all([
+            fetch(`${routes.cart_url}?section_id=cart-drawer`).then((r) => r.text()),
+            fetch(`${routes.cart_url}?section_id=cart-icon-bubble`).then((r) => r.text()),
+          ]);
+          finalParsedState = {
+            sections: {
+              'cart-drawer': drawerHtml,
+              'cart-icon-bubble': bubbleHtml,
+            },
+          };
+        } catch (e) {
+          console.warn('🛒 [BUNDLE] Failed to refresh sections, proceeding with bulk response', e);
+        }
+      }
 
       console.log('🛒 [BUNDLE] Items successfully added to cart');
 
@@ -732,9 +743,13 @@ document.addEventListener('DOMContentLoaded', function () {
       // Open the cart drawer with updated contents
       if (cart) {
         console.log('🛒 [BUNDLE] Calling cart.renderContents()');
+        // Ensure drawer is not treated as empty, otherwise focus trap container will be missing
+        if (cart.classList.contains('is-empty')) {
+          cart.classList.remove('is-empty');
+        }
         // Pass the FULL response object, which includes the `sections` property.
         // CartDrawer.renderContents expects an object shaped like { sections: { ... } }
-        cart.renderContents(data);
+        cart.renderContents(finalParsedState);
         console.log('🛒 [BUNDLE] Cart drawer should now be open');
       } else {
         // Fallback: redirect to cart page if no drawer exists
