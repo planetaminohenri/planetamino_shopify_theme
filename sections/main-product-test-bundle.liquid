@@ -727,7 +727,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // Open the cart drawer with updated contents
       if (cart) {
         console.log('🛒 [BUNDLE] Calling cart.renderContents()');
-        cart.renderContents(data);
+        cart.renderContents(data.sections || data);
         console.log('🛒 [BUNDLE] Cart drawer should now be open');
       } else {
         // Fallback: redirect to cart page if no drawer exists
