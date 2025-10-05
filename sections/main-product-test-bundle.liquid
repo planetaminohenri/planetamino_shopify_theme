@@ -578,6 +578,15 @@ document.addEventListener('DOMContentLoaded', function () {
   updateTotal(); // Initial total
 
   console.log('🛒 [BUNDLE] Attaching submit event listener to form');
+  // Our button is type="button" to avoid UpCart intercepting native submits.
+  // Trigger our submit handler manually on click.
+  const bundleSubmitBtn = document.getElementById('complete-bundle');
+  if (bundleSubmitBtn) {
+    bundleSubmitBtn.addEventListener('click', function () {
+      form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+    });
+  }
+
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     console.log('🛒 [BUNDLE] Form submitted');
