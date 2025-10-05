@@ -676,18 +676,23 @@ document.addEventListener('DOMContentLoaded', function () {
           });
         }
 
-        // Only request sections on last item to minimize payload and re-renders
+        // Build URL with sections as query params on last item only
+        let url = '{{ routes.cart_add_url }}';
         if (sections && i === items.length - 1) {
-          fd.append('sections', sections);
-          fd.append('sections_url', sectionsUrl);
+          url += '.js?sections=' + encodeURIComponent(sections) + '&sections_url=' + encodeURIComponent(sectionsUrl);
           if (cart && typeof cart.setActiveElement === 'function') {
             cart.setActiveElement(document.activeElement);
           }
+        } else {
+          url += '.js';
         }
 
         console.log('🛒 [BUNDLE] Adding item', i + 1, 'of', items.length, item);
-        const resp = await fetch('{{ routes.cart_add_url }}', {
+        const resp = await fetch(url, {
           method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+          },
           body: fd
         });
 
