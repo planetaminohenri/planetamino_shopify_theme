@@ -649,15 +649,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     try {
       // Prefer UpCart if present, else Dawn cart drawer
+      // Check for UpCart global objects, scripts, or app embed indicators that exist before drawer opens
       const isUpCartActive = !!(
-        document.querySelector('#CartPopup') ||
-        document.querySelector('.upcart-cart') ||
-        document.querySelector('#upcart-cart-drawer') ||
-        document.querySelector('.upcart-container') ||
-        document.querySelector('.upcart-drawer') ||
-        document.querySelector('[data-upcart]') ||
-        window.UpCart
+        window.UpCart ||
+        window.upcart ||
+        window.Upcart ||
+        document.querySelector('script[src*="upcart"]') ||
+        document.querySelector('link[href*="upcart"]') ||
+        document.querySelector('[data-app-id*="upcart"]') ||
+        document.querySelector('body[data-upcart]') ||
+        document.querySelector('html[data-upcart]')
       );
+      console.log('🛒 [BUNDLE] UpCart detected:', isUpCartActive);
       const cart = !isUpCartActive && (document.querySelector('cart-notification') || document.querySelector('cart-drawer'));
       
       
