@@ -117,41 +117,6 @@
   endif
 -%}
 
-{%- comment -%} Debug info for theme editor {%- endcomment -%}
-{%- if request.design_mode -%}
-  <div class="language-carousel-debug" style="padding: 1rem; background: #f0f0f0; margin-bottom: 1rem; border-radius: 4px; font-size: 0.85rem;">
-    <strong>Language Carousel Debug:</strong><br>
-    Current Language: <code>{{ current_lang }}</code><br>
-    Using Language Carousel: <code>{{ use_language_carousel }}</code><br>
-    Language Images Found: <code>{{ language_carousel_images.size }}</code><br>
-    Display Media Count: <code>{{ media_count }}</code><br>
-    {% if using_fallback_lang %}
-      <span style="color: #856404; background: #fff3cd; padding: 2px 6px; border-radius: 3px;">
-        ⚠️ Using English fallback (no images for "{{ current_lang }}")
-      </span>
-    {% endif %}
-  </div>
-{%- endif -%}
-
-{%- comment -%} Console logging for debugging (always active) {%- endcomment -%}
-<script>
-  console.log('🎨 Language Carousel Debug:', {
-    'Current Language': '{{ current_lang }}',
-    'Metafield Key': 'carousel.product_images_{{ current_lang }}',
-    'Metafield Object': {{ product.metafields.carousel.product_images_fi | json }},
-    'Metafield .value': {{ product.metafields.carousel.product_images_fi.value | json }},
-    'Metafield Type': '{{ product.metafields.carousel.product_images_fi.type }}',
-    'Language Images Variable': {{ language_carousel_images | json }},
-    'Is Array?': Array.isArray({{ product.metafields.carousel.product_images_fi.value | json }}),
-    'Image Count (manual)': {{ image_count | json }},
-    'Using Language Carousel': {{ use_language_carousel | json }},
-    'Using Fallback': {{ using_fallback_lang | default: false | json }},
-    'Display Media Count': {{ media_count | json }},
-    'Product ID': {{ product.id | json }},
-    'Product Handle': '{{ product.handle }}'
-  });
-</script>
-
 {%- comment -%} ============================================ {%- endcomment -%}
 {%- comment -%} MAIN GALLERY COMPONENT {%- endcomment -%}
 {%- comment -%} ============================================ {%- endcomment -%}
