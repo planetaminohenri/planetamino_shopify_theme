@@ -380,5 +380,13 @@
     {%- endif -%}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {{ 'slick.js' | asset_url | script_tag }}
+    
+    <script>
+      // Global fix: Ensure scroll unlock when UpCart closes
+      document.addEventListener('upcart:closed', function () {
+        document.body.classList.remove('overflow-hidden');
+        document.documentElement.classList.remove('overflow-hidden');
+      });
+    </script>
   </body>
 </html>

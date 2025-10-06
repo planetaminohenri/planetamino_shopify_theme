@@ -1,0 +1,184 @@
+{
+  "metafield_definitions": {
+    "description": "Metafield definitions for language-specific product carousels. Import these via Shopify Admin or API.",
+    "resource_type": "product",
+    "definitions": [
+      {
+        "namespace": "carousel",
+        "key": "images_en",
+        "name": "Carousel Images (English)",
+        "description": "Language-specific product images for English customers. These images will display when the site is viewed in English.",
+        "type": "list.file_reference",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\"]"
+          }
+        ]
+      },
+      {
+        "namespace": "carousel",
+        "key": "images_fi",
+        "name": "Carousel Images (Finnish)",
+        "description": "Language-specific product images for Finnish customers. These images will display when the site is viewed in Finnish.",
+        "type": "list.file_reference",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\"]"
+          }
+        ]
+      },
+      {
+        "namespace": "carousel",
+        "key": "images_de",
+        "name": "Carousel Images (German)",
+        "description": "Language-specific product images for German customers. These images will display when the site is viewed in German.",
+        "type": "list.file_reference",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\"]"
+          }
+        ]
+      },
+      {
+        "namespace": "carousel",
+        "key": "images_es",
+        "name": "Carousel Images (Spanish)",
+        "description": "Language-specific product images for Spanish customers. These images will display when the site is viewed in Spanish.",
+        "type": "list.file_reference",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\"]"
+          }
+        ]
+      },
+      {
+        "namespace": "carousel",
+        "key": "images_fr",
+        "name": "Carousel Images (French)",
+        "description": "Language-specific product images for French customers. These images will display when the site is viewed in French.",
+        "type": "list.file_reference",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\"]"
+          }
+        ]
+      },
+      {
+        "namespace": "carousel",
+        "key": "images_it",
+        "name": "Carousel Images (Italian)",
+        "description": "Language-specific product images for Italian customers. These images will display when the site is viewed in Italian.",
+        "type": "list.file_reference",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\"]"
+          }
+        ]
+      },
+      {
+        "namespace": "carousel",
+        "key": "images_nl",
+        "name": "Carousel Images (Dutch)",
+        "description": "Language-specific product images for Dutch customers. These images will display when the site is viewed in Dutch.",
+        "type": "list.file_reference",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\"]"
+          }
+        ]
+      },
+      {
+        "namespace": "carousel",
+        "key": "images_sv",
+        "name": "Carousel Images (Swedish)",
+        "description": "Language-specific product images for Swedish customers. These images will display when the site is viewed in Swedish.",
+        "type": "list.file_reference",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\"]"
+          }
+        ]
+      },
+      {
+        "namespace": "carousel",
+        "key": "images_da",
+        "name": "Carousel Images (Danish)",
+        "description": "Language-specific product images for Danish customers. These images will display when the site is viewed in Danish.",
+        "type": "list.file_reference",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\"]"
+          }
+        ]
+      },
+      {
+        "namespace": "carousel",
+        "key": "images_nb",
+        "name": "Carousel Images (Norwegian)",
+        "description": "Language-specific product images for Norwegian customers. These images will display when the site is viewed in Norwegian.",
+        "type": "list.file_reference",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\"]"
+          }
+        ]
+      },
+      {
+        "namespace": "carousel",
+        "key": "images_pl",
+        "name": "Carousel Images (Polish)",
+        "description": "Language-specific product images for Polish customers. These images will display when the site is viewed in Polish.",
+        "type": "list.file_reference",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\"]"
+          }
+        ]
+      },
+      {
+        "namespace": "carousel",
+        "key": "images_pt_BR",
+        "name": "Carousel Images (Portuguese - Brazil)",
+        "description": "Language-specific product images for Brazilian Portuguese customers. These images will display when the site is viewed in Brazilian Portuguese.",
+        "type": "list.file_reference",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\"]"
+          }
+        ]
+      },
+      {
+        "namespace": "carousel",
+        "key": "images_pt_PT",
+        "name": "Carousel Images (Portuguese - Portugal)",
+        "description": "Language-specific product images for European Portuguese customers. These images will display when the site is viewed in European Portuguese.",
+        "type": "list.file_reference",
+        "validations": [
+          {
+            "name": "file_type_options",
+            "value": "[\"Image\"]"
+          }
+        ]
+      }
+    ]
+  },
+  "notes": {
+    "setup_instructions": "These metafield definitions must be created in Shopify Admin under Settings → Custom Data → Products. Each definition allows you to upload a list of images specific to that language.",
+    "usage": "Once created, these metafields will appear in the product editor under the 'Metafields' section. Upload images to each language metafield as needed.",
+    "fallback_logic": "If a language-specific metafield is empty, the system will fall back to English (images_en), and if that's also empty, it will use the default product.media gallery.",
+    "reusable_images": "The same image file from Shopify Files can be added to multiple products' metafields, allowing for efficient reuse of common images like certifications or benefits graphics."
+  }
+}
+

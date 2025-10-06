@@ -76,7 +76,12 @@
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
-        {% render 'product-media-gallery', variant_images: variant_images %}
+        {% render 'language-aware-carousel', 
+          product: product, 
+          variant_images: variant_images,
+          section: section,
+          enable_language_carousel: true
+        %}
         
       </div>
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
@@ -841,6 +846,12 @@
 </product-info>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+  // Ensure scroll unlock when third-party drawers (e.g., UpCart) close
+  document.addEventListener('upcart:closed', function () {
+    document.body.classList.remove('overflow-hidden');
+    document.documentElement.classList.remove('overflow-hidden');
+  });
+  
   const builder = document.getElementById('cookie-builder');
   if (!builder) return;
 
