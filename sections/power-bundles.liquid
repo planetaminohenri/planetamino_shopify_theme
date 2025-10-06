@@ -29,16 +29,6 @@
                 {% endif %}
               {% endif %}
               
-              {% comment %} Debug info - remove after testing {% endcomment %}
-              {% assign contains_taste_bundle = false %}
-              {% if block.settings.button_link contains 'i-want-to-taste-them-all-bundle' or block.settings.button_link contains 'taste-them-all-fi' %}
-                {% assign contains_taste_bundle = true %}
-              {% endif %}
-              <!-- Debug: Original link: {{ block.settings.button_link }} -->
-              <!-- Debug: Current language: {{ current_language }} -->
-              <!-- Debug: Final URL: {{ button_url }} -->
-              <!-- Debug: Contains check: {{ contains_taste_bundle }} -->
-              
               <a href="{{ button_url }}" class="btn">{% render 'cart-icon' %} {{ block.settings.button_label }}</a>
             {% endif %}
             </div>

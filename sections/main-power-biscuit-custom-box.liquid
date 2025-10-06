@@ -871,7 +871,7 @@ document.addEventListener("DOMContentLoaded", function () {
       totalPrice.textContent = `Please choose at least ${minItems} items.`;
     }
 
-    // Build cart items JSON for debug (not used by Shopify directly, but handy)
+    // Build cart items JSON
     const cartItems = buildCartItems();
     if (inputBox) inputBox.value = JSON.stringify(cartItems);
 
@@ -879,9 +879,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const canAdd = total >= minItems && cartItems.length > 0;
     addToCart.disabled = !canAdd;
     addToCart.classList.toggle('disabled', !canAdd);
-
-    console.log("Selections:", selections);
-    console.log("Cart Items JSON:", inputBox ? inputBox.value : cartItems);
   }
 
   // + / - controls

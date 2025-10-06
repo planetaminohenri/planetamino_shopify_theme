@@ -166,64 +166,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Debug function to log what elements we find
-  function debugUpcartElements() {
-    console.log('=== UPCART DEBUG ===');
-    console.log('Current language:', getCurrentLanguage());
-    const roots = getAllRoots();
-    console.log('Debug contexts (document + shadow roots + same-origin iframes):', roots.length);
-    
-    const upcartSelectors = [
-      '.SubscriptionUpgradesModule_dropdown',
-      '.SubscriptionUpgradesModule_dropdownWrapper',
-      'select.upcart-subscription-upgrade-dropdown',
-      'optgroup[label="Full price" i]',
-      'optgroup[label="Subscription Plans" i]',
-      '[class*="upcart"]',
-      '[data-upcart]',
-      '.upcart-container',
-      '.upcart-drawer',
-      '.upcart-popup',
-      '.upcart-widget',
-      '#upcart-cart-drawer',
-      '[id*="upcart"]',
-      '[class*="UpCart"]'
-    ];
-
-    upcartSelectors.forEach(selector => {
-      try {
-        const elements = queryAllInRoots(selector, roots);
-        if (elements.length > 0) {
-          console.log(`Found ${elements.length} elements with selector: ${selector}`);
-          elements.forEach((el, index) => {
-            if (index < 10) {
-              console.log(`  Element ${index}:`, el);
-              console.log('  Text content:', (el.textContent || '').substring(0, 200));
-            }
-          });
-        }
-      } catch (e) {
-        console.warn('Invalid selector:', selector);
-      }
-    });
-
-    // Also check for text containing our target strings
-    const textElements = [];
-    roots.forEach(function(root) {
-      const els = Array.from(root.querySelectorAll('*')).filter(function(el) {
-        const text = el.textContent || '';
-        return /(^|\b)(Full price|Subscription\s+Plans)(\b|$)/i.test(text);
-      });
-      els.forEach(function(el) { if (!textElements.includes(el)) textElements.push(el); });
-    });
-
-    console.log('Elements containing upcart target text across contexts:', textElements.length);
-    textElements.slice(0, 10).forEach(function(el, index) {
-      console.log(`  Text element ${index}:`, el.tagName, el.className, (el.textContent || '').trim().substring(0, 200));
-    });
-    
-    console.log('=== END UPCART DEBUG ===');
-  }
 
   // -------- Helpers for shadow roots and iframes --------
   function getAllRoots() {
@@ -369,11 +311,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Expose debug functions globally for manual testing
-  window.debugUpcart = function() {
-    debugUpcartElements();
-    translateUpcartElements();
-  };
 
   window.forceUpcartTranslation = function() {
     translateUpcartElements();

@@ -639,7 +639,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Validation: ensure items exist
     if (items.length === 0) {
-      console.warn('🛒 [BUNDLE] No items selected!');
       alert('{{ "bundles.errors.no_items" | t | default: "Please select at least one item" }}');
       return;
     }
@@ -665,7 +664,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('body[data-upcart]') ||
         document.querySelector('html[data-upcart]')
       );
-      console.log('🛒 [BUNDLE] UpCart detected:', isUpCartActive);
       const cart = !isUpCartActive && (document.querySelector('cart-notification') || document.querySelector('cart-drawer'));
       
       
@@ -675,9 +673,6 @@ document.addEventListener('DOMContentLoaded', function () {
       
       if (!isUpCartActive && cart) {
         sections = cart.getSectionsToRender().map((section) => section.id).join(',');
-        
-      } else {
-        console.warn('🛒 [BUNDLE] No cart drawer found, will redirect to cart page');
       }
 
       // Bulk add all items at once using AJAX API
@@ -779,8 +774,6 @@ document.addEventListener('DOMContentLoaded', function () {
           source: 'bundle-form',
           cartData: data
         });
-      } else {
-        console.warn('🛒 [BUNDLE] publish/PUB_SUB_EVENTS not available');
       }
 
       // Open UpCart first if active, else redirect to cart page (skip Dawn drawer)

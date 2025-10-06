@@ -860,7 +860,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const totalPriceOneTime = document.getElementById('total-price-one-time');
   const tierMessage = document.getElementById('tier-message');
   const addToCartBtn = document.getElementById('add-to-cart');
-  const inputBox = document.getElementById('custom-box-input'); // optional, just for debugging/visibility
+  const inputBox = document.getElementById('custom-box-input');
   const purchaseRadios = document.querySelectorAll('input[name="purchase_option"]');
   const form = document.getElementById('custom-cookie-form'); // make sure this exists
 
@@ -988,12 +988,8 @@ document.addEventListener("DOMContentLoaded", function () {
     addToCartBtn.disabled = !canSubmit;
     addToCartBtn.classList.toggle('disabled', !canSubmit);
 
-    // (Optional) put JSON in hidden box for debugging/visibility
+    // Put JSON in hidden box
     if (inputBox) inputBox.value = JSON.stringify(items);
-
-    console.log("Selections:", selections);
-    console.log("Cart Items JSON:", items);
-    console.log("Subscription:", subscription ? getSelectedPlanId() : "One-time");
   }
 
   // Quantity controls
