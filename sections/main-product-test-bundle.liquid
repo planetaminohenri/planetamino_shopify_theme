@@ -650,6 +650,8 @@ document.addEventListener('DOMContentLoaded', function () {
     try {
       // Prefer UpCart if present, else Dawn cart drawer
       const isUpCartActive = !!(
+        document.querySelector('#CartPopup') ||
+        document.querySelector('.upcart-cart') ||
         document.querySelector('#upcart-cart-drawer') ||
         document.querySelector('.upcart-container') ||
         document.querySelector('.upcart-drawer') ||
