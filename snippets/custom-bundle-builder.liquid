@@ -84,13 +84,12 @@
             <div class="flavor-card__content">
               <div class="flavor-card__info">
                 <h3 class="flavor-card__title">{{ variant_name }}</h3>
-                <p class="flavor-card__price">€<span class="price-value">{{ variant.price | money_without_currency | replace: ',', '.' }}</span></p>
               </div>
               
               {%- comment -%} Add Button / Quantity Selector {%- endcomment -%}
               <div class="flavor-card__actions">
-              <button type="button" class="flavor-add-btn" data-action="add">
-                {{ 'bundles.add_button' | t | default: 'Add' }}
+              <button type="button" class="flavor-add-btn" data-action="add" data-price="{{ variant.price | money_without_currency | replace: ',', '.' }}">
+                {{ 'bundles.add_button' | t | default: 'Add' }} - €<span class="price-value">{{ variant.price | money_without_currency | replace: ',', '.' }}</span>
               </button>
               
               <div class="flavor-quantity-selector" style="display: none;">

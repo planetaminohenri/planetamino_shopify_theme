@@ -14,6 +14,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  margin-top: 12px;
   margin-bottom: 24px;
 }
 
@@ -22,14 +23,14 @@
   background: #fff7f4;
   border: 2px solid var(--color-primary, #330073);
   border-radius: 16px;
-  padding: 12px;
+  padding: 0px;
   display: grid;
-  grid-template-columns: 80px 1fr;
+  grid-template-columns: 100px 1fr;
   grid-template-rows: 1fr;
-  gap: 12px;
+  gap: 0px;
   transition: all 0.3s ease;
   position: relative;
-  align-items: center;
+  align-items: stretch;
 }
 
 .flavor-card:hover {
@@ -39,19 +40,20 @@
 
 /* Flavor Card Image */
 .flavor-card__image {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 16px 0px 0px 16px;
   overflow: hidden;
   flex-shrink: 0;
-  align-self: center;
+  align-self: stretch;
 }
 
 .flavor-card__image img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -61,7 +63,7 @@
 .flavor-card__content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 0;
 }
 
@@ -71,22 +73,20 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 4px;
+  margin-left: 10px;
+  gap: 0px;
 }
 
 .flavor-card__title {
-  font-size: 18px;
+  font-size: var(--font-size-body-lg, 18px);
   font-weight: 700;
   color: var(--color-primary, #330073);
-  margin: 0 0 4px 0;
-  line-height: 1.2;
+  margin: 5px 0px;
+  line-height: 1;
 }
 
 .flavor-card__price {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--color-primary-dark, #28005A);
-  margin: 0;
+  display: none;
 }
 
 /* Flavor Card Actions */
@@ -94,23 +94,25 @@
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 /* Add Button */
 .flavor-add-btn {
-  width: 100%;
+  width: auto;
   background: var(--color-primary, #330073);
+  margin: 0px 0px 10px 10px;
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 10px 20px;
+  padding: 8px 12px;
   font-size: 16px;
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: 'Acumin Pro Condensed', sans-serif;
+  white-space: nowrap;
 }
 
 .flavor-add-btn:hover {
@@ -126,17 +128,19 @@
 .flavor-quantity-selector {
   display: flex;
   align-items: center;
-  gap: 8px;
-  width: 100%;
-  justify-content: center;
+  margin: 0px 0px 10px 10px;
+  gap: 6px;
+  width: auto;
+  max-width: 50%;
+  justify-content: flex-start;
 }
 
 .qty-btn {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border: 2px solid var(--color-primary, #330073);
   background: white;
-  border-radius: 8px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,17 +159,17 @@
 }
 
 .qty-btn svg {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
 }
 
 .qty-input {
-  width: 50px;
-  height: 32px;
+  width: 40px;
+  height: 28px;
   text-align: center;
   border: 2px solid var(--color-primary, #330073);
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 6px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-primary, #330073);
   background: white;
@@ -194,6 +198,7 @@
 }
 
 .qty-input[type=number] {
+  appearance: textfield;
   -moz-appearance: textfield;
 }
 
@@ -485,11 +490,7 @@
   }
   
   .flavor-card__title {
-    font-size: 16px;
-  }
-  
-  .flavor-card__price {
-    font-size: 14px;
+    font-size: var(--font-size-body-md, 16px);
   }
   
   .flavor-add-btn {
@@ -498,14 +499,14 @@
   }
   
   .qty-btn {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
   }
   
   .qty-input {
-    width: 45px;
-    height: 28px;
-    font-size: 14px;
+    width: 38px;
+    height: 26px;
+    font-size: 13px;
   }
   
   .bundle-purchase-options {
@@ -535,35 +536,6 @@
   }
 }
 
-/* Desktop - larger screens */
-@media (min-width: 768px) {
-  .bundle-flavors-grid {
-    gap: 16px;
-  }
-  
-  .flavor-card {
-    padding: 16px;
-    grid-template-columns: 100px 1fr;
-    gap: 16px;
-  }
-  
-  .flavor-card__image {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .flavor-card__title {
-    font-size: 20px;
-  }
-  
-  .flavor-card__price {
-    font-size: 18px;
-  }
-  
-  .bundle-purchase-options {
-    padding: 24px;
-  }
-}
 
 /* Animation for quantity changes */
 @keyframes pulseGreen {
