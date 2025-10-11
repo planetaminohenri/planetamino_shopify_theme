@@ -604,7 +604,8 @@
       "easily_modify": "Muokkaa tilaus helposti omasta tilistä",
       "easily_cancel": "Peruuta milloin tahansa",
       "save_percentage": "SÄÄSTÄ 10%",
-      "save_on_delivery": "Säästä 10% jokaisesta toimituksesta"
+      "save_on_delivery": "Säästä 10% jokaisesta toimituksesta",
+      "select_frequency": "Valitse tilaussykli"
     },
     "select_protein_powder": "Valitse yksi proteiinijauhe",
     "bundle_contains": "Bundle sisältää",
@@ -614,7 +615,11 @@
       "title": "TILAA ENEMMÄN JA SÄÄSTÄ:",
       "two_boxes": "🍪 2 laatikkoa: säästä 10% ja ilmainen toimitus",
       "four_boxes": "🍪 4 laatikkoa: säästä 20% ja ilmainen toimitus"
-    }
+    },
+    "add_button": "Lisää",
+    "add_more_save": "Lisää {count} lisää ja säästä €{amount}/keksi",
+    "cookies_in_box": "Keksejä laatikossa",
+    "no_products": "Ei tuotteita saatavilla"
   },
   "shopify": {
     "checkout": {

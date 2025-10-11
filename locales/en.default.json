@@ -604,7 +604,8 @@
       "easily_modify": "Easily modify order",
       "easily_cancel": "Easily cancel anytime",
       "save_percentage": "SAVE 10%",
-      "save_on_delivery": "Save 10% on every delivery"
+      "save_on_delivery": "Save 10% on every delivery",
+      "select_frequency": "Select frequency"
     },
     "select_protein_powder": "Select one protein powder",
     "bundle_contains": "This bundle contains",
@@ -614,7 +615,11 @@
       "title": "ORDER MORE AND SAVE:",
       "two_boxes": "🍪 2 boxes: save 10% and free shipping",
       "four_boxes": "🍪 4 boxes: save 20% and free shipping"
-    }
+    },
+    "add_button": "Add",
+    "add_more_save": "Add {count} more to save €{amount}/cookie",
+    "cookies_in_box": "Cookies in box",
+    "no_products": "No products available"
   },
   "shopify": {
     "checkout": {

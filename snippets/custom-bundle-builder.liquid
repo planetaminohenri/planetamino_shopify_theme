@@ -1,0 +1,206 @@
+{% comment %}
+  Custom Bundle Builder for Power Cookies
+  
+  Usage: {% render 'custom-bundle-builder', product: product %}
+  
+  Features:
+  - Two-column grid layout (mobile and desktop)
+  - Dynamic pricing from product data
+  - Add button that transforms into quantity selector
+  - Integration with Bundler.app for cart operations
+  - Integration with Seal Subscriptions
+{% endcomment %}
+
+{% liquid
+  assign bundle_product = product
+  
+  # Fetch Power Cookie products from collection
+  assign cookie_collection = collections['power-cookie']
+  
+  # Get unique ID for this instance
+  assign unique_id = 'bundle-builder-' | append: section.id | append: '-' | append: 'now' | date: '%s'
+%}
+
+{{ 'custom-bundle-builder.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-bundle-builder" id="{{ unique_id }}" data-product-id="{{ bundle_product.id }}">
+  
+  {%- comment -%} Flavor Grid {%- endcomment -%}
+  <div class="bundle-flavors-grid">
+    {% if cookie_collection and cookie_collection.products.size > 0 %}
+      {% for cookie_product in cookie_collection.products %}
+        {% for variant in cookie_product.variants %}
+          {%- comment -%} Get variant display name {%- endcomment -%}
+          {% assign variant_name = variant.title %}
+          {% if variant_name == "Default Title" %}
+            {% assign variant_name = cookie_product.title %}
+          {% endif %}
+          
+          <div class="flavor-card" 
+               data-variant-id="{{ variant.id }}"
+               data-product-id="{{ cookie_product.id }}"
+               data-price="{{ variant.price | money_without_currency | replace: ',', '.' }}"
+               data-flavor="{{ variant_name }}">
+            
+            {%- comment -%} Product/Variant Image {%- endcomment -%}
+            <div class="flavor-card__image">
+              {% if variant.image %}
+                <img src="{{ variant.image | image_url: width: 150 }}" 
+                     alt="{{ variant_name }}" 
+                     loading="lazy"
+                     width="150"
+                     height="150">
+              {% elsif cookie_product.featured_image %}
+                <img src="{{ cookie_product.featured_image | image_url: width: 150 }}" 
+                     alt="{{ variant_name }}" 
+                     loading="lazy"
+                     width="150"
+                     height="150">
+              {% endif %}
+            </div>
+            
+            {%- comment -%} Flavor Info & Actions Container {%- endcomment -%}
+            <div class="flavor-card__content">
+              <div class="flavor-card__info">
+                <h3 class="flavor-card__title">{{ variant_name }}</h3>
+                <p class="flavor-card__price">€<span class="price-value">{{ variant.price | money_without_currency | replace: ',', '.' }}</span></p>
+              </div>
+              
+              {%- comment -%} Add Button / Quantity Selector {%- endcomment -%}
+              <div class="flavor-card__actions">
+              <button type="button" class="flavor-add-btn" data-action="add">
+                {{ 'bundles.add_button' | t | default: 'Add' }}
+              </button>
+              
+              <div class="flavor-quantity-selector" style="display: none;">
+                <button type="button" class="qty-btn qty-minus" data-action="decrease">
+                  <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 1H12" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                </button>
+                <input type="number" 
+                       class="qty-input" 
+                       value="0" 
+                       min="0" 
+                       max="999"
+                       inputmode="numeric"
+                       pattern="[0-9]*">
+                <button type="button" class="qty-btn qty-plus" data-action="increase">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 0V12M0 6H12" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                </button>
+              </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endfor %}
+    {% else %}
+      <p class="bundle-error">{{ 'bundles.no_products' | t | default: 'No products available' }}</p>
+    {% endif %}
+  </div>
+  
+  {%- comment -%} Subscription & Pricing Section {%- endcomment -%}
+  <div class="bundle-purchase-options">
+    
+    {%- comment -%} Subscription Toggle {%- endcomment -%}
+    <div class="subscription-toggle">
+      <div class="subscription-option" data-subscription-type="one-time">
+        <input type="radio" 
+               id="one-time-{{ unique_id }}" 
+               name="subscription-{{ unique_id }}" 
+               value="one-time" 
+               checked>
+        <label for="one-time-{{ unique_id }}">
+          <span class="radio-custom"></span>
+          <span class="option-text">{{ 'bundles.purchase_options.one_time' | t | default: 'One-time purchase' }}</span>
+        </label>
+      </div>
+      
+      <div class="subscription-option" data-subscription-type="subscribe">
+        <input type="radio" 
+               id="subscribe-{{ unique_id }}" 
+               name="subscription-{{ unique_id }}" 
+               value="subscribe">
+        <label for="subscribe-{{ unique_id }}">
+          <span class="radio-custom"></span>
+          <span class="option-text">{{ 'bundles.purchase_options.subscribe_save' | t | default: 'Subscribe & save' }}</span>
+          <span class="save-badge">{{ 'bundles.purchase_options.save_percentage' | t | default: 'SAVE 10%' }}</span>
+        </label>
+      </div>
+    </div>
+    
+    {%- comment -%} Delivery Frequency Selector (shows when subscription is selected) {%- endcomment -%}
+    <div class="delivery-frequency-selector" style="display: none;">
+      <label for="delivery-frequency-{{ unique_id }}" class="delivery-frequency-label">
+        {{ 'bundles.purchase_options.choose_delivery_interval' | t | default: 'Choose Delivery Interval:' }}
+      </label>
+      <select id="delivery-frequency-{{ unique_id }}" class="delivery-frequency-select">
+        <option value="" disabled selected>{{ 'bundles.purchase_options.select_frequency' | t | default: 'Select frequency' }}</option>
+        <option value="4">{{ 'bundles.purchase_options.every_4_weeks' | t | default: 'Every 4 weeks' }}</option>
+        <option value="6">{{ 'bundles.purchase_options.every_6_weeks' | t | default: 'Every 6 weeks' }}</option>
+        <option value="8">{{ 'bundles.purchase_options.every_8_weeks' | t | default: 'Every 8 weeks' }}</option>
+      </select>
+    </div>
+    
+    {%- comment -%} Subscription Info Box {%- endcomment -%}
+    <div class="subscription-info-box" style="display: none;">
+      <h4 class="subscription-info-title">{{ 'bundles.purchase_options.how_subscriptions_work' | t | default: 'How subscription works' }}</h4>
+      <ul class="subscription-info-list">
+        <li>🍪 {{ 'bundles.purchase_options.best_price_option' | t | default: 'Best price option' }}</li>
+        <li>📦 {{ 'bundles.purchase_options.discount_all_orders' | t | default: '10% off all recurring orders' }}</li>
+        <li>✏️ {{ 'bundles.purchase_options.easily_modify' | t | default: 'Easily modify order' }}</li>
+        <li>❌ {{ 'bundles.purchase_options.easily_cancel' | t | default: 'Easily cancel anytime' }}</li>
+      </ul>
+    </div>
+    
+    {%- comment -%} Pricing Summary {%- endcomment -%}
+    <div class="bundle-pricing-summary">
+      <div class="pricing-row">
+        <span class="pricing-label">{{ 'bundles.cookies_in_box' | t | default: 'Cookies in box' }}: <strong class="total-quantity">0</strong></span>
+        <span class="pricing-help-text"></span>
+      </div>
+      
+      <div class="pricing-row pricing-total">
+        <span class="pricing-label">{{ 'bundles.purchase_options.total' | t | default: 'Total' }}:</span>
+        <span class="pricing-value">
+          <span class="original-price" style="display: none;"></span>
+          <strong class="final-price">€0.00</strong>
+        </span>
+      </div>
+    </div>
+    
+    {%- comment -%} Add to Cart Button {%- endcomment -%}
+    <button type="button" class="bundle-add-to-cart" disabled>
+      {{ 'bundles.purchase_options.add_to_cart' | t | default: 'Add to cart' }}
+    </button>
+    
+    {%- comment -%} Error Messages {%- endcomment -%}
+    <div class="bundle-error-message" style="display: none;"></div>
+  </div>
+  
+  {%- comment -%} Hidden data for Bundler integration {%- endcomment -%}
+  <div class="bundle-data" style="display: none;">
+    <input type="hidden" class="bundle-shortcode" value="eap6">
+    <input type="hidden" class="bundle-selections" value="{}">
+  </div>
+</div>
+
+<script src="{{ 'custom-bundle-builder.js' | asset_url }}" defer></script>
+
+<script>
+  // Initialize bundle builder when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.CustomBundleBuilder) {
+        window.CustomBundleBuilder.init('{{ unique_id }}');
+      }
+    });
+  } else {
+    if (window.CustomBundleBuilder) {
+      window.CustomBundleBuilder.init('{{ unique_id }}');
+    }
+  }
+</script>
+

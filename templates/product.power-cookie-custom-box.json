@@ -42,8 +42,15 @@
         },
         "bundler_custom_bundle_xtAkNn": {
           "type": "shopify://apps/bundler/blocks/custom-bundle/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
+          "disabled": true,
           "settings": {
             "shortcode": "eap6"
+          }
+        },
+        "custom_bundle_builder": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'custom-bundle-builder', product: product %}"
           }
         }
       },
@@ -53,7 +60,7 @@
         "custom_review_widget",
         "nutrition_accordion_inline",
         "choose_flavors_title",
-        "bundler_custom_bundle_xtAkNn"
+        "custom_bundle_builder"
       ],
       "settings": {
         "enable_sticky_info": true,
