@@ -79,7 +79,7 @@ To customize spacing, add CSS custom properties to your theme:
                   {% assign nf_check = v.metafields.custom.nutrition.value %}
                   {% if nf_check %}
                     {% comment %} Remove weight suffix (e.g., " - 500g", " - 600g") from display name {% endcomment %}
-                    {% assign display_title = bundle_product.title %}
+                    {%assign display_title = bundle_product.title %}
                     {% assign title_parts = display_title | split: ' - ' %}
                     {% assign last_part = title_parts | last | strip %}
                     {% assign should_remove_suffix = false %}
