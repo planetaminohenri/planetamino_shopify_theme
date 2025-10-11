@@ -78,7 +78,57 @@ To customize spacing, add CSS custom properties to your theme:
                 {% for v in bundle_product.variants %}
                   {% assign nf_check = v.metafields.custom.nutrition.value %}
                   {% if nf_check %}
-                    <option value="{{ v.id }}">{{ bundle_product.title }}{% unless v.title == 'Default Title' %} - {{ v.title }}{% endunless %}</option>
+                    {% comment %} Remove weight suffix (e.g., " - 500g", " - 600g") from display name {% endcomment %}
+                    {% assign display_title = bundle_product.title %}
+                    {% assign title_parts = display_title | split: ' - ' %}
+                    {% assign last_part = title_parts | last | strip %}
+                    {% assign should_remove_suffix = false %}
+                    {% if title_parts.size > 1 and last_part contains 'g' %}
+                      {% assign last_part_no_g = last_part | remove: 'g' | remove: 'G' | strip %}
+                      {% assign test_numeric = last_part_no_g | plus: 0 %}
+                      {% if test_numeric > 0 or last_part_no_g == '0' %}
+                        {% assign should_remove_suffix = true %}
+                      {% endif %}
+                    {% endif %}
+                    {% if should_remove_suffix %}
+                      {% assign display_title = '' %}
+                      {% for part in title_parts %}
+                        {% unless forloop.last %}
+                          {% if forloop.first %}
+                            {% assign display_title = part %}
+                          {% else %}
+                            {% assign display_title = display_title | append: ' - ' | append: part %}
+                          {% endif %}
+                        {% endunless %}
+                      {% endfor %}
+                    {% endif %}
+                    {% comment %} Also remove weight suffix from variant name {% endcomment %}
+                    {% assign display_variant = v.title %}
+                    {% unless v.title == 'Default Title' %}
+                      {% assign variant_parts = v.title | split: ' - ' %}
+                      {% assign variant_last_part = variant_parts | last | strip %}
+                      {% assign variant_should_remove = false %}
+                      {% if variant_parts.size > 1 and variant_last_part contains 'g' %}
+                        {% assign variant_last_no_g = variant_last_part | remove: 'g' | remove: 'G' | strip %}
+                        {% assign variant_test_numeric = variant_last_no_g | plus: 0 %}
+                        {% if variant_test_numeric > 0 or variant_last_no_g == '0' %}
+                          {% assign variant_should_remove = true %}
+                        {% endif %}
+                      {% endif %}
+                      {% if variant_should_remove %}
+                        {% assign display_variant = '' %}
+                        {% for part in variant_parts %}
+                          {% unless forloop.last %}
+                            {% if forloop.first %}
+                              {% assign display_variant = part %}
+                            {% else %}
+                              {% assign display_variant = display_variant | append: ' - ' | append: part %}
+                            {% endif %}
+                          {% endunless %}
+                        {% endfor %}
+                      {% endif %}
+                    {% endunless %}
+                    <option value="{{ v.id }}">{{ display_title }}{% unless v.title == 'Default Title' %} - {{ display_variant }}{% endunless %}</option>
                   {% endif %}
                 {% endfor %}
               {% endif %}
@@ -86,7 +136,57 @@ To customize spacing, add CSS custom properties to your theme:
           {% else %}
             {% comment %} Regular mode: Show variants from current product {% endcomment %}
           {% for v in host_product.variants %}
-            <option value="{{ v.id }}">{{ host_product.title }} {{ v.title }}</option>
+            {% comment %} Remove weight suffix (e.g., " - 500g", " - 600g") from display name {% endcomment %}
+            {% assign display_title = host_product.title %}
+            {% assign title_parts = display_title | split: ' - ' %}
+            {% assign last_part = title_parts | last | strip %}
+            {% assign should_remove_suffix = false %}
+            {% if title_parts.size > 1 and last_part contains 'g' %}
+              {% assign last_part_no_g = last_part | remove: 'g' | remove: 'G' | strip %}
+              {% assign test_numeric = last_part_no_g | plus: 0 %}
+              {% if test_numeric > 0 or last_part_no_g == '0' %}
+                {% assign should_remove_suffix = true %}
+              {% endif %}
+            {% endif %}
+            {% if should_remove_suffix %}
+              {% assign display_title = '' %}
+              {% for part in title_parts %}
+                {% unless forloop.last %}
+                  {% if forloop.first %}
+                    {% assign display_title = part %}
+                  {% else %}
+                    {% assign display_title = display_title | append: ' - ' | append: part %}
+                  {% endif %}
+                {% endunless %}
+              {% endfor %}
+            {% endif %}
+            {% comment %} Also remove weight suffix from variant name {% endcomment %}
+            {% assign display_variant = v.title %}
+            {% unless v.title == 'Default Title' %}
+              {% assign variant_parts = v.title | split: ' - ' %}
+              {% assign variant_last_part = variant_parts | last | strip %}
+              {% assign variant_should_remove = false %}
+              {% if variant_parts.size > 1 and variant_last_part contains 'g' %}
+                {% assign variant_last_no_g = variant_last_part | remove: 'g' | remove: 'G' | strip %}
+                {% assign variant_test_numeric = variant_last_no_g | plus: 0 %}
+                {% if variant_test_numeric > 0 or variant_last_no_g == '0' %}
+                  {% assign variant_should_remove = true %}
+                {% endif %}
+              {% endif %}
+              {% if variant_should_remove %}
+                {% assign display_variant = '' %}
+                {% for part in variant_parts %}
+                  {% unless forloop.last %}
+                    {% if forloop.first %}
+                      {% assign display_variant = part %}
+                    {% else %}
+                      {% assign display_variant = display_variant | append: ' - ' | append: part %}
+                    {% endif %}
+                  {% endunless %}
+                {% endfor %}
+              {% endif %}
+            {% endunless %}
+            <option value="{{ v.id }}">{{ display_title }} {{ display_variant }}</option>
           {% endfor %}
           {% endif %}
         </select>
