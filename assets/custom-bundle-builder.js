@@ -90,29 +90,32 @@
         }
 
         if (qtyInput) {
-          // Handle typing in the input field
+          // Handle typing in the input field - update state and UI live
           qtyInput.addEventListener('input', (e) => {
             const value = parseInt(e.target.value) || 0;
             const variantId = card.dataset.variantId;
             
-            // Update internal state without triggering full UI update yet
+            // Update internal state
             if (value > 0) {
               this.selections[variantId] = value;
             } else {
               delete this.selections[variantId];
             }
+            
+            // Update UI live as user types
+            this.updateUI();
           });
           
-          // Handle blur (when user clicks away or presses Enter)
+          // Handle blur (when user clicks away) - clean up the value
           qtyInput.addEventListener('blur', (e) => {
             const value = parseInt(e.target.value) || 0;
             this.setQuantity(card, value);
           });
           
-          // Handle Enter key
+          // Handle Enter key - blur to finalize the value
           qtyInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-              e.target.blur(); // Trigger blur event
+              e.target.blur();
             }
           });
           
@@ -120,11 +123,6 @@
           qtyInput.addEventListener('change', (e) => {
             const value = parseInt(e.target.value) || 0;
             this.setQuantity(card, value);
-          });
-          
-          // Live update totals as user types
-          qtyInput.addEventListener('input', () => {
-            this.updateUI();
           });
         }
       });
@@ -434,8 +432,12 @@
           // Add subscription properties if subscription is selected
           if (this.isSubscription) {
             const sellingPlanId = this.getSellingPlanId();
+            console.log('🔍 [Bundle Builder] Subscription selected, selling plan ID:', sellingPlanId);
             if (sellingPlanId) {
-              item.selling_plan = sellingPlanId;
+              item.selling_plan = parseInt(sellingPlanId);
+              console.log('✅ [Bundle Builder] Added selling plan to item:', item);
+            } else {
+              console.warn('⚠️ [Bundle Builder] No selling plan ID found for subscription');
             }
           }
           
@@ -447,6 +449,8 @@
         throw new Error('No items selected');
       }
       
+      console.log('🛒 [Cart] Adding items to cart:', items);
+      
       // Check if UpCart is active
       const isUpCartActive = !!(
         window.UpCart ||
@@ -456,17 +460,24 @@
         document.querySelector('link[href*="upcart"]')
       );
       
+      console.log('🛒 [Cart] UpCart active:', isUpCartActive);
+      
       // Get cart drawer/notification for section updates
       const cart = !isUpCartActive && (document.querySelector('cart-notification') || document.querySelector('cart-drawer'));
+      console.log('🛒 [Cart] Cart drawer found:', !!cart);
       
       // Build FormData for UpCart compatibility
       const formData = new FormData();
       items.forEach((item, index) => {
+        console.log(`🛒 [Cart] Adding item ${index}:`, item);
         formData.append(`items[${index}][id]`, item.id);
         formData.append(`items[${index}][quantity]`, item.quantity);
         
         if (item.selling_plan) {
+          console.log(`✅ [Cart] Adding selling_plan to item ${index}:`, item.selling_plan);
           formData.append(`items[${index}][selling_plan]`, item.selling_plan);
+        } else if (this.isSubscription) {
+          console.warn(`⚠️ [Cart] Subscription active but no selling_plan for item ${index}`);
         }
         
         if (item.properties) {
@@ -477,6 +488,12 @@
           });
         }
       });
+      
+      // Log FormData contents
+      console.log('🛒 [Cart] FormData contents:');
+      for (let pair of formData.entries()) {
+        console.log('  ', pair[0], '=', pair[1]);
+      }
       
       // Prepare sections for cart drawer update
       let url = '/cart/add';
@@ -533,53 +550,110 @@
      */
     getSellingPlanId() {
       if (!this.isSubscription || !this.deliveryFrequency) {
+        console.log('🔍 [Selling Plan] Not subscription or no frequency:', { 
+          isSubscription: this.isSubscription, 
+          frequency: this.deliveryFrequency 
+        });
         return null;
       }
       
-      // Try to get from Seal widget first
+      console.log('🔍 [Selling Plan] Looking for selling plan for', this.deliveryFrequency, 'weeks');
+      
+      // Method 1: Try to get from Seal widget
       const sealWidget = document.querySelector('.sealsubs-container');
+      console.log('🔍 [Selling Plan] Seal widget found:', !!sealWidget);
+      
       if (sealWidget) {
         // Try to find a selling plan that matches the selected frequency
         const allPlans = sealWidget.querySelectorAll('input[name="selling_plan"]');
+        console.log('🔍 [Selling Plan] Found', allPlans.length, 'selling plan inputs');
+        
         for (const plan of allPlans) {
           const label = plan.closest('label') || plan.nextElementSibling;
-          if (label && label.textContent.includes(`${this.deliveryFrequency} week`)) {
+          const labelText = label ? label.textContent : '';
+          console.log('🔍 [Selling Plan] Checking plan:', { value: plan.value, label: labelText });
+          
+          if (labelText.includes(`${this.deliveryFrequency} week`)) {
+            console.log('✅ [Selling Plan] Found matching plan by frequency:', plan.value);
             return plan.value;
           }
         }
         
-        // Fallback: get any checked plan
-        const selectedPlan = sealWidget.querySelector('input[name="selling_plan"]:checked');
-        if (selectedPlan) {
-          return selectedPlan.value;
+        // Try matching by data attribute
+        for (const plan of allPlans) {
+          if (plan.dataset.frequency && plan.dataset.frequency === this.deliveryFrequency) {
+            console.log('✅ [Selling Plan] Found matching plan by data-frequency:', plan.value);
+            return plan.value;
+          }
+        }
+        
+        // Fallback: get first available plan
+        if (allPlans.length > 0) {
+          const firstPlan = allPlans[0];
+          console.log('⚠️ [Selling Plan] Using first available plan:', firstPlan.value);
+          return firstPlan.value;
         }
       }
       
-      // If Seal widget is not present, try to get selling plans from page data
-      // Look for selling plan groups in window.ShopifyAnalytics or product JSON
-      if (window.ShopifyAnalytics && window.ShopifyAnalytics.meta && window.ShopifyAnalytics.meta.product) {
-        const sellingPlanGroups = window.ShopifyAnalytics.meta.product.selling_plan_groups;
-        if (sellingPlanGroups && sellingPlanGroups.length > 0) {
-          // Find a plan that matches the frequency
-          for (const group of sellingPlanGroups) {
-            if (group.selling_plans) {
-              for (const plan of group.selling_plans) {
-                // Match by delivery frequency in weeks
-                if (plan.name && plan.name.includes(`${this.deliveryFrequency} week`)) {
-                  return plan.id;
+      // Method 2: Look in product JSON on the page
+      const productScripts = document.querySelectorAll('script[type="application/json"]');
+      for (const script of productScripts) {
+        try {
+          const data = JSON.parse(script.textContent);
+          if (data.selling_plan_groups && data.selling_plan_groups.length > 0) {
+            console.log('🔍 [Selling Plan] Found selling plans in product JSON');
+            
+            for (const group of data.selling_plan_groups) {
+              if (group.selling_plans) {
+                for (const plan of group.selling_plans) {
+                  console.log('🔍 [Selling Plan] Checking plan:', plan);
+                  
+                  // Match by name containing frequency
+                  if (plan.name && plan.name.toLowerCase().includes(`${this.deliveryFrequency} week`)) {
+                    console.log('✅ [Selling Plan] Found matching plan in JSON:', plan.id);
+                    return plan.id;
+                  }
+                }
+                
+                // Fallback to first plan
+                if (group.selling_plans.length > 0) {
+                  console.log('⚠️ [Selling Plan] Using first plan from JSON:', group.selling_plans[0].id);
+                  return group.selling_plans[0].id;
                 }
               }
             }
           }
-          // Fallback to first plan in first group
-          if (sellingPlanGroups[0].selling_plans && sellingPlanGroups[0].selling_plans.length > 0) {
-            return sellingPlanGroups[0].selling_plans[0].id;
+        } catch (e) {
+          // Not a product JSON, continue
+        }
+      }
+      
+      // Method 3: Check window objects
+      if (window.ShopifyAnalytics && window.ShopifyAnalytics.meta && window.ShopifyAnalytics.meta.product) {
+        const sellingPlanGroups = window.ShopifyAnalytics.meta.product.selling_plan_groups;
+        if (sellingPlanGroups && sellingPlanGroups.length > 0) {
+          console.log('🔍 [Selling Plan] Found selling plans in ShopifyAnalytics');
+          
+          for (const group of sellingPlanGroups) {
+            if (group.selling_plans) {
+              for (const plan of group.selling_plans) {
+                if (plan.name && plan.name.includes(`${this.deliveryFrequency} week`)) {
+                  console.log('✅ [Selling Plan] Found matching plan in analytics:', plan.id);
+                  return plan.id;
+                }
+              }
+              
+              if (group.selling_plans.length > 0) {
+                console.log('⚠️ [Selling Plan] Using first plan from analytics:', group.selling_plans[0].id);
+                return group.selling_plans[0].id;
+              }
+            }
           }
         }
       }
       
       // Final fallback - log warning and return null
-      console.warn('Could not find selling plan ID for frequency:', this.deliveryFrequency);
+      console.error('❌ [Selling Plan] Could not find any selling plan ID for frequency:', this.deliveryFrequency);
       return null;
     }
 
