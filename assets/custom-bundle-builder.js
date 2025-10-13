@@ -520,23 +520,13 @@
         if (totals.quantity === 0) {
           // No cookies selected yet
           this.pricingHelpText.textContent = 'Select cookies to see savings';
-        } else if (nextTier && nextTier.discountPercent > totals.bulkDiscountPercent) {
-          // Show how many more to add for next tier
+        } else if (nextTier) {
+          // Show how many more to add for next tier (with next tier's total discount)
           const needed = nextTier.min - totals.quantity;
-          const additionalDiscount = nextTier.discountPercent - totals.bulkDiscountPercent;
-          this.pricingHelpText.textContent = `Add ${needed} more to save an extra ${additionalDiscount}%`;
-        } else if (totals.bulkDiscountPercent > 0) {
+          this.pricingHelpText.textContent = `Add ${needed} more to save ${nextTier.discountPercent}%`;
+        } else {
           // At max tier, show current savings
           this.pricingHelpText.textContent = `You're saving ${totals.bulkDiscountPercent}%!`;
-        } else {
-          // Has items but no discount yet
-          const nextTier = this.getNextDiscountTier(totals.quantity);
-          if (nextTier) {
-            const needed = nextTier.min - totals.quantity;
-            this.pricingHelpText.textContent = `Add ${needed} more to save ${nextTier.discountPercent}%`;
-          } else {
-            this.pricingHelpText.textContent = `${totals.quantity} cookies in box`;
-          }
         }
       }
       
