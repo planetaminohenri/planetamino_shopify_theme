@@ -364,7 +364,7 @@
 
 .delivery-frequency-selector .delivery-frequency-label {
   display: block;
-  font-size: 14px;
+  font-size: var(--font-size-body-lg);
   font-weight: 600;
   color: var(--color-primary, #330073);
   padding: 0;
