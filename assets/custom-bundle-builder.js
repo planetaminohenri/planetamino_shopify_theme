@@ -47,16 +47,22 @@
       
       // DOM elements
       this.flavorCards = this.container.querySelectorAll('.flavor-card');
-      this.subscriptionOptions = this.container.querySelectorAll('.subscription-option input[type="radio"]');
+      this.subscriptionOptions = this.container.querySelectorAll('.purchase-option-card input[type="radio"]');
       this.addToCartBtn = this.container.querySelector('.bundle-add-to-cart');
-      this.totalQuantityEl = this.container.querySelector('.total-quantity');
-      this.finalPriceEl = this.container.querySelector('.final-price');
-      this.originalPriceEl = this.container.querySelector('.original-price');
       this.pricingHelpText = this.container.querySelector('.pricing-help-text');
       this.errorMessageEl = this.container.querySelector('.bundle-error-message');
       this.deliveryFrequencySelector = this.container.querySelector('.delivery-frequency-selector');
       this.deliveryFrequencySelect = this.container.querySelector('.delivery-frequency-select');
       this.subscriptionInfoBox = this.container.querySelector('.subscription-info-box');
+      
+      // New elements for dual pricing display
+      this.oneTimePriceEl = this.container.querySelector('.purchase-option-card[data-subscription-type="one-time"] .option-price-value');
+      this.oneTimeCookieCountEl = this.container.querySelector('.purchase-option-card[data-subscription-type="one-time"] .option-cookie-count');
+      this.subscribePriceEl = this.container.querySelector('.purchase-option-card[data-subscription-type="subscribe"] .option-price-value');
+      this.subscribeOriginalPriceEl = this.container.querySelector('.purchase-option-card[data-subscription-type="subscribe"] .option-price-original');
+      this.subscribeCookieCountEl = this.container.querySelector('.purchase-option-card[data-subscription-type="subscribe"] .option-cookie-count');
+      this.subscriptionBannerEl = this.container.querySelector('.purchase-option-banner');
+      this.subscriptionDiscountTextEl = this.container.querySelector('.subscription-discount-text');
       
       // Initialize
       this.init();
@@ -64,6 +70,7 @@
 
     init() {
       this.bindEvents();
+      this.populateFrequencyOptions();
       this.fetchSubscriptionDiscount();
       this.updateUI();
     }
@@ -257,6 +264,77 @@
     }
 
     /**
+     * Populate frequency options from Seal Subscriptions selling plans
+     */
+    populateFrequencyOptions() {
+      if (!this.deliveryFrequencySelect) return;
+      
+      // Clear existing options
+      this.deliveryFrequencySelect.innerHTML = '';
+      
+      // Try to get selling plans from hidden Seal widget
+      const sealWidget = document.querySelector('.sealsubs-container');
+      
+      if (sealWidget) {
+        const sellingPlans = sealWidget.querySelectorAll('input[name="selling_plan"]');
+        
+        if (sellingPlans.length > 0) {
+          sellingPlans.forEach((plan, index) => {
+            const planId = plan.value;
+            const frequency = plan.dataset.frequency;
+            
+            // Get the label text
+            const label = plan.nextElementSibling || plan.closest('label');
+            let labelText = label ? label.textContent.trim() : '';
+            
+            // If we don't have label text but have frequency, construct it
+            if (!labelText && frequency) {
+              labelText = `Every ${frequency} weeks`;
+            }
+            
+            if (labelText || frequency) {
+              const option = document.createElement('option');
+              option.value = frequency || planId;
+              option.textContent = labelText || `Every ${frequency} weeks`;
+              option.dataset.planId = planId;
+              
+              this.deliveryFrequencySelect.appendChild(option);
+              
+              // Auto-select first option
+              if (index === 0) {
+                option.selected = true;
+                this.deliveryFrequency = option.value;
+              }
+            }
+          });
+          
+          console.log('✅ Populated', sellingPlans.length, 'frequency options from Seal Subscriptions');
+          return;
+        }
+      }
+      
+      // Fallback: add default options if Seal widget not found
+      console.log('⚠️ Seal widget not found, using default frequency options');
+      const defaultOptions = [
+        { value: '4', text: 'Every 4 weeks' },
+        { value: '6', text: 'Every 6 weeks' },
+        { value: '8', text: 'Every 8 weeks' }
+      ];
+      
+      defaultOptions.forEach((opt, index) => {
+        const option = document.createElement('option');
+        option.value = opt.value;
+        option.textContent = opt.text;
+        this.deliveryFrequencySelect.appendChild(option);
+        
+        if (index === 0) {
+          option.selected = true;
+          this.deliveryFrequency = opt.value;
+        }
+      });
+    }
+
+    /**
      * Toggle subscription-related UI elements
      */
     toggleSubscriptionElements() {
@@ -264,16 +342,17 @@
         this.deliveryFrequencySelector.style.display = this.isSubscription ? 'block' : 'none';
       }
       
-      if (this.subscriptionInfoBox) {
-        this.subscriptionInfoBox.style.display = this.isSubscription ? 'block' : 'none';
+      // Auto-select first frequency when switching to subscription
+      if (this.isSubscription && this.deliveryFrequencySelect && !this.deliveryFrequency) {
+        if (this.deliveryFrequencySelect.options.length > 0) {
+          this.deliveryFrequencySelect.selectedIndex = 0;
+          this.deliveryFrequency = this.deliveryFrequencySelect.value;
+        }
       }
       
       // Reset delivery frequency when switching to one-time
       if (!this.isSubscription) {
         this.deliveryFrequency = null;
-        if (this.deliveryFrequencySelect) {
-          this.deliveryFrequencySelect.value = '';
-        }
       }
     }
 
@@ -405,34 +484,59 @@
     updateUI() {
       const totals = this.calculateTotal();
       
-      // Update quantity display
-      if (this.totalQuantityEl) {
-        this.totalQuantityEl.textContent = totals.quantity;
+      // Update cookie counts in both option cards
+      if (this.oneTimeCookieCountEl) {
+        this.oneTimeCookieCountEl.textContent = totals.quantity;
+      }
+      if (this.subscribeCookieCountEl) {
+        this.subscribeCookieCountEl.textContent = totals.quantity;
       }
       
-      // Update price display
-      if (this.finalPriceEl) {
-        this.finalPriceEl.textContent = `€${totals.total.toFixed(2)}`;
+      // Calculate prices for BOTH options
+      const oneTimePrice = totals.afterBulkDiscount; // Bulk discount only
+      
+      // ALWAYS calculate subscription price with discount, regardless of selection
+      const subscribePrice = totals.afterBulkDiscount * (1 - this.subscriptionDiscount);
+      
+      // Update one-time price
+      if (this.oneTimePriceEl) {
+        this.oneTimePriceEl.textContent = `€${oneTimePrice.toFixed(2)}`;
       }
       
-      // Show original price if subscription is active
-      if (this.originalPriceEl && this.isSubscription && totals.total !== totals.originalTotal) {
-        this.originalPriceEl.textContent = `€${totals.originalTotal.toFixed(2)}`;
-        this.originalPriceEl.style.display = 'inline';
-      } else if (this.originalPriceEl) {
-        this.originalPriceEl.style.display = 'none';
+      // Update subscribe price - always show both original and discounted
+      if (this.subscribePriceEl) {
+        this.subscribePriceEl.textContent = `€${subscribePrice.toFixed(2)}`;
+      }
+      
+      // Always show original price on subscribe option (strikethrough)
+      if (this.subscribeOriginalPriceEl) {
+        this.subscribeOriginalPriceEl.textContent = `€${oneTimePrice.toFixed(2)}`;
+        this.subscribeOriginalPriceEl.style.display = 'inline';
       }
       
       // Update help text for bulk discount tiers
       if (this.pricingHelpText) {
         const nextTier = this.getNextDiscountTier(totals.quantity);
-        if (nextTier && nextTier.discountPercent > totals.bulkDiscountPercent) {
+        if (totals.quantity === 0) {
+          // No cookies selected yet
+          this.pricingHelpText.textContent = 'Select cookies to see savings';
+        } else if (nextTier && nextTier.discountPercent > totals.bulkDiscountPercent) {
+          // Show how many more to add for next tier
           const needed = nextTier.min - totals.quantity;
           const additionalDiscount = nextTier.discountPercent - totals.bulkDiscountPercent;
           this.pricingHelpText.textContent = `Add ${needed} more to save an extra ${additionalDiscount}%`;
-          this.pricingHelpText.style.display = 'block';
+        } else if (totals.bulkDiscountPercent > 0) {
+          // At max tier, show current savings
+          this.pricingHelpText.textContent = `You're saving ${totals.bulkDiscountPercent}%!`;
         } else {
-          this.pricingHelpText.style.display = 'none';
+          // Has items but no discount yet
+          const nextTier = this.getNextDiscountTier(totals.quantity);
+          if (nextTier) {
+            const needed = nextTier.min - totals.quantity;
+            this.pricingHelpText.textContent = `Add ${needed} more to save ${nextTier.discountPercent}%`;
+          } else {
+            this.pricingHelpText.textContent = `${totals.quantity} cookies in box`;
+          }
         }
       }
       
@@ -521,11 +625,34 @@
             if (!isNaN(discount)) {
               this.subscriptionDiscount = discount / 100;
               
-              // Update the save badge text
-              const saveBadge = this.container.querySelector('.save-badge');
-              if (saveBadge) {
-                saveBadge.textContent = `SAVE ${Math.round(discount)}%`;
+              // Update the banner text
+              if (this.subscriptionBannerEl) {
+                this.subscriptionBannerEl.textContent = `Save ${Math.round(discount)}% on every delivery`;
               }
+              
+              // Update the subscription benefits text
+              if (this.subscriptionDiscountTextEl) {
+                this.subscriptionDiscountTextEl.textContent = `${Math.round(discount)}% off all recurring orders`;
+              }
+              
+              console.log('✅ Updated subscription discount to', Math.round(discount) + '%');
+            }
+          }
+        }
+        
+        // Fallback: use default discount from data attribute or config
+        if (this.subscriptionDiscount === CONFIG.defaultSubscriptionDiscount) {
+          const defaultDiscount = this.container.dataset.defaultSubscriptionDiscount;
+          if (defaultDiscount) {
+            this.subscriptionDiscount = parseFloat(defaultDiscount) / 100;
+            const discountPercent = Math.round(this.subscriptionDiscount * 100);
+            
+            // Update UI with default discount
+            if (this.subscriptionBannerEl) {
+              this.subscriptionBannerEl.textContent = `Save ${discountPercent}% on every delivery`;
+            }
+            if (this.subscriptionDiscountTextEl) {
+              this.subscriptionDiscountTextEl.textContent = `${discountPercent}% off all recurring orders`;
             }
           }
         }
@@ -729,7 +856,16 @@
       
       console.log('🔍 [Selling Plan] Looking for selling plan for', this.deliveryFrequency, 'weeks');
       
-      // Method 1: Try to get from Seal widget
+      // Method 1: Get from the selected frequency option (we store plan ID there)
+      if (this.deliveryFrequencySelect) {
+        const selectedOption = this.deliveryFrequencySelect.options[this.deliveryFrequencySelect.selectedIndex];
+        if (selectedOption && selectedOption.dataset.planId) {
+          console.log('✅ [Selling Plan] Found plan ID from frequency selector:', selectedOption.dataset.planId);
+          return selectedOption.dataset.planId;
+        }
+      }
+      
+      // Method 2: Try to get from Seal widget
       const sealWidget = document.querySelector('.sealsubs-container');
       console.log('🔍 [Selling Plan] Seal widget found:', !!sealWidget);
       
@@ -765,7 +901,7 @@
         }
       }
       
-      // Method 2: Look in product JSON on the page
+      // Method 3: Look in product JSON on the page
       const productScripts = document.querySelectorAll('script[type="application/json"]');
       for (const script of productScripts) {
         try {
@@ -798,7 +934,7 @@
         }
       }
       
-      // Method 3: Check window objects
+      // Method 4: Check window objects
       if (window.ShopifyAnalytics && window.ShopifyAnalytics.meta && window.ShopifyAnalytics.meta.product) {
         const sellingPlanGroups = window.ShopifyAnalytics.meta.product.selling_plan_groups;
         if (sellingPlanGroups && sellingPlanGroups.length > 0) {

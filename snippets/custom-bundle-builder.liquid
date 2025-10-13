@@ -147,71 +147,85 @@
   {%- comment -%} Subscription & Pricing Section {%- endcomment -%}
   <div class="bundle-purchase-options">
     
-    {%- comment -%} Subscription Toggle {%- endcomment -%}
-    <div class="subscription-toggle">
-      <div class="subscription-option" data-subscription-type="one-time">
+    {%- comment -%} Purchase Options Cards {%- endcomment -%}
+    <div class="purchase-options-container">
+      
+      {%- comment -%} One-Time Purchase Card {%- endcomment -%}
+      <div class="purchase-option-card" data-subscription-type="one-time">
         <input type="radio" 
                id="one-time-{{ unique_id }}" 
                name="subscription-{{ unique_id }}" 
                value="one-time" 
                checked>
         <label for="one-time-{{ unique_id }}">
-          <span class="radio-custom"></span>
-          <span class="option-text">{{ 'bundles.purchase_options.one_time' | t | default: 'One-time purchase' }}</span>
+          <div class="purchase-option-header">
+            <div class="purchase-option-info">
+              <div class="purchase-option-title-row">
+                <span class="radio-custom"></span>
+                <span class="purchase-option-title">{{ 'bundles.purchase_options.one_time' | t | default: 'One-time purchase' }}</span>
+              </div>
+              <span class="purchase-option-subtitle"><span class="option-cookie-count">0</span> {{ 'bundles.purchase_options.cookies' | t | default: 'cookies' }}</span>
+            </div>
+            <div class="purchase-option-price">
+              <span class="option-price-value">€0.00</span>
+            </div>
+          </div>
         </label>
       </div>
       
-      <div class="subscription-option" data-subscription-type="subscribe">
+      {%- comment -%} Subscribe & Save Card {%- endcomment -%}
+      <div class="purchase-option-card" data-subscription-type="subscribe">
+        <div class="purchase-option-banner">
+          {{ 'bundles.purchase_options.save_on_delivery' | t | default: 'Save 10% on every delivery' }}
+        </div>
+        
         <input type="radio" 
                id="subscribe-{{ unique_id }}" 
                name="subscription-{{ unique_id }}" 
                value="subscribe">
         <label for="subscribe-{{ unique_id }}">
-          <span class="radio-custom"></span>
-          <span class="option-text">{{ 'bundles.purchase_options.subscribe_save' | t | default: 'Subscribe & save' }}</span>
-          <span class="save-badge">{{ 'bundles.purchase_options.save_percentage' | t | default: 'SAVE 10%' }}</span>
+          <div class="purchase-option-header">
+            <div class="purchase-option-info">
+              <div class="purchase-option-title-row">
+                <span class="radio-custom"></span>
+                <span class="purchase-option-title">{{ 'bundles.purchase_options.subscribe_save' | t | default: 'Subscribe & Save' }}</span>
+              </div>
+              <span class="purchase-option-subtitle"><span class="option-cookie-count">0</span> {{ 'bundles.purchase_options.cookies' | t | default: 'cookies' }}</span>
+            </div>
+            <div class="purchase-option-price">
+              <span class="option-price-original">€0.00</span>
+              <span class="option-price-value">€0.00</span>
+            </div>
+          </div>
         </label>
-      </div>
-    </div>
-    
-    {%- comment -%} Delivery Frequency Selector (shows when subscription is selected) {%- endcomment -%}
-    <div class="delivery-frequency-selector" style="display: none;">
-      <label for="delivery-frequency-{{ unique_id }}" class="delivery-frequency-label">
-        {{ 'bundles.purchase_options.choose_delivery_interval' | t | default: 'Choose Delivery Interval:' }}
-      </label>
-      <select id="delivery-frequency-{{ unique_id }}" class="delivery-frequency-select">
-        <option value="" disabled selected>{{ 'bundles.purchase_options.select_frequency' | t | default: 'Select frequency' }}</option>
-        <option value="4">{{ 'bundles.purchase_options.every_4_weeks' | t | default: 'Every 4 weeks' }}</option>
-        <option value="6">{{ 'bundles.purchase_options.every_6_weeks' | t | default: 'Every 6 weeks' }}</option>
-        <option value="8">{{ 'bundles.purchase_options.every_8_weeks' | t | default: 'Every 8 weeks' }}</option>
-      </select>
-    </div>
-    
-    {%- comment -%} Subscription Info Box {%- endcomment -%}
-    <div class="subscription-info-box" style="display: none;">
-      <h4 class="subscription-info-title">{{ 'bundles.purchase_options.how_subscriptions_work' | t | default: 'How subscription works' }}</h4>
-      <ul class="subscription-info-list">
-        <li>🍪 {{ 'bundles.purchase_options.best_price_option' | t | default: 'Best price option' }}</li>
-        <li>📦 {{ 'bundles.purchase_options.discount_all_orders' | t | default: '10% off all recurring orders' }}</li>
-        <li>✏️ {{ 'bundles.purchase_options.easily_modify' | t | default: 'Easily modify order' }}</li>
-        <li>❌ {{ 'bundles.purchase_options.easily_cancel' | t | default: 'Easily cancel anytime' }}</li>
-      </ul>
-    </div>
-    
-    {%- comment -%} Pricing Summary {%- endcomment -%}
-    <div class="bundle-pricing-summary">
-      <div class="pricing-row">
-        <span class="pricing-label">{{ 'bundles.cookies_in_box' | t | default: 'Cookies in box' }}: <strong class="total-quantity">0</strong></span>
-        <span class="pricing-help-text"></span>
+        
+        {%- comment -%} How Subscription Works {%- endcomment -%}
+        <div class="subscription-info-box">
+          <h4 class="subscription-info-title">{{ 'bundles.purchase_options.how_subscription_works' | t | default: 'How subscription works:' }}</h4>
+          <ul class="subscription-info-list">
+            <li><span class="info-icon">🍪</span> {{ 'bundles.purchase_options.best_price_option' | t | default: 'Best price option' }}</li>
+            <li><span class="info-icon">📦</span> <span class="subscription-discount-text">10% off all recurring orders</span></li>
+            <li><span class="info-icon">✏️</span> {{ 'bundles.purchase_options.easily_modify' | t | default: 'Easily modify order' }}</li>
+            <li><span class="info-icon">❌</span> {{ 'bundles.purchase_options.easily_cancel' | t | default: 'Easily cancel anytime' }}</li>
+          </ul>
+        </div>
+        
+        {%- comment -%} Delivery Frequency Selector (shows when subscription is selected) {%- endcomment -%}
+        <div class="delivery-frequency-selector" style="display: none;">
+          <label for="delivery-frequency-{{ unique_id }}" class="delivery-frequency-label">
+            {{ 'bundles.purchase_options.delivers_every' | t | default: 'Delivers every' }}
+          </label>
+          <select id="delivery-frequency-{{ unique_id }}" class="delivery-frequency-select">
+            {%- comment -%} Options will be populated dynamically from Seal Subscriptions {%- endcomment -%}
+          </select>
+        </div>
       </div>
       
-      <div class="pricing-row pricing-total">
-        <span class="pricing-label">{{ 'bundles.purchase_options.total' | t | default: 'Total' }}:</span>
-        <span class="pricing-value">
-          <span class="original-price" style="display: none;"></span>
-          <strong class="final-price">€0.00</strong>
-        </span>
-      </div>
+    </div>
+    
+    {%- comment -%} Bulk Discount Help Text {%- endcomment -%}
+    <div class="bundle-discount-progress">
+      <span class="pricing-help-text">{{ 'bundles.select_cookies' | t | default: 'Select cookies to see savings' }}</span>
     </div>
     
     {%- comment -%} Add to Cart Button {%- endcomment -%}

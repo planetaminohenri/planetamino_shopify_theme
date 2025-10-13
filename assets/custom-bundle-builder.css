@@ -212,60 +212,94 @@
   margin-top: 24px;
 }
 
-/* Subscription Toggle */
-.subscription-toggle {
+/* Purchase Options Container */
+.purchase-options-container {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 16px;
+  margin-bottom: 10px;
 }
 
-.subscription-option {
+/* Purchase Option Card */
+.purchase-option-card {
   background: white;
-  border: 2px solid #4CBE45;
+  border: 2px solid #ddd;
   border-radius: 12px;
-  padding: 16px;
+  overflow: hidden;
   transition: all 0.3s ease;
   cursor: pointer;
+  position: relative;
 }
 
-.subscription-option:hover {
+.purchase-option-card:hover {
   border-color: var(--color-primary, #330073);
 }
 
-.subscription-option input[type="radio"] {
+.purchase-option-card input[type="radio"] {
   display: none;
 }
 
-/* Green border for subscribe & save option when selected */
-.subscription-option[data-subscription-type="subscribe"]:has(input[type="radio"]:checked) {
-  border: 4px solid #4CBE45;
-  padding: 15px; /* Adjust padding to compensate for thicker border */
+/* Selected state - green border */
+.purchase-option-card:has(input[type="radio"]:checked) {
+  border: 3px solid var(--color-primary, #330073);
 }
 
-.subscription-option input[type="radio"]:checked ~ label {
+/* Green banner for Subscribe & Save */
+.purchase-option-banner {
+  background: #4CBE45;
+  color: white;
+  text-align: center;
+  padding: 5px 16px;
+  font-size: 14px;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
-.subscription-option input[type="radio"]:checked + label .radio-custom {
-  border-color: var(--color-primary, #330073);
-  background: var(--color-primary, #330073);
+/* Purchase Option Label */
+.purchase-option-card label {
+  display: block;
+  cursor: pointer;
+  margin: 0;
+  padding: 5px 10px 5px 10px;
 }
 
-.subscription-option input[type="radio"]:checked + label .radio-custom::after {
-  opacity: 1;
-  transform: scale(1);
+/* Purchase Option Header */
+.purchase-option-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
 }
 
-.subscription-option label {
+/* Purchase Option Info (left side) */
+.purchase-option-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.purchase-option-title-row {
   display: flex;
   align-items: center;
   gap: 12px;
-  cursor: pointer;
-  margin: 0;
-  width: 100%;
 }
 
+.purchase-option-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-primary, #330073);
+  line-height: 1.2;
+}
+
+.purchase-option-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-left: 32px; /* Align with title (20px radio + 12px gap) */
+  line-height: 1.2;
+}
+
+/* Radio Custom */
 .radio-custom {
   width: 20px;
   height: 20px;
@@ -290,42 +324,55 @@
   transition: all 0.3s ease;
 }
 
-.option-text {
-  flex: 1;
-  font-size: 18px;
+.purchase-option-card input[type="radio"]:checked + label .radio-custom {
+  border-color: var(--color-primary, #330073);
+  background: var(--color-primary, #330073);
+}
+
+.purchase-option-card input[type="radio"]:checked + label .radio-custom::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Purchase Option Price (right side) */
+.purchase-option-price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size-body-lg);
+}
+
+.option-price-value {
+  font-size: var(--font-size-body-lg);
+  font-weight: 700;
   color: var(--color-primary, #330073);
 }
 
-.save-badge {
-  background: #4CBE45;
-  color: white;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-/* Delivery Frequency Selector */
-.delivery-frequency-selector {
-  margin-bottom: 16px;
-  padding: 16px;
-  background: white;
-  border: 2px solid var(--color-primary, #330073);
-  border-radius: 12px;
-}
-
-.delivery-frequency-label {
-  display: block;
+.option-price-original {
   font-size: 16px;
+  color: #999;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+/* Delivery Frequency Selector (inside Subscribe card) */
+.delivery-frequency-selector {
+  margin-top: 8px;
+  padding: 0 10px 10px 10px;
+}
+
+.delivery-frequency-selector .delivery-frequency-label {
+  display: block;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-primary, #330073);
-  margin-bottom: 8px;
+  padding: 0;
 }
 
 .delivery-frequency-select {
   width: 100%;
-  padding: 12px 16px;
+  padding: 10px 12px;
   border: 2px solid var(--color-border, #ddd);
   border-radius: 8px;
   font-size: 16px;
@@ -346,20 +393,21 @@
   box-shadow: 0 0 0 3px rgba(51, 0, 115, 0.1);
 }
 
-/* Subscription Info Box */
+/* Subscription Info Box (inside Subscribe card) */
 .subscription-info-box {
-  background: #fff7f4;
-  border-left: 4px solid var(--color-primary, #330073);
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 16px;
+  background: transparent;
+  border: none;
+  padding: 8px 10px 8px 10px;
+  margin: 0;
 }
 
-.subscription-info-title {
-  font-size: 16px;
+.subscription-info-box .subscription-info-title {
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-primary, #330073);
-  margin: 0 0 12px 0;
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+  padding: 0;
 }
 
 .subscription-info-list {
@@ -368,63 +416,36 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 2px;
 }
 
 .subscription-info-list li {
   font-size: 14px;
-  color: #666;
+  color: #333;
   display: flex;
   align-items: center;
   gap: 8px;
+  line-height: 1.1;
+  padding-left: 0;
 }
 
-/* Pricing Summary */
-.bundle-pricing-summary {
-  margin-bottom: 20px;
+.subscription-info-list .info-icon {
+  font-size: 16px;
+  width: 20px;
+  flex-shrink: 0;
 }
 
-.pricing-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
-  color: var(--color-primary, #330073);
-}
-
-.pricing-row.pricing-total {
-  border-top: 2px solid var(--color-border, #ddd);
-  padding-top: 12px;
-  margin-top: 8px;
-}
-
-.pricing-label {
-  font-size: 18px;
+/* Bulk Discount Progress */
+.bundle-discount-progress {
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .pricing-help-text {
-  font-size: 14px;
-  color: #666;
-  margin-top: 4px;
-  display: none;
-}
-
-.pricing-value {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.original-price {
-  font-size: 18px;
-  color: #999;
-  text-decoration: line-through;
-}
-
-.final-price {
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 16px;
   color: var(--color-primary, #330073);
+  font-weight: 600;
+  display: inline-block;
 }
 
 /* Add to Cart Button */
@@ -434,8 +455,8 @@
   color: white;
   border: none;
   border-radius: 12px;
-  padding: 16px 32px;
-  font-size: 20px;
+  padding: 8px 32px;
+  font-size: var(--font-size-body-lg);
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
@@ -524,21 +545,71 @@
     padding: 16px;
   }
   
-  .option-text {
-    font-size: 16px;
+  .purchase-option-info {
+    gap: 1px;
   }
   
-  .save-badge {
+  .purchase-option-title {
+    font-size: 16px;
+    line-height: 1;
+  }
+  
+  .purchase-option-subtitle {
     font-size: 12px;
-    padding: 3px 10px;
+    line-height: 1;
   }
   
-  .pricing-label {
-    font-size: 16px;
+  .purchase-option-price {
+    gap: 6px;
   }
   
-  .final-price {
-    font-size: 24px;
+  .option-price-value {
+    font-size: 20px;
+  }
+  
+  .option-price-original {
+    font-size: 14px;
+  }
+  
+  .purchase-option-card label {
+    padding: 5px 8px;
+  }
+  
+  .subscription-info-box {
+    padding: 8px;
+  }
+  
+  .subscription-info-box .subscription-info-title {
+    font-size: 13px;
+    margin: 0 0 3px 0;
+    padding: 0;
+  }
+  
+  .subscription-info-list {
+    gap: 1px;
+  }
+  
+  .subscription-info-list li {
+    font-size: 12px;
+    line-height: 1.2;
+    padding-left: 0;
+  }
+  
+  .delivery-frequency-selector {
+    margin-top: 8px;
+    padding: 0 8px 8px 8px;
+  }
+  
+  .delivery-frequency-selector .delivery-frequency-label {
+    padding: 0;
+  }
+  
+  .bundle-discount-progress {
+    margin-bottom: 12px;
+  }
+  
+  .pricing-help-text {
+    font-size: 14px;
   }
   
   .bundle-add-to-cart {
