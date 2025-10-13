@@ -21,10 +21,7 @@
     ],
     
     // Default subscription discount (will be fetched from Seal if available)
-    defaultSubscriptionDiscount: 0.10, // 10%
-    
-    // Minimum items required
-    minItems: 1
+    defaultSubscriptionDiscount: 0.10 // 10%
   };
 
   /**
@@ -167,6 +164,18 @@
       } catch (error) {
         return CONFIG.defaultBulkDiscounts;
       }
+    }
+
+    /**
+     * Get the minimum tier quantity required (lowest non-zero tier)
+     */
+    getMinTierQuantity() {
+      // Find the smallest non-zero minimum quantity from tiers
+      const nonZeroTiers = this.bulkDiscounts.filter(tier => tier.min > 0);
+      if (nonZeroTiers.length === 0) {
+        return 1; // Fallback to 1 if no valid tiers
+      }
+      return Math.min(...nonZeroTiers.map(tier => tier.min));
     }
 
     /**
@@ -504,17 +513,20 @@
       
       // Update help text for bulk discount tiers
       if (this.pricingHelpText) {
+        const minTierQty = this.getMinTierQuantity();
         const nextTier = this.getNextDiscountTier(totals.quantity);
-        if (totals.quantity === 0) {
-          // No cookies selected yet
-          this.pricingHelpText.textContent = 'Add to least 5 cookies ';
+        
+        if (totals.quantity < minTierQty) {
+          // Below minimum tier - show requirement
+          this.pricingHelpText.textContent = `Please select at least ${minTierQty} items`;
         } else if (nextTier) {
-          // Show how many more to add for next tier (with next tier's total discount)
+          // Show how many more to add for next tier (with additional discount savings)
           const needed = nextTier.min - totals.quantity;
-          this.pricingHelpText.textContent = `Add ${needed} more to save ${nextTier.discountPercent}%`;
+          const additionalDiscount = nextTier.discountPercent - totals.bulkDiscountPercent;
+          this.pricingHelpText.textContent = `Add ${needed} more to save another ${additionalDiscount}%`;
         } else {
           // At max tier, show current savings
-          this.pricingHelpText.textContent = `You're saving ${totals.bulkDiscountPercent}%!`;
+          this.pricingHelpText.textContent = `You're saving ${totals.bulkDiscountPercent}% 🎉!`;
         }
       }
       
@@ -523,7 +535,8 @@
       
       // Enable/disable add to cart button
       if (this.addToCartBtn) {
-        const hasMinItems = totals.quantity >= CONFIG.minItems;
+        const minTierQty = this.getMinTierQuantity();
+        const hasMinItems = totals.quantity >= minTierQty;
         const hasFrequency = !this.isSubscription || this.deliveryFrequency;
         const canAddToCart = hasMinItems && hasFrequency;
         
@@ -541,12 +554,18 @@
      * Get the next available bulk discount tier
      */
     getNextDiscountTier(currentQty) {
-      for (const tier of this.bulkDiscounts) {
-        if (currentQty < tier.min) {
-          return tier;
-        }
+      // Find all tiers that are higher than current quantity
+      const higherTiers = this.bulkDiscounts.filter(tier => tier.min > currentQty);
+      
+      // If no higher tiers, we're at the max
+      if (higherTiers.length === 0) {
+        return null;
       }
-      return null;
+      
+      // Return the tier with the smallest minimum (the next tier)
+      return higherTiers.reduce((lowest, tier) => 
+        tier.min < lowest.min ? tier : lowest
+      );
     }
 
     /**
@@ -640,8 +659,9 @@
      * Handle add to cart
      */
     async handleAddToCart() {
-      if (this.getTotalQuantity() < CONFIG.minItems) {
-        this.showError(`Please select at least ${CONFIG.minItems} cookie(s)`);
+      const minTierQty = this.getMinTierQuantity();
+      if (this.getTotalQuantity() < minTierQty) {
+        this.showError(`Please select at least ${minTierQty} items`);
         return;
       }
       
