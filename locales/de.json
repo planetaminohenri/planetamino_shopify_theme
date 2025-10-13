@@ -562,7 +562,8 @@
     },
     "pricing": {
       "please_select_minimum": "Bitte wähle mindestens {count} Artikel",
-      "add_more_save": "Füge {count} weitere hinzu und spare {percent}%",
+      "add_items_save": "Füge {count} Kekse hinzu und spare {percent}%",
+      "add_more_save": "Füge {count} weitere Kekse hinzu und spare zusätzlich {percent}%",
       "saving_max": "Du sparst {percent}% 🎉!"
     },
     "select_protein_powder": "Wähle ein Proteinpulver",

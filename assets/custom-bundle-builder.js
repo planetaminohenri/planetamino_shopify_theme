@@ -86,7 +86,8 @@
         return {
           currentLang: 'en',
           please_select_minimum: 'Please select at least {count} items',
-          add_more_save: 'Add {count} more to save another {percent}%',
+          add_items_save: 'Add {count} items and save {percent}%',
+          add_more_save: 'Add {count} more items and save another {percent}%',
           saving_max: "You're saving {percent}% 🎉!",
           save_on_delivery: 'Save 10% on every delivery',
           discount_all_orders: '10% off all recurring orders'
@@ -540,22 +541,31 @@
       if (this.pricingHelpText) {
         const minTierQty = this.getMinTierQuantity();
         const nextTier = this.getNextDiscountTier(totals.quantity);
+        const currentDiscountPercent = totals.bulkDiscountPercent;
         
         if (totals.quantity < minTierQty) {
-          // Below minimum tier - show requirement (translated)
+          // Scenario 1: Below minimum tier - show requirement
           this.pricingHelpText.textContent = this.translations.please_select_minimum
             .replace('{count}', minTierQty);
         } else if (nextTier) {
-          // Show how many more to add for next tier (translated)
           const needed = nextTier.min - totals.quantity;
-          const additionalDiscount = nextTier.discountPercent - totals.bulkDiscountPercent;
-          this.pricingHelpText.textContent = this.translations.add_more_save
-            .replace('{count}', needed)
-            .replace('{percent}', additionalDiscount);
+          const additionalDiscount = nextTier.discountPercent - currentDiscountPercent;
+          
+          if (currentDiscountPercent === 0) {
+            // Scenario 2: At minimum tier but not saving yet - "Add X items and save Y%"
+            this.pricingHelpText.textContent = this.translations.add_items_save
+              .replace('{count}', needed)
+              .replace('{percent}', nextTier.discountPercent);
+          } else {
+            // Scenario 3: Already saving, can save more - "Add X more items and save another Z%"
+            this.pricingHelpText.textContent = this.translations.add_more_save
+              .replace('{count}', needed)
+              .replace('{percent}', additionalDiscount);
+          }
         } else {
-          // At max tier, show current savings (translated)
+          // Scenario 4: At max tier, show current savings
           this.pricingHelpText.textContent = this.translations.saving_max
-            .replace('{percent}', totals.bulkDiscountPercent);
+            .replace('{percent}', currentDiscountPercent);
         }
       }
       
