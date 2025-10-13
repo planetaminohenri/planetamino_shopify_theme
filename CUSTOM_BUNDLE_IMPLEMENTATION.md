@@ -67,11 +67,14 @@ Added Finnish translations:
 
 ## Key Features
 
-### Dynamic Pricing
-- Fetches actual prices from product variants (not hardcoded)
-- Calculates tiered pricing based on total quantity
-- Applies subscription discount when selected
-- Shows both original and discounted price
+### Dynamic Pricing (Fully Dynamic & Reusable)
+- **Fetches actual prices from Shopify product variants** (not hardcoded)
+- **Fetches bulk discount tiers** from product metafields or uses configurable defaults
+- **Fetches subscription discount** from Seal Subscriptions app dynamically
+- Calculates individual item prices with bulk + subscription discounts
+- Calculates grand total with bulk + subscription discounts
+- Shows original price and discounted price
+- Updates prices in real-time as quantity changes
 
 ### Subscription Integration
 - Reads subscription discount percentage from Seal Subscriptions widget
@@ -96,16 +99,61 @@ Added Finnish translations:
 
 ## Configuration
 
-### Tiered Pricing
-Edit `CONFIG.priceTiers` in `assets/custom-bundle-builder.js`:
-```javascript
-priceTiers: [
-  { min: 40, price: 2.29 },
-  { min: 20, price: 2.49 },
-  { min: 5, price: 2.79 },
-  { min: 0, price: 2.79 }
-]
+### Bulk Discount Tiers (Dynamic)
+
+The bundle builder supports **fully dynamic bulk discount configuration** with 3 priority levels:
+
+#### Priority Order
+1. **Template Parameter** (recommended for reuse) → Highest priority
+2. **Product Metafield** (per-product override) → Medium priority  
+3. **Snippet Default** (global fallback) → Lowest priority
+
+#### Option 1: Product Template (✅ RECOMMENDED - Easy to Reuse)
+Configure directly in the product template where you render the snippet:
+
+**Edit**: `templates/product.power-cookie-custom-box.json`
+```liquid
+{% render 'custom-bundle-builder', 
+  product: product, 
+  collection_handle: 'power-cookie',
+  bulk_discounts: '5:0,20:10,40:20' 
+%}
 ```
+
+**To reuse on another product**: Just copy this snippet and update the `collection_handle` and `bulk_discounts` values!
+
+**Format**: `'minQty:discountPercent,minQty:discountPercent'`
+- Example: `'5:0,20:10,40:20'` means:
+  - 5-19 items = 0% off
+  - 20-39 items = 10% off
+  - 40+ items = 20% off
+
+#### Option 2: Product Metafields (For per-product overrides)
+Override template settings for specific products:
+
+1. Go to Shopify Admin → Settings → Custom data → Products
+2. Create a metafield:
+   - **Namespace and key**: `custom.bulk_discounts`
+   - **Type**: Single line text
+   - **Value**: Same format as above (e.g., `5:0,20:10,40:20`)
+
+#### Option 3: Edit Default in Snippet (Global fallback)
+Edit `snippets/custom-bundle-builder.liquid`, line 33:
+```liquid
+assign bulk_discounts = "5:0,20:10,40:18"
+```
+
+#### How It Works
+- Bulk discounts are **percentage-based** (applied to Shopify variant prices)
+- Configurable at 3 levels for maximum flexibility
+- JavaScript automatically parses and applies the configuration
+
+### Subscription Discount (Dynamic)
+- **Fetched automatically** from Seal Subscriptions app
+- Can be overridden per product using metafield:
+  - **Namespace and key**: `custom.subscription_discount`
+  - **Type**: Number (integer)
+  - **Value**: Percentage (e.g., `10` for 10% off)
 
 ### Minimum Items
 Edit `CONFIG.minItems` in `assets/custom-bundle-builder.js`:
@@ -113,26 +161,95 @@ Edit `CONFIG.minItems` in `assets/custom-bundle-builder.js`:
 minItems: 1  // Change to require minimum items
 ```
 
-### Collection Source
-Edit the collection in `snippets/custom-bundle-builder.liquid`:
+### Collection Source (Fully Configurable)
+The bundle builder fetches products from a Shopify collection. You can configure which collection to use:
+
+#### Via Template Parameter (✅ RECOMMENDED)
+Pass the collection handle when rendering the snippet:
 ```liquid
-assign cookie_collection = collections['power-cookie']
+{% render 'custom-bundle-builder', 
+  product: product, 
+  collection_handle: 'your-collection-handle',
+  bulk_discounts: '5:0,20:10,40:20' 
+%}
 ```
+
+#### Via Snippet Default (Fallback)
+If no `collection_handle` parameter is provided, edit the default in `snippets/custom-bundle-builder.liquid`, line 19:
+```liquid
+assign collection_handle = 'power-cookie'
+```
+
+**How it works:**
+- The builder fetches all products and variants from the specified collection
+- Uses each variant's Shopify price automatically
+- Applies the configured bulk discounts
+- Applies subscription discount from Seal Subscriptions
+
+## Pricing Calculation Logic
+
+The bundle builder now uses a fully dynamic pricing system:
+
+### 1. Individual Item Prices (Add Button)
+When displaying the price on each "Add" button:
+1. Start with **Shopify variant price** (fetched from product data)
+2. Apply **bulk discount** based on current total quantity + 1
+   - Example: If currently 19 items, next item gets discount for 20+ tier
+3. Apply **subscription discount** if subscription is selected
+4. **Formula**: `FinalPrice = ShopifyPrice × (1 - BulkDiscount%) × (1 - SubscriptionDiscount%)`
+
+### 2. Grand Total
+When calculating the bundle total:
+1. Sum all selected items using their **actual Shopify variant prices**
+2. Apply **bulk discount** to the subtotal based on total quantity
+3. Apply **subscription discount** to the result if subscription is selected
+4. **Formula**: `Total = (Σ ShopifyPrices) × (1 - BulkDiscount%) × (1 - SubscriptionDiscount%)`
+
+### Example
+- **Variant Price**: €2.79
+- **Quantity**: 25 items (qualifies for 10% bulk discount)
+- **Subscription**: Selected (10% subscription discount)
+
+**Calculation**:
+1. Subtotal: 25 × €2.79 = €69.75
+2. After bulk discount (10%): €69.75 × 0.90 = €62.78
+3. After subscription (10%): €62.78 × 0.90 = €56.50
+4. **Final Total**: €56.50
+
+**Individual Price**:
+- Base: €2.79
+- After bulk (10%): €2.79 × 0.90 = €2.51
+- After subscription (10%): €2.51 × 0.90 = €2.26
 
 ## Testing Checklist
 
 ### Functionality
-- [ ] Flavor cards load correctly from 'power-cookie' collection
-- [ ] Prices display correctly for each flavor
-- [ ] "Add" button appears initially
+- [ ] Flavor cards load correctly from collection
+- [ ] Prices display correctly for each flavor (from Shopify)
+- [ ] "Add" button appears initially with correct base price
 - [ ] Clicking "Add" shows quantity selector with quantity 1
 - [ ] Quantity +/- buttons work correctly
 - [ ] Quantity returns to "Add" button when set to 0
 - [ ] Total quantity updates in real-time
-- [ ] Total price calculates correctly
-- [ ] Tiered pricing applies at correct thresholds (5, 20, 40)
-- [ ] "Add X more to save" message displays correctly
+- [ ] Total price calculates correctly with Shopify prices
+
+### Dynamic Pricing
+- [ ] **Bulk discounts** apply at correct thresholds (default: 5, 20, 40)
+- [ ] **Add button prices** update when quantity changes
+- [ ] **Add button prices** reflect bulk discount based on total quantity
+- [ ] **Add button prices** reflect subscription discount when selected
+- [ ] **Grand total** uses actual Shopify variant prices
+- [ ] **Grand total** applies bulk discount correctly
+- [ ] **Grand total** applies subscription discount correctly
+- [ ] **Original price** shows when discounts are applied
+- [ ] "Add X more to save Y%" message displays correctly
+- [ ] Different variants with different Shopify prices calculate correctly
+
+### Subscription & Purchase Options
 - [ ] Subscription toggle switches correctly
+- [ ] Subscription discount fetched from Seal Subscriptions
+- [ ] Green border appears on "Subscribe & Save" when selected
+- [ ] Border is thicker (4px) than default (2px)
 - [ ] Subscription discount applies when selected
 - [ ] Add to cart button enables when minimum items selected
 - [ ] Add to cart button disabled when no items selected

@@ -42,7 +42,7 @@
         },
         "bundler_custom_bundle_xtAkNn": {
           "type": "shopify://apps/bundler/blocks/custom-bundle/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
-          "disabled": true,
+          "disabled": false,
           "settings": {
             "shortcode": "eap6"
           }
@@ -50,7 +50,7 @@
         "custom_bundle_builder": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{% render 'custom-bundle-builder', product: product %}"
+            "custom_liquid": "{% render 'custom-bundle-builder', product: product, collection_handle: 'power-cookie', bulk_discounts: '5:0,20:10,40:20' %}"
           }
         }
       },

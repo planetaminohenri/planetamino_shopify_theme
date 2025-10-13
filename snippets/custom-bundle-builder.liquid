@@ -14,11 +14,30 @@
 {% liquid
   assign bundle_product = product
   
-  # Fetch Power Cookie products from collection
-  assign cookie_collection = collections['power-cookie']
+  # Fetch products from collection (use parameter or default to 'power-cookie')
+  if collection_handle == blank
+    assign collection_handle = 'power-cookie'
+  endif
+  assign cookie_collection = collections[collection_handle]
   
   # Get unique ID for this instance
   assign unique_id = 'bundle-builder-' | append: section.id | append: '-' | append: 'now' | date: '%s'
+  
+  # Get bulk discount configuration with priority order:
+  # 1. Parameter passed to snippet (template-level config)
+  # 2. Product metafield (per-product override)
+  # 3. Default value
+  # Format: "minQty:discountPercent,minQty:discountPercent"
+  # Example: "5:0,20:10,40:18" means 5+ = 0% off, 20+ = 10% off, 40+ = 18% off
+  if bulk_discounts == blank
+    assign bulk_discounts = product.metafields.custom.bulk_discounts
+  endif
+  if bulk_discounts == blank
+    assign bulk_discounts = "5:0,20:10,40:18"
+  endif
+  
+  # Get subscription discount from product metafields or use default (10%)
+  assign default_subscription_discount = product.metafields.custom.subscription_discount | default: 10
 %}
 
 {{ 'custom-bundle-builder.css' | asset_url | stylesheet_tag }}
@@ -44,7 +63,11 @@
   {%- endif -%}
 </div>
 
-<div class="custom-bundle-builder" id="{{ unique_id }}" data-product-id="{{ bundle_product.id }}">
+<div class="custom-bundle-builder" 
+     id="{{ unique_id }}" 
+     data-product-id="{{ bundle_product.id }}"
+     data-bulk-discounts="{{ bulk_discounts }}"
+     data-default-subscription-discount="{{ default_subscription_discount }}">
   
   {%- comment -%} Flavor Grid {%- endcomment -%}
   <div class="bundle-flavors-grid">

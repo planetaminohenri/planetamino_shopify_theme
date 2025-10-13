@@ -171,6 +171,31 @@
             "value": "[\"Image\"]"
           }
         ]
+      },
+      {
+        "namespace": "custom",
+        "key": "bulk_discounts",
+        "name": "Bundle Bulk Discounts",
+        "description": "Bulk discount tiers for custom bundle builder. Format: 'minQty:discountPercent,minQty:discountPercent' (e.g., '5:0,20:10,40:18' means 5+ items = 0% off, 20+ = 10% off, 40+ = 18% off). Used by custom-bundle-builder.liquid snippet.",
+        "type": "single_line_text_field",
+        "validations": []
+      },
+      {
+        "namespace": "custom",
+        "key": "subscription_discount",
+        "name": "Bundle Subscription Discount Override",
+        "description": "Override the subscription discount percentage for this product's bundle. Enter a number (e.g., 10 for 10%). If not set, the discount will be fetched from Seal Subscriptions app automatically.",
+        "type": "number_integer",
+        "validations": [
+          {
+            "name": "min",
+            "value": "0"
+          },
+          {
+            "name": "max",
+            "value": "100"
+          }
+        ]
       }
     ]
   },
@@ -178,7 +203,11 @@
     "setup_instructions": "These metafield definitions must be created in Shopify Admin under Settings → Custom Data → Products. Each definition allows you to upload a list of images specific to that language.",
     "usage": "Once created, these metafields will appear in the product editor under the 'Metafields' section. Upload images to each language metafield as needed.",
     "fallback_logic": "If a language-specific metafield is empty, the system will fall back to English (images_en), and if that's also empty, it will use the default product.media gallery.",
-    "reusable_images": "The same image file from Shopify Files can be added to multiple products' metafields, allowing for efficient reuse of common images like certifications or benefits graphics."
+    "reusable_images": "The same image file from Shopify Files can be added to multiple products' metafields, allowing for efficient reuse of common images like certifications or benefits graphics.",
+    "bundle_builder": {
+      "bulk_discounts": "Configure quantity-based discount tiers for bundle products. Format is 'minQty:discountPercent' separated by commas. Discounts are percentage-based and stack with subscription discounts. Example: '5:0,20:10,40:18' gives 0% off for 5-19 items, 10% off for 20-39 items, and 18% off for 40+ items.",
+      "subscription_discount": "Override the default subscription discount for a specific bundle product. If not set, the bundle builder will automatically fetch the discount percentage from Seal Subscriptions app. Use this only if you need a product-specific subscription discount that differs from your store's default."
+    }
   }
 }
 

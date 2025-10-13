@@ -9,17 +9,18 @@
   // Namespace for the bundle builder
   window.CustomBundleBuilder = window.CustomBundleBuilder || {};
 
-  // Configuration
+  // Configuration defaults
   const CONFIG = {
-    // Tiered pricing structure (price per cookie based on quantity)
-    priceTiers: [
-      { min: 40, price: 2.29 },
-      { min: 20, price: 2.49 },
-      { min: 5, price: 2.79 },
-      { min: 0, price: 2.79 }
+    // Default bulk discount tiers (percentage off)
+    // Will be overridden by data attributes from Liquid
+    defaultBulkDiscounts: [
+      { min: 40, discountPercent: 18 },
+      { min: 20, discountPercent: 10 },
+      { min: 5, discountPercent: 0 },
+      { min: 0, discountPercent: 0 }
     ],
     
-    // Subscription discount (will be fetched from Seal if available)
+    // Default subscription discount (will be fetched from Seal if available)
     defaultSubscriptionDiscount: 0.10, // 10%
     
     // Minimum items required
@@ -42,6 +43,7 @@
       this.isSubscription = false;
       this.subscriptionDiscount = CONFIG.defaultSubscriptionDiscount;
       this.deliveryFrequency = null;
+      this.bulkDiscounts = this.parseBulkDiscounts();
       
       // DOM elements
       this.flavorCards = this.container.querySelectorAll('.flavor-card');
@@ -64,6 +66,110 @@
       this.bindEvents();
       this.fetchSubscriptionDiscount();
       this.updateUI();
+    }
+
+    /**
+     * Attempt to fetch discount configuration from Bundler.app
+     * Returns null if Bundler data is not available
+     */
+    fetchFromBundlerApp() {
+      try {
+        // Method 1: Check for Bundler window object
+        if (window.Bundler && window.Bundler.config) {
+          console.log('🔍 Found Bundler window config:', window.Bundler.config);
+          return this.parseBundlerConfig(window.Bundler.config);
+        }
+
+        // Method 2: Check for Bundler elements with data attributes
+        const bundlerElements = document.querySelectorAll('[data-shortcode], [data-bndlr-config], .bundler-target-element');
+        for (const element of bundlerElements) {
+          const config = element.dataset.bundlerConfig || element.dataset.bndlrConfig;
+          if (config) {
+            console.log('🔍 Found Bundler config in DOM:', config);
+            return this.parseBundlerConfig(JSON.parse(config));
+          }
+        }
+
+        // Method 3: Check for script tags with Bundler configuration
+        const scripts = document.querySelectorAll('script[type="application/json"]');
+        for (const script of scripts) {
+          try {
+            const data = JSON.parse(script.textContent);
+            if (data.bundler || data.bundlerConfig) {
+              console.log('🔍 Found Bundler config in script tag:', data);
+              return this.parseBundlerConfig(data.bundler || data.bundlerConfig);
+            }
+          } catch (e) {
+            // Not valid JSON or not Bundler config
+          }
+        }
+
+        console.log('⚠️ No Bundler.app configuration found in DOM');
+        return null;
+      } catch (error) {
+        console.error('Error fetching from Bundler.app:', error);
+        return null;
+      }
+    }
+
+    /**
+     * Parse Bundler config object to extract discount tiers
+     * This is speculative - the actual format depends on Bundler.app's implementation
+     */
+    parseBundlerConfig(config) {
+      // Try to find discount/tier configuration in common locations
+      if (config.discountTiers) {
+        return config.discountTiers.map(tier => ({
+          min: tier.quantity || tier.min,
+          discountPercent: tier.discount || tier.discountPercent
+        }));
+      }
+      if (config.tiers) {
+        return config.tiers.map(tier => ({
+          min: tier.quantity || tier.min,
+          discountPercent: tier.discount || tier.discountPercent
+        }));
+      }
+      return null;
+    }
+
+    /**
+     * Parse bulk discount configuration from data attribute
+     * Format: "minQty:discountPercent,minQty:discountPercent"
+     * Example: "5:0,20:10,40:18" means 5+ = 0% off, 20+ = 10% off, 40+ = 18% off
+     */
+    parseBulkDiscounts() {
+      // FIRST: Try to fetch from Bundler.app if available
+      const bundlerDiscounts = this.fetchFromBundlerApp();
+      if (bundlerDiscounts && bundlerDiscounts.length > 0) {
+        console.log('✅ Using discount tiers from Bundler.app:', bundlerDiscounts);
+        bundlerDiscounts.sort((a, b) => b.min - a.min);
+        return bundlerDiscounts;
+      }
+
+      // SECOND: Try to get from data attribute (metafield or manual configuration)
+      const bulkDiscountsAttr = this.container.dataset.bulkDiscounts;
+      
+      if (!bulkDiscountsAttr) {
+        console.log('📋 No bulk discounts configured, using defaults');
+        return CONFIG.defaultBulkDiscounts;
+      }
+
+      try {
+        const discounts = bulkDiscountsAttr.split(',').map(tier => {
+          const [min, discountPercent] = tier.split(':').map(val => parseFloat(val.trim()));
+          return { min, discountPercent };
+        });
+
+        // Sort by minimum quantity (descending) for proper tier matching
+        discounts.sort((a, b) => b.min - a.min);
+        
+        console.log('✅ Parsed bulk discounts from data attribute:', discounts);
+        return discounts;
+      } catch (error) {
+        console.error('Error parsing bulk discounts:', error);
+        return CONFIG.defaultBulkDiscounts;
+      }
     }
 
     /**
@@ -238,26 +344,46 @@
     }
 
     /**
-     * Get price per cookie based on total quantity
+     * Get bulk discount percentage based on total quantity
      */
-    getPricePerCookie(totalQty) {
-      for (const tier of CONFIG.priceTiers) {
+    getBulkDiscountPercent(totalQty) {
+      for (const tier of this.bulkDiscounts) {
         if (totalQty >= tier.min) {
-          return tier.price;
+          return tier.discountPercent;
         }
       }
-      return CONFIG.priceTiers[CONFIG.priceTiers.length - 1].price;
+      return 0;
     }
 
     /**
-     * Calculate total price
+     * Calculate total price using actual Shopify variant prices + bulk discount + subscription discount
      */
     calculateTotal() {
       const totalQty = this.getTotalQuantity();
-      const pricePerCookie = this.getPricePerCookie(totalQty);
-      let total = totalQty * pricePerCookie;
+      const bulkDiscountPercent = this.getBulkDiscountPercent(totalQty);
       
-      const originalTotal = total;
+      let subtotal = 0;
+      
+      // Calculate subtotal using actual Shopify variant prices
+      this.flavorCards.forEach(card => {
+        const variantId = card.dataset.variantId;
+        const quantity = this.selections[variantId];
+        
+        if (quantity && quantity > 0) {
+          const basePrice = parseFloat(card.dataset.price);
+          if (basePrice) {
+            subtotal += basePrice * quantity;
+          }
+        }
+      });
+      
+      // Apply bulk discount
+      let total = subtotal;
+      if (bulkDiscountPercent > 0) {
+        total = subtotal * (1 - bulkDiscountPercent / 100);
+      }
+      
+      const afterBulkDiscount = total;
       
       // Apply subscription discount
       if (this.isSubscription) {
@@ -266,8 +392,9 @@
       
       return {
         total: total,
-        originalTotal: originalTotal,
-        pricePerCookie: pricePerCookie,
+        originalTotal: subtotal,
+        afterBulkDiscount: afterBulkDiscount,
+        bulkDiscountPercent: bulkDiscountPercent,
         quantity: totalQty
       };
     }
@@ -296,18 +423,21 @@
         this.originalPriceEl.style.display = 'none';
       }
       
-      // Update help text for tiered pricing
+      // Update help text for bulk discount tiers
       if (this.pricingHelpText) {
-        const nextTier = this.getNextPriceTier(totals.quantity);
-        if (nextTier) {
+        const nextTier = this.getNextDiscountTier(totals.quantity);
+        if (nextTier && nextTier.discountPercent > totals.bulkDiscountPercent) {
           const needed = nextTier.min - totals.quantity;
-          const savings = (totals.pricePerCookie - nextTier.price).toFixed(2);
-          this.pricingHelpText.textContent = `Add ${needed} more to save €${savings}/cookie`;
+          const additionalDiscount = nextTier.discountPercent - totals.bulkDiscountPercent;
+          this.pricingHelpText.textContent = `Add ${needed} more to save an extra ${additionalDiscount}%`;
           this.pricingHelpText.style.display = 'block';
         } else {
           this.pricingHelpText.style.display = 'none';
         }
       }
+      
+      // Update "Add" button prices with current discounts
+      this.updateAddButtonPrices();
       
       // Enable/disable add to cart button
       if (this.addToCartBtn) {
@@ -326,15 +456,55 @@
     }
 
     /**
-     * Get the next available price tier
+     * Get the next available bulk discount tier
      */
-    getNextPriceTier(currentQty) {
-      for (const tier of CONFIG.priceTiers) {
+    getNextDiscountTier(currentQty) {
+      for (const tier of this.bulkDiscounts) {
         if (currentQty < tier.min) {
           return tier;
         }
       }
       return null;
+    }
+
+    /**
+     * Update all "Add" button prices with current discounts (bulk + subscription)
+     */
+    updateAddButtonPrices() {
+      const currentQty = this.getTotalQuantity();
+      
+      // Calculate what the bulk discount would be if we added one more item
+      const nextQty = currentQty + 1;
+      const bulkDiscountPercent = this.getBulkDiscountPercent(nextQty);
+      
+      this.flavorCards.forEach(card => {
+        const addBtn = card.querySelector('.flavor-add-btn');
+        const priceValueEl = addBtn ? addBtn.querySelector('.price-value') : null;
+        
+        if (priceValueEl) {
+          // Get the actual Shopify variant price from the card data
+          const basePrice = parseFloat(card.dataset.price) || parseFloat(addBtn.dataset.price);
+          
+          if (!basePrice) {
+            console.warn('No base price found for variant');
+            return;
+          }
+          
+          // Apply bulk discount
+          let finalPrice = basePrice;
+          if (bulkDiscountPercent > 0) {
+            finalPrice = basePrice * (1 - bulkDiscountPercent / 100);
+          }
+          
+          // Apply subscription discount if active
+          if (this.isSubscription) {
+            finalPrice = finalPrice * (1 - this.subscriptionDiscount);
+          }
+          
+          // Update the price display
+          priceValueEl.textContent = finalPrice.toFixed(2);
+        }
+      });
     }
 
     /**
