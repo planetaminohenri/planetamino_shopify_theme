@@ -598,14 +598,21 @@
       "add_to_cart": "Lisää ostoskoriin",
       "adding": "Lisätään...",
       "choose_delivery_interval": "Valitse tilaussykli:",
-      "how_subscriptions_work": "Miten kestotilaus toimii",
+      "delivers_every": "Toimitetaan joka",
+      "how_subscription_works": "Miten kestotilaus toimii",
       "best_price_option": "Paras hintavaihtoehto",
       "discount_all_orders": "10% alennus tilauksista",
       "easily_modify": "Muokkaa tilaus helposti omasta tilistä",
       "easily_cancel": "Peruuta milloin tahansa",
       "save_percentage": "SÄÄSTÄ 10%",
       "save_on_delivery": "Säästä 10% jokaisesta toimituksesta",
-      "select_frequency": "Valitse tilaussykli"
+      "select_frequency": "Valitse tilaussykli",
+      "cookies": "keksiä"
+    },
+    "pricing": {
+      "please_select_minimum": "Valitse vähintään {count} tuotetta",
+      "add_more_save": "Lisää {count} lisää ja säästä vielä {percent}%",
+      "saving_max": "Säästät {percent}% 🎉!"
     },
     "select_protein_powder": "Valitse yksi proteiinijauhe",
     "bundle_contains": "Bundle sisältää",
@@ -619,7 +626,8 @@
     "add_button": "Lisää",
     "add_more_save": "Lisää {count} lisää ja säästä €{amount}/keksi",
     "cookies_in_box": "Keksejä laatikossa",
-    "no_products": "Ei tuotteita saatavilla"
+    "no_products": "Ei tuotteita saatavilla",
+    "select_cookies": "Valitse keksejä nähdäksesi säästöt"
   },
   "shopify": {
     "checkout": {

@@ -41,6 +41,9 @@
       this.deliveryFrequency = null;
       this.bulkDiscounts = this.parseBulkDiscounts();
       
+      // Load translations for this bundle instance
+      this.translations = this.loadTranslations(containerId);
+      
       // DOM elements
       this.flavorCards = this.container.querySelectorAll('.flavor-card');
       this.subscriptionOptions = this.container.querySelectorAll('.purchase-option-card input[type="radio"]');
@@ -69,6 +72,28 @@
       this.populateFrequencyOptions();
       this.fetchSubscriptionDiscount();
       this.updateUI();
+    }
+
+    /**
+     * Load translations for this bundle instance
+     */
+    loadTranslations(containerId) {
+      // Get translations from window object (set by Liquid)
+      const translations = window.bundleTranslations && window.bundleTranslations[containerId];
+      
+      if (!translations) {
+        // Fallback to English defaults
+        return {
+          currentLang: 'en',
+          please_select_minimum: 'Please select at least {count} items',
+          add_more_save: 'Add {count} more to save another {percent}%',
+          saving_max: "You're saving {percent}% 🎉!",
+          save_on_delivery: 'Save 10% on every delivery',
+          discount_all_orders: '10% off all recurring orders'
+        };
+      }
+      
+      return translations;
     }
 
     /**
@@ -517,16 +542,20 @@
         const nextTier = this.getNextDiscountTier(totals.quantity);
         
         if (totals.quantity < minTierQty) {
-          // Below minimum tier - show requirement
-          this.pricingHelpText.textContent = `Please select at least ${minTierQty} items`;
+          // Below minimum tier - show requirement (translated)
+          this.pricingHelpText.textContent = this.translations.please_select_minimum
+            .replace('{count}', minTierQty);
         } else if (nextTier) {
-          // Show how many more to add for next tier (with additional discount savings)
+          // Show how many more to add for next tier (translated)
           const needed = nextTier.min - totals.quantity;
           const additionalDiscount = nextTier.discountPercent - totals.bulkDiscountPercent;
-          this.pricingHelpText.textContent = `Add ${needed} more to save another ${additionalDiscount}%`;
+          this.pricingHelpText.textContent = this.translations.add_more_save
+            .replace('{count}', needed)
+            .replace('{percent}', additionalDiscount);
         } else {
-          // At max tier, show current savings
-          this.pricingHelpText.textContent = `You're saving ${totals.bulkDiscountPercent}% 🎉!`;
+          // At max tier, show current savings (translated)
+          this.pricingHelpText.textContent = this.translations.saving_max
+            .replace('{percent}', totals.bulkDiscountPercent);
         }
       }
       
@@ -621,15 +650,9 @@
             if (!isNaN(discount)) {
               this.subscriptionDiscount = discount / 100;
               
-              // Update the banner text
-              if (this.subscriptionBannerEl) {
-                this.subscriptionBannerEl.textContent = `Save ${Math.round(discount)}% on every delivery`;
-              }
-              
-              // Update the subscription benefits text
-              if (this.subscriptionDiscountTextEl) {
-                this.subscriptionDiscountTextEl.textContent = `${Math.round(discount)}% off all recurring orders`;
-              }
+              // Note: Banner text and discount text are already set with proper translations in Liquid
+              // Only update if the discount differs from what's displayed (for future dynamic updates)
+              // Currently, translations are static in locale files, so we rely on Seal providing the correct default
             }
           }
         }
@@ -639,15 +662,7 @@
           const defaultDiscount = this.container.dataset.defaultSubscriptionDiscount;
           if (defaultDiscount) {
             this.subscriptionDiscount = parseFloat(defaultDiscount) / 100;
-            const discountPercent = Math.round(this.subscriptionDiscount * 100);
-            
-            // Update UI with default discount
-            if (this.subscriptionBannerEl) {
-              this.subscriptionBannerEl.textContent = `Save ${discountPercent}% on every delivery`;
-            }
-            if (this.subscriptionDiscountTextEl) {
-              this.subscriptionDiscountTextEl.textContent = `${discountPercent}% off all recurring orders`;
-            }
+            // Discount text is already properly set in Liquid with translations
           }
         }
       } catch (error) {

@@ -42,6 +42,19 @@
 
 {{ 'custom-bundle-builder.css' | asset_url | stylesheet_tag }}
 
+{%- comment -%} Pass translations to JavaScript {%- endcomment -%}
+<script>
+  window.bundleTranslations = window.bundleTranslations || {};
+  window.bundleTranslations['{{ unique_id }}'] = {
+    currentLang: '{{ localization.language.iso_code }}',
+    please_select_minimum: {{ 'bundles.pricing.please_select_minimum' | t | json }},
+    add_more_save: {{ 'bundles.pricing.add_more_save' | t | json }},
+    saving_max: {{ 'bundles.pricing.saving_max' | t | json }},
+    save_on_delivery: {{ 'bundles.purchase_options.save_on_delivery' | t | json }},
+    discount_all_orders: {{ 'bundles.purchase_options.discount_all_orders' | t | json }}
+  };
+</script>
+
 {%- comment -%} Hidden Seal Subscriptions widget for selling plan data {%- endcomment -%}
 {%- comment -%} Get selling plans from first cookie product in collection {%- endcomment -%}
 {%- assign first_cookie_product = cookie_collection.products.first -%}
@@ -204,7 +217,7 @@
           <h4 class="subscription-info-title">{{ 'bundles.purchase_options.how_subscription_works' | t | default: 'How subscription works:' }}</h4>
           <ul class="subscription-info-list">
             <li><span class="info-icon">🍪</span> {{ 'bundles.purchase_options.best_price_option' | t | default: 'Best price option' }}</li>
-            <li><span class="info-icon">📦</span> <span class="subscription-discount-text">10% off all recurring orders</span></li>
+            <li><span class="info-icon">📦</span> <span class="subscription-discount-text">{{ 'bundles.purchase_options.discount_all_orders' | t | default: '10% off all recurring orders' }}</span></li>
             <li><span class="info-icon">✏️</span> {{ 'bundles.purchase_options.easily_modify' | t | default: 'Easily modify order' }}</li>
             <li><span class="info-icon">❌</span> {{ 'bundles.purchase_options.easily_cancel' | t | default: 'Easily cancel anytime' }}</li>
           </ul>

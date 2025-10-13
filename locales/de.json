@@ -536,5 +536,48 @@
       "expanded": "Formular für den Empfänger des Gutscheins erweitert",
       "collapsed": "Formular für den Empfänger des Gutscheins minimiert"
     }
+  },
+  "bundles": {
+    "purchase_options": {
+      "one_time": "Einmaliger Kauf",
+      "subscribe_save": "Abonnieren & Sparen",
+      "subscribe_save_with_discount": "Abonnieren & Sparen 10%",
+      "every_4_weeks": "Alle 4 Wochen",
+      "every_6_weeks": "Alle 6 Wochen",
+      "every_8_weeks": "Alle 8 Wochen",
+      "total": "Gesamt",
+      "add_to_cart": "In den Warenkorb",
+      "adding": "Wird hinzugefügt...",
+      "choose_delivery_interval": "Lieferintervall wählen:",
+      "delivers_every": "Lieferung alle",
+      "how_subscription_works": "So funktioniert das Abo:",
+      "best_price_option": "Beste Preisoption",
+      "discount_all_orders": "10% Rabatt auf alle wiederkehrenden Bestellungen",
+      "easily_modify": "Bestellung einfach ändern",
+      "easily_cancel": "Jederzeit einfach kündigen",
+      "save_percentage": "SPARE 10%",
+      "save_on_delivery": "Spare 10% bei jeder Lieferung",
+      "select_frequency": "Häufigkeit wählen",
+      "cookies": "Kekse"
+    },
+    "pricing": {
+      "please_select_minimum": "Bitte wähle mindestens {count} Artikel",
+      "add_more_save": "Füge {count} weitere hinzu und spare {percent}%",
+      "saving_max": "Du sparst {percent}% 🎉!"
+    },
+    "select_protein_powder": "Wähle ein Proteinpulver",
+    "bundle_contains": "Dieses Bundle enthält",
+    "choose_flavors": "Wähle deine Lieblingsgeschmäcker",
+    "choose_products": "Wähle deine Lieblingsgeschmäcker",
+    "promotional_text": {
+      "title": "BESTELLE MEHR UND SPARE:",
+      "two_boxes": "🍪 2 Boxen: spare 10% und kostenloser Versand",
+      "four_boxes": "🍪 4 Boxen: spare 20% und kostenloser Versand"
+    },
+    "add_button": "Hinzufügen",
+    "add_more_save": "Füge {count} weitere hinzu und spare €{amount}/Keks",
+    "cookies_in_box": "Kekse in der Box",
+    "no_products": "Keine Produkte verfügbar",
+    "select_cookies": "Wähle Kekse um Ersparnisse zu sehen"
   }
 }

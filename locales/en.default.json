@@ -609,6 +609,11 @@
       "select_frequency": "Select frequency",
       "cookies": "cookies"
     },
+    "pricing": {
+      "please_select_minimum": "Please select at least {count} items",
+      "add_more_save": "Add {count} more to save another {percent}%",
+      "saving_max": "You're saving {percent}% 🎉!"
+    },
     "select_protein_powder": "Select one protein powder",
     "bundle_contains": "This bundle contains",
     "choose_flavors": "Choose your favorite flavors",
