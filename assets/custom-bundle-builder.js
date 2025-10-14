@@ -44,6 +44,12 @@
       // Load translations for this bundle instance
       this.translations = this.loadTranslations(containerId);
       
+      // Product type configuration
+      this.productType = this.translations.productType || 'cookie';
+      this.showServings = this.translations.showServings || false;
+      this.productTypeTerms = this.translations.productTypeTerms || { singular: 'item', plural: 'items' };
+      this.servingsSuffix = this.translations.servingsSuffix || 'servings';
+      
       // DOM elements
       this.flavorCards = this.container.querySelectorAll('.flavor-card');
       this.subscriptionOptions = this.container.querySelectorAll('.purchase-option-card input[type="radio"]');
@@ -95,6 +101,49 @@
       }
       
       return translations;
+    }
+
+    /**
+     * Get product type term with proper pluralization
+     */
+    getProductTypeTerm(count) {
+      return count === 1 ? this.productTypeTerms.singular : this.productTypeTerms.plural;
+    }
+
+    /**
+     * Calculate total servings based on weight and portion size
+     */
+    calculateTotalServings() {
+      if (!this.showServings) return 0;
+      
+      let totalServings = 0;
+      this.flavorCards.forEach(card => {
+        const variantId = card.dataset.variantId;
+        const quantity = this.selections[variantId] || 0;
+        const weight = parseFloat(card.dataset.weight);
+        const portionSize = parseFloat(card.dataset.portionSize);
+        
+        // Debug logging
+        if (quantity > 0) {
+          console.log('Servings calc for variant:', {
+            variantId,
+            quantity,
+            weight,
+            portionSize,
+            rawWeight: card.dataset.weight,
+            rawPortionSize: card.dataset.portionSize
+          });
+        }
+        
+        if (quantity > 0 && weight && portionSize) {
+          const servingsForThis = (quantity * weight) / portionSize;
+          console.log(`Adding ${servingsForThis} servings (${quantity} × ${weight} ÷ ${portionSize})`);
+          totalServings += servingsForThis;
+        }
+      });
+      
+      console.log('Total servings (before floor):', totalServings);
+      return Math.floor(totalServings);
     }
 
     /**
@@ -161,6 +210,7 @@
      * Parse bulk discount configuration from data attribute
      * Format: "minQty:discountPercent,minQty:discountPercent"
      * Example: "5:0,20:10,40:18" means 5+ = 0% off, 20+ = 10% off, 40+ = 18% off
+     * Returns empty array if no bulk discounts configured
      */
     parseBulkDiscounts() {
       // FIRST: Try to fetch from Bundler.app if available
@@ -173,8 +223,9 @@
       // SECOND: Try to get from data attribute (metafield or manual configuration)
       const bulkDiscountsAttr = this.container.dataset.bulkDiscounts;
       
-      if (!bulkDiscountsAttr) {
-        return CONFIG.defaultBulkDiscounts;
+      // If no bulk discounts attribute or empty string, return empty array
+      if (!bulkDiscountsAttr || bulkDiscountsAttr.trim() === '') {
+        return [];
       }
 
       try {
@@ -188,7 +239,7 @@
         
         return discounts;
       } catch (error) {
-        return CONFIG.defaultBulkDiscounts;
+        return [];
       }
     }
 
@@ -196,6 +247,11 @@
      * Get the minimum tier quantity required (lowest non-zero tier)
      */
     getMinTierQuantity() {
+      // If no bulk discounts, return 1 as minimum
+      if (this.bulkDiscounts.length === 0) {
+        return 1;
+      }
+      
       // Find the smallest non-zero minimum quantity from tiers
       const nonZeroTiers = this.bulkDiscounts.filter(tier => tier.min > 0);
       if (nonZeroTiers.length === 0) {
@@ -506,13 +562,62 @@
      */
     updateUI() {
       const totals = this.calculateTotal();
+      const totalServings = this.calculateTotalServings();
+      const productTypeTerm = this.getProductTypeTerm(totals.quantity);
       
-      // Update cookie counts in both option cards
+      // Build subtitle text with product type and optional servings
+      let subtitleText = `${totals.quantity} ${productTypeTerm}`;
+      if (this.showServings && totalServings > 0) {
+        subtitleText += ` - ${totalServings} ${this.servingsSuffix}`;
+      }
+      
+      // Debug logging
+      if (this.showServings) {
+        console.log('Servings debug:', {
+          showServings: this.showServings,
+          totalServings: totalServings,
+          totalQuantity: totals.quantity,
+          servingsSuffix: this.servingsSuffix,
+          subtitleText: subtitleText
+        });
+      }
+      
+      // Update counts in both option cards
       if (this.oneTimeCookieCountEl) {
+        // Update the count number
         this.oneTimeCookieCountEl.textContent = totals.quantity;
+        
+        // Update the product type text with proper pluralization
+        const productTypeTextEl = this.oneTimeCookieCountEl.parentElement.querySelector('.product-type-text');
+        if (productTypeTextEl) {
+          const productTypeTerm = this.getProductTypeTerm(totals.quantity);
+          let displayText = productTypeTerm;
+          
+          // Add servings if enabled
+          if (this.showServings && totalServings > 0) {
+            displayText += ` - ${totalServings} ${this.servingsSuffix}`;
+          }
+          
+          productTypeTextEl.textContent = displayText;
+        }
       }
       if (this.subscribeCookieCountEl) {
+        // Update the count number
         this.subscribeCookieCountEl.textContent = totals.quantity;
+        
+        // Update the product type text with proper pluralization
+        const productTypeTextEl = this.subscribeCookieCountEl.parentElement.querySelector('.product-type-text');
+        if (productTypeTextEl) {
+          const productTypeTerm = this.getProductTypeTerm(totals.quantity);
+          let displayText = productTypeTerm;
+          
+          // Add servings if enabled
+          if (this.showServings && totalServings > 0) {
+            displayText += ` - ${totalServings} ${this.servingsSuffix}`;
+          }
+          
+          productTypeTextEl.textContent = displayText;
+        }
       }
       
       // Calculate prices for BOTH options
@@ -537,35 +642,47 @@
         this.subscribeOriginalPriceEl.style.display = 'inline';
       }
       
-      // Update help text for bulk discount tiers
+      // Update help text for bulk discount tiers (only if bulk discounts exist)
       if (this.pricingHelpText) {
-        const minTierQty = this.getMinTierQuantity();
-        const nextTier = this.getNextDiscountTier(totals.quantity);
-        const currentDiscountPercent = totals.bulkDiscountPercent;
-        
-        if (totals.quantity < minTierQty) {
-          // Scenario 1: Below minimum tier - show requirement
-          this.pricingHelpText.textContent = this.translations.please_select_minimum
-            .replace('{count}', minTierQty);
-        } else if (nextTier) {
-          const needed = nextTier.min - totals.quantity;
-          const additionalDiscount = nextTier.discountPercent - currentDiscountPercent;
-          
-          if (currentDiscountPercent === 0) {
-            // Scenario 2: At minimum tier but not saving yet - "Add X items and save Y%"
-            this.pricingHelpText.textContent = this.translations.add_items_save
-              .replace('{count}', needed)
-              .replace('{percent}', nextTier.discountPercent);
-          } else {
-            // Scenario 3: Already saving, can save more - "Add X more items and save another Z%"
-            this.pricingHelpText.textContent = this.translations.add_more_save
-              .replace('{count}', needed)
-              .replace('{percent}', additionalDiscount);
-          }
+        // Hide pricing help text if no bulk discounts configured
+        if (this.bulkDiscounts.length === 0) {
+          this.pricingHelpText.parentElement.style.display = 'none';
         } else {
-          // Scenario 4: At max tier, show current savings
-          this.pricingHelpText.textContent = this.translations.saving_max
-            .replace('{percent}', currentDiscountPercent);
+          this.pricingHelpText.parentElement.style.display = 'block';
+          
+          const minTierQty = this.getMinTierQuantity();
+          const nextTier = this.getNextDiscountTier(totals.quantity);
+          const currentDiscountPercent = totals.bulkDiscountPercent;
+          
+          if (totals.quantity < minTierQty) {
+            // Scenario 1: Below minimum tier - show requirement
+            const productType = this.getProductTypeTerm(minTierQty);
+            this.pricingHelpText.textContent = this.translations.please_select_minimum
+              .replace('{count}', minTierQty)
+              .replace('{product_type}', productType);
+          } else if (nextTier) {
+            const needed = nextTier.min - totals.quantity;
+            const additionalDiscount = nextTier.discountPercent - currentDiscountPercent;
+            const productType = this.getProductTypeTerm(needed);
+            
+            if (currentDiscountPercent === 0) {
+              // Scenario 2: At minimum tier but not saving yet - "Add X items and save Y%"
+              this.pricingHelpText.textContent = this.translations.add_items_save
+                .replace('{count}', needed)
+                .replace('{product_type}', productType)
+                .replace('{percent}', nextTier.discountPercent);
+            } else {
+              // Scenario 3: Already saving, can save more - "Add X more items and save another Z%"
+              this.pricingHelpText.textContent = this.translations.add_more_save
+                .replace('{count}', needed)
+                .replace('{product_type}', productType)
+                .replace('{percent}', additionalDiscount);
+            }
+          } else {
+            // Scenario 4: At max tier, show current savings
+            this.pricingHelpText.textContent = this.translations.saving_max
+              .replace('{percent}', currentDiscountPercent);
+          }
         }
       }
       

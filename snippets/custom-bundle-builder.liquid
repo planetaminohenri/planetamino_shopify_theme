@@ -23,17 +23,24 @@
   # Get unique ID for this instance
   assign unique_id = 'bundle-builder-' | append: section.id | append: '-' | append: 'now' | date: '%s'
   
+  # Get product type (default: 'cookie')
+  if product_type == blank
+    assign product_type = 'cookie'
+  endif
+  
+  # Get show_servings flag (default: false)
+  if show_servings == blank
+    assign show_servings = false
+  endif
+  
   # Get bulk discount configuration with priority order:
   # 1. Parameter passed to snippet (template-level config)
   # 2. Product metafield (per-product override)
-  # 3. Default value
+  # 3. No default - empty means no bulk discounts
   # Format: "minQty:discountPercent,minQty:discountPercent"
   # Example: "5:0,20:10,40:18" means 5+ = 0% off, 20+ = 10% off, 40+ = 18% off
   if bulk_discounts == blank
     assign bulk_discounts = product.metafields.custom.bulk_discounts
-  endif
-  if bulk_discounts == blank
-    assign bulk_discounts = "5:0,20:10,40:18"
   endif
   
   # Get subscription discount from product metafields or use default (10%)
@@ -44,13 +51,27 @@
 
 {%- comment -%} Pass translations to JavaScript {%- endcomment -%}
 <script>
+  // Helper function to decode HTML entities
+  function decodeHtmlEntities(text) {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = text;
+    return textarea.value;
+  }
+  
   window.bundleTranslations = window.bundleTranslations || {};
   window.bundleTranslations['{{ unique_id }}'] = {
     currentLang: '{{ localization.language.iso_code }}',
+    productType: '{{ product_type }}',
+    showServings: {{ show_servings }},
+    productTypeTerms: {
+      singular: {{ 'bundles.product_types.' | append: product_type | append: '.singular' | t | json }},
+      plural: {{ 'bundles.product_types.' | append: product_type | append: '.plural' | t | json }}
+    },
+    servingsSuffix: {{ 'bundles.servings_suffix' | t | json }},
     please_select_minimum: {{ 'bundles.pricing.please_select_minimum' | t | json }},
     add_items_save: {{ 'bundles.pricing.add_items_save' | t | json }},
     add_more_save: {{ 'bundles.pricing.add_more_save' | t | json }},
-    saving_max: {{ 'bundles.pricing.saving_max' | t | json }},
+    saving_max: decodeHtmlEntities({{ 'bundles.pricing.saving_max' | t | json }}),
     save_on_delivery: {{ 'bundles.purchase_options.save_on_delivery' | t | json }},
     discount_all_orders: {{ 'bundles.purchase_options.discount_all_orders' | t | json }}
   };
@@ -100,7 +121,10 @@
                data-variant-id="{{ variant.id }}"
                data-product-id="{{ cookie_product.id }}"
                data-price="{{ variant.price | money_without_currency | replace: ',', '.' }}"
-               data-flavor="{{ variant_name }}">
+               data-flavor="{{ variant_name }}"
+               data-weight="{{ variant.weight }}"
+               {%- assign nutrition = variant.metafields.custom.nutrition.value -%}
+               data-portion-size="{{ nutrition.portion_size }}">
             
             {%- comment -%} Product/Variant Image {%- endcomment -%}
             <div class="flavor-card__image">
@@ -180,7 +204,7 @@
                 <span class="radio-custom"></span>
                 <span class="purchase-option-title">{{ 'bundles.purchase_options.one_time' | t | default: 'One-time purchase' }}</span>
               </div>
-              <span class="purchase-option-subtitle"><span class="option-cookie-count">0</span> {{ 'bundles.purchase_options.cookies' | t | default: 'cookies' }}</span>
+              <span class="purchase-option-subtitle"><span class="option-cookie-count">0</span> <span class="product-type-text">{{ 'bundles.product_types.' | append: product_type | append: '.plural' | t }}</span></span>
             </div>
             <div class="purchase-option-price">
               <span class="option-price-value">€0.00</span>
@@ -206,7 +230,7 @@
                 <span class="radio-custom"></span>
                 <span class="purchase-option-title">{{ 'bundles.purchase_options.subscribe_save' | t | default: 'Subscribe & Save' }}</span>
               </div>
-              <span class="purchase-option-subtitle"><span class="option-cookie-count">0</span> {{ 'bundles.purchase_options.cookies' | t | default: 'cookies' }}</span>
+              <span class="purchase-option-subtitle"><span class="option-cookie-count">0</span> <span class="product-type-text">{{ 'bundles.product_types.' | append: product_type | append: '.plural' | t }}</span></span>
             </div>
             <div class="purchase-option-price">
               <span class="option-price-original">€0.00</span>

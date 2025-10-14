@@ -538,6 +538,21 @@
     }
   },
   "bundles": {
+    "product_types": {
+      "cookie": {
+        "singular": "Keks",
+        "plural": "Kekse"
+      },
+      "bag": {
+        "singular": "Beutel",
+        "plural": "Beutel"
+      },
+      "item": {
+        "singular": "Artikel",
+        "plural": "Artikel"
+      }
+    },
+    "servings_suffix": "Portionen",
     "purchase_options": {
       "one_time": "Einmaliger Kauf",
       "subscribe_save": "Abonnieren & Sparen",
@@ -561,9 +576,9 @@
       "cookies": "Kekse"
     },
     "pricing": {
-      "please_select_minimum": "Bitte wähle mindestens {count} Artikel",
-      "add_items_save": "Füge {count} Kekse hinzu und spare {percent}%",
-      "add_more_save": "Füge {count} weitere Kekse hinzu und spare zusätzlich {percent}%",
+      "please_select_minimum": "Bitte wähle mindestens {count} {product_type}",
+      "add_items_save": "Füge {count} {product_type} hinzu und spare {percent}%",
+      "add_more_save": "Füge {count} weitere {product_type} hinzu und spare zusätzlich {percent}%",
       "saving_max": "Du sparst {percent}% 🎉!"
     },
     "select_protein_powder": "Wähle ein Proteinpulver",

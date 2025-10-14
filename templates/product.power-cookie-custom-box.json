@@ -50,7 +50,7 @@
         "custom_bundle_builder": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{% render 'custom-bundle-builder', product: product, collection_handle: 'power-cookie', bulk_discounts: '5:0,20:10,40:20' %}"
+            "custom_liquid": "{% render 'custom-bundle-builder', product: product, collection_handle: 'power-cookie', bulk_discounts: '5:0,20:10,40:20', product_type: 'cookie', show_servings: false %}"
           }
         }
       },

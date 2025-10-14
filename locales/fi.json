@@ -587,6 +587,21 @@
     }
   },
   "bundles": {
+    "product_types": {
+      "cookie": {
+        "singular": "keksi",
+        "plural": "keksiä"
+      },
+      "bag": {
+        "singular": "pussi",
+        "plural": "pussia"
+      },
+      "item": {
+        "singular": "tuote",
+        "plural": "tuotetta"
+      }
+    },
+    "servings_suffix": "annosta",
     "purchase_options": {
       "one_time": "Kertaostos",
       "subscribe_save": "Kestotilaa ja säästä",
@@ -610,9 +625,9 @@
       "cookies": "keksiä"
     },
     "pricing": {
-      "please_select_minimum": "Valitse vähintään {count} keksiä",
-      "add_items_save": "Lisää {count} keksiä ja säästä {percent}%",
-      "add_more_save": "Lisää {count} keksiä ja voit säästä vielä {percent}%",
+      "please_select_minimum": "Valitse vähintään {count} {product_type}",
+      "add_items_save": "Lisää {count} {product_type} ja säästä {percent}%",
+      "add_more_save": "Lisää {count} {product_type} ja voit säästä vielä {percent}%",
       "saving_max": "Hurraa! Säästät {percent}% 🎉!"
     },
     "select_protein_powder": "Valitse yksi proteiinijauhe",

@@ -587,6 +587,21 @@
     }
   },
   "bundles": {
+    "product_types": {
+      "cookie": {
+        "singular": "cookie",
+        "plural": "cookies"
+      },
+      "bag": {
+        "singular": "bag",
+        "plural": "bags"
+      },
+      "item": {
+        "singular": "item",
+        "plural": "items"
+      }
+    },
+    "servings_suffix": "servings",
     "purchase_options": {
       "one_time": "One-time purchase",
       "subscribe_save": "Subscribe & Save",
@@ -610,9 +625,9 @@
       "cookies": "cookies"
     },
     "pricing": {
-      "please_select_minimum": "Please select at least {count} items",
-      "add_items_save": "Add {count} items and save {percent}%",
-      "add_more_save": "Add {count} more items and save another {percent}%",
+      "please_select_minimum": "Please select at least {count} {product_type}",
+      "add_items_save": "Add {count} {product_type} and save {percent}%",
+      "add_more_save": "Add {count} more {product_type} and save another {percent}%",
       "saving_max": "You're saving {percent}% 🎉!"
     },
     "select_protein_powder": "Select one protein powder",
