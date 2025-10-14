@@ -128,7 +128,7 @@
   display: flex;
   align-items: center;
   margin: 0px 0px 0px 10px;
-  gap: 6px;
+  gap: 3px;
   width: auto;
   max-width: 50%;
   justify-content: flex-start;
@@ -215,7 +215,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 
 /* Purchase Option Card */
@@ -435,15 +435,18 @@
 
 /* Bulk Discount Progress */
 .bundle-discount-progress {
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   text-align: center;
 }
 
 .pricing-help-text {
   font-size: var(--font-size-body-lg);
-  color: var(--color-primary, #330073);
+  color: #ffffff;
   font-weight: 600;
   display: inline-block;
+  background: #4CBE45;
+  border-radius: 12px;
+  padding: 2px 18px;
 }
 
 /* Add to Cart Button */
@@ -507,7 +510,7 @@
   .flavor-card {
     padding: 0px;
     gap: 5px;
-    grid-template-columns: 47px 1fr;
+    grid-template-columns: 51px 1fr;
   }
 
   .flavor-card__content {
@@ -534,7 +537,7 @@
   }
   
   .qty-input {
-    width: 38px;
+    width: 32px;
     height: 26px;
     font-size: 13px;
   }
@@ -574,12 +577,7 @@
   
   .delivery-frequency-selector .delivery-frequency-label {
     padding: 0;
-  }
-  
-  .bundle-discount-progress {
-    margin-bottom: 12px;
-  }
-  
+  }  
   
   .bundle-add-to-cart {
     padding: 14px 24px;
