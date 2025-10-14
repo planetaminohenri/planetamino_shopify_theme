@@ -601,9 +601,9 @@
       "delivers_every": "Tilaussykli",
       "how_subscription_works": "Miten kestotilaus toimii",
       "best_price_option": "Paras hinta",
-      "discount_all_orders": "-10% kaikista tilauksista",
+      "discount_all_orders": "-10% lisää kaikista tilauksista",
       "easily_modify": "Muokkaa tilaus helposti omasta tilistä",
-      "easily_cancel": "Peru milloin tahansa",
+      "easily_cancel": "Ei määräaikaa",
       "save_percentage": "SÄÄSTÄ 10%",
       "save_on_delivery": "Säästä 10% jokaisesta toimituksesta",
       "select_frequency": "Valitse tilaussykli",
@@ -612,8 +612,8 @@
     "pricing": {
       "please_select_minimum": "Valitse vähintään {count} keksiä",
       "add_items_save": "Lisää {count} keksiä ja säästä {percent}%",
-      "add_more_save": "Lisää {count} keksiä ja säästä vielä {percent}%",
-      "saving_max": "Säästät {percent}% 🎉!"
+      "add_more_save": "Lisää {count} keksiä ja voit säästä vielä {percent}%",
+      "saving_max": "Hurraa! Säästät {percent}% 🎉!"
     },
     "select_protein_powder": "Valitse yksi proteiinijauhe",
     "bundle_contains": "Bundle sisältää",
